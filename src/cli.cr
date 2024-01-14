@@ -1,0 +1,3 @@
+require "./wgsim"
+
+Wgsim.run

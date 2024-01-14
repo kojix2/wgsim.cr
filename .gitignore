@@ -1,0 +1,14 @@
+/docs/
+/lib/
+/bin/
+/.shards/
+*.dwarf
+*.lock
+*.fa
+*.sam
+*.bam
+*.mmi
+*.fa.gz
+*.fa.gz*
+*.fai
+*.bai

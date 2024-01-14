@@ -1,0 +1,13 @@
+name: wgsim
+version: 0.1.0
+
+authors:
+  - kojix2 <2xijok@gmail.com>
+
+targets:
+  wgsim:
+    main: src/cli.cr
+
+crystal: '>= 1.10.1'
+
+license: MIT
