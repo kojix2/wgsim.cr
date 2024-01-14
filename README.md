@@ -1,7 +1,10 @@
 # wgsim.cr
 
+[![build](https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml)
+
 Trying to re-implement and add functionality to [wgsim](https://github.com/lh3/wgsim) in Crystal.
-Please note that this project is experimental and is not being made available for practical purposes.
+
+Please note that this project has been created for personal learning and experimental purposes and is not intended for practical use.
 
 ## Installation
 
