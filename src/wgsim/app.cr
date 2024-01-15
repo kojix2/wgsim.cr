@@ -10,27 +10,27 @@ module Wgsim
     getter output1 : Path
     getter output2 : Path
 
-    def initialize(@config : Config)
-      @reference = @config.reference.not_nil!
-      @output1 = @config.output1.not_nil!
-      @output2 = @config.output2.not_nil!
-      @random = (seed = @config.seed) ? Rand.new(seed) : Rand.new
+    def initialize(@options : Options)
+      @reference = @options.reference.not_nil!
+      @output1 = @options.output1.not_nil!
+      @output2 = @options.output2.not_nil!
+      @random = (seed = @options.seed) ? Rand.new(seed) : Rand.new
 
       @mutation_simulator = MutationSimulator.new(
-        @config.mutation_rate,
-        @config.indel_fraction,
-        @config.indel_extension_probability,
+        @options.mutation_rate,
+        @options.indel_fraction,
+        @options.indel_extension_probability,
         random: @random,
       )
 
       @sequence_simulator = SequenceSimulator.new(
-        @config.total_pairs,
-        @config.distance,
-        @config.std_deviation,
-        @config.size_left,
-        @config.size_right,
-        @config.error_rate,
-        @config.max_ambiguous_ratio,
+        @options.total_pairs,
+        @options.distance,
+        @options.std_deviation,
+        @options.size_left,
+        @options.size_right,
+        @options.error_rate,
+        @options.max_ambiguous_ratio,
         random: @random,
       )
     end

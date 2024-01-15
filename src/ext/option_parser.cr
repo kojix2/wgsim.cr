@@ -6,11 +6,11 @@ class OptionParser
     {% type = "to_i64" if ctype == "INT64" %}
     {% type = "to_u64" if ctype == "UINT64" %}
     {% type = "to_f64" if ctype == "FLOAT" %}
-    on("#{{{short}}} #{{{ctype}}}", "#{{{desc}}} [#{mutation_options.{{field.id}}}]") do |v|
+    on("{{short.id}} {{ctype.id}}", "{{desc.id}} [#{options.mut.{{field.id}}}]") do |v|
       begin
-        mutation_options.{{field.id}} = v.{{type.id}}
+        options.mut.{{field.id}} = v.{{type.id}}
       rescue ex
-        Utils.print_error! "#{{{short_type}}}: #{ex.message}"
+        Utils.print_error! "{{short_type.id}}: #{ex.message}"
       end
     end
   end
@@ -22,11 +22,11 @@ class OptionParser
     {% type = "to_i64" if ctype == "INT64" %}
     {% type = "to_u64" if ctype == "UINT64" %}
     {% type = "to_f64" if ctype == "FLOAT" %}
-    on("#{{{short}}} #{{{ctype}}}", "#{{{desc}}} [#{sequence_options.{{field.id}}}]") do |v|
+    on("{{short.id}} {{ctype.id}}", "{{desc.id}} [#{options.seq.{{field.id}}}]") do |v|
       begin
-        sequence_options.{{field.id}} = v.{{type.id}}
+        options.seq.{{field.id}} = v.{{type.id}}
       rescue ex
-        Utils.print_error! "#{{{short_type}}}: #{ex.message}"
+        Utils.print_error! "{{short_type.id}}: #{ex.message}"
       end
     end
   end

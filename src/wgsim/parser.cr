@@ -1,7 +1,5 @@
 require "./version"
-require "./config"
-require "./mutation_options"
-require "./sequence_options"
+require "./options"
 require "./utils"
 
 require "option_parser"
@@ -10,22 +8,18 @@ require "colorize"
 
 module Wgsim
   class Parser < OptionParser
-    getter mutation_options : MutationOptions?
-    getter sequence_options : SequenceOptions?
-    getter command : String?
+    getter options : Options
 
     def initialize
       super
-      @command = nil
-      @mutation_options = nil
-      @sequence_options = nil
+      @options = Options.new
       @banner = <<-BANNER
         Program: wgsim (Crystal implementation of wgsim)
         Version: #{VERSION}
       BANNER
 
       on("mut", "mutate the reference") do
-        mutation_options = MutationOptions.new
+        options.command = "mut"
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
         m_on("-X FLOAT", "probability an indel is extended", :indel_extension_probability)
@@ -36,7 +30,7 @@ module Wgsim
         on("--help", "show this help message") { show_help }
       end
       on("seq", "generate the reads") do
-        sequence_options = SequenceOptions.new
+        options.command = "seq"
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
         s_on("-s INT", "standard deviation", :std_deviation)
@@ -55,30 +49,29 @@ module Wgsim
       invalid_option { |flag| Utils.print_error!("Invalid option: #{flag}") }
     end
 
-    def parse(argv = ARGV) : MutationOptions | SequenceOptions
-      case command
+    def parse(argv = ARGV)
+      case options.command
       when "mut"
         parse_mut(argv)
       when "seq"
         parse_seq(argv)
       else
-        Utils.print_error!("Invalid command: #{command}")
+        Utils.print_error!("Invalid command: #{options.command}")
       end
+      options
     end
 
-    def parse_mut(argv = ARGV) : MutationOptions
-      mutation_options.not_nil!.reference = Path.new(argv.shift)
-      validate_file_exists(mutation_options.not_nil!.reference)
-      mutation_options.not_nil!
+    def parse_mut(argv = ARGV)
+      options.mut.reference = Path.new(argv.shift)
+      validate_file_exists(options.mut.reference)
     end
 
-    def parse_seq(argv = ARGV) : SequenceOptions
+    def parse_seq(argv = ARGV)
       validate_arguments(argv)
-      sequence_options.not_nil!.reference = Path.new(argv.shift)
-      validate_file_exists(sequence_options.not_nil!.reference)
-      sequence_options.not_nil!.output1 = Path.new(argv.shift)
-      sequence_options.not_nil!.output2 = Path.new(argv.shift)
-      sequence_options.not_nil!
+      options.seq.reference = Path.new(argv.shift)
+      validate_file_exists(options.seq.reference)
+      options.seq.output1 = Path.new(argv.shift)
+      options.seq.output2 = Path.new(argv.shift)
     end
 
     def show_version
