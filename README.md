@@ -21,24 +21,12 @@ shards build --release -Dpreview_mt src/wgsim.cr
 ## Usage
 
 ```
-  Program: wgsim (short read simulator)
-  Version: 0.1.0
-  Usage:   wgsim [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
-  Options:
-    -e FLOAT     base error rate [0.02]
-    -d INT       outer distance between the two ends [500]
-    -s INT       standard deviation [50]
-    -N INT64     number of read pairs [1000000]
-    -1 INT       length of the first read [70]
-    -2 INT       length of the second read [70]
-    -r FLOAT     rate of mutations [0.001]
-    -R FLOAT     fraction of indels [0.15]
-    -X FLOAT     probability an indel is extended [0.3]
-    -S UINT64    seed for random generator []
-    -A FLOAT     Discard reads over FLOAT% ambiguous bases [0.05]
-    -t INT       Number of threads [4]
-    --help       show this help message
-    --version    show version number
+  Program: wgsim (Crystal implementation of wgsim)
+  Version: 0.0.0.alpha
+    mut          mutate the reference
+    seq          generate the reads
+    help         show this help message
+    version      show version number
 ```
 
 ## Development

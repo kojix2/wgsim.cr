@@ -56,6 +56,8 @@ module Wgsim
         parse_mut(argv)
       when "seq"
         parse_seq(argv)
+      when ""
+        show_help(1)
       else
         Utils.print_error!("Invalid command: #{options.command}")
       end
@@ -80,9 +82,9 @@ module Wgsim
       exit
     end
 
-    def show_help
+    def show_help(n = 0)
       puts self
-      exit
+      exit(n)
     end
 
     def validate_arguments(argv)
