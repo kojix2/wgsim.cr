@@ -53,7 +53,7 @@ module Wgsim
       output1 = sopts.output1.not_nil!
       output2 = sopts.output2.not_nil!
       sequence_simulator = SequenceSimulator.new(
-        sopts.total_pairs,
+        sopts.mean_depth,
         sopts.distance,
         sopts.std_deviation,
         sopts.size_left,
@@ -63,35 +63,19 @@ module Wgsim
         random: @random,
       )
 
-      # output_fasta_1 = File.open(output1, "w")
-      # output_fasta_2 = File.open(output2, "w")
+      output_fasta_1 = File.open(output1, "w")
+      output_fasta_2 = File.open(output2, "w")
 
-      # @sequence_simulator.run(contig_sequences, total_seq_length, @mutation_simulator) do |record1, record2|
-      #   output_fasta_1.puts record1
-      #   output_fasta_2.puts record2
-      # end
+      ReadFasta.each_contig(reference) do |name, sequence|
+        normalized_sequence = ReadFasta.normalize_sequence(sequence)
+        sequence_simulator.run(name, normalized_sequence) do |record1, record2|
+          output_fasta_1.puts record1
+          output_fasta_2.puts record2
+        end
+      end
 
-      # output_fasta_1.close
-      # output_fasta_2.close
-    end
-
-    def calculate_total_seq_length
-      # contig_sequences = {} of String => Slice(RefBase)
-      # ReadFasta.each_contig(reference) do |name, sequence|
-      #   puts "[wgsim] #{name} #{sequence.size} bp"
-
-      #   normalized_seq = ReadFasta.normalize_sequence(sequence)
-      #   ref_bases = normalized_seq.map do |n|
-      #     RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
-      #   end
-      #   contig_sequences[name] = ref_bases
-      # end
-
-      # num_contigs = contig_sequences.size
-      # total_seq_length = 0u64 # necessary to avoid overflow
-      # contig_sequences.values.each { |seq| total_seq_length += seq.size }
-
-      # {num_contigs, total_seq_length, contig_sequences}
+      output_fasta_1.close
+      output_fasta_2.close
     end
 
     def run
