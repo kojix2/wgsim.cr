@@ -50,6 +50,7 @@ module Wgsim
     end
 
     def parse(argv = ARGV)
+      super
       case options.command
       when "mut"
         parse_mut(argv)

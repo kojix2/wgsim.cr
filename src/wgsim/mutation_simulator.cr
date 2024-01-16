@@ -35,7 +35,7 @@ module Wgsim
     end
 
     def log_mutation(name : String, index : Int32, old_nucleotide : UInt8, new_nucleotide : UInt8)
-      puts "[wgsim] #{name} #{index} #{old_nucleotide.chr} -> #{new_nucleotide.chr}"
+      STDERR.puts "[wgsim] #{name} #{index} #{old_nucleotide.chr} -> #{new_nucleotide.chr}"
     end
 
     def generate_insertion : Slice(UInt8)
