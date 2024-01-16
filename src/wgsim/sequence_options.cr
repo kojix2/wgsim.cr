@@ -10,7 +10,6 @@ module Wgsim
     property indel_fraction : Float64 = 0.15
     property indel_extension_probability : Float64 = 0.3
     property max_ambiguous_ratio : Float64 = 0.05
-    property seed : UInt64?
     property reference : Path?
     property output1 : Path?
     property output2 : Path?

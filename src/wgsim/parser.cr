@@ -23,7 +23,7 @@ module Wgsim
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
         m_on("-X FLOAT", "probability an indel is extended", :indel_extension_probability)
-        m_on("-S UINT64", "seed for random generator", :seed)
+        on("-S UINT64", "seed for random generator") { |v| options.seed = v.to_u64 }
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}
@@ -37,8 +37,8 @@ module Wgsim
         s_on("-N INT64", "number of read pairs", :total_pairs)
         s_on("-1 INT", "length of the first read", :size_left)
         s_on("-2 INT", "length of the second read", :size_right)
-        s_on("-S UINT64", "seed for random generator", :seed)
         s_on("-A FLOAT", "Discard reads over FLOAT% ambiguous bases", :max_ambiguous_ratio)
+        on("-S UINT64", "seed for random generator") { |v| options.seed = v.to_u64 }
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}

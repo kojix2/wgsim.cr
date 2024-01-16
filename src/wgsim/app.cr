@@ -6,31 +6,34 @@ require "./sequence_simulator"
 
 module Wgsim
   class Simulator
-    getter reference : Path
-    getter output1 : Path
-    getter output2 : Path
-
     def initialize(@options : Options)
-      @reference = @options.reference.not_nil!
-      @output1 = @options.output1.not_nil!
-      @output2 = @options.output2.not_nil!
       @random = (seed = @options.seed) ? Rand.new(seed) : Rand.new
+    end
 
+    def run_mut
+      mopts = @options.mut
+      @reference = mopts.reference.not_nil!
       @mutation_simulator = MutationSimulator.new(
-        @options.mutation_rate,
-        @options.indel_fraction,
-        @options.indel_extension_probability,
+        mopts.mutation_rate,
+        mopts.indel_fraction,
+        mopts.indel_extension_probability,
         random: @random,
       )
+    end
 
+    def run_seq
+      sopts = @options.seq
+      @reference = sopts.reference.not_nil!
+      @output1 = sopts.output1.not_nil!
+      @output2 = sopts.output2.not_nil!
       @sequence_simulator = SequenceSimulator.new(
-        @options.total_pairs,
-        @options.distance,
-        @options.std_deviation,
-        @options.size_left,
-        @options.size_right,
-        @options.error_rate,
-        @options.max_ambiguous_ratio,
+        sopts.total_pairs,
+        sopts.distance,
+        sopts.std_deviation,
+        sopts.size_left,
+        sopts.size_right,
+        sopts.error_rate,
+        sopts.max_ambiguous_ratio,
         random: @random,
       )
     end
