@@ -41,7 +41,11 @@ module Wgsim
               seq.write ins if ins
             end
           end
-          puts seq.to_s.gsub(/(.{80})/, "\\1\n")
+          # output 80 bp per line
+          seq.rewind
+          while (line = seq.gets(80))
+            puts line
+          end
         end
       end
     end
