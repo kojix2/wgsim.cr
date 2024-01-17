@@ -1,4 +1,4 @@
-require "./crystal_scheduler"
+require "./ext/crystal_scheduler"
 require "./wgsim/version"
 require "./wgsim/options"
 require "./wgsim/parser"
