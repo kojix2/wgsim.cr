@@ -53,7 +53,7 @@ module Wgsim
       output1 = sopts.output1.not_nil!
       output2 = sopts.output2.not_nil!
       sequence_simulator = SequenceSimulator.new(
-        sopts.mean_depth,
+        sopts.average_depth,
         sopts.distance,
         sopts.std_deviation,
         sopts.size_left,

@@ -33,7 +33,7 @@ module Wgsim
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
         s_on("-s INT", "standard deviation", :std_deviation)
-        s_on("-D FLOAT", "number of read pairs", :mean_depth)
+        s_on("-D FLOAT", "average sequencing depth", :average_depth)
         s_on("-1 INT", "length of the first read", :size_left)
         s_on("-2 INT", "length of the second read", :size_right)
         s_on("-A FLOAT", "Discard reads over FLOAT% ambiguous bases", :max_ambiguous_ratio)

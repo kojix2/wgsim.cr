@@ -3,14 +3,14 @@ module Wgsim
     delegate _rand, rand_norm, rand_bool, to: @random
     getter distance : Int32
     getter std_deviation : Int32
-    getter mean_depth : Float64
+    getter average_depth : Float64
     getter size_left : Int32
     getter size_right : Int32
     getter error_rate : Float64
     getter max_ambiguous_ratio : Float64
 
     def initialize(
-      @mean_depth,
+      @average_depth,
       @distance,
       @std_deviation,
       @size_left,
@@ -30,7 +30,7 @@ module Wgsim
       # end
 
       # depth per haploid
-      n_pairs = (contig_length * mean_depth / (size_left + size_right)).to_i
+      n_pairs = (contig_length * average_depth / (size_left + size_right)).to_i
 
       pair_index = 0
       while pair_index < n_pairs
