@@ -2,12 +2,12 @@ require "./ext/crystal_scheduler"
 require "./wgsim/version"
 require "./wgsim/options"
 require "./wgsim/parser"
-require "./wgsim/app"
+require "./wgsim/application"
 
 module Wgsim
   def self.run
     options = Wgsim::Parser.new.parse
-    simulator = Wgsim::Simulator.new(options)
-    simulator.run
+    app = Wgsim::Application.new(options)
+    app.run
   end
 end

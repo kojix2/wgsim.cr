@@ -5,7 +5,7 @@ require "./mutation_simulator"
 require "./sequence_simulator"
 
 module Wgsim
-  class Simulator
+  class Application
     def initialize(@options : Options)
       @random = (seed = @options.seed) ? Rand.new(seed) : Rand.new
     end
