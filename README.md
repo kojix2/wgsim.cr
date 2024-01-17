@@ -4,7 +4,7 @@
 
 Trying to re-implement and add functionality to [wgsim](https://github.com/lh3/wgsim) in Crystal.
 
-Please note that this project has been created for personal learning and experimental purposes and is not intended for practical use.
+:black_cat: Please note that this project has been created for personal learning and experimental purposes and is not intended for practical use.
 
 ## Installation
 
@@ -22,11 +22,36 @@ shards build --release -Dpreview_mt src/wgsim.cr
 
 ```
   Program: wgsim (Crystal implementation of wgsim)
-  Version: 0.0.0.alpha
+  Version: 0.0.1.alpha
     mut          mutate the reference
     seq          generate the reads
-    help         show this help message
     version      show version number
+```
+
+```
+  Usage: wgsim mut [options] <in.ref.fa>
+
+    -r FLOAT     rate of mutations [0.001]
+    -R FLOAT     fraction of indels [0.15]
+    -X FLOAT     probability an indel is extended [0.3]
+    -S UINT64    seed for random generator
+    -t INT       Number of threads [4]
+    --help       show this help message
+```
+
+```
+  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
+
+    -e FLOAT     base error rate [0.02]
+    -d INT       outer distance between the two ends [500]
+    -s INT       standard deviation [50]
+    -D FLOAT     average sequencing depth [10.0]
+    -1 INT       length of the first read [70]
+    -2 INT       length of the second read [70]
+    -A FLOAT     Discard reads over FLOAT% ambiguous bases [0.05]
+    -S UINT64    seed for random generator
+    -t INT       Number of threads [4]
+    --help       show this help message
 ```
 
 ## NOTE
