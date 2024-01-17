@@ -44,14 +44,13 @@ module Wgsim
     # This method mutates in haploid and may not be suitable for
     # germline mutations that are common in the population
 
-    def simulate_mutations(name : String, sequence : Slice(RefBase)) : Slice(RefBase)
+    def simulate_mutations(name : String, sequence : Slice(UInt8)) : Slice(RefBase)
       deleting = [] of UInt8
-      sequence.map_with_index do |c, i|
+      sequence.map_with_index do |n, i|
         # i is 0-based
         if deleting.present?
           if _rand < indel_extension_probability
             # continue deletion
-            n = c.nucleotide
             deleting << n
             next RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
           else
@@ -62,7 +61,6 @@ module Wgsim
           end
         end
         if _rand < mutation_rate
-          n = c.nucleotide
           if _rand > indel_fraction
             # substitution
             nn = perform_substitution(n, name, i)
@@ -80,7 +78,7 @@ module Wgsim
             RefBase.new(nucleotide: n, mutation_type: MutType::INSERT, insertion: ins)
           end
         else
-          c # no mutation
+          RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
         end
       end
     end

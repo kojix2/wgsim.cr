@@ -22,9 +22,7 @@ module Wgsim
       STDERR.puts "[wgsim] #{mopts}"
       ReadFasta.each_contig(reference) do |name, sequence|
         STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
-        reference_sequence = ReadFasta.normalize_sequence(sequence) do |n|
-          RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
-        end
+        reference_sequence = ReadFasta.normalize_sequence(sequence)
         2.times do |i|
           pname = "#{name.split.first}_#{i}"
           puts ">#{pname}"
