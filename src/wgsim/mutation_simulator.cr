@@ -15,28 +15,33 @@ module Wgsim
     )
     end
 
+    ACGT = StaticArray[65u8, 67u8, 71u8, 84u8]
+    CGT  = StaticArray[67u8, 71u8, 84u8]
+    AGT  = StaticArray[65u8, 71u8, 84u8]
+    ACT  = StaticArray[65u8, 67u8, 84u8]
+    ACG  = StaticArray[65u8, 67u8, 71u8]
+
     def perform_substitution(nucleotide : UInt8) : UInt8
       case nucleotide
       when 65u8 # A
-        [67u8, 71u8, 84u8].sample
+        CGT.sample
       when 67u8 # C
-        [65u8, 71u8, 84u8].sample
+        AGT.sample
       when 71u8 # G
-        [65u8, 67u8, 84u8].sample
+        ACT.sample
       when 84u8 # T
-        [65u8, 67u8, 71u8].sample
+        ACG.sample
       else # N
         78u8
       end
     end
 
     def generate_insertion : Slice(UInt8)
-      String.build do |s|
-        loop do
-          s << ['A', 'C', 'G', 'T'].sample
-          break if _rand > indel_extension_probability
-        end
-      end.to_slice
+      siz = 1
+      while _rand <= indel_extension_probability
+        siz += 1
+      end
+      Slice(UInt8).new(siz) { ACGT.sample }
     end
 
     # This method mutates in haploid and may not be suitable for
@@ -62,7 +67,7 @@ module Wgsim
           if _rand > indel_fraction
             # substitution
             nn = perform_substitution(n)
-            STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
+            nn != 78u8 && STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
             RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
           elsif _rand < 0.5
             # deletion
