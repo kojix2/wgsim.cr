@@ -29,19 +29,14 @@ module Wgsim
         else # N
           78u8
         end
-      # FIXME: output file should be configurable ?
-      log_mutation(name, index, nucleotide, new_nucleotide)
       new_nucleotide
-    end
-
-    def log_mutation(name : String, index : Int32, old_nucleotide : UInt8, new_nucleotide : UInt8)
-      STDERR.puts "[wgsim] #{name} #{index} #{old_nucleotide.chr} -> #{new_nucleotide.chr}"
     end
 
     def generate_insertion : Slice(UInt8)
       String.build do |s|
-        while _rand < indel_extension_probability
+        loop do
           s << ['A', 'C', 'G', 'T'].sample
+          break if _rand > indel_extension_probability
         end
       end.to_slice
     end
@@ -50,30 +45,39 @@ module Wgsim
     # germline mutations that are common in the population
 
     def simulate_mutations(name : String, sequence : Slice(RefBase)) : Slice(RefBase)
-      deleting = false
+      deleting = [] of UInt8
       sequence.map_with_index do |c, i|
-        if deleting
+        # i is 0-based
+        if deleting.present?
           if _rand < indel_extension_probability
             # continue deletion
-            next RefBase.new(nucleotide: c.nucleotide, mutation_type: MutType::DELETE)
+            n = c.nucleotide
+            deleting << n
+            next RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
           else
             # stop deletion
-            deleting = false
+            delseq = deleting.map { |n| n.chr }.join
+            STDERR.puts ["[wgsim]", "DEL", name, i - deleting.size + 2, delseq, "."].join("\t")
+            deleting.clear
           end
         end
         if _rand < mutation_rate
+          n = c.nucleotide
           if _rand > indel_fraction
             # substitution
-            nn = perform_substitution(c.nucleotide, name, i)
+            nn = perform_substitution(n, name, i)
+            STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
             RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
           elsif _rand < 0.5
             # deletion
-            deleting = true
-            RefBase.new(nucleotide: c.nucleotide, mutation_type: MutType::DELETE)
+            deleting << n
+            # STDERR.puts ["[wgsim]", "DEL", name, i, n.chr, "."].join("\t")
+            RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
           else
             # insertion
             ins = generate_insertion
-            RefBase.new(nucleotide: c.nucleotide, mutation_type: MutType::INSERT, insertion: ins)
+            STDERR.puts ["[wgsim]", "INS", name, i + 1, n.chr, n.chr + String.new(ins)].join("\t")
+            RefBase.new(nucleotide: n, mutation_type: MutType::INSERT, insertion: ins)
           end
         else
           c # no mutation

@@ -19,9 +19,9 @@ module Wgsim
         mopts.indel_extension_probability,
         random: @random,
       )
-      puts "[wgsim] calculating the total length of the reference sequence..."
+      STDERR.puts "[wgsim] #{mopts}"
       ReadFasta.each_contig(reference) do |name, sequence|
-        puts "[wgsim] #{name} #{sequence.size} bp"
+        STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
         normalized_sequence = ReadFasta.normalize_sequence(sequence)
         ref_bases = normalized_sequence.map do |n|
           RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
@@ -29,7 +29,7 @@ module Wgsim
         2.times do |i|
           pname = "#{name.split.first}_#{i}"
           puts ">#{pname}"
-          mutated_sequence = mutation_simulator.simulate_mutations(name, ref_bases)
+          mutated_sequence = mutation_simulator.simulate_mutations(pname, ref_bases)
           seq = IO::Memory.new
           mutated_sequence.each do |b|
             case b.mutation_type
