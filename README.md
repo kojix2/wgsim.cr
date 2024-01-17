@@ -8,7 +8,7 @@ Trying to re-implement and add functionality to [wgsim](https://github.com/lh3/w
 
 ## Installation
 
-GitHub Releases:
+[GitHub Releases](https://github.com/kojix2/wgsim.cr/releases/latest)
 
 From source:
 
@@ -57,7 +57,8 @@ shards build --release -Dpreview_mt src/wgsim.cr
 ## NOTE
 
 - The tool provides two simulation classes: `MutationSimulator` and `SequenceSimulator`. (You may also want to add a `SelectionSimulator`.)
-- The important point is to generate all the genomes that the cell has in the Fasta file. If the chromosome copy number is increased by extrachromosomal DNA, for example, actually add such records to FASTA.
+- The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many `UInt8` or `RefBase` structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.
+- [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
   
 ## Contributing
 
