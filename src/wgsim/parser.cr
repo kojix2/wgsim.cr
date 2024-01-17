@@ -18,6 +18,7 @@ module Wgsim
 
       on("mut", "mutate the reference") do
         @options.command = "mut"
+        @banner = "\n  Usage: wgsim mut [options] <in.ref.fa>\n"
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
         m_on("-X FLOAT", "probability an indel is extended", :indel_extension_probability)
@@ -25,11 +26,12 @@ module Wgsim
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}
-        on("--help", "show this help message") { show_help }
+        on("--help", "show this help message") { show_help! }
       end
 
       on("seq", "generate the reads") do
         @options.command = "seq"
+        @banner = "\n  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
         s_on("-s INT", "standard deviation", :std_deviation)
@@ -41,9 +43,8 @@ module Wgsim
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}
-        on("--help", "show this help message") { show_help }
+        on("--help", "show this help message") { show_help! }
       end
-      on("help", "show this help message") { show_help }
       on("version", "show version number") { show_version }
       invalid_option { |flag| Utils.print_error!("Invalid option: #{flag}") }
     end
@@ -56,7 +57,7 @@ module Wgsim
       when "seq"
         parse_seq(argv)
       when ""
-        show_help(1)
+        show_help!(1)
       else
         Utils.print_error!("Invalid command: #{@options.command}")
       end
@@ -64,12 +65,13 @@ module Wgsim
     end
 
     def parse_mut(argv = ARGV)
+      validate_arguments(argv, 1)
       @options.mut.reference = Path.new(argv.shift)
       validate_file_exists(@options.mut.reference)
     end
 
     def parse_seq(argv = ARGV)
-      validate_arguments(argv)
+      validate_arguments(argv, 3)
       @options.seq.reference = Path.new(argv.shift)
       validate_file_exists(@options.seq.reference)
       @options.seq.output1 = Path.new(argv.shift)
@@ -81,26 +83,38 @@ module Wgsim
       exit
     end
 
-    def show_help(n = 0)
-      puts self
+    def show_help!(n = 0)
+      show_help(n)
       exit(n)
     end
 
-    def validate_arguments(argv)
+    def show_help(n = 0)
+      if n == 0
+        puts
+        puts self
+        puts
+      else
+        STDERR.puts
+        STDERR.puts self
+        STDERR.puts
+      end
+    end
+
+    def validate_arguments(argv, siz)
       case argv.size
-      when 3
+      when siz
         # OK
       when 0
-        STDERR.puts self
-        exit 1
+        show_help(1)
+        Utils.print_error! "Use --help for more information\n"
       else
-        Utils.print_error!("Invalid arguments")
-        exit 1
+        show_help(1)
+        Utils.print_error! "Invalid arguments\n"
       end
     end
 
     def validate_file_exists(file)
-      Utils.print_error!("File not found: #{file}") unless File.exists?(file.not_nil!)
+      Utils.print_error! "File not found: #{file}" unless File.exists?(file.not_nil!)
     end
 
     {% if flag?(:preview_mt) %}
