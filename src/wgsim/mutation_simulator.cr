@@ -57,7 +57,7 @@ module Wgsim
           else
             # stop deletion
             delseq = deleting.map { |n| n.chr }.join
-            STDERR.puts ["[wgsim]", "DEL", name, i - deleting.size + 2, delseq, "."].join("\t")
+            STDERR.puts ["[wgsim]", "DEL", name, i - deleting.size + 1, delseq, "."].join("\t")
             deleting.clear
           end
         end
