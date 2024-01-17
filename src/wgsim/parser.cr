@@ -18,7 +18,7 @@ module Wgsim
 
       on("mut", "mutate the reference") do
         @options.command = "mut"
-        @banner = "\n  Usage: wgsim mut [options] <in.ref.fa>\n"
+        @banner = "  Usage: wgsim mut [options] <in.ref.fa>\n"
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
         m_on("-X FLOAT", "probability an indel is extended", :indel_extension_probability)
@@ -31,7 +31,7 @@ module Wgsim
 
       on("seq", "generate the reads") do
         @options.command = "seq"
-        @banner = "\n  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
+        @banner = "  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
         s_on("-s INT", "standard deviation", :std_deviation)
