@@ -8,8 +8,6 @@ require "colorize"
 
 module Wgsim
   class Parser < OptionParser
-    getter options : Options
-
     def initialize
       super
       @options = Options.new
@@ -19,18 +17,19 @@ module Wgsim
       BANNER
 
       on("mut", "mutate the reference") do
-        options.command = "mut"
+        @options.command = "mut"
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
         m_on("-X FLOAT", "probability an indel is extended", :indel_extension_probability)
-        on("-S UINT64", "seed for random generator") { |v| options.seed = v.to_u64 }
+        on("-S UINT64", "seed for random generator") { |v| @options.seed = v.to_u64 }
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}
         on("--help", "show this help message") { show_help }
       end
+
       on("seq", "generate the reads") do
-        options.command = "seq"
+        @options.command = "seq"
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
         s_on("-s INT", "standard deviation", :std_deviation)
@@ -38,7 +37,7 @@ module Wgsim
         s_on("-1 INT", "length of the first read", :size_left)
         s_on("-2 INT", "length of the second read", :size_right)
         s_on("-A FLOAT", "Discard reads over FLOAT% ambiguous bases", :max_ambiguous_ratio)
-        on("-S UINT64", "seed for random generator") { |v| options.seed = v.to_u64 }
+        on("-S UINT64", "seed for random generator") { |v| @options.seed = v.to_u64 }
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") { |v| set_threads(v.to_i) }
         {% end %}
@@ -51,7 +50,7 @@ module Wgsim
 
     def parse(argv = ARGV)
       super
-      case options.command
+      case @options.command
       when "mut"
         parse_mut(argv)
       when "seq"
@@ -59,22 +58,22 @@ module Wgsim
       when ""
         show_help(1)
       else
-        Utils.print_error!("Invalid command: #{options.command}")
+        Utils.print_error!("Invalid command: #{@options.command}")
       end
-      options
+      @options
     end
 
     def parse_mut(argv = ARGV)
-      options.mut.reference = Path.new(argv.shift)
-      validate_file_exists(options.mut.reference)
+      @options.mut.reference = Path.new(argv.shift)
+      validate_file_exists(@options.mut.reference)
     end
 
     def parse_seq(argv = ARGV)
       validate_arguments(argv)
-      options.seq.reference = Path.new(argv.shift)
-      validate_file_exists(options.seq.reference)
-      options.seq.output1 = Path.new(argv.shift)
-      options.seq.output2 = Path.new(argv.shift)
+      @options.seq.reference = Path.new(argv.shift)
+      validate_file_exists(@options.seq.reference)
+      @options.seq.output1 = Path.new(argv.shift)
+      @options.seq.output2 = Path.new(argv.shift)
     end
 
     def show_version
