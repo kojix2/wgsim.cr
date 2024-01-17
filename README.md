@@ -29,8 +29,11 @@ shards build --release -Dpreview_mt src/wgsim.cr
     version      show version number
 ```
 
-## Development
+## NOTE
 
+- The tool provides two simulation classes: `MutationSimulator` and `SequenceSimulator`. (You may also want to add a `SelectionSimulator`.)
+- The important point is to generate all the genomes that the cell has in the Fasta file. If the chromosome copy number is increased by extrachromosomal DNA, for example, actually add such records to FASTA.
+  
 ## Contributing
 
 1. Fork it (<https://github.com/your-github-user/wgsim/fork>)
