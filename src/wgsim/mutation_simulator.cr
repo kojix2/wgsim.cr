@@ -15,21 +15,19 @@ module Wgsim
     )
     end
 
-    def perform_substitution(nucleotide : UInt8, name : String, index : Int32) : UInt8
-      new_nucleotide =
-        case nucleotide
-        when 65u8 # A
-          [67u8, 71u8, 84u8].sample
-        when 67u8 # C
-          [65u8, 71u8, 84u8].sample
-        when 71u8 # G
-          [65u8, 67u8, 84u8].sample
-        when 84u8 # T
-          [65u8, 67u8, 71u8].sample
-        else # N
-          78u8
-        end
-      new_nucleotide
+    def perform_substitution(nucleotide : UInt8) : UInt8
+      case nucleotide
+      when 65u8 # A
+        [67u8, 71u8, 84u8].sample
+      when 67u8 # C
+        [65u8, 71u8, 84u8].sample
+      when 71u8 # G
+        [65u8, 67u8, 84u8].sample
+      when 84u8 # T
+        [65u8, 67u8, 71u8].sample
+      else # N
+        78u8
+      end
     end
 
     def generate_insertion : Slice(UInt8)
@@ -63,7 +61,7 @@ module Wgsim
         if _rand < mutation_rate
           if _rand > indel_fraction
             # substitution
-            nn = perform_substitution(n, name, i)
+            nn = perform_substitution(n)
             STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
             RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
           elsif _rand < 0.5
