@@ -63,16 +63,15 @@ module Wgsim
             deleting.clear
           end
         end
-        if _rand < mutation_rate
+        if _rand < mutation_rate && n != 78u8 # N
           if _rand > indel_fraction
             # substitution
             nn = perform_substitution(n)
-            nn != 78u8 && STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
+            STDERR.puts ["[wgsim]", "SUB", name, i + 1, n.chr, nn.chr].join("\t")
             RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
           elsif _rand < 0.5
             # deletion
             deleting << n
-            # STDERR.puts ["[wgsim]", "DEL", name, i, n.chr, "."].join("\t")
             RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
           else
             # insertion
