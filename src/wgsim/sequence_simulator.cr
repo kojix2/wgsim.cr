@@ -34,7 +34,7 @@ module Wgsim
 
       pair_index = 0
       while pair_index < n_pairs
-        pair_index % 10000 == 0 && puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
+        pair_index % 10**(Math.log10(n_pairs).to_i - 1) == 0 && puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
 
         insert_size = random_insert_size
         position = random_position(contig_length, insert_size)
