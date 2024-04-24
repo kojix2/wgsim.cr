@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.11.2">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="wgsim">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="wgsim">
+  <title>Wgsim::SequenceSimulator - wgsim main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          wgsim
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="wgsim/OptionParser" data-name="optionparser">
+      <a href="../OptionParser.html">OptionParser</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="wgsim/Wgsim" data-name="wgsim">
+      <a href="../Wgsim.html">Wgsim</a>
+      
+        <ul>
+  
+  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
+      <a href="../Wgsim/Action.html">Action</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Application" data-name="wgsim::application">
+      <a href="../Wgsim/Application.html">Application</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutationOptions" data-name="wgsim::mutationoptions">
+      <a href="../Wgsim/MutationOptions.html">MutationOptions</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutationSimulator" data-name="wgsim::mutationsimulator">
+      <a href="../Wgsim/MutationSimulator.html">MutationSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
+      <a href="../Wgsim/MutType.html">MutType</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Options" data-name="wgsim::options">
+      <a href="../Wgsim/Options.html">Options</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Parser" data-name="wgsim::parser">
+      <a href="../Wgsim/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Rand" data-name="wgsim::rand">
+      <a href="../Wgsim/Rand.html">Rand</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/ReadFasta" data-name="wgsim::readfasta">
+      <a href="../Wgsim/ReadFasta.html">ReadFasta</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/RefBase" data-name="wgsim::refbase">
+      <a href="../Wgsim/RefBase.html">RefBase</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/SequenceOptions" data-name="wgsim::sequenceoptions">
+      <a href="../Wgsim/SequenceOptions.html">SequenceOptions</a>
+      
+    </li>
+  
+  <li class=" current" data-id="wgsim/Wgsim/SequenceSimulator" data-name="wgsim::sequencesimulator">
+      <a href="../Wgsim/SequenceSimulator.html">SequenceSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Utils" data-name="wgsim::utils">
+      <a href="../Wgsim/Utils.html">Utils</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Wgsim::<wbr>SequenceSimulator
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/SequenceSimulator.html">Wgsim::SequenceSimulator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L2" target="_blank">
+        wgsim/sequence_simulator.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28average_depth%3AFloat64%2Cdistance%3AInt32%2Cstd_deviation%3AInt32%2Csize_left%3AInt32%2Csize_right%3AInt32%2Cerror_rate%3AFloat64%2Cmax_ambiguous_ratio%3AFloat64%2Crandom%3AWgsim%3A%3ARand%3DRand.new%29-class-method" class="signature"><strong>.new</strong>(average_depth : Float64, distance : Int32, std_deviation : Int32, size_left : Int32, size_right : Int32, error_rate : Float64, max_ambiguous_ratio : Float64, random : Wgsim::Rand = <span class="t">Rand</span>.new)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#_rand%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#_rand</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#_rand%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#_rand</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#average_depth%3AFloat64-instance-method" class="signature"><strong>#average_depth</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#distance%3AInt32-instance-method" class="signature"><strong>#distance</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error_rate%3AFloat64-instance-method" class="signature"><strong>#error_rate</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fasta_record%28name%2Cpair_index%2Cposition%2Cinsert_size%2Cread_index%2Csequence%3ASlice%28UInt8%29%29%3AString-instance-method" class="signature"><strong>#fasta_record</strong>(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8)) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#generate_pair_sequence</strong>(target_seq, position, insert_size, flip) : Tuple(Slice(UInt8), Slice(UInt8))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_ambiguous_ratio%3AFloat64-instance-method" class="signature"><strong>#max_ambiguous_ratio</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand_bool%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#rand_bool</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand_bool%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#rand_bool</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand_norm%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#rand_norm</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#rand_norm%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#rand_norm</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#random_insert_size-instance-method" class="signature"><strong>#random_insert_size</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#random_position%28contig_length%3AInt%2Cinsert_size%3AInt%29-instance-method" class="signature"><strong>#random_position</strong>(contig_length : Int, insert_size : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run%28name%2Csequence%2C%26%29-instance-method" class="signature"><strong>#run</strong>(name, sequence, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size_left%3AInt32-instance-method" class="signature"><strong>#size_left</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size_right%3AInt32-instance-method" class="signature"><strong>#size_right</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#std_deviation%3AInt32-instance-method" class="signature"><strong>#std_deviation</strong> : Int32</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(average_depth:Float64,distance:Int32,std_deviation:Int32,size_left:Int32,size_right:Int32,error_rate:Float64,max_ambiguous_ratio:Float64,random:Wgsim::Rand=Rand.new)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(average_depth : Float64, distance : Int32, std_deviation : Int32, size_left : Int32, size_right : Int32, error_rate : Float64, max_ambiguous_ratio : Float64, random : <a href="../Wgsim/Rand.html">Wgsim::Rand</a> = <span class="t">Rand</span>.new)
+
+        <a class="method-permalink" href="#new%28average_depth%3AFloat64%2Cdistance%3AInt32%2Cstd_deviation%3AInt32%2Csize_left%3AInt32%2Csize_right%3AInt32%2Cerror_rate%3AFloat64%2Cmax_ambiguous_ratio%3AFloat64%2Crandom%3AWgsim%3A%3ARand%3DRand.new%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="_rand(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>_rand</strong>(*args, **options)
+
+        <a class="method-permalink" href="#_rand%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="_rand(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>_rand</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#_rand%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="average_depth:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>average_depth</strong> : Float64
+
+        <a class="method-permalink" href="#average_depth%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="distance:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>distance</strong> : Int32
+
+        <a class="method-permalink" href="#distance%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error_rate:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>error_rate</strong> : Float64
+
+        <a class="method-permalink" href="#error_rate%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fasta_record(name,pair_index,position,insert_size,read_index,sequence:Slice(UInt8)):String-instance-method">
+      <div class="signature">
+        
+        def <strong>fasta_record</strong>(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8)) : String
+
+        <a class="method-permalink" href="#fasta_record%28name%2Cpair_index%2Cposition%2Cinsert_size%2Cread_index%2Csequence%3ASlice%28UInt8%29%29%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="generate_pair_sequence(target_seq,position,insert_size,flip):Tuple(Slice(UInt8),Slice(UInt8))-instance-method">
+      <div class="signature">
+        
+        def <strong>generate_pair_sequence</strong>(target_seq, position, insert_size, flip) : Tuple(Slice(UInt8), Slice(UInt8))
+
+        <a class="method-permalink" href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="generate_sequencing_error(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
+
+        <a class="method-permalink" href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_ambiguous_ratio:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>max_ambiguous_ratio</strong> : Float64
+
+        <a class="method-permalink" href="#max_ambiguous_ratio%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand_bool(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>rand_bool</strong>(*args, **options)
+
+        <a class="method-permalink" href="#rand_bool%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand_bool(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>rand_bool</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#rand_bool%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand_norm(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>rand_norm</strong>(*args, **options)
+
+        <a class="method-permalink" href="#rand_norm%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="rand_norm(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>rand_norm</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#rand_norm%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="random_insert_size-instance-method">
+      <div class="signature">
+        
+        def <strong>random_insert_size</strong>
+
+        <a class="method-permalink" href="#random_insert_size-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="random_position(contig_length:Int,insert_size:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>random_position</strong>(contig_length : Int, insert_size : Int)
+
+        <a class="method-permalink" href="#random_position%28contig_length%3AInt%2Cinsert_size%3AInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L126" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse_complement(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
+
+        <a class="method-permalink" href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L108" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run(name,sequence,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>run</strong>(name, sequence, &)
+
+        <a class="method-permalink" href="#run%28name%2Csequence%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size_left:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>size_left</strong> : Int32
+
+        <a class="method-permalink" href="#size_left%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size_right:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>size_right</strong> : Int32
+
+        <a class="method-permalink" href="#size_right%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="std_deviation:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>std_deviation</strong> : Int32
+
+        <a class="method-permalink" href="#std_deviation%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/sequence_simulator.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+</div>
+
+</body>
+</html>

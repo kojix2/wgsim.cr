@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.11.2">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="wgsim">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="wgsim">
+  <title>Wgsim::Parser - wgsim main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          wgsim
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="wgsim/OptionParser" data-name="optionparser">
+      <a href="../OptionParser.html">OptionParser</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="wgsim/Wgsim" data-name="wgsim">
+      <a href="../Wgsim.html">Wgsim</a>
+      
+        <ul>
+  
+  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
+      <a href="../Wgsim/Action.html">Action</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Application" data-name="wgsim::application">
+      <a href="../Wgsim/Application.html">Application</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutationOptions" data-name="wgsim::mutationoptions">
+      <a href="../Wgsim/MutationOptions.html">MutationOptions</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutationSimulator" data-name="wgsim::mutationsimulator">
+      <a href="../Wgsim/MutationSimulator.html">MutationSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
+      <a href="../Wgsim/MutType.html">MutType</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Options" data-name="wgsim::options">
+      <a href="../Wgsim/Options.html">Options</a>
+      
+    </li>
+  
+  <li class=" current" data-id="wgsim/Wgsim/Parser" data-name="wgsim::parser">
+      <a href="../Wgsim/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Rand" data-name="wgsim::rand">
+      <a href="../Wgsim/Rand.html">Rand</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/ReadFasta" data-name="wgsim::readfasta">
+      <a href="../Wgsim/ReadFasta.html">ReadFasta</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/RefBase" data-name="wgsim::refbase">
+      <a href="../Wgsim/RefBase.html">RefBase</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/SequenceOptions" data-name="wgsim::sequenceoptions">
+      <a href="../Wgsim/SequenceOptions.html">SequenceOptions</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/SequenceSimulator" data-name="wgsim::sequencesimulator">
+      <a href="../Wgsim/SequenceSimulator.html">SequenceSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Utils" data-name="wgsim::utils">
+      <a href="../Wgsim/Utils.html">Utils</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Wgsim::<wbr>Parser
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/Parser.html">Wgsim::Parser</a></li><li class="superclass"><a href="../OptionParser.html">OptionParser</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L10" target="_blank">
+        wgsim/parser.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#parse%28argv%3DARGV%29-instance-method" class="signature"><strong>#parse</strong>(argv = <span class="t">ARGV</span>)</a>
+        
+          <div class="summary"><p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_mut%28argv%3DARGV%29-instance-method" class="signature"><strong>#parse_mut</strong>(argv = <span class="t">ARGV</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parse_seq%28argv%3DARGV%29-instance-method" class="signature"><strong>#parse_seq</strong>(argv = <span class="t">ARGV</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_help%28n%3D0%29-instance-method" class="signature"><strong>#show_help</strong>(n = <span class="n">0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_help%21%28n%3D0%29-instance-method" class="signature"><strong>#show_help!</strong>(n = <span class="n">0</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_version-instance-method" class="signature"><strong>#show_version</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#validate_arguments%28argv%2Csiz%29-instance-method" class="signature"><strong>#validate_arguments</strong>(argv, siz)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#validate_file_exists%28file%29-instance-method" class="signature"><strong>#validate_file_exists</strong>(file)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+  <h3>Macros inherited from class <code><a href="../OptionParser.html">OptionParser</a></code></h3>
+  
+  
+    <a href="../OptionParser.html#m_on%28short_type%2Cdesc%2Cfield%29-macro" class="tooltip">
+      <span>m_on(short_type, desc, field)</span>
+    m_on</a>, 
+    
+  
+    <a href="../OptionParser.html#s_on%28short_type%2Cdesc%2Cfield%29-macro" class="tooltip">
+      <span>s_on(short_type, desc, field)</span>
+    s_on</a>
+    
+  
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="parse(argv=ARGV)-instance-method">
+      <div class="signature">
+        
+        def <strong>parse</strong>(argv = <span class="t">ARGV</span>)
+
+        <a class="method-permalink" href="#parse%28argv%3DARGV%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../OptionParser.html">OptionParser</a>
+            </div>
+          
+          <p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_mut(argv=ARGV)-instance-method">
+      <div class="signature">
+        
+        def <strong>parse_mut</strong>(argv = <span class="t">ARGV</span>)
+
+        <a class="method-permalink" href="#parse_mut%28argv%3DARGV%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parse_seq(argv=ARGV)-instance-method">
+      <div class="signature">
+        
+        def <strong>parse_seq</strong>(argv = <span class="t">ARGV</span>)
+
+        <a class="method-permalink" href="#parse_seq%28argv%3DARGV%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L73" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_help(n=0)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_help</strong>(n = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#show_help%28n%3D0%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L91" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_help!(n=0)-instance-method">
+      <div class="signature">
+        
+        def <strong>show_help!</strong>(n = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#show_help%21%28n%3D0%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_version-instance-method">
+      <div class="signature">
+        
+        def <strong>show_version</strong>
+
+        <a class="method-permalink" href="#show_version-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="validate_arguments(argv,siz)-instance-method">
+      <div class="signature">
+        
+        def <strong>validate_arguments</strong>(argv, siz)
+
+        <a class="method-permalink" href="#validate_arguments%28argv%2Csiz%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L103" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="validate_file_exists(file)-instance-method">
+      <div class="signature">
+        
+        def <strong>validate_file_exists</strong>(file)
+
+        <a class="method-permalink" href="#validate_file_exists%28file%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L116" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+</div>
+
+</body>
+</html>
