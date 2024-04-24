@@ -1,6 +1,8 @@
+require "./action"
+
 module Wgsim
   struct Options
-    property command : String = ""
+    property command : Action?
     property seed : UInt64?
     property mut : MutationOptions = MutationOptions.new
     property seq : SequenceOptions = SequenceOptions.new

@@ -10,6 +10,17 @@ module Wgsim
       @random = (seed = @options.seed) ? Rand.new(seed) : Rand.new
     end
 
+    def run
+      case @options.command
+      when Action::MUT
+        run_mut
+      when Action::SEQ
+        run_seq
+      else
+        raise "Unknown command"
+      end
+    end
+
     def run_mut
       mopts = @options.mut
       reference = mopts.reference.not_nil!
@@ -86,15 +97,6 @@ module Wgsim
 
       output_fasta_1.close
       output_fasta_2.close
-    end
-
-    def run
-      case @options.command
-      when "mut"
-        run_mut
-      when "seq"
-        run_seq
-      end
     end
   end
 end

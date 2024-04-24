@@ -17,7 +17,7 @@ module Wgsim
       BANNER
 
       on("mut", "mutate the reference") do
-        @options.command = "mut"
+        @options.command = Action::MUT
         @banner = "  Usage: wgsim mut [options] <in.ref.fa>\n"
         m_on("-r FLOAT", "rate of mutations", :mutation_rate)
         m_on("-R FLOAT", "fraction of indels", :indel_fraction)
@@ -30,7 +30,7 @@ module Wgsim
       end
 
       on("seq", "generate the reads") do
-        @options.command = "seq"
+        @options.command = Action::SEQ
         @banner = "  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
         s_on("-e FLOAT", "base error rate", :error_rate)
         s_on("-d INT", "outer distance between the two ends", :distance)
@@ -52,9 +52,9 @@ module Wgsim
     def parse(argv = ARGV)
       super
       case @options.command
-      when "mut"
+      when Action::MUT
         parse_mut(argv)
-      when "seq"
+      when Action::SEQ
         parse_seq(argv)
       when ""
         show_help!(1)
