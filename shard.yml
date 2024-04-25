@@ -8,6 +8,12 @@ targets:
   wgsim:
     main: src/cli.cr
 
+dependencies:
+  randn:
+    github: kojix2/randn.cr
+  nworkers:
+    github: kojix2/nworkers.cr
+
 crystal: '>= 1.11.1'
 
 license: MIT

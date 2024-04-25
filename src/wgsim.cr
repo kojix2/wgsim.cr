@@ -1,13 +1,13 @@
-require "./ext/crystal_scheduler"
+require "nworkers"
 require "./wgsim/version"
-require "./wgsim/options"
 require "./wgsim/parser"
 require "./wgsim/application"
 
 module Wgsim
   def self.run
-    options = Wgsim::Parser.new.parse
-    app = Wgsim::Application.new(options)
+    parser = Wgsim::Parser.new
+    option = parser.parse
+    app = Wgsim::Application.new(option)
     app.run
   end
 end

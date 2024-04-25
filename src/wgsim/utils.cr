@@ -2,7 +2,7 @@ require "colorize"
 
 module Wgsim
   module Utils
-    def self.print_error!(message : String, color = :default)
+    def self.exit_error(message : String, color = :default)
       print_error(message, color)
       exit 1
     end
