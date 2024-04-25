@@ -59,6 +59,14 @@ shards build --release -Dpreview_mt src/wgsim.cr
 - The tool provides two simulation classes: `MutationSimulator` and `SequenceSimulator`. (You may also want to add a `SelectionSimulator`.)
 - The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many `UInt8` or `RefBase` structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.
 - [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
+
+## Development
+
+Dependencies:
+
+- [kojix2/nworkers.cr](https://github.com/kojix2/nworkers.cr) - Set the number of worker threads at runtime.
+- [kojix2/randn.cr](https://github.com/kojix2/randn.cr) - Normal random number generator.
+- [kojix2/fastx.cr](https://github.com/kojix2/fastx.cr) - Fasta file reader.
   
 ## Contributing
 
