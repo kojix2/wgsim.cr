@@ -9,7 +9,15 @@ require "colorize"
 
 module Wgsim
   class Parser < OptionParser
-    @option : (Mutate::Option | Sequence::Option)? = nil
+    getter option : (Mutate::Option | Sequence::Option)? = nil
+
+    macro mopt
+      @option.as(Mutate::Option)
+    end
+
+    macro sopt
+      @option.as(Sequence::Option)
+    end
 
     def initialize
       super
@@ -24,19 +32,19 @@ module Wgsim
         @banner = "Usage: wgsim mut [options] <in.ref.fa>\n"
 
         on("-r FLOAT", "rate of mutations") do |v|
-          @option.as(Mutate::Option).mutation_rate = v.to_f64
+          mopt.mutation_rate = v.to_f64
         end
 
         on("-R FLOAT", "fraction of indels") do |v|
-          @option.as(Mutate::Option).indel_fraction = v.to_f64
+          mopt.indel_fraction = v.to_f64
         end
 
         on("-X FLOAT", "probability an indel is extended") do |v|
-          @option.as(Mutate::Option).indel_extension_probability = v.to_f64
+          mopt.indel_extension_probability = v.to_f64
         end
 
         on("-S UINT64", "seed for random generator") do |v|
-          @option.as(Mutate::Option).seed = v.to_u64
+          mopt.seed = v.to_u64
         end
 
         {% if flag?(:preview_mt) %}
@@ -57,35 +65,35 @@ module Wgsim
         @banner = "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
 
         on("-e FLOAT", "base error rate") do |v|
-          @option.as(Sequence::Option).error_rate = v.to_f64
+          sopt.error_rate = v.to_f64
         end
 
         on("-d INT", "outer distance between the two ends") do |v|
-          @option.as(Sequence::Option).distance = v.to_i32
+          sopt.distance = v.to_i32
         end
 
         on("-s INT", "standard deviation") do |v|
-          @option.as(Sequence::Option).std_deviation = v.to_i32
+          sopt.std_deviation = v.to_i32
         end
 
         on("-D FLOAT", "average sequencing depth") do |v|
-          @option.as(Sequence::Option).average_depth = v.to_f64
+          sopt.average_depth = v.to_f64
         end
 
         on("-1 INT", "length of the first read") do |v|
-          @option.as(Sequence::Option).size_left = v.to_i32
+          sopt.size_left = v.to_i32
         end
 
         on("-2 INT", "length of the second read") do |v|
-          @option.as(Sequence::Option).size_right = v.to_i32
+          sopt.size_right = v.to_i32
         end
 
         on("-A FLOAT", "Discard reads over FLOAT% ambiguous bases") do |v|
-          @option.as(Sequence::Option).max_ambiguous_ratio = v.to_f64
+          sopt.max_ambiguous_ratio = v.to_f64
         end
 
         on("-S UINT64", "seed for random generator") do |v|
-          @option.as(Sequence::Option).seed = v.to_u64
+          sopt.seed = v.to_u64
         end
 
         {% if flag?(:preview_mt) %}
@@ -121,16 +129,16 @@ module Wgsim
 
     def parse_mut(argv = ARGV)
       validate_arguments(argv, 1)
-      @option.as(Mutate::Option).reference = Path.new(argv.shift)
-      validate_file_exists(@option.as(Mutate::Option).reference)
+      mopt.reference = Path.new(argv.shift)
+      validate_file_exists(mopt.reference)
     end
 
     def parse_seq(argv = ARGV)
       validate_arguments(argv, 3)
-      @option.as(Sequence::Option).reference = Path.new(argv.shift)
-      validate_file_exists(@option.as(Sequence::Option).reference)
-      @option.as(Sequence::Option).output1 = Path.new(argv.shift)
-      @option.as(Sequence::Option).output2 = Path.new(argv.shift)
+      sopt.reference = Path.new(argv.shift)
+      validate_file_exists(sopt.reference)
+      sopt.output1 = Path.new(argv.shift)
+      sopt.output2 = Path.new(argv.shift)
     end
 
     def validate_arguments(argv, siz)
