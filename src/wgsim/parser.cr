@@ -5,7 +5,6 @@ require "./sequence/option"
 
 require "nworkers"
 require "option_parser"
-require "../ext/option_parser"
 require "colorize"
 
 module Wgsim
