@@ -5,6 +5,7 @@ require "./sequence/action"
 
 module Wgsim
   class CLI
+    class_property debug : Bool = false
     getter parser : Parser
     getter option : Mutate::Option | Sequence::Option
 
@@ -12,7 +13,7 @@ module Wgsim
       @parser = Parser.new
       @option = @parser.parse(ARGV)
     end
-          
+
     def run
       case @option
       when Mutate::Option
@@ -22,6 +23,11 @@ module Wgsim
       else
         raise ArgumentError.new("Invalid action")
       end
+    rescue ex
+      error_message = "[wgsim.cr] ERROR: #{ex.class} #{ex.message}"
+      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug
+      STDERR.puts error_message
+      exit(1)
     end
   end
 end

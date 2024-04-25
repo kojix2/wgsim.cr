@@ -2,6 +2,7 @@ require "./version"
 require "./utils"
 require "./mutate/option"
 require "./sequence/option"
+require "./action"
 
 require "nworkers"
 require "option_parser"
@@ -10,26 +11,53 @@ require "colorize"
 module Wgsim
   class Parser < OptionParser
     getter option : (Mutate::Option | Sequence::Option)? = nil
+    getter action : Action?
+    property help_message : String
 
-    macro mopt
-      @option.as(Mutate::Option)
+    private def mopt
+      option.as(Mutate::Option)
     end
 
-    macro sopt
-      @option.as(Sequence::Option)
+    private def sopt
+      option.as(Sequence::Option)
+    end
+
+    macro _on_debug_
+      on("-d", "--debug", "Show backtrace on error") do
+        CLI.debug = true
+      end
+    end
+
+    macro _on_help_
+      on("-h", "--help", "Show this help") do
+        action = Action::Help
+      end
+
+      # Crystal's OptionParser returns to its initial state after parsing
+      # by `with_preserved_state`. This also initialises @flags.
+      # @help_message is needed to store subcommand messages.
+      @help_message = self.to_s
+    end
+
+    macro _set_option_(klass, banner)
+      @option = {{klass}}::Option.new
+      @handlers.clear
+      @flags.clear
+      self.banner = {{banner}}
     end
 
     def initialize
       super
-      @banner = <<-BANNER
+      @help_message = ""
+
+      self.banner = <<-BANNER
       
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
       BANNER
 
       on("mut", "mutate the reference") do
-        @option = Mutate::Option.new
-        @banner = "Usage: wgsim mut [options] <in.ref.fa>\n"
+        _set_option_(Mutate, "Usage: wgsim mut [options] <in.ref.fa>\n")
 
         on("-r FLOAT", "rate of mutations") do |v|
           mopt.mutation_rate = v.to_f64
@@ -54,15 +82,13 @@ module Wgsim
           end
         {% end %}
 
-        on("-h", "--help", "show this help message") do
-          puts self
-          exit
-        end
+        _on_debug_
+
+        _on_help_
       end
 
       on("seq", "generate the reads") do
-        @option = Sequence::Option.new
-        @banner = "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
+        _set_option_(Sequence, "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n")
 
         on("-e FLOAT", "base error rate") do |v|
           sopt.error_rate = v.to_f64
@@ -103,14 +129,29 @@ module Wgsim
           end
         {% end %}
 
-        on("-h", "--help", "show this help message") do
-          puts self
-          exit
-        end
+        _on_debug_
+
+        _on_help_
       end
 
-      # on("version", "show version number") { show_version }
-      invalid_option { |flag| Utils.exit_error("Invalid option: #{flag}") }
+      _on_debug_
+
+      on("-v", "--version", "Show version") do
+        action = Action::Version
+      end
+
+      _on_help_
+      invalid_option do |flag|
+        STDERR.puts "[wgsim.cr] ERROR: #{flag} is not a valid option."
+        STDERR.puts self
+        exit(1)
+      end
+
+      missing_option do |flag|
+        STDERR.puts "[wgsim.cr] ERROR: #{flag} option expects an argument."
+        STDERR.puts self
+        exit(1)
+      end
     end
 
     def parse(argv = ARGV)
