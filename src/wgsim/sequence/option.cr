@@ -1,5 +1,5 @@
 module Wgsim
-  module Sequence
+  class Sequence
     class Option
       property seed : UInt64?
       property error_rate : Float64 = 0.02

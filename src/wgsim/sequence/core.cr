@@ -1,5 +1,5 @@
 module Wgsim
-  module Sequence
+  class Sequence
     class Core
       delegate _rand, randn, rand_bool, to: @random
 

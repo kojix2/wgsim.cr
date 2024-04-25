@@ -1,7 +1,7 @@
 require "randn"
 require "./ref_base"
-require "./mutate/action"
-require "./sequence/action"
+require "./mutate"
+require "./sequence"
 
 module Wgsim
   class CLI
@@ -26,9 +26,9 @@ module Wgsim
     def run
       case action
       when Action::Mutate
-        Mutate::Action.run(mopt)
+        Mutate.run(mopt)
       when Action::Sequence
-        Sequence::Action.run(sopt)
+        Sequence.run(sopt)
       else
         raise ArgumentError.new("Invalid action")
       end

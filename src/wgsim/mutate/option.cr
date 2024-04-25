@@ -1,5 +1,5 @@
 module Wgsim
-  module Mutate
+  class Mutate
     class Option
       property seed : UInt64?
       property mutation_rate : Float64 = 0.001
