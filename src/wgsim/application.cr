@@ -1,5 +1,4 @@
 require "randn"
-require "./read_fasta"
 require "./ref_base"
 require "./mutate/action"
 require "./sequence/action"

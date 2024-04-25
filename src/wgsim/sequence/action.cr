@@ -1,3 +1,4 @@
+require "fastx"
 require "./option"
 require "./simulator"
 
@@ -37,15 +38,17 @@ module Wgsim
         names = [] of String
         channel = Channel(String).new
 
-        ReadFasta.each_contig(reference) do |name, sequence|
-          names << name
-          normalized_sequence = ReadFasta.normalize_sequence(sequence)
-          spawn do
-            sequence_simulator.run(name, normalized_sequence) do |record1, record2|
-              output_fasta_1.puts record1
-              output_fasta_2.puts record2
+        Fastx::Fasta::Reader.open(reference) do |reader|
+          reader.each do |name, sequence|
+            names << name
+            normalized_sequence = Fastx.normalize_sequence(sequence)
+            spawn do
+              sequence_simulator.run(name, normalized_sequence) do |record1, record2|
+                output_fasta_1.puts record1
+                output_fasta_2.puts record2
+              end
+              channel.send name
             end
-            channel.send name
           end
         end
 

@@ -10,7 +10,6 @@ module Wgsim
       getter size_right : Int32
       getter error_rate : Float64
       getter max_ambiguous_ratio : Float64
-      
 
       def initialize(
         @average_depth,
@@ -23,11 +22,11 @@ module Wgsim
         @seed : UInt64? = nil
       )
         @random = \
-          if @seed
-            Rand.new(@seed.not_nil!)
-          else
-            Rand.new
-          end
+           if @seed
+             Rand.new(@seed.not_nil!)
+           else
+             Rand.new
+           end
       end
 
       def run(name, sequence)

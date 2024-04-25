@@ -13,6 +13,8 @@ dependencies:
     github: kojix2/randn.cr
   nworkers:
     github: kojix2/nworkers.cr
+  fastx:
+    github: kojix2/fastx.cr
 
 crystal: '>= 1.11.1'
 
