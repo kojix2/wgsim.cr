@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Application - wgsim main</title>
+  <title>Wgsim::CLI - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -67,8 +67,8 @@
       
         <ul>
   
-  <li class=" current" data-id="wgsim/Wgsim/Application" data-name="wgsim::application">
-      <a href="../Wgsim/Application.html">Application</a>
+  <li class=" current" data-id="wgsim/Wgsim/CLI" data-name="wgsim::cli">
+      <a href="../Wgsim/CLI.html">CLI</a>
       
     </li>
   
@@ -156,12 +156,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Wgsim::<wbr>Application
+  <span class="kind">class</span> Wgsim::<wbr>CLI
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/Application.html">Wgsim::Application</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/CLI.html">Wgsim::CLI</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -189,8 +189,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/208c0920cbaaa9b7fd3981e1b983c40c656b93b7/src/wgsim/application.cr#L7" target="_blank">
-        wgsim/application.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/2a7a4a3bdfa115be046d0227edc9981f8c1c29b7/src/wgsim/cli.cr#L7" target="_blank">
+        wgsim/cli.cr
       </a>
     
     <br/>
@@ -211,7 +211,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28option%3AWgsim%3A%3AMutate%3A%3AOption%7CWgsim%3A%3ASequence%3A%3AOption%29-class-method" class="signature"><strong>.new</strong>(option : Wgsim::Mutate::Option | Wgsim::Sequence::Option)</a>
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
         
       </li>
     
@@ -232,6 +232,16 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#option%3AMutate%3A%3AOption%7CSequence%3A%3AOption-instance-method" class="signature"><strong>#option</strong> : Mutate::Option | Sequence::Option</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parser%3AParser-instance-method" class="signature"><strong>#parser</strong> : Parser</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
@@ -282,18 +292,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(option:Wgsim::Mutate::Option|Wgsim::Sequence::Option)-class-method">
+    <div class="entry-detail" id="new-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(option : <a href="../Wgsim/Mutate/Option.html">Wgsim::Mutate::Option</a> | <a href="../Wgsim/Sequence/Option.html">Wgsim::Sequence::Option</a>)
+        def self.<strong>new</strong>
 
-        <a class="method-permalink" href="#new%28option%3AWgsim%3A%3AMutate%3A%3AOption%7CWgsim%3A%3ASequence%3A%3AOption%29-class-method">#</a>
+        <a class="method-permalink" href="#new-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/208c0920cbaaa9b7fd3981e1b983c40c656b93b7/src/wgsim/application.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/2a7a4a3bdfa115be046d0227edc9981f8c1c29b7/src/wgsim/cli.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -314,6 +324,38 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="option:Mutate::Option|Sequence::Option-instance-method">
+      <div class="signature">
+        
+        def <strong>option</strong> : <a href="../Wgsim/Mutate/Option.html">Mutate::Option</a> | <a href="../Wgsim/Sequence/Option.html">Sequence::Option</a>
+
+        <a class="method-permalink" href="#option%3AMutate%3A%3AOption%7CSequence%3A%3AOption-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/2a7a4a3bdfa115be046d0227edc9981f8c1c29b7/src/wgsim/cli.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parser:Parser-instance-method">
+      <div class="signature">
+        
+        def <strong>parser</strong> : <a href="../Wgsim/Parser.html">Parser</a>
+
+        <a class="method-permalink" href="#parser%3AParser-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/2a7a4a3bdfa115be046d0227edc9981f8c1c29b7/src/wgsim/cli.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="run-instance-method">
       <div class="signature">
         
@@ -325,7 +367,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/208c0920cbaaa9b7fd3981e1b983c40c656b93b7/src/wgsim/application.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/2a7a4a3bdfa115be046d0227edc9981f8c1c29b7/src/wgsim/cli.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
