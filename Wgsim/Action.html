@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Sequence - wgsim main</title>
+  <title>Wgsim::Action - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -62,7 +62,7 @@
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
+  <li class=" current" data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
       <a href="../Wgsim/Action.html">Action</a>
       
     </li>
@@ -112,7 +112,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
+  <li class="parent " data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
       <a href="../Wgsim/Sequence.html">Sequence</a>
       
         <ul>
@@ -156,7 +156,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Wgsim::<wbr>Sequence
+  <span class="kind">enum</span> Wgsim::<wbr>Action
 
 </h1>
 
@@ -187,22 +187,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/sequence/action.cr#L6" target="_blank">
-        wgsim/sequence/action.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/sequence/option.cr#L2" target="_blank">
-        wgsim/sequence/option.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/sequence/simulator.cr#L2" target="_blank">
-        wgsim/sequence/simulator.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/action.cr#L2" target="_blank">
+        wgsim/action.cr
       </a>
     
     <br/>
@@ -210,6 +196,39 @@
 
 
 
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="Mutate">
+        <strong>Mutate</strong> = <code><span class="n">0_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Sequence">
+        <strong>Sequence</strong> = <code><span class="n">1_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Help">
+        <strong>Help</strong> = <code><span class="n">2_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="Version">
+        <strong>Version</strong> = <code><span class="n">3_u8</span></code>
+      </dt>
+      
+    
+  </dl>
 
 
 
@@ -217,10 +236,95 @@
 
 
 
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#help%3F-instance-method" class="signature"><strong>#help?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#mutate%3F-instance-method" class="signature"><strong>#mutate?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sequence%3F-instance-method" class="signature"><strong>#sequence?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#version%3F-instance-method" class="signature"><strong>#version?</strong></a>
+        
+      </li>
+    
+  </ul>
 
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
   
 </div>
 
@@ -230,6 +334,80 @@
 
 
 
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="help?-instance-method">
+      <div class="signature">
+        
+        def <strong>help?</strong>
+
+        <a class="method-permalink" href="#help%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/action.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="mutate?-instance-method">
+      <div class="signature">
+        
+        def <strong>mutate?</strong>
+
+        <a class="method-permalink" href="#mutate%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/action.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sequence?-instance-method">
+      <div class="signature">
+        
+        def <strong>sequence?</strong>
+
+        <a class="method-permalink" href="#sequence%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/action.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="version?-instance-method">
+      <div class="signature">
+        
+        def <strong>version?</strong>
+
+        <a class="method-permalink" href="#version%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1d548dec33708e257d0d0944d87299577eba87b0/src/wgsim/action.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 </div>
