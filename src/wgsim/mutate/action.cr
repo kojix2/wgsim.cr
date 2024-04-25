@@ -1,57 +1,75 @@
 require "fastx"
-
 require "./option"
 require "./simulator"
 
 module Wgsim
   module Mutate
     class Action
+      getter option : Option
+      getter reference : Path
+      getter simulator : Simulator
+
       def self.run(option)
         new(option).run
       end
 
       def initialize(@option : Option)
-      end
-
-      private def mopts
-        @option
+        @reference = option.reference.not_nil!
+        @simulator = Simulator.new(
+          mutation_rate: option.mutation_rate,
+          indel_fraction: option.indel_fraction,
+          indel_extension_probability: option.indel_extension_probability,
+          seed: option.seed
+        )
       end
 
       def run
-        reference = mopts.reference.not_nil!
+        log_parameters
+        process_sequences
+      end
 
-        mutation_simulator = Simulator.new(
-          mopts.mutation_rate,
-          mopts.indel_fraction,
-          mopts.indel_extension_probability,
-          mopts.seed
-        )
+      private def log_parameters
+        STDERR.puts "[wgsim] #{option}"
+      end
 
-        STDERR.puts "[wgsim] #{mopts}"
-        Fastx::Fasta::Reader.open(reference) do |reader|
-          reader.each do |name, sequence|
-            STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
-            reference_sequence = Fastx.normalize_sequence(sequence)
-            2.times do |i|
-              pname = "#{name.split.first}_#{i}"
-              puts ">#{pname}"
-              mutated_sequence = mutation_simulator.simulate_mutations(pname, reference_sequence)
-              seq = IO::Memory.new
-              mutated_sequence.each do |b|
-                case b.mutation_type
-                when MutType::NOCHANGE, MutType::SUBSTITUTE
-                  seq.write_byte b.nucleotide
-                when MutType::DELETE
-                when MutType::INSERT
-                  seq.write_byte b.nucleotide
-                  ins = b.insertion
-                  seq.write ins if ins
-                end
-              end
-              puts seq.to_s.gsub(/(.{80})/, "\\1\n")
-            end
+      private def process_sequences
+        reader = Fastx::Fasta::Reader.new(reference)
+        reader.each do |name, sequence|
+          STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
+          process_sequence(name, sequence)
+        end
+      ensure
+        reader.try &.close
+      end
+
+      private def process_sequence(name : String, sequence : IO::Memory)
+        reference_sequence = Fastx.normalize_sequence(sequence)
+        2.times do |i|
+          simulate_and_output_sequence(name, i, reference_sequence)
+        end
+      end
+
+      private def simulate_and_output_sequence(name : String, index : Int32, reference_sequence : Slice(UInt8))
+        pname = "#{name.split.first}_#{index}"
+        puts ">#{pname}"
+        mutated_sequence = simulator.simulate_mutations(pname, reference_sequence)
+        output_mutated_sequence(mutated_sequence)
+      end
+
+      private def output_mutated_sequence(mutated_sequence)
+        seq = IO::Memory.new
+        mutated_sequence.each do |b|
+          case b.mutation_type
+          when MutType::NOCHANGE, MutType::SUBSTITUTE
+            seq.write_byte b.nucleotide
+          when MutType::DELETE
+          when MutType::INSERT
+            seq.write_byte b.nucleotide
+            ins = b.insertion
+            seq.write ins if ins
           end
         end
+        puts seq.to_s.gsub(/(.{80})/, "\\1\n")
       end
     end
   end
