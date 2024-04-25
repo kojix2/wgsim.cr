@@ -1,3 +1,3 @@
 require "./wgsim"
 
-Wgsim.run
+Wgsim::CLI.new.run
