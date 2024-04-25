@@ -7,19 +7,28 @@ module Wgsim
   class CLI
     class_property debug : Bool = false
     getter parser : Parser
-    getter option : Mutate::Option | Sequence::Option
+    getter action : Action?
+    getter option : (Mutate::Option | Sequence::Option)?
+
+    private def mopt
+      @option.as(Mutate::Option)
+    end
+
+    private def sopt
+      @option.as(Sequence::Option)
+    end
 
     def initialize
       @parser = Parser.new
-      @option = @parser.parse(ARGV)
+      @action, @option = @parser.parse(ARGV)
     end
 
     def run
-      case @option
-      when Mutate::Option
-        Mutate::Action.run(@option.as(Mutate::Option))
-      when Sequence::Option
-        Sequence::Action.run(@option.as(Sequence::Option))
+      case action
+      when Action::Mutate
+        Mutate::Action.run(mopt)
+      when Action::Sequence
+        Sequence::Action.run(sopt)
       else
         raise ArgumentError.new("Invalid action")
       end

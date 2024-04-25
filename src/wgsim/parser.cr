@@ -154,42 +154,20 @@ module Wgsim
       end
     end
 
-    def parse(argv = ARGV)
+    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequence::Option)?)
       super
-      case @option
-      when Mutate::Option
-        parse_mut(argv)
-      when Sequence::Option
-        parse_seq(argv)
+      case action
+      when Action::Mutate
+        mopt.reference = Path.new(argv.shift)
+        {action, mopt}
+      when Action::Sequence
+        sopt.reference = Path.new(argv.shift)
+        sopt.output1 = Path.new(argv.shift)
+        sopt.output2 = Path.new(argv.shift)
+        {action, sopt}
       else
-        STDERR.puts self
-        exit 1
+        {action, nil}
       end
-      @option.not_nil!
-    end
-
-    def parse_mut(argv = ARGV)
-      validate_arguments(argv, 1)
-      mopt.reference = Path.new(argv.shift)
-      validate_file_exists(mopt.reference)
-    end
-
-    def parse_seq(argv = ARGV)
-      validate_arguments(argv, 3)
-      sopt.reference = Path.new(argv.shift)
-      validate_file_exists(sopt.reference)
-      sopt.output1 = Path.new(argv.shift)
-      sopt.output2 = Path.new(argv.shift)
-    end
-
-    def validate_arguments(argv, siz)
-      unless argv.size == siz
-        Utils.exit_error "Invalid number of arguments: #{argv.size} (expected #{siz})"
-      end
-    end
-
-    def validate_file_exists(file)
-      Utils.exit_error "File not found: #{file}" unless File.exists?(file.not_nil!)
     end
   end
 end
