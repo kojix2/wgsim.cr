@@ -1,5 +1,4 @@
 require "./version"
-require "./utils"
 require "./mutate/option"
 require "./sequence/option"
 require "./action"
