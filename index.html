@@ -211,6 +211,17 @@ shards build --release -Dpreview_mt src/wgsim.cr</code></pre>
 <li>The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many <code>UInt8</code> or <code>RefBase</code> structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.</li>
 <li><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">wgsimのコードを眺める [JA]</a></li>
 </ul>
+<h2><a id="development" class="anchor" href="#development">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Development</h2>
+<p>Dependencies:</p>
+<ul>
+<li><a href="https://github.com/kojix2/nworkers.cr">kojix2/nworkers.cr</a> - Set the number of worker threads at runtime.</li>
+<li><a href="https://github.com/kojix2/randn.cr">kojix2/randn.cr</a> - Normal random number generator.</li>
+<li><a href="https://github.com/kojix2/fastx.cr">kojix2/fastx.cr</a> - Fasta file reader.</li>
+</ul>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
