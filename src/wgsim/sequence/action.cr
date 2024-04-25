@@ -1,6 +1,6 @@
 require "fastx"
 require "./option"
-require "./simulator"
+require "./core"
 
 module Wgsim
   module Sequence
@@ -21,7 +21,7 @@ module Wgsim
         output1 = sopts.output1.not_nil!
         output2 = sopts.output2.not_nil!
 
-        sequence_simulator = Simulator.new(
+        sequence_simulator = Core.new(
           sopts.average_depth,
           sopts.distance,
           sopts.std_deviation,

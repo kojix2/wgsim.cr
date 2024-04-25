@@ -3,7 +3,7 @@ require "randn"
 module Wgsim
   module Mutate
     # This module provides a simple simulator for mutations in a DNA sequence.
-    class Simulator
+    class Core
       delegate _rand, randn, rand_bool, to: @random
 
       property mutation_rate : Float64

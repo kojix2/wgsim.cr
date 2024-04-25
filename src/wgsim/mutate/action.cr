@@ -1,13 +1,13 @@
 require "fastx"
 require "./option"
-require "./simulator"
+require "./core"
 
 module Wgsim
   module Mutate
     class Action
       getter option : Option
       getter reference : Path
-      getter simulator : Simulator
+      getter simulator : Core
 
       def self.run(option)
         new(option).run
@@ -15,7 +15,7 @@ module Wgsim
 
       def initialize(@option : Option)
         @reference = option.reference.not_nil!
-        @simulator = Simulator.new(
+        @simulator = Core.new(
           mutation_rate: option.mutation_rate,
           indel_fraction: option.indel_fraction,
           indel_extension_probability: option.indel_extension_probability,

@@ -1,6 +1,6 @@
 module Wgsim
   module Sequence
-    class Simulator
+    class Core
       delegate _rand, randn, rand_bool, to: @random
 
       getter distance : Int32
