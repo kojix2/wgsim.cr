@@ -67,23 +67,33 @@
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
-      <a href="../Wgsim/Action.html">Action</a>
-      
-    </li>
-  
   <li class=" " data-id="wgsim/Wgsim/Application" data-name="wgsim::application">
       <a href="../Wgsim/Application.html">Application</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/MutationOptions" data-name="wgsim::mutationoptions">
-      <a href="../Wgsim/MutationOptions.html">MutationOptions</a>
+  <li class="parent " data-id="wgsim/Wgsim/Mutate" data-name="wgsim::mutate">
+      <a href="../Wgsim/Mutate.html">Mutate</a>
+      
+        <ul>
+  
+  <li class=" " data-id="wgsim/Wgsim/Mutate/Action" data-name="wgsim::mutate::action">
+      <a href="../Wgsim/Mutate/Action.html">Action</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/MutationSimulator" data-name="wgsim::mutationsimulator">
-      <a href="../Wgsim/MutationSimulator.html">MutationSimulator</a>
+  <li class=" " data-id="wgsim/Wgsim/Mutate/Option" data-name="wgsim::mutate::option">
+      <a href="../Wgsim/Mutate/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Mutate/Simulator" data-name="wgsim::mutate::simulator">
+      <a href="../Wgsim/Mutate/Simulator.html">Simulator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -92,18 +102,8 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Options" data-name="wgsim::options">
-      <a href="../Wgsim/Options.html">Options</a>
-      
-    </li>
-  
   <li class=" current" data-id="wgsim/Wgsim/Parser" data-name="wgsim::parser">
       <a href="../Wgsim/Parser.html">Parser</a>
-      
-    </li>
-  
-  <li class=" " data-id="wgsim/Wgsim/Rand" data-name="wgsim::rand">
-      <a href="../Wgsim/Rand.html">Rand</a>
       
     </li>
   
@@ -117,13 +117,28 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/SequenceOptions" data-name="wgsim::sequenceoptions">
-      <a href="../Wgsim/SequenceOptions.html">SequenceOptions</a>
+  <li class="parent " data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
+      <a href="../Wgsim/Sequence.html">Sequence</a>
+      
+        <ul>
+  
+  <li class=" " data-id="wgsim/Wgsim/Sequence/Action" data-name="wgsim::sequence::action">
+      <a href="../Wgsim/Sequence/Action.html">Action</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/SequenceSimulator" data-name="wgsim::sequencesimulator">
-      <a href="../Wgsim/SequenceSimulator.html">SequenceSimulator</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequence/Option" data-name="wgsim::sequence::option">
+      <a href="../Wgsim/Sequence/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Sequence/Simulator" data-name="wgsim::sequence::simulator">
+      <a href="../Wgsim/Sequence/Simulator.html">Simulator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -179,7 +194,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L10" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L12" target="_blank">
         wgsim/parser.cr
       </a>
     
@@ -241,21 +256,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#show_help%28n%3D0%29-instance-method" class="signature"><strong>#show_help</strong>(n = <span class="n">0</span>)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#show_help%21%28n%3D0%29-instance-method" class="signature"><strong>#show_help!</strong>(n = <span class="n">0</span>)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#show_version-instance-method" class="signature"><strong>#show_version</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#validate_arguments%28argv%2Csiz%29-instance-method" class="signature"><strong>#validate_arguments</strong>(argv, siz)</a>
         
       </li>
@@ -281,20 +281,6 @@
 
 
     
-
-  <h3>Macros inherited from class <code><a href="../OptionParser.html">OptionParser</a></code></h3>
-  
-  
-    <a href="../OptionParser.html#m_on%28short_type%2Cdesc%2Cfield%29-macro" class="tooltip">
-      <span>m_on(short_type, desc, field)</span>
-    m_on</a>, 
-    
-  
-    <a href="../OptionParser.html#s_on%28short_type%2Cdesc%2Cfield%29-macro" class="tooltip">
-      <span>s_on(short_type, desc, field)</span>
-    s_on</a>
-    
-  
 
 
   
@@ -347,7 +333,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -388,7 +374,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -404,7 +390,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L123" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -420,55 +406,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L73" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="show_help(n=0)-instance-method">
-      <div class="signature">
-        
-        def <strong>show_help</strong>(n = <span class="n">0</span>)
-
-        <a class="method-permalink" href="#show_help%28n%3D0%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L91" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="show_help!(n=0)-instance-method">
-      <div class="signature">
-        
-        def <strong>show_help!</strong>(n = <span class="n">0</span>)
-
-        <a class="method-permalink" href="#show_help%21%28n%3D0%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L86" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="show_version-instance-method">
-      <div class="signature">
-        
-        def <strong>show_version</strong>
-
-        <a class="method-permalink" href="#show_version-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L81" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L129" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -484,7 +422,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L137" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -500,7 +438,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/90260dcffa78b51bea77dddc79b653c3b7c526b2/src/wgsim/parser.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fe2d581fe50def32a84e3046da0b5f23549e2669/src/wgsim/parser.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
