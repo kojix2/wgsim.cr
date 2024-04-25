@@ -4,11 +4,30 @@ require "./sequence/core"
 
 module Wgsim
   class Sequence
+    getter option : Option
+    getter reference : Path
+    getter output1 : Path
+    getter output2 : Path
+    getter core : Core
+
     def self.run(option)
       new(option).run
     end
 
     def initialize(@option : Option)
+      @reference = sopts.reference.not_nil!
+      @output1 = sopts.output1.not_nil!
+      @output2 = sopts.output2.not_nil!
+      @core = Core.new(
+        average_depth: sopts.average_depth,
+        distance: sopts.distance,
+        std_deviation: sopts.std_deviation,
+        size_left: sopts.size_left,
+        size_right: sopts.size_right,
+        error_rate: sopts.error_rate,
+        max_ambiguous_ratio: sopts.max_ambiguous_ratio,
+        seed: sopts.seed
+      )
     end
 
     private def sopts
@@ -16,21 +35,6 @@ module Wgsim
     end
 
     def run
-      reference = sopts.reference.not_nil!
-      output1 = sopts.output1.not_nil!
-      output2 = sopts.output2.not_nil!
-
-      sequence_simulator = Core.new(
-        sopts.average_depth,
-        sopts.distance,
-        sopts.std_deviation,
-        sopts.size_left,
-        sopts.size_right,
-        sopts.error_rate,
-        sopts.max_ambiguous_ratio,
-        sopts.seed
-      )
-
       output_fasta_1 = File.open(output1, "w")
       output_fasta_2 = File.open(output2, "w")
 
@@ -42,7 +46,7 @@ module Wgsim
           names << name
           normalized_sequence = Fastx.normalize_sequence(sequence)
           spawn do
-            sequence_simulator.run(name, normalized_sequence) do |record1, record2|
+            core.run(name, normalized_sequence) do |record1, record2|
               output_fasta_1.puts record1
               output_fasta_2.puts record2
             end

@@ -6,7 +6,7 @@ module Wgsim
   class Mutate
     getter option : Option
     getter reference : Path
-    getter simulator : Core
+    getter core : Core
 
     def self.run(option)
       new(option).run
@@ -14,7 +14,7 @@ module Wgsim
 
     def initialize(@option : Option)
       @reference = option.reference.not_nil!
-      @simulator = Core.new(
+      @core = Core.new(
         mutation_rate: option.mutation_rate,
         indel_fraction: option.indel_fraction,
         indel_extension_probability: option.indel_extension_probability,
@@ -51,7 +51,7 @@ module Wgsim
     private def simulate_and_output_sequence(name : String, index : Int32, reference_sequence : Slice(UInt8))
       pname = "#{name.split.first}_#{index}"
       puts ">#{pname}"
-      mutated_sequence = simulator.simulate_mutations(pname, reference_sequence)
+      mutated_sequence = core.simulate_mutations(pname, reference_sequence)
       output_mutated_sequence(mutated_sequence)
     end
 
