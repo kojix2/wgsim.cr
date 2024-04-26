@@ -174,7 +174,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L3" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L3" target="_blank">
         wgsim/mutate/option.cr
       </a>
     
@@ -202,32 +202,42 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#indel_extension_probability%3AFloat64-instance-method" class="signature"><strong>#indel_extension_probability</strong> : Float64</a>
+        <a href="#deletion_extension_probability%3AFloat64-instance-method" class="signature"><strong>#deletion_extension_probability</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#indel_extension_probability%3D%28indel_extension_probability%3AFloat64%29-instance-method" class="signature"><strong>#indel_extension_probability=</strong>(indel_extension_probability : Float64)</a>
+        <a href="#deletion_extension_probability%3D%28deletion_extension_probability%3AFloat64%29-instance-method" class="signature"><strong>#deletion_extension_probability=</strong>(deletion_extension_probability : Float64)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#indel_fraction%3AFloat64-instance-method" class="signature"><strong>#indel_fraction</strong> : Float64</a>
+        <a href="#deletion_rate%3AFloat64-instance-method" class="signature"><strong>#deletion_rate</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#indel_fraction%3D%28indel_fraction%3AFloat64%29-instance-method" class="signature"><strong>#indel_fraction=</strong>(indel_fraction : Float64)</a>
+        <a href="#deletion_rate%3D%28deletion_rate%3AFloat64%29-instance-method" class="signature"><strong>#deletion_rate=</strong>(deletion_rate : Float64)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mutation_rate%3AFloat64-instance-method" class="signature"><strong>#mutation_rate</strong> : Float64</a>
+        <a href="#insertion_extension_probability%3AFloat64-instance-method" class="signature"><strong>#insertion_extension_probability</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mutation_rate%3D%28mutation_rate%3AFloat64%29-instance-method" class="signature"><strong>#mutation_rate=</strong>(mutation_rate : Float64)</a>
+        <a href="#insertion_extension_probability%3D%28insertion_extension_probability%3AFloat64%29-instance-method" class="signature"><strong>#insertion_extension_probability=</strong>(insertion_extension_probability : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insertion_rate%3AFloat64-instance-method" class="signature"><strong>#insertion_rate</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insertion_rate%3D%28insertion_rate%3AFloat64%29-instance-method" class="signature"><strong>#insertion_rate=</strong>(insertion_rate : Float64)</a>
         
       </li>
     
@@ -248,6 +258,16 @@
     
       <li class="entry-summary">
         <a href="#seed%3D%28seed%3AUInt64%7CNil%29-instance-method" class="signature"><strong>#seed=</strong>(seed : UInt64 | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#substitution_rate%3AFloat64-instance-method" class="signature"><strong>#substitution_rate</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#substitution_rate%3D%28substitution_rate%3AFloat64%29-instance-method" class="signature"><strong>#substitution_rate=</strong>(substitution_rate : Float64)</a>
         
       </li>
     
@@ -301,98 +321,130 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="indel_extension_probability:Float64-instance-method">
+    <div class="entry-detail" id="deletion_extension_probability:Float64-instance-method">
       <div class="signature">
         
-        def <strong>indel_extension_probability</strong> : Float64
+        def <strong>deletion_extension_probability</strong> : Float64
 
-        <a class="method-permalink" href="#indel_extension_probability%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#deletion_extension_probability%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="indel_extension_probability=(indel_extension_probability:Float64)-instance-method">
+    <div class="entry-detail" id="deletion_extension_probability=(deletion_extension_probability:Float64)-instance-method">
       <div class="signature">
         
-        def <strong>indel_extension_probability=</strong>(indel_extension_probability : Float64)
+        def <strong>deletion_extension_probability=</strong>(deletion_extension_probability : Float64)
 
-        <a class="method-permalink" href="#indel_extension_probability%3D%28indel_extension_probability%3AFloat64%29-instance-method">#</a>
+        <a class="method-permalink" href="#deletion_extension_probability%3D%28deletion_extension_probability%3AFloat64%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="indel_fraction:Float64-instance-method">
+    <div class="entry-detail" id="deletion_rate:Float64-instance-method">
       <div class="signature">
         
-        def <strong>indel_fraction</strong> : Float64
+        def <strong>deletion_rate</strong> : Float64
 
-        <a class="method-permalink" href="#indel_fraction%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#deletion_rate%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="indel_fraction=(indel_fraction:Float64)-instance-method">
+    <div class="entry-detail" id="deletion_rate=(deletion_rate:Float64)-instance-method">
       <div class="signature">
         
-        def <strong>indel_fraction=</strong>(indel_fraction : Float64)
+        def <strong>deletion_rate=</strong>(deletion_rate : Float64)
 
-        <a class="method-permalink" href="#indel_fraction%3D%28indel_fraction%3AFloat64%29-instance-method">#</a>
+        <a class="method-permalink" href="#deletion_rate%3D%28deletion_rate%3AFloat64%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutation_rate:Float64-instance-method">
+    <div class="entry-detail" id="insertion_extension_probability:Float64-instance-method">
       <div class="signature">
         
-        def <strong>mutation_rate</strong> : Float64
+        def <strong>insertion_extension_probability</strong> : Float64
 
-        <a class="method-permalink" href="#mutation_rate%3AFloat64-instance-method">#</a>
+        <a class="method-permalink" href="#insertion_extension_probability%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutation_rate=(mutation_rate:Float64)-instance-method">
+    <div class="entry-detail" id="insertion_extension_probability=(insertion_extension_probability:Float64)-instance-method">
       <div class="signature">
         
-        def <strong>mutation_rate=</strong>(mutation_rate : Float64)
+        def <strong>insertion_extension_probability=</strong>(insertion_extension_probability : Float64)
 
-        <a class="method-permalink" href="#mutation_rate%3D%28mutation_rate%3AFloat64%29-instance-method">#</a>
+        <a class="method-permalink" href="#insertion_extension_probability%3D%28insertion_extension_probability%3AFloat64%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insertion_rate:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>insertion_rate</strong> : Float64
+
+        <a class="method-permalink" href="#insertion_rate%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insertion_rate=(insertion_rate:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>insertion_rate=</strong>(insertion_rate : Float64)
+
+        <a class="method-permalink" href="#insertion_rate%3D%28insertion_rate%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -408,7 +460,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -424,7 +476,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -440,7 +492,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -456,7 +508,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/option.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="substitution_rate:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>substitution_rate</strong> : Float64
+
+        <a class="method-permalink" href="#substitution_rate%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="substitution_rate=(substitution_rate:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>substitution_rate=</strong>(substitution_rate : Float64)
+
+        <a class="method-permalink" href="#substitution_rate%3D%28substitution_rate%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/fb41d7dbcb02cde843820789dc9b3c5c943b7bb3/src/wgsim/mutate/option.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
