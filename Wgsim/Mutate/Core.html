@@ -151,17 +151,6 @@
 
 
 
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
-
-  <p>This module provides a simple simulator for mutations in a DNA sequence.</p>
-
 
 
 
@@ -185,7 +174,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L5" target="_blank">
         wgsim/mutate/core.cr
       </a>
     
@@ -281,6 +270,8 @@
       <li class="entry-summary">
         <a href="#generate_insertion%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_insertion</strong> : Slice(UInt8)</a>
         
+          <div class="summary"><p>Generate insertion based on given size and indel extension probability</p></div>
+        
       </li>
     
       <li class="entry-summary">
@@ -300,6 +291,21 @@
     
       <li class="entry-summary">
         <a href="#indel_fraction%3D%28indel_fraction%3AFloat64%29-instance-method" class="signature"><strong>#indel_fraction=</strong>(indel_fraction : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log_deletion%28name%2Cindex%2Cdeletions%29-instance-method" class="signature"><strong>#log_deletion</strong>(name, index, deletions)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log_insertion%28name%2Cindex%2Cn%2Cins%29-instance-method" class="signature"><strong>#log_insertion</strong>(name, index, n, ins)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#log_substitution%28name%2Cindex%2Cn%2Cnn%29-instance-method" class="signature"><strong>#log_substitution</strong>(name, index, n, nn)</a>
         
       </li>
     
@@ -350,6 +356,8 @@
     
       <li class="entry-summary">
         <a href="#simulate_mutations%28name%3AString%2Csequence%3ASlice%28UInt8%29%29%3ASlice%28RefBase%29-instance-method" class="signature"><strong>#simulate_mutations</strong>(name : String, sequence : Slice(UInt8)) : Slice(RefBase)</a>
+        
+          <div class="summary"><p>Simulate mutations and output the results</p></div>
         
       </li>
     
@@ -408,7 +416,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -440,7 +448,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -456,7 +464,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -469,10 +477,15 @@
         <a class="method-permalink" href="#generate_insertion%3ASlice%28UInt8%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Generate insertion based on given size and indel extension probability</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -488,7 +501,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -504,7 +517,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -520,7 +533,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -536,7 +549,55 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log_deletion(name,index,deletions)-instance-method">
+      <div class="signature">
+        
+        def <strong>log_deletion</strong>(name, index, deletions)
+
+        <a class="method-permalink" href="#log_deletion%28name%2Cindex%2Cdeletions%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log_insertion(name,index,n,ins)-instance-method">
+      <div class="signature">
+        
+        def <strong>log_insertion</strong>(name, index, n, ins)
+
+        <a class="method-permalink" href="#log_insertion%28name%2Cindex%2Cn%2Cins%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L104" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="log_substitution(name,index,n,nn)-instance-method">
+      <div class="signature">
+        
+        def <strong>log_substitution</strong>(name, index, n, nn)
+
+        <a class="method-permalink" href="#log_substitution%28name%2Cindex%2Cn%2Cnn%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -552,7 +613,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -568,7 +629,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -584,7 +645,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -600,7 +661,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -616,7 +677,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -632,7 +693,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -648,7 +709,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -664,7 +725,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -680,7 +741,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -693,10 +754,15 @@
         <a class="method-permalink" href="#simulate_mutations%28name%3AString%2Csequence%3ASlice%28UInt8%29%29%3ASlice%28RefBase%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Simulate mutations and output the results</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/30d42d2432bbf8dd6937fd932f6d1a77ec6b96b0/src/wgsim/mutate/core.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c2686916ff96b4c3761eb1b386531a8e69b3ce90/src/wgsim/mutate/core.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
