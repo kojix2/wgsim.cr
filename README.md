@@ -25,38 +25,35 @@ shards build --release -Dpreview_mt src/wgsim.cr
   Version: 0.0.1.alpha
     mut          mutate the reference
     seq          generate the reads
-    version      show version number
 ```
 
 ```
-  Usage: wgsim mut [options] <in.ref.fa>
+Usage: wgsim mut [options] <in.ref.fa>
 
-    -r FLOAT     rate of mutations [0.001]
-    -R FLOAT     fraction of indels [0.15]
-    -X FLOAT     probability an indel is extended [0.3]
-    -S UINT64    seed for random generator
-    -t INT       Number of threads [4]
-    --help       show this help message
+    -s, --substitution-rate FLOAT    rate of base substitutions [0.001]
+    -i, --insertion-rate FLOAT       rate of insertions [0.0001]
+    -d, --deletion-rate FLOAT        rate of deletions [0.0001]
+    -I, --ins-ext-prob FLOAT         probability an insertion is extended [0.3]
+    -D, --del-ext-prob FLOAT         probability a deletion is extended [0.3]
+    -p, --ploidy UINT8               ploidy [2]
+    -S, --seed UINT64                seed for random generator
 ```
 
 ```
-  Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
+Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
 
-    -e FLOAT     base error rate [0.02]
-    -d INT       outer distance between the two ends [500]
-    -s INT       standard deviation [50]
-    -D FLOAT     average sequencing depth [10.0]
-    -1 INT       length of the first read [70]
-    -2 INT       length of the second read [70]
-    -A FLOAT     Discard reads over FLOAT% ambiguous bases [0.05]
-    -S UINT64    seed for random generator
-    -t INT       Number of threads [4]
-    --help       show this help message
+    -e, --error-rate FLOAT           base error rate [0.02]
+    -d, --distance INT               outer distance between the two ends [500]
+    -s, --std-dev FLOAT              standard deviation [50]
+    -D, --depth FLOAT                average sequencing depth [10.0]
+    -1, --size-left INT              length of the first read [70]
+    -2, --size-right INT             length of the second read [70]
+    -A, --ambiguous-ratio FLOAT      Discard reads over FLOAT% ambiguous bases [0.05]
+    -S, --seed UINT64                seed for random generator
 ```
 
 ## NOTE
 
-- The tool provides two simulation classes: `MutationSimulator` and `SequenceSimulator`. (You may also want to add a `SelectionSimulator`.)
 - The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many `UInt8` or `RefBase` structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.
 - [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
 
