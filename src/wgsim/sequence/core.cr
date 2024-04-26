@@ -1,7 +1,7 @@
 module Wgsim
   class Sequence
     class Core
-      delegate _rand, randn, rand_bool, to: @random
+      delegate rand, randn, next_bool, to: @random
 
       getter distance : Int32
       getter std_deviation : Int32
@@ -53,7 +53,7 @@ module Wgsim
                   "position=#{position}, insert_size=#{insert_size}, contig_length=#{contig_length}"
 
           # flip or not
-          flip = rand_bool
+          flip = next_bool
 
           read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
           next if read1_sequence.count('N') / read1_sequence.size > max_ambiguous_ratio ||
@@ -101,9 +101,9 @@ module Wgsim
           case b
           when 78u8 then b            # N
           when 65u8, 67u8, 71u8, 84u8 # A, C, G, T
-            if _rand < error_rate
+            if rand < error_rate
               other_nucleotides = valid_nucleotides - [b]
-              other_nucleotides[_rand(3)]
+              other_nucleotides[rand(3)]
             else
               b
             end
@@ -132,7 +132,7 @@ module Wgsim
       end
 
       def random_position(contig_length : Int, insert_size : Int)
-        _rand(contig_length - insert_size + 1)
+        rand(contig_length - insert_size + 1)
       end
     end
   end

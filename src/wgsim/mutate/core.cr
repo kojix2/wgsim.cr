@@ -3,7 +3,7 @@ require "randn"
 module Wgsim
   class Mutate
     class Core
-      delegate _rand, randn, rand_bool, to: @random
+      delegate rand, randn, to: @random
 
       property mutation_rate : Float64
       property indel_fraction : Float64
@@ -48,7 +48,7 @@ module Wgsim
       # Generate insertion based on given size and indel extension probability
       def generate_insertion : Slice(UInt8)
         size = 1
-        while _rand <= indel_extension_probability
+        while rand <= indel_extension_probability
           size += 1
         end
         Slice(UInt8).new(size) { ACGT.sample }
@@ -60,7 +60,7 @@ module Wgsim
         sequence.map_with_index do |n, i|
           # i is 0-based
           if deletions.present?
-            if _rand < indel_extension_probability
+            if rand < indel_extension_probability
               # continue deletion
               deletions << n
               next RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
@@ -80,16 +80,16 @@ module Wgsim
       end
 
       def mutation_occurs?
-        _rand < mutation_rate
+        rand < mutation_rate
       end
 
       def log_mutation(name, i, n, deletions)
-        if _rand > indel_fraction
+        if rand > indel_fraction
           # substitution
           nn = perform_substitution(n)
           log_substitution(name, i, n, nn)
           RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
-        elsif _rand < 0.5
+        elsif rand < 0.5
           # deletion
           deletions << n
           RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
