@@ -30,7 +30,9 @@ module Wgsim
     end
 
     private def log_parameters
-      STDERR.puts "[wgsim] #{option}"
+      option.summary.split("\n").each do |line|
+        STDERR.puts "[wgsim] # #{line}"
+      end
     end
 
     private def process_sequences
