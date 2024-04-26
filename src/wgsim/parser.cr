@@ -10,7 +10,7 @@ require "colorize"
 module Wgsim
   class Parser < OptionParser
     getter option : (Mutate::Option | Sequence::Option)? = nil
-    getter action : Action?
+    property action : Action?
     property help_message : String
 
     private def mopt
@@ -29,7 +29,7 @@ module Wgsim
 
     macro _on_help_
       on("-h", "--help", "Show this help") do
-        action = Action::Help
+        self.action = Action::Help
       end
 
       # Crystal's OptionParser returns to its initial state after parsing
@@ -136,10 +136,11 @@ module Wgsim
       _on_debug_
 
       on("-v", "--version", "Show version") do
-        action = Action::Version
+        self.action = Action::Version
       end
 
       _on_help_
+
       invalid_option do |flag|
         STDERR.puts "[wgsim.cr] ERROR: #{flag} is not a valid option."
         STDERR.puts self

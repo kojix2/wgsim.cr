@@ -29,14 +29,29 @@ module Wgsim
         Mutate.run(mopt)
       when Action::Sequence
         Sequence.run(sopt)
+      when Action::Version
+        print_version
+      when Action::Help
+        print_help
       else
-        raise ArgumentError.new("Invalid action")
+        raise ArgumentError.new("Invalid action: #{action || "nil"}")
       end
     rescue ex
-      error_message = "[wgsim.cr] ERROR: #{ex.class} #{ex.message}"
-      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug
-      STDERR.puts error_message
+      print_error(ex)
       exit(1)
+    end
+
+    def print_error(exception)
+      STDERR.puts "[wgsim.cr] ERROR: #{exception.class} #{exception.message}"
+      STDERR.puts exception.backtrace.join("\n") if CLI.debug
+    end
+
+    def print_version
+      puts Wgsim::VERSION
+    end
+
+    def print_help
+      puts parser.help_message
     end
   end
 end
