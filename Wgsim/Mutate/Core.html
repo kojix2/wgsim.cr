@@ -174,7 +174,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L5" target="_blank">
         wgsim/mutate/core.cr
       </a>
     
@@ -258,6 +258,11 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#delete_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method" class="signature"><strong>#delete_nucleotide</strong>(n : UInt8) : RefBase</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#generate_insertion%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_insertion</strong> : Slice(UInt8)</a>
         
           <div class="summary"><p>Generate insertion based on given size and indel extension probability</p></div>
@@ -285,27 +290,27 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#log_deletion%28name%2Cindex%2Cdeletions%29-instance-method" class="signature"><strong>#log_deletion</strong>(name, index, deletions)</a>
+        <a href="#insert_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method" class="signature"><strong>#insert_nucleotide</strong>(n : UInt8) : RefBase</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#log_insertion%28name%2Cindex%2Cn%2Cins%29-instance-method" class="signature"><strong>#log_insertion</strong>(name, index, n, ins)</a>
+        <a href="#log_deletion%3ANil-instance-method" class="signature"><strong>#log_deletion</strong> : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#log_mutation%28name%2Ci%2Cn%2Cdeletions%29-instance-method" class="signature"><strong>#log_mutation</strong>(name, i, n, deletions)</a>
+        <a href="#log_insertion%28n%2Cins%29%3ANil-instance-method" class="signature"><strong>#log_insertion</strong>(n, ins) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#log_substitution%28name%2Cindex%2Cn%2Cnn%29-instance-method" class="signature"><strong>#log_substitution</strong>(name, index, n, nn)</a>
+        <a href="#log_substitution%28n%2Cnn%29%3ANil-instance-method" class="signature"><strong>#log_substitution</strong>(n, nn) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mutation_occurs%3F-instance-method" class="signature"><strong>#mutation_occurs?</strong></a>
+        <a href="#mutate_nucleotide%28n%29%3ARefBase-instance-method" class="signature"><strong>#mutate_nucleotide</strong>(n) : RefBase</a>
         
       </li>
     
@@ -316,6 +321,11 @@
     
       <li class="entry-summary">
         <a href="#mutation_rate%3D%28mutation_rate%3AFloat64%29-instance-method" class="signature"><strong>#mutation_rate=</strong>(mutation_rate : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#nochange_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method" class="signature"><strong>#nochange_nucleotide</strong>(n : UInt8) : RefBase</a>
         
       </li>
     
@@ -357,7 +367,10 @@
       <li class="entry-summary">
         <a href="#simulate_mutations%28name%3AString%2Csequence%3ASlice%28UInt8%29%29%3ASlice%28RefBase%29-instance-method" class="signature"><strong>#simulate_mutations</strong>(name : String, sequence : Slice(UInt8)) : Slice(RefBase)</a>
         
-          <div class="summary"><p>Simulate mutations and output the results</p></div>
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#substitute_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method" class="signature"><strong>#substitute_nucleotide</strong>(n : UInt8) : RefBase</a>
         
       </li>
     
@@ -416,7 +429,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -437,6 +450,22 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="delete_nucleotide(n:UInt8):RefBase-instance-method">
+      <div class="signature">
+        
+        def <strong>delete_nucleotide</strong>(n : UInt8) : <a href="../../Wgsim/RefBase.html">RefBase</a>
+
+        <a class="method-permalink" href="#delete_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="generate_insertion:Slice(UInt8)-instance-method">
       <div class="signature">
         
@@ -453,7 +482,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -469,7 +498,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -485,7 +514,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -501,7 +530,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -517,87 +546,87 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="log_deletion(name,index,deletions)-instance-method">
+    <div class="entry-detail" id="insert_nucleotide(n:UInt8):RefBase-instance-method">
       <div class="signature">
         
-        def <strong>log_deletion</strong>(name, index, deletions)
+        def <strong>insert_nucleotide</strong>(n : UInt8) : <a href="../../Wgsim/RefBase.html">RefBase</a>
 
-        <a class="method-permalink" href="#log_deletion%28name%2Cindex%2Cdeletions%29-instance-method">#</a>
+        <a class="method-permalink" href="#insert_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L104" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="log_insertion(name,index,n,ins)-instance-method">
+    <div class="entry-detail" id="log_deletion:Nil-instance-method">
       <div class="signature">
         
-        def <strong>log_insertion</strong>(name, index, n, ins)
+        def <strong>log_deletion</strong> : Nil
 
-        <a class="method-permalink" href="#log_insertion%28name%2Cindex%2Cn%2Cins%29-instance-method">#</a>
+        <a class="method-permalink" href="#log_deletion%3ANil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L136" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="log_mutation(name,i,n,deletions)-instance-method">
+    <div class="entry-detail" id="log_insertion(n,ins):Nil-instance-method">
       <div class="signature">
         
-        def <strong>log_mutation</strong>(name, i, n, deletions)
+        def <strong>log_insertion</strong>(n, ins) : Nil
 
-        <a class="method-permalink" href="#log_mutation%28name%2Ci%2Cn%2Cdeletions%29-instance-method">#</a>
+        <a class="method-permalink" href="#log_insertion%28n%2Cins%29%3ANil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="log_substitution(name,index,n,nn)-instance-method">
+    <div class="entry-detail" id="log_substitution(n,nn):Nil-instance-method">
       <div class="signature">
         
-        def <strong>log_substitution</strong>(name, index, n, nn)
+        def <strong>log_substitution</strong>(n, nn) : Nil
 
-        <a class="method-permalink" href="#log_substitution%28name%2Cindex%2Cn%2Cnn%29-instance-method">#</a>
+        <a class="method-permalink" href="#log_substitution%28n%2Cnn%29%3ANil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L141" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutation_occurs?-instance-method">
+    <div class="entry-detail" id="mutate_nucleotide(n):RefBase-instance-method">
       <div class="signature">
         
-        def <strong>mutation_occurs?</strong>
+        def <strong>mutate_nucleotide</strong>(n) : <a href="../../Wgsim/RefBase.html">RefBase</a>
 
-        <a class="method-permalink" href="#mutation_occurs%3F-instance-method">#</a>
+        <a class="method-permalink" href="#mutate_nucleotide%28n%29%3ARefBase-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -613,7 +642,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,7 +658,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="nochange_nucleotide(n:UInt8):RefBase-instance-method">
+      <div class="signature">
+        
+        def <strong>nochange_nucleotide</strong>(n : UInt8) : <a href="../../Wgsim/RefBase.html">RefBase</a>
+
+        <a class="method-permalink" href="#nochange_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L104" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -645,7 +690,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -661,7 +706,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -677,7 +722,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -693,7 +738,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -709,7 +754,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -725,7 +770,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -741,7 +786,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -754,15 +799,26 @@
         <a class="method-permalink" href="#simulate_mutations%28name%3AString%2Csequence%3ASlice%28UInt8%29%29%3ASlice%28RefBase%29-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>Simulate mutations and output the results</p>
-        </div>
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="substitute_nucleotide(n:UInt8):RefBase-instance-method">
+      <div class="signature">
+        
+        def <strong>substitute_nucleotide</strong>(n : UInt8) : <a href="../../Wgsim/RefBase.html">RefBase</a>
+
+        <a class="method-permalink" href="#substitute_nucleotide%28n%3AUInt8%29%3ARefBase-instance-method">#</a>
+      </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/abbb9c6ee7cf939bb6d183d6356f6cc8f61dbb1f/src/wgsim/mutate/core.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e25592e880dce8a63f3bc3a2b7ce7967d3e1f47a/src/wgsim/mutate/core.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>
