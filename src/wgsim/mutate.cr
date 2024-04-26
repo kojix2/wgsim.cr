@@ -37,24 +37,30 @@ module Wgsim
 
     private def process_sequences
       reader = Fastx::Fasta::Reader.new(reference)
-      reader.each do |name, sequence|
-        STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
-        process_sequence(name, sequence)
+      begin
+        reader.each do |name, sequence|
+          STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
+          process_sequence(name, sequence)
+        end
+      rescue ex
+        STDERR.puts "Error processing sequences: #{ex.message}"
+      ensure
+        reader.try &.close
       end
-    ensure
-      reader.try &.close
     end
 
     private def process_sequence(name : String, sequence : IO::Memory)
       reference_sequence = Fastx.normalize_sequence(sequence)
-      # Diploid
-      2.times do |i|
-        simulate_and_output_sequence(name, i, reference_sequence)
+      if option.ploidy == 1
+        simulate_and_output_sequence(name, reference_sequence)
+      else
+        option.ploidy.times { |i| simulate_and_output_sequence(name, reference_sequence, i) }
       end
     end
 
-    private def simulate_and_output_sequence(name : String, index : Int32, reference_sequence : Slice(UInt8))
-      pname = "#{name.split.first}_#{index}"
+    private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil)
+      pname = "#{name.split.first}"
+      pname += "_#{index}" if index
       puts ">#{pname}"
       mutated_sequence = core.simulate_mutations(pname, reference_sequence)
       output_mutated_sequence(mutated_sequence)
@@ -73,7 +79,11 @@ module Wgsim
           seq.write ins if ins
         end
       end
-      puts seq.to_s.gsub(/(.{80})/, "\\1\n")
+      puts format_sequence(seq)
+    end
+
+    private def format_sequence(sequence : IO::Memory) : String
+      sequence.to_s.gsub(/(.{80})/, "\\1\n")
     end
   end
 end

@@ -84,6 +84,10 @@ module Wgsim
           mopt.deletion_extension_probability = v.to_f64
         end
 
+        on("-p", "--ploidy UINT8", "ploidy [#{mopt.ploidy}]") do |v|
+          mopt.ploidy = v.to_u8
+        end
+
         on("-S", "--seed FLOAT", "seed for random generator") do |v|
           mopt.seed = v.to_u64
         end
