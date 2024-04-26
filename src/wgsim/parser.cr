@@ -63,7 +63,7 @@ module Wgsim
       
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
-      Source:  #{{{ `crystal eval 'require "yaml"; puts YAML.parse(File.read("#{__DIR__}/../../shard.yml"))["repository"]'`.chomp.stringify }}}
+      Source:  "https://github.com/kojix2/wgsim.cr"
 
       BANNER
 
