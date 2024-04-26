@@ -33,13 +33,13 @@ module Wgsim
       def perform_substitution(nucleotide : UInt8) : UInt8
         case nucleotide
         when 65u8 # A
-          CGT.sample
+          CGT[rand(3)]
         when 67u8 # C
-          AGT.sample
+          AGT[rand(3)]
         when 71u8 # G
-          ACT.sample
+          ACT[rand(3)]
         when 84u8 # T
-          ACG.sample
+          ACG[rand(3)]
         else # N
           78u8
         end
@@ -51,7 +51,7 @@ module Wgsim
         while rand <= indel_extension_probability
           size += 1
         end
-        Slice(UInt8).new(size) { ACGT.sample }
+        Slice(UInt8).new(size) { ACGT[rand(4)] }
       end
 
       # Simulate mutations and output the results

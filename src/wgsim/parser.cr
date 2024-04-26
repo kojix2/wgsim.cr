@@ -10,8 +10,8 @@ require "colorize"
 module Wgsim
   class Parser < OptionParser
     getter option : (Mutate::Option | Sequence::Option)? = nil
-    property action : Action?
-    property help_message : String
+    getter action : Action?
+    getter help_message : String
 
     private def mopt
       option.as(Mutate::Option)
@@ -29,7 +29,7 @@ module Wgsim
 
     macro _on_help_
       on("-h", "--help", "Show this help") do
-        self.action = Action::Help
+        @action = Action::Help
       end
 
       # Crystal's OptionParser returns to its initial state after parsing
@@ -39,17 +39,18 @@ module Wgsim
     end
 
     macro _set_option_(klass, banner)
+      @action = Action::{{klass}}
       @option = {{klass}}::Option.new
       @handlers.clear
       @flags.clear
-      self.banner = {{banner}}
+      @banner = {{banner}}
     end
 
     def initialize
       super
       @help_message = ""
 
-      self.banner = <<-BANNER
+      @banner = <<-BANNER
       
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
@@ -136,7 +137,7 @@ module Wgsim
       _on_debug_
 
       on("-v", "--version", "Show version") do
-        self.action = Action::Version
+        @action = Action::Version
       end
 
       _on_help_
