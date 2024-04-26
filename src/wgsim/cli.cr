@@ -36,14 +36,6 @@ module Wgsim
       else
         raise ArgumentError.new("Invalid action: #{action || "nil"}")
       end
-    rescue ex
-      print_error(ex)
-      exit(1)
-    end
-
-    def print_error(exception)
-      STDERR.puts "[wgsim.cr] ERROR: #{exception.class} #{exception.message}"
-      STDERR.puts exception.backtrace.join("\n") if CLI.debug
     end
 
     def print_version
