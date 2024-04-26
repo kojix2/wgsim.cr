@@ -54,7 +54,7 @@ module Wgsim
       if option.ploidy == 1
         simulate_and_output_sequence(name, reference_sequence)
       else
-        option.ploidy.times { |i| simulate_and_output_sequence(name, reference_sequence, i) }
+        option.ploidy.times { |i| simulate_and_output_sequence(name, reference_sequence, i + 1) }
       end
     end
 
