@@ -70,3 +70,6 @@ jobs:
             bin/wgsim-windows.zip
             bin/wgsim-windows-multi-thread.zip
             LICENSE.txt
+
+      - name: Checksums
+        uses: wangzuo/action-release-checksums@v1
