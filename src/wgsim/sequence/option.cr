@@ -15,6 +15,25 @@ module Wgsim
       property reference : Path?
       property output1 : Path?
       property output2 : Path?
+
+      def summary
+        <<-SUMMARY
+        Reference: #{reference}
+        Seed: #{seed.nil? ? "random" : seed}
+        Error rate: #{error_rate}
+        Distance between reads: #{distance}
+        Standard deviation of distance: #{std_deviation}
+        Average depth of coverage: #{average_depth}
+        Read size (left): #{size_left}
+        Read size (right): #{size_right}
+        Mutation rate: #{mutation_rate}
+        Indel fraction: #{indel_fraction}
+        Indel extension probability: #{indel_extension_probability}
+        Maximum ambiguous base ratio: #{max_ambiguous_ratio}
+        Output file 1: #{output1}
+        Output file 2: #{output2}
+        SUMMARY
+      end
     end
   end
 end

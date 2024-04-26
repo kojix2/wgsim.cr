@@ -11,13 +11,13 @@ module Wgsim
 
       def summary
         <<-SUMMARY
-        path: #{reference}
-        seed: #{seed.nil? ? "random" : seed}
-        substitution rate: #{substitution_rate}
-        insertion    rate: #{insertion_rate}
-        deletion     rate: #{deletion_rate}
-        insertion extension probability: #{insertion_extension_probability}
-         deletion extension probability: #{deletion_extension_probability}
+        Reference: #{reference}
+        Seed: #{seed.nil? ? "random" : seed}
+        Substitution rate: #{substitution_rate}
+        Insertion    rate: #{insertion_rate}
+        Deletion     rate: #{deletion_rate}
+        Insertion extension probability: #{insertion_extension_probability}
+        Deletion  extension probability: #{deletion_extension_probability}
         SUMMARY
       end
     end
