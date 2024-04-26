@@ -33,6 +33,8 @@ module Wgsim
         print_version
       when Action::Help
         print_help
+      when nil
+        print_help_and_exit
       else
         raise ArgumentError.new("Invalid action: #{action || "nil"}")
       end
@@ -44,6 +46,11 @@ module Wgsim
 
     def print_help
       puts parser.help_message
+    end
+
+    def print_help_and_exit
+      print_help
+      exit 1
     end
   end
 end

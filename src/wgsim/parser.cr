@@ -63,6 +63,8 @@ module Wgsim
       
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
+      Source:  #{{{ `crystal eval 'require "yaml"; puts YAML.parse(File.read("#{__DIR__}/../../shard.yml"))["repository"]'`.chomp.stringify }}}
+
       BANNER
 
       on("mut", "mutate the reference") do
@@ -155,6 +157,8 @@ module Wgsim
 
         _on_help_
       end
+
+      separator
 
       _on_debug_
 

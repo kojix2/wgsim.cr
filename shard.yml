@@ -4,6 +4,8 @@ version: 0.0.1.alpha
 authors:
   - kojix2 <2xijok@gmail.com>
 
+repository: "https://github.com/kojix2/wgsim.cr"
+
 targets:
   wgsim:
     main: src/cli.cr
