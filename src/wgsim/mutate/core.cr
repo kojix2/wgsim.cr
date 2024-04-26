@@ -22,12 +22,19 @@ module Wgsim
         @indel_extension_probability,
         @seed : UInt64? = nil
       )
+        # random number generator with seed
         @random = \
            if @seed
              Rand.new(@seed.not_nil!)
            else
              Rand.new
            end
+        # buffer for deletion
+        @deletions = [] of UInt8
+        # name of the current sequence
+        @name = ""
+        # index of the current nucleotide
+        @index = 0
       end
 
       def perform_substitution(nucleotide : UInt8) : UInt8
@@ -55,63 +62,88 @@ module Wgsim
       end
 
       # Simulate mutations and output the results
-      def simulate_mutations(name : String, sequence : Slice(UInt8)) : Slice(RefBase)
-        deletions = [] of UInt8
-        sequence.map_with_index do |n, i|
-          # i is 0-based
-          if deletions.present?
-            if rand < indel_extension_probability
-              # continue deletion
-              deletions << n
-              next RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
-            else
-              # stop deletion
-              log_deletion(name, i, deletions)
-              deletions.clear
+      # Returns a slice of RefBase
+
+      def simulate_mutations(@name : String, sequence : Slice(UInt8)) : Slice(RefBase)
+        sequence.map do |n|
+          @index += 1 # 1-based index
+          if previous_ref_base_is_deletion?
+            if extend_deletion?
+              base = delete_nucleotide(n)
+              next base
+            else # stop deletion
+              log_deletion
+              @deletions.clear
             end
           end
 
           if mutation_occurs? && n != 78u8 # N
-            log_mutation(name, i, n, deletions)
+            mutate_nucleotide(n)
           else
-            RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
+            nochange_nucleotide(n)
           end
         end
       end
 
-      def mutation_occurs?
+      private def previous_ref_base_is_deletion? : Bool
+        @deletions.present?
+      end
+
+      private def extend_deletion? : Bool
+        rand < indel_extension_probability
+      end
+
+      private def mutation_occurs? : Bool
         rand < mutation_rate
       end
 
-      def log_mutation(name, i, n, deletions)
-        if rand > indel_fraction
-          # substitution
-          nn = perform_substitution(n)
-          log_substitution(name, i, n, nn)
-          RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
-        elsif rand < 0.5
-          # deletion
-          deletions << n
-          RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
-        else
-          # insertion
-          ins = generate_insertion
-          log_insertion(name, i, n, ins)
-          RefBase.new(nucleotide: n, mutation_type: MutType::INSERT, insertion: ins)
+      private def deletion_occurs?(n) : Bool
+        rand < (indel_fraction / 2)
+      end
+
+      def nochange_nucleotide(n : UInt8) : RefBase
+        RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
+      end
+
+      def insert_nucleotide(n : UInt8) : RefBase
+        ins = generate_insertion
+        log_insertion(n, ins)
+        RefBase.new(nucleotide: n, mutation_type: MutType::INSERT, insertion: ins)
+      end
+
+      def delete_nucleotide(n : UInt8) : RefBase
+        @deletions << n
+        RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
+      end
+
+      def substitute_nucleotide(n : UInt8) : RefBase
+        nn = perform_substitution(n)
+        log_substitution(n, nn)
+        RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
+      end
+
+      def mutate_nucleotide(n) : RefBase
+        case rand
+        when indel_fraction..
+          substitute_nucleotide(n)
+        when (indel_fraction / 2)..
+          insert_nucleotide(n)
+        else # deletion
+          delete_nucleotide(n)
         end
       end
 
-      def log_deletion(name, index, deletions)
-        delseq = deletions.map { |n| n.chr }.join
-        STDERR.puts ["[wgsim]", "DEL", name, index - deletions.size + 1, delseq, "."].join("\t")
+      def log_deletion : Nil
+        delseq = @deletions.map { |n| n.chr }.join
+        STDERR.puts ["[wgsim]", "DEL", @name, @index - @deletions.size, delseq, "."].join("\t")
       end
 
-      def log_substitution(name, index, n, nn)
-        STDERR.puts ["[wgsim]", "SUB", name, index + 1, n.chr, nn.chr].join("\t")
+      def log_substitution(n, nn) : Nil
+        STDERR.puts ["[wgsim]", "SUB", @name, @index, n.chr, nn.chr].join("\t")
       end
 
-      def log_insertion(name, index, n, ins)
-        STDERR.puts ["[wgsim]", "INS", name, index + 1, n.chr, n.chr + String.new(ins)].join("\t")
+      def log_insertion(n, ins) : Nil
+        STDERR.puts ["[wgsim]", "INS", @name, @index, n.chr, n.chr + String.new(ins)].join("\t")
       end
     end
   end
