@@ -38,6 +38,15 @@ module Wgsim
       @help_message = self.to_s
     end
 
+    macro _on_threads_
+    {% if flag?(:preview_mt) %}
+      on("-t", "--threads INT", "Number of threads [#{NWorkers.size}]") do |v|
+        # GitHub: kojix2/nworkers.cr
+        NWorkers.set_worker(v.to_i)
+      end
+    {% end %}
+    end
+
     macro _set_option_(klass, banner)
       @action = Action::{{klass}}
       @option = {{klass}}::Option.new
@@ -88,16 +97,11 @@ module Wgsim
           mopt.ploidy = v.to_u8
         end
 
-        on("-S", "--seed FLOAT", "seed for random generator") do |v|
+        on("-S", "--seed UINT64", "seed for random generator") do |v|
           mopt.seed = v.to_u64
         end
 
-        {% if flag?(:preview_mt) %}
-          on("-t INT", "Number of threads [4]") do |v|
-            # GitHub: kojix2/nworkers.cr
-            NWorkers.set_worker(v.to_i)
-          end
-        {% end %}
+        _on_threads_
 
         _on_debug_
 
@@ -107,44 +111,45 @@ module Wgsim
       on("seq", "generate the reads") do
         _set_option_(Sequence, "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n")
 
-        on("-e FLOAT", "base error rate") do |v|
+        on("-e", "--error-rate FLOAT", "base error rate [#{sopt.error_rate}]") do |v|
           sopt.error_rate = v.to_f64
         end
 
-        on("-d INT", "outer distance between the two ends") do |v|
+        on("-d", "--distance INT",
+          "outer distance between the two ends [#{sopt.distance}]") do |v|
           sopt.distance = v.to_i32
         end
 
-        on("-s INT", "standard deviation") do |v|
+        on("-s", "--std-dev FLOAT",
+          "standard deviation [#{sopt.std_deviation}]") do |v|
           sopt.std_deviation = v.to_i32
         end
 
-        on("-D FLOAT", "average sequencing depth") do |v|
+        on("-D", "--depth FLOAT",
+          "average sequencing depth [#{sopt.average_depth}]") do |v|
           sopt.average_depth = v.to_f64
         end
 
-        on("-1 INT", "length of the first read") do |v|
+        on("-1", "--size-left INT",
+          "length of the first read [#{sopt.size_left}]") do |v|
           sopt.size_left = v.to_i32
         end
 
-        on("-2 INT", "length of the second read") do |v|
+        on("-2", "--size-right INT",
+          "length of the second read [#{sopt.size_right}]") do |v|
           sopt.size_right = v.to_i32
         end
 
-        on("-A FLOAT", "Discard reads over FLOAT% ambiguous bases") do |v|
+        on("-A", "--ambiguous-ratio FLOAT",
+          "Discard reads over FLOAT% ambiguous bases [#{sopt.max_ambiguous_ratio}]") do |v|
           sopt.max_ambiguous_ratio = v.to_f64
         end
 
-        on("-S UINT64", "seed for random generator") do |v|
+        on("-S", "--seed UINT64", "seed for random generator") do |v|
           sopt.seed = v.to_u64
         end
 
-        {% if flag?(:preview_mt) %}
-          on("-t INT", "Number of threads [4]") do |v|
-            # GitHub: kojix2/nworkers.cr
-            NWorkers.set_worker(v.to_i)
-          end
-        {% end %}
+        _on_threads_
 
         _on_debug_
 
