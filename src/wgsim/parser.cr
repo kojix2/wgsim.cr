@@ -77,7 +77,7 @@ module Wgsim
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") do |v|
             # GitHub: kojix2/nworkers.cr
-            Nworkers.set_workers(v.to_i)
+            NWorkers.set_worker(v.to_i)
           end
         {% end %}
 
@@ -124,7 +124,7 @@ module Wgsim
         {% if flag?(:preview_mt) %}
           on("-t INT", "Number of threads [4]") do |v|
             # GitHub: kojix2/nworkers.cr
-            Nworkers.set_workers(v.to_i)
+            NWorkers.set_worker(v.to_i)
           end
         {% end %}
 
