@@ -22,7 +22,7 @@ module Wgsim
     end
 
     macro _on_debug_
-      on("-d", "--debug", "Show backtrace on error") do
+      on("--debug", "Show backtrace on error") do
         CLI.debug = true
       end
     end
@@ -59,19 +59,32 @@ module Wgsim
       on("mut", "mutate the reference") do
         _set_option_(Mutate, "Usage: wgsim mut [options] <in.ref.fa>\n")
 
-        on("-r FLOAT", "rate of mutations") do |v|
-          mopt.mutation_rate = v.to_f64
+        on("-s", "--substitution-rate FLOAT",
+          "rate of base substitutions [#{mopt.substitution_rate}]") do |v|
+          mopt.substitution_rate = v.to_f64
         end
 
-        on("-R FLOAT", "fraction of indels") do |v|
-          mopt.indel_fraction = v.to_f64
+        on("-i", "--insertion-rate FLOAT",
+          "rate of insertions [#{mopt.insertion_rate}]") do |v|
+          mopt.insertion_rate = v.to_f64
         end
 
-        on("-X FLOAT", "probability an indel is extended") do |v|
-          mopt.indel_extension_probability = v.to_f64
+        on("-d", "--deletion-rate FLOAT",
+          "rate of deletions [#{mopt.deletion_rate}]") do |v|
+          mopt.deletion_rate = v.to_f64
         end
 
-        on("-S UINT64", "seed for random generator") do |v|
+        on("-I", "--ins-ext-prob FLOAT",
+          "probability an insertion is extended [#{mopt.insertion_extension_probability}]") do |v|
+          mopt.insertion_extension_probability = v.to_f64
+        end
+
+        on("-D", "--del-ext-prob FLOAT",
+          "probability a deletion is extended [#{mopt.deletion_extension_probability}]") do |v|
+          mopt.deletion_extension_probability = v.to_f64
+        end
+
+        on("-S", "--seed FLOAT", "seed for random generator") do |v|
           mopt.seed = v.to_u64
         end
 

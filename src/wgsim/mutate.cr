@@ -15,9 +15,11 @@ module Wgsim
     def initialize(@option : Option)
       @reference = option.reference.not_nil!
       @core = Core.new(
-        mutation_rate: option.mutation_rate,
-        indel_fraction: option.indel_fraction,
-        indel_extension_probability: option.indel_extension_probability,
+        substitution_rate: option.substitution_rate,
+        insertion_rate: option.insertion_rate,
+        deletion_rate: option.deletion_rate,
+        insertion_extension_probability: option.insertion_extension_probability,
+        deletion_extension_probability: option.deletion_extension_probability,
         seed: option.seed
       )
     end
@@ -43,6 +45,7 @@ module Wgsim
 
     private def process_sequence(name : String, sequence : IO::Memory)
       reference_sequence = Fastx.normalize_sequence(sequence)
+      # Diploid
       2.times do |i|
         simulate_and_output_sequence(name, i, reference_sequence)
       end

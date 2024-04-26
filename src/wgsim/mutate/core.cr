@@ -5,9 +5,11 @@ module Wgsim
     class Core
       delegate rand, randn, to: @random
 
-      property mutation_rate : Float64
-      property indel_fraction : Float64
-      property indel_extension_probability : Float64
+      property substitution_rate : Float64
+      property insertion_rate : Float64
+      property deletion_rate : Float64
+      property insertion_extension_probability : Float64
+      property deletion_extension_probability : Float64
       property seed : UInt64?
 
       ACGT = StaticArray[65u8, 67u8, 71u8, 84u8]
@@ -17,9 +19,11 @@ module Wgsim
       ACG  = StaticArray[65u8, 67u8, 71u8]
 
       def initialize(
-        @mutation_rate,
-        @indel_fraction,
-        @indel_extension_probability,
+        @substitution_rate,
+        @insertion_rate,
+        @deletion_rate,
+        @insertion_extension_probability,
+        @deletion_extension_probability,
         @seed : UInt64? = nil
       )
         # random number generator with seed
@@ -55,7 +59,7 @@ module Wgsim
       # Generate insertion based on given size and indel extension probability
       def generate_insertion : Slice(UInt8)
         size = 1
-        while rand <= indel_extension_probability
+        while rand <= insertion_extension_probability
           size += 1
         end
         Slice(UInt8).new(size) { ACGT[rand(4)] }
@@ -72,13 +76,22 @@ module Wgsim
               base = delete_nucleotide(n)
               next base
             else # stop deletion
+              # NOTE: should stop when n is N?
               log_deletion
               @deletions.clear
             end
           end
 
-          if mutation_occurs? && n != 78u8 # N
-            mutate_nucleotide(n)
+          # skip N
+          next nochange_nucleotide(n) if n == 78u8
+
+          case rand
+          when ..substitution_rate
+            substitute_nucleotide(n)
+          when ..(substitution_rate + insertion_rate)
+            insert_nucleotide(n)
+          when ..(substitution_rate + insertion_rate + deletion_rate)
+            delete_nucleotide(n)
           else
             nochange_nucleotide(n)
           end
@@ -90,7 +103,7 @@ module Wgsim
       end
 
       private def extend_deletion? : Bool
-        rand < indel_extension_probability
+        rand < deletion_extension_probability
       end
 
       private def mutation_occurs? : Bool
@@ -120,17 +133,6 @@ module Wgsim
         nn = perform_substitution(n)
         log_substitution(n, nn)
         RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
-      end
-
-      def mutate_nucleotide(n) : RefBase
-        case rand
-        when indel_fraction..
-          substitute_nucleotide(n)
-        when (indel_fraction / 2)..
-          insert_nucleotide(n)
-        else # deletion
-          delete_nucleotide(n)
-        end
       end
 
       def log_deletion : Nil
