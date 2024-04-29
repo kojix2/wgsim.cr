@@ -1,8 +1,10 @@
 require "randn"
+require "../core_utils"
 
 module Wgsim
   class Mutate
     class Core
+      include CoreUtils
       delegate rand, randn, to: @random
 
       property substitution_rate : Float64
@@ -11,12 +13,6 @@ module Wgsim
       property insertion_extension_probability : Float64
       property deletion_extension_probability : Float64
       property seed : UInt64?
-
-      ACGT = StaticArray[65u8, 67u8, 71u8, 84u8]
-      CGT  = StaticArray[67u8, 71u8, 84u8]
-      AGT  = StaticArray[65u8, 71u8, 84u8]
-      ACT  = StaticArray[65u8, 67u8, 84u8]
-      ACG  = StaticArray[65u8, 67u8, 71u8]
 
       def initialize(
         @substitution_rate,
@@ -39,21 +35,6 @@ module Wgsim
         @name = ""
         # index of the current nucleotide
         @index = 0
-      end
-
-      def perform_substitution(nucleotide : UInt8) : UInt8
-        case nucleotide
-        when 65u8 # A
-          CGT[rand(3)]
-        when 67u8 # C
-          AGT[rand(3)]
-        when 71u8 # G
-          ACT[rand(3)]
-        when 84u8 # T
-          ACG[rand(3)]
-        else # N
-          78u8
-        end
       end
 
       # Generate insertion based on given size and indel extension probability

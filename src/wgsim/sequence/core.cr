@@ -1,15 +1,19 @@
+require "randn"
+require "../core_utils"
+
 module Wgsim
   class Sequence
     class Core
+      include CoreUtils
       delegate rand, randn, next_bool, to: @random
 
-      getter distance : Int32
-      getter std_deviation : Int32
-      getter average_depth : Float64
-      getter size_left : Int32
-      getter size_right : Int32
-      getter error_rate : Float64
-      getter max_ambiguous_ratio : Float64
+      property distance : Int32
+      property std_deviation : Int32
+      property average_depth : Float64
+      property size_left : Int32
+      property size_right : Int32
+      property error_rate : Float64
+      property max_ambiguous_ratio : Float64
 
       def initialize(
         @average_depth,
@@ -32,6 +36,7 @@ module Wgsim
       def run(name, sequence)
         contig_length = sequence.size
 
+        # # Skip sequences(contigs) that are shorter than the minimum length.
         # if contig_length < (min_len = distance + 3 * std_deviation)
         #   STDERR.puts "[wgsim] skip sequence '#{name}' as it is shorter than #{min_len} bp"
         #   next
@@ -42,20 +47,33 @@ module Wgsim
 
         pair_index = 0
         while pair_index < n_pairs
-          pair_index % 10**(Math.log10(n_pairs).to_i - 1) == 0 && puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
+          # progress report
+          if pair_index % 10**(Math.log10(n_pairs).to_i - 1) == 0
+            puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
+          end
 
+          # Insert size is the length of the DNA fragment excluding the adapters.
+          # See image at https://www.biostars.org/p/95803/
           insert_size = random_insert_size
+
+          # Position is the 0-based index of the first base of the fragment in the contig.
           position = random_position(contig_length, insert_size)
 
-          # should not happen
+          # Raise an error if the position is invalid.
+          # This should never happen.
           position < 0 || position > contig_length || position + insert_size - 1 < contig_length ||
             raise "Invalid position or insert size: " \
                   "position=#{position}, insert_size=#{insert_size}, contig_length=#{contig_length}"
 
-          # flip or not
-          flip = next_bool
+          # Flip or not
+          # 5'--->      3'
+          # 3'     <--- 5'
+          # If flip is true, the read1 is on the right side of the fragment.
+          flip = next_bool # Generate a random boolean value.
 
           read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
+
+          # Skip if the read contains too many ambiguous bases.
           next if read1_sequence.count('N') / read1_sequence.size > max_ambiguous_ratio ||
                   read2_sequence.count('N') / read2_sequence.size > max_ambiguous_ratio
 
@@ -72,7 +90,9 @@ module Wgsim
         end
       end
 
-      def generate_pair_sequence(target_seq, position, insert_size, flip) : Tuple(Slice(UInt8), Slice(UInt8))
+      def generate_pair_sequence(target_seq, position, insert_size, flip : Bool) : Tuple(Slice(UInt8), Slice(UInt8))
+        # Ranges that use '...' to exclude the given end value.
+        # (1...4).to_a     # => [1, 2, 3]
         if flip
           read1 = target_seq[position...(position + size_left)]
           read2 = reverse_complement(target_seq[(position + insert_size - size_right)...(position + insert_size)])
@@ -83,6 +103,8 @@ module Wgsim
 
         {read1, read2}
       end
+
+      # FIXME This method should be moved to Sequence class because it is IO-related?
 
       def fasta_record(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8)) : String
         sequence = String.new(sequence)
@@ -95,36 +117,14 @@ module Wgsim
       end
 
       def generate_sequencing_error(sequence : Slice(UInt8)) : Slice(UInt8)
-        valid_nucleotides = [65u8, 67u8, 71u8, 84u8] # A, C, G, T
-
-        sequence.map do |b|
-          case b
-          when 78u8 then b            # N
-          when 65u8, 67u8, 71u8, 84u8 # A, C, G, T
-            if rand < error_rate
-              other_nucleotides = valid_nucleotides - [b]
-              other_nucleotides[rand(3)]
-            else
-              b
-            end
+        sequence.map do |base|
+          if (base != 78u8) && (rand < error_rate)
+            # Defined in core_utils.cr
+            perform_substitution(base)
           else
-            raise "Invalid nucleotide: #{b}"
+            base
           end
         end
-      end
-
-      def reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)
-        complements = {
-          65u8 => 84u8, # A -> T
-          67u8 => 71u8, # C -> G
-          71u8 => 67u8, # G -> C
-          84u8 => 65u8, # T -> A
-          78u8 => 78u8, # N -> N
-        }
-
-        sequence.map do |b|
-          complements.fetch(b) { raise "Invalid nucleotide: #{b}" }
-        end.reverse!
       end
 
       def random_insert_size
