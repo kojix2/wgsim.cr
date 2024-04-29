@@ -63,7 +63,7 @@ module Wgsim
       
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
-      Source:  "https://github.com/kojix2/wgsim.cr"
+      Source:  https://github.com/kojix2/wgsim.cr
 
       BANNER
 
