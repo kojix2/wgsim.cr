@@ -72,6 +72,11 @@
       
     </li>
   
+  <li class=" " data-id="wgsim/Wgsim/CoreUtils" data-name="wgsim::coreutils">
+      <a href="../../Wgsim/CoreUtils.html">CoreUtils</a>
+      
+    </li>
+  
   <li class="parent " data-id="wgsim/Wgsim/Mutate" data-name="wgsim::mutate">
       <a href="../../Wgsim/Mutate.html">Mutate</a>
       
@@ -155,6 +160,20 @@
 
 
 
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></li>
+    
+  </ul>
+
 
 
 
@@ -174,7 +193,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L3" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L6" target="_blank">
         wgsim/sequence/core.cr
       </a>
     
@@ -224,7 +243,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#average_depth%3D%28average_depth%3AFloat64%29-instance-method" class="signature"><strong>#average_depth=</strong>(average_depth : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#distance%3AInt32-instance-method" class="signature"><strong>#distance</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#distance%3D%28distance%3AInt32%29-instance-method" class="signature"><strong>#distance=</strong>(distance : Int32)</a>
         
       </li>
     
@@ -234,12 +263,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#error_rate%3D%28error_rate%3AFloat64%29-instance-method" class="signature"><strong>#error_rate=</strong>(error_rate : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#fasta_record%28name%2Cpair_index%2Cposition%2Cinsert_size%2Cread_index%2Csequence%3ASlice%28UInt8%29%29%3AString-instance-method" class="signature"><strong>#fasta_record</strong>(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8)) : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#generate_pair_sequence</strong>(target_seq, position, insert_size, flip) : Tuple(Slice(UInt8), Slice(UInt8))</a>
+        <a href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#generate_pair_sequence</strong>(target_seq, position, insert_size, flip : Bool) : Tuple(Slice(UInt8), Slice(UInt8))</a>
         
       </li>
     
@@ -250,6 +284,11 @@
     
       <li class="entry-summary">
         <a href="#max_ambiguous_ratio%3AFloat64-instance-method" class="signature"><strong>#max_ambiguous_ratio</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_ambiguous_ratio%3D%28max_ambiguous_ratio%3AFloat64%29-instance-method" class="signature"><strong>#max_ambiguous_ratio=</strong>(max_ambiguous_ratio : Float64)</a>
         
       </li>
     
@@ -294,11 +333,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#run%28name%2Csequence%2C%26%29-instance-method" class="signature"><strong>#run</strong>(name, sequence, &)</a>
         
       </li>
@@ -309,7 +343,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#size_left%3D%28size_left%3AInt32%29-instance-method" class="signature"><strong>#size_left=</strong>(size_left : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#size_right%3AInt32-instance-method" class="signature"><strong>#size_right</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size_right%3D%28size_right%3AInt32%29-instance-method" class="signature"><strong>#size_right=</strong>(size_right : Int32)</a>
         
       </li>
     
@@ -318,11 +362,43 @@
         
       </li>
     
+      <li class="entry-summary">
+        <a href="#std_deviation%3D%28std_deviation%3AInt32%29-instance-method" class="signature"><strong>#std_deviation=</strong>(std_deviation : Int32)</a>
+        
+      </li>
+    
   </ul>
 
 
 
 <div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></code></h3>
+  
+  
+    <a href="../../Wgsim/CoreUtils.html#perform_substitution%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
+      <span>perform_substitution(base : UInt8) : UInt8</span>
+    perform_substitution</a>, 
+    
+  
+    <a href="../../Wgsim/CoreUtils.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
+      <span>reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)</span>
+    reverse_complement</a>
+    
+  
+
+
+    
+
+
+    
+
+
+    
+
+
   
     
 
@@ -373,7 +449,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -405,7 +481,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="average_depth=(average_depth:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>average_depth=</strong>(average_depth : Float64)
+
+        <a class="method-permalink" href="#average_depth%3D%28average_depth%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -421,7 +513,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="distance=(distance:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>distance=</strong>(distance : Int32)
+
+        <a class="method-permalink" href="#distance%3D%28distance%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -437,7 +545,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error_rate=(error_rate:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>error_rate=</strong>(error_rate : Float64)
+
+        <a class="method-permalink" href="#error_rate%3D%28error_rate%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -453,23 +577,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="generate_pair_sequence(target_seq,position,insert_size,flip):Tuple(Slice(UInt8),Slice(UInt8))-instance-method">
+    <div class="entry-detail" id="generate_pair_sequence(target_seq,position,insert_size,flip:Bool):Tuple(Slice(UInt8),Slice(UInt8))-instance-method">
       <div class="signature">
         
-        def <strong>generate_pair_sequence</strong>(target_seq, position, insert_size, flip) : Tuple(Slice(UInt8), Slice(UInt8))
+        def <strong>generate_pair_sequence</strong>(target_seq, position, insert_size, flip : Bool) : Tuple(Slice(UInt8), Slice(UInt8))
 
-        <a class="method-permalink" href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method">#</a>
+        <a class="method-permalink" href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L93" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -485,7 +609,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -501,7 +625,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_ambiguous_ratio=(max_ambiguous_ratio:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>max_ambiguous_ratio=</strong>(max_ambiguous_ratio : Float64)
+
+        <a class="method-permalink" href="#max_ambiguous_ratio%3D%28max_ambiguous_ratio%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -517,7 +657,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -533,7 +673,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -549,7 +689,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -565,7 +705,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -581,7 +721,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -597,7 +737,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -613,7 +753,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,23 +769,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L134" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="reverse_complement(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
-      <div class="signature">
-        
-        def <strong>reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
-
-        <a class="method-permalink" href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -661,7 +785,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -677,7 +801,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size_left=(size_left:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>size_left=</strong>(size_left : Int32)
+
+        <a class="method-permalink" href="#size_left%3D%28size_left%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -693,7 +833,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size_right=(size_right:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>size_right=</strong>(size_right : Int32)
+
+        <a class="method-permalink" href="#size_right%3D%28size_right%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -709,7 +865,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/cfd4ff082ffc8e370fdae7a016eafd06056503cd/src/wgsim/sequence/core.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="std_deviation=(std_deviation:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>std_deviation=</strong>(std_deviation : Int32)
+
+        <a class="method-permalink" href="#std_deviation%3D%28std_deviation%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>

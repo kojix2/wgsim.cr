@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::MutType - wgsim main</title>
+  <title>Wgsim::CoreUtils - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -72,7 +72,7 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/CoreUtils" data-name="wgsim::coreutils">
+  <li class=" current" data-id="wgsim/Wgsim/CoreUtils" data-name="wgsim::coreutils">
       <a href="../Wgsim/CoreUtils.html">CoreUtils</a>
       
     </li>
@@ -97,7 +97,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
+  <li class=" " data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
       <a href="../Wgsim/MutType.html">MutType</a>
       
     </li>
@@ -146,7 +146,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">enum</span> Wgsim::<wbr>MutType
+  <span class="kind">module</span> Wgsim::<wbr>CoreUtils
 
 </h1>
 
@@ -164,6 +164,22 @@
 
 
 
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Wgsim/Mutate/Core.html">Wgsim::Mutate::Core</a></li>
+    
+      <li class="other-type"><a href="../Wgsim/Sequence/Core.html">Wgsim::Sequence::Core</a></li>
+    
+  </ul>
+
 
 
 
@@ -177,8 +193,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/ref_base.cr#L2" target="_blank">
-        wgsim/ref_base.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/core_utils.cr#L2" target="_blank">
+        wgsim/core_utils.cr
       </a>
     
     <br/>
@@ -188,33 +204,38 @@
 
   
     <h2>
-      <a id="enum-members" class="anchor" href="#enum-members">
+      <a id="constant-summary" class="anchor" href="#constant-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-      Enum Members
+      Constant Summary
     </h2>
   
   <dl>
     
-      <dt class="entry-const" id="NOCHANGE">
-        <strong>NOCHANGE</strong> = <code><span class="n">0_u8</span></code>
+      <dt class="entry-const" id="ACG">
+        <strong>ACG</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">71_u8</span>]</code>
       </dt>
       
     
-      <dt class="entry-const" id="SUBSTITUTE">
-        <strong>SUBSTITUTE</strong> = <code><span class="n">1_u8</span></code>
+      <dt class="entry-const" id="ACGT">
+        <strong>ACGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
       </dt>
       
     
-      <dt class="entry-const" id="DELETE">
-        <strong>DELETE</strong> = <code><span class="n">2_u8</span></code>
+      <dt class="entry-const" id="ACT">
+        <strong>ACT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">84_u8</span>]</code>
       </dt>
       
     
-      <dt class="entry-const" id="INSERT">
-        <strong>INSERT</strong> = <code><span class="n">3_u8</span></code>
+      <dt class="entry-const" id="AGT">
+        <strong>AGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="CGT">
+        <strong>CGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">67_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
       </dt>
       
     
@@ -239,22 +260,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#delete%3F-instance-method" class="signature"><strong>#delete?</strong></a>
+        <a href="#perform_substitution%28base%3AUInt8%29%3AUInt8-instance-method" class="signature"><strong>#perform_substitution</strong>(base : UInt8) : UInt8</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#insert%3F-instance-method" class="signature"><strong>#insert?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#nochange%3F-instance-method" class="signature"><strong>#nochange?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#substitute%3F-instance-method" class="signature"><strong>#substitute?</strong></a>
+        <a href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
         
       </li>
     
@@ -263,58 +274,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
   
 </div>
 
@@ -334,66 +293,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="delete?-instance-method">
+    <div class="entry-detail" id="perform_substitution(base:UInt8):UInt8-instance-method">
       <div class="signature">
         
-        def <strong>delete?</strong>
+        def <strong>perform_substitution</strong>(base : UInt8) : UInt8
 
-        <a class="method-permalink" href="#delete%3F-instance-method">#</a>
+        <a class="method-permalink" href="#perform_substitution%28base%3AUInt8%29%3AUInt8-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/ref_base.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/core_utils.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="insert?-instance-method">
+    <div class="entry-detail" id="reverse_complement(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
       <div class="signature">
         
-        def <strong>insert?</strong>
+        def <strong>reverse_complement</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
 
-        <a class="method-permalink" href="#insert%3F-instance-method">#</a>
+        <a class="method-permalink" href="#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/ref_base.cr#L6" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="nochange?-instance-method">
-      <div class="signature">
-        
-        def <strong>nochange?</strong>
-
-        <a class="method-permalink" href="#nochange%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/ref_base.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="substitute?-instance-method">
-      <div class="signature">
-        
-        def <strong>substitute?</strong>
-
-        <a class="method-permalink" href="#substitute%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/ref_base.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/0188d33aa3baf69d37d3a8137146f798be1f3348/src/wgsim/core_utils.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
