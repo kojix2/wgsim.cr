@@ -67,39 +67,42 @@ module Wgsim
 
       BANNER
 
-      on("mut", "mutate the reference") do
-        _set_option_(Mutate, "Usage: wgsim mut [options] <in.ref.fa>\n")
+      on("mut", "Add mutations to reference sequences") do
+        _set_option_(Mutate,
+          "About: Add mutations to reference sequences\n" \
+          "Usage: wgsim mut [options] <in.ref.fa>\n"
+        )
 
-        on("-s", "--substitution-rate FLOAT",
-          "rate of base substitutions [#{mopt.substitution_rate}]") do |v|
+        on("-s", "--snv-rate FLOAT",
+          "Rate of base substitutions [#{mopt.substitution_rate}]") do |v|
           mopt.substitution_rate = v.to_f64
         end
 
-        on("-i", "--insertion-rate FLOAT",
-          "rate of insertions [#{mopt.insertion_rate}]") do |v|
+        on("-i", "--ins-rate FLOAT",
+          "Rate of insertions [#{mopt.insertion_rate}]") do |v|
           mopt.insertion_rate = v.to_f64
         end
 
-        on("-d", "--deletion-rate FLOAT",
-          "rate of deletions [#{mopt.deletion_rate}]") do |v|
+        on("-d", "--del-rate FLOAT",
+          "Rate of deletions [#{mopt.deletion_rate}]") do |v|
           mopt.deletion_rate = v.to_f64
         end
 
         on("-I", "--ins-ext-prob FLOAT",
-          "probability an insertion is extended [#{mopt.insertion_extension_probability}]") do |v|
+          "Probability an insertion is extended [#{mopt.insertion_extension_probability}]") do |v|
           mopt.insertion_extension_probability = v.to_f64
         end
 
         on("-D", "--del-ext-prob FLOAT",
-          "probability a deletion is extended [#{mopt.deletion_extension_probability}]") do |v|
+          "Probability a deletion is extended [#{mopt.deletion_extension_probability}]") do |v|
           mopt.deletion_extension_probability = v.to_f64
         end
 
-        on("-p", "--ploidy UINT8", "ploidy [#{mopt.ploidy}]") do |v|
+        on("-p", "--ploidy UINT8", "Number of chromosome copies in output fasta [#{mopt.ploidy}]") do |v|
           mopt.ploidy = v.to_u8
         end
 
-        on("-S", "--seed UINT64", "seed for random generator") do |v|
+        on("-S", "--seed UINT64", "Seed for random generator") do |v|
           mopt.seed = v.to_u64
         end
 
@@ -110,44 +113,45 @@ module Wgsim
         _on_help_
       end
 
-      on("seq", "generate the reads") do
-        _set_option_(Sequence, "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n")
+      on("seq", "Simulate pair-end sequencing") do
+        _set_option_(Sequence,
+          "About: Simulate pair-end sequencing\n" \
+          "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
+        )
 
-        on("-e", "--error-rate FLOAT", "base error rate [#{sopt.error_rate}]") do |v|
+        on("-e", "--error-rate FLOAT", "Base error rate [#{sopt.error_rate}]") do |v|
           sopt.error_rate = v.to_f64
         end
 
         on("-d", "--distance INT",
-          "outer distance between the two ends [#{sopt.distance}]") do |v|
+          "Outer distance between the two ends [#{sopt.distance}]") do |v|
           sopt.distance = v.to_i32
         end
 
         on("-s", "--std-dev FLOAT",
-          "standard deviation [#{sopt.std_deviation}]") do |v|
+          "Standard deviation of the insert size [#{sopt.std_deviation}]") do |v|
           sopt.std_deviation = v.to_i32
         end
 
         on("-D", "--depth FLOAT",
-          "average sequencing depth [#{sopt.average_depth}]") do |v|
+          "Average sequencing depth [#{sopt.average_depth}]") do |v|
           sopt.average_depth = v.to_f64
         end
 
-        on("-1", "--size-left INT",
-          "length of the first read [#{sopt.size_left}]") do |v|
+        on("-1", "--size-left INT", "Length of the first read [#{sopt.size_left}]") do |v|
           sopt.size_left = v.to_i32
         end
 
-        on("-2", "--size-right INT",
-          "length of the second read [#{sopt.size_right}]") do |v|
+        on("-2", "--size-right INT", "Length of the second read [#{sopt.size_right}]") do |v|
           sopt.size_right = v.to_i32
         end
 
         on("-A", "--ambiguous-ratio FLOAT",
-          "Discard reads over FLOAT% ambiguous bases [#{sopt.max_ambiguous_ratio}]") do |v|
+          "Discard if the fraction of N(ambiguous) bases higher than FLOAT [#{sopt.max_ambiguous_ratio}]") do |v|
           sopt.max_ambiguous_ratio = v.to_f64
         end
 
-        on("-S", "--seed UINT64", "seed for random generator") do |v|
+        on("-S", "--seed UINT64", "Seed for random generator") do |v|
           sopt.seed = v.to_u64
         end
 
