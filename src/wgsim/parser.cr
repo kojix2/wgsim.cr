@@ -73,7 +73,7 @@ module Wgsim
           "Usage: wgsim mut [options] <in.ref.fa>\n"
         )
 
-        on("-s", "--snv-rate FLOAT",
+        on("-s", "--sub-rate FLOAT",
           "Rate of base substitutions [#{mopt.substitution_rate}]") do |v|
           mopt.substitution_rate = v.to_f64
         end
