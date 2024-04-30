@@ -149,15 +149,31 @@
   </svg>
 </a>wgsim.cr</h1>
 <p><a href="https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml"><img src="https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml/badge.svg" alt="build" /></a></p>
-<p>Trying to re-implement and add functionality to <a href="https://github.com/lh3/wgsim">wgsim</a> in Crystal.</p>
-<p>:black_cat: Please note that this project has been created for personal learning and experimental purposes and is not intended for practical use.</p>
+<p>Reimplement <a href="https://github.com/lh3/wgsim">wgsim</a> in Crystal and add extra features.</p>
+<p>:yarn: :black_cat: Please note that this project is being created for personal study and experimental purposes and is not currently provided for practical purposes.</p>
+<ul>
+<li><code>mut</code> : Adding mutations to the reference genome
+<ul>
+<li>SNPs</li>
+<li>Insertion (any length)</li>
+<li>Deletion (any length)</li>
+<li>Fasta Output</li>
+</ul>
+</li>
+<li><code>seq</code> : Simulation of short lead sequencing
+<ul>
+<li>Uniform substitution sequencing errors</li>
+<li>Fastq Output</li>
+</ul>
+</li>
+</ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Installation</h2>
 <p><a href="https://github.com/kojix2/wgsim.cr/releases/latest">GitHub Releases</a></p>
-<p>From source:</p>
+<p>Compiling from source code:</p>
 <pre><code class="language-sh">git clone https://github.com/kojix2/wgsim.cr
 cd wgsim.cr
 shards build --release -Dpreview_mt src/wgsim.cr</code></pre>
