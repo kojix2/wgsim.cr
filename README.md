@@ -2,15 +2,24 @@
 
 [![build](https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/wgsim.cr/actions/workflows/build.yml)
 
-Trying to re-implement and add functionality to [wgsim](https://github.com/lh3/wgsim) in Crystal.
+Reimplement [wgsim](https://github.com/lh3/wgsim) in Crystal and add extra features.
 
-:black_cat: Please note that this project has been created for personal learning and experimental purposes and is not intended for practical use.
+:yarn: :black_cat: Please note that this project is being created for personal study and experimental purposes and is not currently provided for practical purposes.
+
+- `mut` : Adding mutations to the reference genome
+  - SNPs
+  - Insertion (any length)
+  - Deletion (any length)
+  - Fasta Output
+- `seq` : Simulation of short lead sequencing
+  - Uniform substitution sequencing errors
+  - Fastq Output
 
 ## Installation
 
 [GitHub Releases](https://github.com/kojix2/wgsim.cr/releases/latest)
 
-From source:
+Compiling from source code:
 
 ```sh
 git clone https://github.com/kojix2/wgsim.cr
