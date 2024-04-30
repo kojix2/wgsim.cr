@@ -45,6 +45,10 @@ module Wgsim
         # depth per haploid
         n_pairs = (contig_length * average_depth / (size_left + size_right)).to_i
 
+        # Currently, the sequence error rate is uniform across the entire sequence.
+        # '2' if the error rate is [0.02].
+        ascii_quality = error_rate_to_quality_char(error_rate)
+
         pair_index = 0
         while pair_index < n_pairs
           # progress report
@@ -82,8 +86,8 @@ module Wgsim
           read2_sequence = generate_sequencing_error(read2_sequence)
 
           yield(
-            fasta_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence),
-            fasta_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence)
+            fasta_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
+            fasta_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
           )
 
           pair_index += 1
@@ -106,14 +110,18 @@ module Wgsim
 
       # FIXME This method should be moved to Sequence class because it is IO-related?
 
-      def fasta_record(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8)) : String
+      def fasta_record(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8), ascii_quality) : String
         sequence = String.new(sequence)
         String.build do |str|
           str << ">#{name}_#{position}_#{insert_size}:#{pair_index}/#{read_index + 1}" << "\n"
           str << sequence << "\n"
           str << "+" << "\n"
-          str << "2" * [size_left, size_right][read_index] << "\n"
+          str << ascii_quality.to_s * [size_left, size_right][read_index] << "\n"
         end
+      end
+
+      def error_rate_to_quality_char(e : Float64) : Char
+        ((33 + (-10 * Math.log10(e))).round).to_u8.chr
       end
 
       def generate_sequencing_error(sequence : Slice(UInt8)) : Slice(UInt8)
