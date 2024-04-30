@@ -19,12 +19,21 @@ Reimplement [wgsim](https://github.com/lh3/wgsim) in Crystal and add extra featu
 
 [GitHub Releases](https://github.com/kojix2/wgsim.cr/releases/latest)
 
-Compiling from source code:
+### Compiling from source code
 
 ```sh
 git clone https://github.com/kojix2/wgsim.cr
 cd wgsim.cr
 shards build --release -Dpreview_mt src/wgsim.cr
+```
+
+### Homebrew
+
+[![wgsim (macos)](https://github.com/kojix2/homebrew-brew/actions/workflows/wgsim-macos.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/wgsim-macos.yml)
+[![wgsim (ubuntu)](https://github.com/kojix2/homebrew-brew/actions/workflows/wgsim-ubuntu.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/wgsim-ubuntu.yml)
+
+```
+brew install kojix2/brew/wgsim
 ```
 
 ## Usage
