@@ -49,8 +49,12 @@ module Wgsim
         # '2' if the error rate is [0.02].
         ascii_quality = error_rate_to_quality_char(error_rate)
 
-        pair_index = 0
-        while pair_index < n_pairs
+        # Channel to communicate between the main thread and the worker threads.
+        # receive nil if the read contains too many ambiguous bases.
+        # receive a pair of fastq records otherwise.
+        channel = Channel(Tuple(String, String)?).new(128) # FIXME: 16 is not a magic number.
+
+        n_pairs.times do |pair_index|
           # progress report
           if pair_index % 10**(Math.log10(n_pairs).to_i - 1) == 0
             puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
@@ -79,23 +83,36 @@ module Wgsim
           error_profile1 = generate_error_profile(size_left)
           error_profile2 = generate_error_profile(size_right)
 
-          # Generate read1 and read2 sequences.
-          read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
+          spawn do
+            # Generate read1 and read2 sequences.
+            read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
 
-          # Skip if the read contains too many ambiguous bases.
-          next if read1_sequence.count('N') / size_left > max_ambiguous_ratio ||
-                  read2_sequence.count('N') / size_right > max_ambiguous_ratio
+            # Skip if the read contains too many ambiguous bases.
+            if read1_sequence.count('N') / size_left > max_ambiguous_ratio ||
+               read2_sequence.count('N') / size_right > max_ambiguous_ratio
+              channel.send(nil)
+            else
+              # Apply sequencing error to read1 and read2 sequences.
+              read1_sequence = generate_sequencing_error(read1_sequence, error_profile1)
+              read2_sequence = generate_sequencing_error(read2_sequence, error_profile2)
 
-          # Apply sequencing error to read1 and read2 sequences.
-          read1_sequence = generate_sequencing_error(read1_sequence, error_profile1)
-          read2_sequence = generate_sequencing_error(read2_sequence, error_profile2)
+              # Generate fastq records.
+              record1 = fastq_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality)
+              record2 = fastq_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
+              channel.send({record1, record2})
+            end
+          end
+        end
 
-          record1 = fastq_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality)
-          record2 = fastq_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
+        n_pairs.times do
+          result = channel.receive
+          if result.nil?
+            next
+          else
+            record1, record2 = result
+          end
 
           yield(record1, record2)
-
-          pair_index += 1
         end
       end
 
