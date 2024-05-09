@@ -129,17 +129,6 @@ module Wgsim
         ((33 + (-10 * Math.log10(e))).round).to_u8.chr
       end
 
-      # def generate_sequencing_error(sequence : Slice(UInt8)) : Slice(UInt8)
-      #   sequence.map do |base|
-      #     if (base != 78u8) && (rand < error_rate)
-      #       # Defined in core_utils.cr
-      #       perform_substitution(base, rand(3))
-      #     else
-      #       base
-      #     end
-      #   end
-      # end
-
       def generate_error_profile(length : Int32) : Array(Tuple(Int32, Int32))
         result = [] of Tuple(Int32, Int32)
         length.times do |i|
