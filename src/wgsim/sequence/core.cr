@@ -160,6 +160,7 @@ module Wgsim
         sequence : Slice(UInt8),
         error_profile : Array(Tuple(Int32, Int32)) # index, rand
       ) : Slice(UInt8)
+        sequence = sequence.dup # Copy the sequence to avoid modifying the original sequence.
         error_profile.each do |index, r|
           sequence[index] = perform_substitution(sequence[index], r)
         end
