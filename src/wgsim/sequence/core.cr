@@ -75,15 +75,20 @@ module Wgsim
           # If flip is true, the read1 is on the right side of the fragment.
           flip = next_bool # Generate a random boolean value.
 
+          # Generate sequencing error map for read1 and read2.
+          error_profile1 = generate_error_profile(size_left)
+          error_profile2 = generate_error_profile(size_right)
+
+          # Generate read1 and read2 sequences.
           read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
 
           # Skip if the read contains too many ambiguous bases.
-          next if read1_sequence.count('N') / read1_sequence.size > max_ambiguous_ratio ||
-                  read2_sequence.count('N') / read2_sequence.size > max_ambiguous_ratio
+          next if read1_sequence.count('N') / size_left > max_ambiguous_ratio ||
+                  read2_sequence.count('N') / size_right > max_ambiguous_ratio
 
-          # generate sequence error
-          read1_sequence = generate_sequencing_error(read1_sequence)
-          read2_sequence = generate_sequencing_error(read2_sequence)
+          # Apply sequencing error to read1 and read2 sequences.
+          read1_sequence = generate_sequencing_error(read1_sequence, error_profile1)
+          read2_sequence = generate_sequencing_error(read2_sequence, error_profile2)
 
           yield(
             fasta_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
@@ -124,15 +129,35 @@ module Wgsim
         ((33 + (-10 * Math.log10(e))).round).to_u8.chr
       end
 
-      def generate_sequencing_error(sequence : Slice(UInt8)) : Slice(UInt8)
-        sequence.map do |base|
-          if (base != 78u8) && (rand < error_rate)
-            # Defined in core_utils.cr
-            perform_substitution(base, rand(3))
-          else
-            base
+      # def generate_sequencing_error(sequence : Slice(UInt8)) : Slice(UInt8)
+      #   sequence.map do |base|
+      #     if (base != 78u8) && (rand < error_rate)
+      #       # Defined in core_utils.cr
+      #       perform_substitution(base, rand(3))
+      #     else
+      #       base
+      #     end
+      #   end
+      # end
+
+      def generate_error_profile(length : Int32) : Array(Tuple(Int32, Int32))
+        result = [] of Tuple(Int32, Int32)
+        length.times do |i|
+          if rand < error_rate
+            result << {i, rand(3)}
           end
         end
+        result
+      end
+
+      def generate_sequencing_error(
+        sequence : Slice(UInt8),
+        error_profile : Array(Tuple(Int32, Int32)) # index, rand
+      ) : Slice(UInt8)
+        error_profile.each do |index, r|
+          sequence[index] = perform_substitution(sequence[index], r)
+        end
+        sequence
       end
 
       def random_insert_size : Int32
