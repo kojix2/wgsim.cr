@@ -1,4 +1,5 @@
 require "fastx"
+require "./sequence/fastq_record"
 require "./sequence/option"
 require "./sequence/core"
 
@@ -42,8 +43,8 @@ module Wgsim
         reader.each do |name, sequence|
           normalized_sequence = Fastx.normalize_sequence(sequence)
           core.run(name, normalized_sequence) do |record1, record2|
-            output_fasta_1.puts record1
-            output_fasta_2.puts record2
+            output_fasta_1.puts record1.to_s
+            output_fasta_2.puts record2.to_s
           end
           STDERR.puts "[wgsim] #{name} done"
         end
