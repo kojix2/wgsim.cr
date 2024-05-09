@@ -128,7 +128,7 @@ module Wgsim
         sequence.map do |base|
           if (base != 78u8) && (rand < error_rate)
             # Defined in core_utils.cr
-            perform_substitution(base)
+            perform_substitution(base, rand(3))
           else
             base
           end

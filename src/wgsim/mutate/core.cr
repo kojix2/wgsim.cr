@@ -111,7 +111,7 @@ module Wgsim
       end
 
       def substitute_nucleotide(n : UInt8) : RefBase
-        nn = perform_substitution(n)
+        nn = perform_substitution(n, rand(3))
         log_substitution(n, nn)
         RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
       end
