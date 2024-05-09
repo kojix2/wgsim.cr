@@ -6,12 +6,12 @@ module Wgsim
     ACT  = StaticArray[65u8, 67u8, 84u8]
     ACG  = StaticArray[65u8, 67u8, 71u8]
 
-    def perform_substitution(base : UInt8) : UInt8
-      i = rand(3)
-      perform_substitution(base, i)
-    end
+    # def perform_substitution(base : UInt8) : UInt8
+    #   i = rand(3)
+    #   perform_substitution(base, i)
+    # end
 
-    def perform_substitution(base : UInt8, i : Int32) : UInt8
+    def perform_substitution(base : UInt8, i : Int) : UInt8
       case base
       when 65u8 # A
         CGT[i]
