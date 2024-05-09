@@ -193,7 +193,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L6" target="_blank">
         wgsim/sequence/core.cr
       </a>
     
@@ -278,12 +278,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#generate_error_profile%28length%3AInt32%29%3AArray%28Tuple%28Int32%2CInt32%29%29-instance-method" class="signature"><strong>#generate_error_profile</strong>(length : Int32) : Array(Tuple(Int32, Int32))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#generate_pair_sequence%28target_seq%2Cposition%2Cinsert_size%2Cflip%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#generate_pair_sequence</strong>(target_seq, position, insert_size, flip : Bool) : Tuple(Slice(UInt8), Slice(UInt8))</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
+        <a href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%2Cerror_profile%3AArray%28Tuple%28Int32%2CInt32%29%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_sequencing_error</strong>(sequence : Slice(UInt8), error_profile : Array(Tuple(Int32, Int32))) : Slice(UInt8)</a>
         
       </li>
     
@@ -454,7 +459,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -486,7 +491,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -502,7 +507,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -518,7 +523,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -534,7 +539,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -550,7 +555,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -566,7 +571,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -582,7 +587,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L123" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L128" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -598,7 +603,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L118" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="generate_error_profile(length:Int32):Array(Tuple(Int32,Int32))-instance-method">
+      <div class="signature">
+        
+        def <strong>generate_error_profile</strong>(length : Int32) : Array(Tuple(Int32, Int32))
+
+        <a class="method-permalink" href="#generate_error_profile%28length%3AInt32%29%3AArray%28Tuple%28Int32%2CInt32%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -614,23 +635,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L102" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="generate_sequencing_error(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
+    <div class="entry-detail" id="generate_sequencing_error(sequence:Slice(UInt8),error_profile:Array(Tuple(Int32,Int32))):Slice(UInt8)-instance-method">
       <div class="signature">
         
-        def <strong>generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
+        def <strong>generate_sequencing_error</strong>(sequence : Slice(UInt8), error_profile : Array(Tuple(Int32, Int32))) : Slice(UInt8)
 
-        <a class="method-permalink" href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
+        <a class="method-permalink" href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%2Cerror_profile%3AArray%28Tuple%28Int32%2CInt32%29%29%29%3ASlice%28UInt8%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L127" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L153" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -646,7 +667,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -662,7 +683,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -678,7 +699,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -694,7 +715,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -710,7 +731,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -726,7 +747,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -742,7 +763,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -758,7 +779,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -774,7 +795,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L138" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L163" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -790,7 +811,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L142" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L167" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -806,7 +827,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -822,7 +843,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -838,7 +859,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -854,7 +875,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -870,7 +891,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -886,7 +907,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -902,7 +923,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/51f30ec13e84f48ca9f509cdf0ec5905ccfeb145/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9c5280c9da337fd575f0dc139e6795fdeab00bf8/src/wgsim/sequence/core.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
