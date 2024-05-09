@@ -90,10 +90,10 @@ module Wgsim
           read1_sequence = generate_sequencing_error(read1_sequence, error_profile1)
           read2_sequence = generate_sequencing_error(read2_sequence, error_profile2)
 
-          yield(
-            fasta_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
-            fasta_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
-          )
+          record1 = fastq_record(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality)
+          record2 = fastq_record(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
+
+          yield(record1, record2)
 
           pair_index += 1
         end
@@ -115,7 +115,7 @@ module Wgsim
 
       # FIXME This method should be moved to Sequence class because it is IO-related?
 
-      def fasta_record(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8), ascii_quality) : String
+      def fastq_record(name, pair_index, position, insert_size, read_index, sequence : Slice(UInt8), ascii_quality) : String
         sequence = String.new(sequence)
         String.build do |str|
           str << ">#{name}_#{position}_#{insert_size}:#{pair_index}/#{read_index + 1}" << "\n"
