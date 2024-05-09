@@ -135,11 +135,11 @@ module Wgsim
         end
       end
 
-      def random_insert_size
+      def random_insert_size : Int32
         [randn(distance, std_deviation).to_i, size_left, size_right].max
       end
 
-      def random_position(contig_length : Int, insert_size : Int)
+      def random_position(contig_length : Int, insert_size : Int) : Int32
         rand(contig_length - insert_size + 1)
       end
     end
