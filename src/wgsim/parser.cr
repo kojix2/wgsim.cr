@@ -189,7 +189,7 @@ module Wgsim
       super
       case action
       when Action::Mutate
-        return {nil, nil} unless argv.size == 1 
+        return {nil, nil} unless argv.size == 1
         mopt.reference = Path.new(argv.shift)
         {action, mopt}
       when Action::Sequence
