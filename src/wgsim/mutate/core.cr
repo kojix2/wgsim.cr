@@ -50,6 +50,7 @@ module Wgsim
       # Returns a slice of RefBase
 
       def simulate_mutations(@name : String, sequence : Slice(UInt8)) : Slice(RefBase)
+        @index = 0
         sequence.map do |n|
           @index += 1 # 1-based index
           if previous_ref_base_is_deletion?
