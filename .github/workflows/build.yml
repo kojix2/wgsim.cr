@@ -24,7 +24,7 @@ jobs:
       - name: Run specs
         run: crystal spec
       - name: Build executable
-        run: shards build --release
+        run: shards build --release ${{ matrix.os == 'windows' && '--static' || '' }}
       - uses: actions/upload-artifact@v4
         with:
           name: wgsim-${{ matrix.os }}
