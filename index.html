@@ -224,14 +224,54 @@ Usage: wgsim seq [options] &lt;in.ref.fa&gt; &lt;out.read1.fq&gt; &lt;out.read2.
     -2, --size-right INT             Length of the second read [100]
     -A, --ambiguous-ratio FLOAT      Discard if the fraction of N(ambiguous) bases higher than FLOAT [0.05]
     -S, --seed UINT64                Seed for random generator</code></pre>
-<h2><a id="note" class="anchor" href="#note">
+<h3><a id="idea-notes" class="anchor" href="#idea-notes">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>NOTE</h2>
+</a>Idea Notes</h3>
 <ul>
-<li>The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many <code>UInt8</code> or <code>RefBase</code> structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.</li>
-<li><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">wgsimのコードを眺める [JA]</a></li>
+<li>
+<p>Somatic Mutations</p>
+<ul>
+<li>Broad Representation: Include SNVs, indels, large insertions, deletions, and translocations.</li>
+<li>Complete DNA Sequence in Fasta: Include the entire genome in the Fasta file, considering efficient storage solutions for large genomes.</li>
+</ul>
+</li>
+<li>
+<p>Haplotypes</p>
+<ul>
+<li>Diploid Cells: For diploid cells, include two Fasta records per pair of homologous chromosomes. Manage redundancy to optimize file size.</li>
+</ul>
+</li>
+<li>
+<p>Structural Variations</p>
+<ul>
+<li>Inversion and Fusion: Accurately represent structural variations like inversions and fusions in the Fasta file.</li>
+</ul>
+</li>
+<li>
+<p>Local Amplifications</p>
+<ul>
+<li>Extrachromosomal DNA: Include additional records for increased chromosome copy number due to extrachromosomal DNA, clearly annotating these changes.</li>
+</ul>
+</li>
+<li>
+<p>Non-Compressed Genome Representation</p>
+<ul>
+<li>Data Structures: Use <code>UInt8</code> or <code>RefBase</code> structures for each nucleotide to maintain accuracy. Optimize to reduce memory and storage overhead.</li>
+<li>Performance Trade-offs: Recognize trade-offs in speed and resource usage. Explore optimizations and efficient data handling.</li>
+</ul>
+</li>
+<li>
+<p>Addressing Heterogeneity</p>
+<ul>
+<li>Fasta File per Cell Type: Each cell type has one Fasta file. Develop strategies to manage and access multiple files efficiently.</li>
+<li>Cell Type Proportions: Provide the proportion of each cell type, ensuring accurate quantification and integration into workflows.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">wgsimのコードを眺める [JA]</a></p>
+</li>
 </ul>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
