@@ -72,9 +72,28 @@ Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
     -S, --seed UINT64                Seed for random generator
 ```
 
-## NOTE
+### Idea Notes
 
-- The key point is to include the complete DNA sequence of the cell's genome in the Fasta file. In the case of diploid cells, two Fasta records should be added for each pair of homologous chromosomes. When there is an increase in chromosome copy number due to extrachromosomal DNA, additional records must be included in the Fasta file to reflect this amplification. If a chromosome undergoes inversion or fusion, the Fasta file should contain a record that accurately represents these changes. This means that the genome should not be represented in any compressed form on the computer. Consequently, there will be as many `UInt8` or `RefBase` structures as there are nucleotides. While this approach may reduce processing speed and increase disk and memory usage, it helps to avoid many complications.
+- Somatic Mutations
+  - Broad Representation: Include SNVs, indels, large insertions, deletions, and translocations.
+  - Complete DNA Sequence in Fasta: Include the entire genome in the Fasta file, considering efficient storage solutions for large genomes.
+
+- Haplotypes
+  - Diploid Cells: For diploid cells, include two Fasta records per pair of homologous chromosomes. Manage redundancy to optimize file size.
+
+- Structural Variations
+  - Inversion and Fusion: Accurately represent structural variations like inversions and fusions in the Fasta file.
+
+- Local Amplifications
+  - Extrachromosomal DNA: Include additional records for increased chromosome copy number due to extrachromosomal DNA, clearly annotating these changes.
+
+- Non-Compressed Genome Representation
+  - Data Structures: Use `UInt8` or `RefBase` structures for each nucleotide to maintain accuracy. Optimize to reduce memory and storage overhead.
+  - Performance Trade-offs: Recognize trade-offs in speed and resource usage. Explore optimizations and efficient data handling.
+
+- Addressing Heterogeneity
+  - Fasta File per Cell Type: Each cell type has one Fasta file. Develop strategies to manage and access multiple files efficiently.
+  - Cell Type Proportions: Provide the proportion of each cell type, ensuring accurate quantification and integration into workflows.
 - [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
 
 ## Development
