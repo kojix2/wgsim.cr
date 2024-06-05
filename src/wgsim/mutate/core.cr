@@ -20,7 +20,8 @@ module Wgsim
         @deletion_rate,
         @insertion_extension_probability,
         @deletion_extension_probability,
-        @seed : UInt64? = nil
+        @seed : UInt64? = nil,
+        @outlog : IO = STDERR
       )
         # random number generator with seed
         @random = \
@@ -119,15 +120,15 @@ module Wgsim
 
       def log_deletion : Nil
         delseq = @deletions.map { |n| n.chr }.join
-        STDERR.puts ["[wgsim]", "DEL", @name, @index - @deletions.size, delseq, "."].join("\t")
+        @outlog.puts ["[wgsim]", "DEL", @name, @index - @deletions.size, delseq, "."].join("\t")
       end
 
       def log_substitution(n, nn) : Nil
-        STDERR.puts ["[wgsim]", "SUB", @name, @index, n.chr, nn.chr].join("\t")
+        @outlog.puts ["[wgsim]", "SUB", @name, @index, n.chr, nn.chr].join("\t")
       end
 
       def log_insertion(n, ins) : Nil
-        STDERR.puts ["[wgsim]", "INS", @name, @index, n.chr, n.chr + String.new(ins)].join("\t")
+        @outlog.puts ["[wgsim]", "INS", @name, @index, n.chr, n.chr + String.new(ins)].join("\t")
       end
     end
   end
