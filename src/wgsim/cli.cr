@@ -1,6 +1,7 @@
 require "randn"
 require "./ref_base"
 require "./ref_seq"
+require "./sample_sheet"
 require "./mutate"
 require "./sequence"
 
