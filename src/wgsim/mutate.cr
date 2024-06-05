@@ -63,27 +63,7 @@ module Wgsim
       pname += "_#{index}" if index
       puts ">#{pname}"
       mutated_sequence = core.simulate_mutations(pname, reference_sequence)
-      puts format_mutated_sequence(mutated_sequence)
-    end
-
-    def format_mutated_sequence(mutated_sequence : Slice(Wgsim::RefBase))
-      seq = IO::Memory.new
-      mutated_sequence.each do |b|
-        case b.mutation_type
-        when MutType::NOCHANGE, MutType::SUBSTITUTE
-          seq.write_byte b.nucleotide
-        when MutType::DELETE
-        when MutType::INSERT
-          seq.write_byte b.nucleotide
-          ins = b.insertion
-          seq.write ins if ins
-        end
-      end
-      format_sequence(seq)
-    end
-
-    private def format_sequence(sequence : IO::Memory) : String
-      sequence.to_s.gsub(/(.{80})/, "\\1\n")
+      puts mutated_sequence.format
     end
   end
 end
