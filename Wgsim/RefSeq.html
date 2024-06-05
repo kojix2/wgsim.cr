@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::MutType - wgsim main</title>
+  <title>Wgsim::RefSeq - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -102,7 +102,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
+  <li class=" " data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
       <a href="../Wgsim/MutType.html">MutType</a>
       
     </li>
@@ -117,7 +117,7 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/RefSeq" data-name="wgsim::refseq">
+  <li class=" current" data-id="wgsim/Wgsim/RefSeq" data-name="wgsim::refseq">
       <a href="../Wgsim/RefSeq.html">RefSeq</a>
       
     </li>
@@ -156,10 +156,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">enum</span> Wgsim::<wbr>MutType
+  <span class="kind">class</span> Wgsim::<wbr>RefSeq
 
 </h1>
 
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/RefSeq.html">Wgsim::RefSeq</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -187,8 +189,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_base.cr#L2" target="_blank">
-        wgsim/ref_base.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_seq.cr#L4" target="_blank">
+        wgsim/ref_seq.cr
       </a>
     
     <br/>
@@ -196,45 +198,45 @@
 
 
 
-  
-    <h2>
-      <a id="enum-members" class="anchor" href="#enum-members">
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-      Enum Members
-    </h2>
-  
-  <dl>
+    Constructors
+  </h2>
+  <ul class="list-summary">
     
-      <dt class="entry-const" id="NOCHANGE">
-        <strong>NOCHANGE</strong> = <code><span class="n">0_u8</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#new%28slice%3ASlice%28RefBase%29%29-class-method" class="signature"><strong>.new</strong>(slice : Slice(RefBase))</a>
+        
+      </li>
     
-      <dt class="entry-const" id="SUBSTITUTE">
-        <strong>SUBSTITUTE</strong> = <code><span class="n">1_u8</span></code>
-      </dt>
-      
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
     
-      <dt class="entry-const" id="DELETE">
-        <strong>DELETE</strong> = <code><span class="n">2_u8</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#method_missing%28call%29-macro" class="signature"><strong>method_missing</strong>(call)</a>
+        
+      </li>
     
-      <dt class="entry-const" id="INSERT">
-        <strong>INSERT</strong> = <code><span class="n">3_u8</span></code>
-      </dt>
-      
-    
-  </dl>
-
-
-
-
-
-
+  </ul>
 
 
 
@@ -249,22 +251,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#delete%3F-instance-method" class="signature"><strong>#delete?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#insert%3F-instance-method" class="signature"><strong>#insert?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#nochange%3F-instance-method" class="signature"><strong>#nochange?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#substitute%3F-instance-method" class="signature"><strong>#substitute?</strong></a>
+        <a href="#format%28width%3AInt%3D80%29%3AString-instance-method" class="signature"><strong>#format</strong>(width : Int = <span class="n">80</span>) : String</a>
         
       </li>
     
@@ -300,38 +287,64 @@
 
 
   
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(slice:Slice(RefBase))-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(slice : Slice(<a href="../Wgsim/RefBase.html">RefBase</a>))
+
+        <a class="method-permalink" href="#new%28slice%3ASlice%28RefBase%29%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_seq.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
+
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="method_missing(call)-macro">
+      <div class="signature">
+        
+        macro <strong>method_missing</strong>(call)
+
+        <a class="method-permalink" href="#method_missing%28call%29-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_seq.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -344,66 +357,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="delete?-instance-method">
+    <div class="entry-detail" id="format(width:Int=80):String-instance-method">
       <div class="signature">
         
-        def <strong>delete?</strong>
+        def <strong>format</strong>(width : Int = <span class="n">80</span>) : String
 
-        <a class="method-permalink" href="#delete%3F-instance-method">#</a>
+        <a class="method-permalink" href="#format%28width%3AInt%3D80%29%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_base.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="insert?-instance-method">
-      <div class="signature">
-        
-        def <strong>insert?</strong>
-
-        <a class="method-permalink" href="#insert%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_base.cr#L6" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="nochange?-instance-method">
-      <div class="signature">
-        
-        def <strong>nochange?</strong>
-
-        <a class="method-permalink" href="#nochange%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_base.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="substitute?-instance-method">
-      <div class="signature">
-        
-        def <strong>substitute?</strong>
-
-        <a class="method-permalink" href="#substitute%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_base.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/3b2400b140b8c04781833b5c35a16e2a109afb53/src/wgsim/ref_seq.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
