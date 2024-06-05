@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Action - wgsim main</title>
+  <title>Wgsim::CellSample - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -62,12 +62,12 @@
       
         <ul>
   
-  <li class=" current" data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
+  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
       <a href="../Wgsim/Action.html">Action</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/CellSample" data-name="wgsim::cellsample">
+  <li class=" current" data-id="wgsim/Wgsim/CellSample" data-name="wgsim::cellsample">
       <a href="../Wgsim/CellSample.html">CellSample</a>
       
     </li>
@@ -166,10 +166,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">enum</span> Wgsim::<wbr>Action
+  <span class="kind">class</span> Wgsim::<wbr>CellSample
 
 </h1>
 
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/CellSample.html">Wgsim::CellSample</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -197,8 +199,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L2" target="_blank">
-        wgsim/action.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L4" target="_blank">
+        wgsim/sample_sheet.cr
       </a>
     
     <br/>
@@ -206,41 +208,24 @@
 
 
 
-  
-    <h2>
-      <a id="enum-members" class="anchor" href="#enum-members">
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-      Enum Members
-    </h2>
-  
-  <dl>
+    Constructors
+  </h2>
+  <ul class="list-summary">
     
-      <dt class="entry-const" id="Mutate">
-        <strong>Mutate</strong> = <code><span class="n">0_u8</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#new%28name%3AString%2Cfraction%3AFloat64%2Cfasta_file%3AString%29-class-method" class="signature"><strong>.new</strong>(name : String, fraction : Float64, fasta_file : String)</a>
+        
+      </li>
     
-      <dt class="entry-const" id="Sequence">
-        <strong>Sequence</strong> = <code><span class="n">1_u8</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="Help">
-        <strong>Help</strong> = <code><span class="n">2_u8</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="Version">
-        <strong>Version</strong> = <code><span class="n">3_u8</span></code>
-      </dt>
-      
-    
-  </dl>
-
-
+  </ul>
 
 
 
@@ -259,22 +244,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#help%3F-instance-method" class="signature"><strong>#help?</strong></a>
+        <a href="#fasta_file%3AString-instance-method" class="signature"><strong>#fasta_file</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mutate%3F-instance-method" class="signature"><strong>#mutate?</strong></a>
+        <a href="#fraction%3AFloat64-instance-method" class="signature"><strong>#fraction</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#sequence%3F-instance-method" class="signature"><strong>#sequence?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#version%3F-instance-method" class="signature"><strong>#version?</strong></a>
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
         
       </li>
     
@@ -310,34 +290,34 @@
 
 
   
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(name:String,fraction:Float64,fasta_file:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : String, fraction : Float64, fasta_file : String)
+
+        <a class="method-permalink" href="#new%28name%3AString%2Cfraction%3AFloat64%2Cfasta_file%3AString%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -354,66 +334,50 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="help?-instance-method">
+    <div class="entry-detail" id="fasta_file:String-instance-method">
       <div class="signature">
         
-        def <strong>help?</strong>
+        def <strong>fasta_file</strong> : String
 
-        <a class="method-permalink" href="#help%3F-instance-method">#</a>
+        <a class="method-permalink" href="#fasta_file%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutate?-instance-method">
+    <div class="entry-detail" id="fraction:Float64-instance-method">
       <div class="signature">
         
-        def <strong>mutate?</strong>
+        def <strong>fraction</strong> : Float64
 
-        <a class="method-permalink" href="#mutate%3F-instance-method">#</a>
+        <a class="method-permalink" href="#fraction%3AFloat64-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sequence?-instance-method">
+    <div class="entry-detail" id="name:String-instance-method">
       <div class="signature">
         
-        def <strong>sequence?</strong>
+        def <strong>name</strong> : String
 
-        <a class="method-permalink" href="#sequence%3F-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="version?-instance-method">
-      <div class="signature">
-        
-        def <strong>version?</strong>
-
-        <a class="method-permalink" href="#version%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>

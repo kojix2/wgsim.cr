@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Action - wgsim main</title>
+  <title>Wgsim::SampleSheet - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -62,7 +62,7 @@
       
         <ul>
   
-  <li class=" current" data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
+  <li class=" " data-id="wgsim/Wgsim/Action" data-name="wgsim::action">
       <a href="../Wgsim/Action.html">Action</a>
       
     </li>
@@ -127,7 +127,7 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/SampleSheet" data-name="wgsim::samplesheet">
+  <li class=" current" data-id="wgsim/Wgsim/SampleSheet" data-name="wgsim::samplesheet">
       <a href="../Wgsim/SampleSheet.html">SampleSheet</a>
       
     </li>
@@ -166,10 +166,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">enum</span> Wgsim::<wbr>Action
+  <span class="kind">class</span> Wgsim::<wbr>SampleSheet
 
 </h1>
 
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/SampleSheet.html">Wgsim::SampleSheet</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -197,8 +199,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L2" target="_blank">
-        wgsim/action.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L16" target="_blank">
+        wgsim/sample_sheet.cr
       </a>
     
     <br/>
@@ -206,43 +208,43 @@
 
 
 
-  
-    <h2>
-      <a id="enum-members" class="anchor" href="#enum-members">
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-      Enum Members
-    </h2>
-  
-  <dl>
+    Constructors
+  </h2>
+  <ul class="list-summary">
     
-      <dt class="entry-const" id="Mutate">
-        <strong>Mutate</strong> = <code><span class="n">0_u8</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
     
-      <dt class="entry-const" id="Sequence">
-        <strong>Sequence</strong> = <code><span class="n">1_u8</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="Help">
-        <strong>Help</strong> = <code><span class="n">2_u8</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="Version">
-        <strong>Version</strong> = <code><span class="n">3_u8</span></code>
-      </dt>
-      
-    
-  </dl>
+  </ul>
 
 
 
-
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#load%28file%3AString%29%3AArray%28CellSample%29-class-method" class="signature"><strong>.load</strong>(file : String) : Array(CellSample)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -259,22 +261,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#help%3F-instance-method" class="signature"><strong>#help?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#mutate%3F-instance-method" class="signature"><strong>#mutate?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#sequence%3F-instance-method" class="signature"><strong>#sequence?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#version%3F-instance-method" class="signature"><strong>#version?</strong></a>
+        <a href="#load%28file%3AString%7CPath%29%3AArray%28CellSample%29-instance-method" class="signature"><strong>#load</strong>(file : String | Path) : Array(CellSample)</a>
         
       </li>
     
@@ -310,36 +297,62 @@
 
 
   
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
 
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="load(file:String):Array(CellSample)-class-method">
+      <div class="signature">
+        
+        def self.<strong>load</strong>(file : String) : Array(<a href="../Wgsim/CellSample.html">CellSample</a>)
+
+        <a class="method-permalink" href="#load%28file%3AString%29%3AArray%28CellSample%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -354,66 +367,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="help?-instance-method">
+    <div class="entry-detail" id="load(file:String|Path):Array(CellSample)-instance-method">
       <div class="signature">
         
-        def <strong>help?</strong>
+        def <strong>load</strong>(file : String | Path) : Array(<a href="../Wgsim/CellSample.html">CellSample</a>)
 
-        <a class="method-permalink" href="#help%3F-instance-method">#</a>
+        <a class="method-permalink" href="#load%28file%3AString%7CPath%29%3AArray%28CellSample%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="mutate?-instance-method">
-      <div class="signature">
-        
-        def <strong>mutate?</strong>
-
-        <a class="method-permalink" href="#mutate%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="sequence?-instance-method">
-      <div class="signature">
-        
-        def <strong>sequence?</strong>
-
-        <a class="method-permalink" href="#sequence%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="version?-instance-method">
-      <div class="signature">
-        
-        def <strong>version?</strong>
-
-        <a class="method-permalink" href="#version%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/action.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/f3ddd660c8a3f8d4474321fc00d1e8e3de7c84e9/src/wgsim/sample_sheet.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
