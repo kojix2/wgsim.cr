@@ -73,6 +73,10 @@ module Wgsim
           "Usage: wgsim mut [options] <in.ref.fa>\n"
         )
 
+        on("-f", "--file FILE", "Input file for the reference sequence") do |v|
+          mopt.reference = Path.new(v)
+        end
+
         on("-s", "--sub-rate FLOAT",
           "Rate of base substitutions [#{mopt.substitution_rate}]") do |v|
           mopt.substitution_rate = v.to_f64
@@ -118,6 +122,18 @@ module Wgsim
           "About: Simulate pair-end sequencing\n" \
           "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
         )
+
+        on("-f", "--file FILE", "Input file for the reference sequence") do |v|
+          sopt.reference = Path.new(v)
+        end
+
+        on("-o1", "--output1 FILE", "Output file for the first read") do |v|
+          sopt.output1 = Path.new(v)
+        end
+
+        on("-o2", "--output2 FILE", "Output file for the second read") do |v|
+          sopt.output2 = Path.new(v)
+        end
 
         on("-e", "--error-rate FLOAT", "Base error rate [#{sopt.error_rate}]") do |v|
           sopt.error_rate = v.to_f64
@@ -189,14 +205,8 @@ module Wgsim
       super
       case action
       when Action::Mutate
-        return {nil, nil} unless argv.size == 1
-        mopt.reference = Path.new(argv.shift)
         {action, mopt}
       when Action::Sequence
-        return {nil, nil} unless argv.size == 3
-        sopt.reference = Path.new(argv.shift)
-        sopt.output1 = Path.new(argv.shift)
-        sopt.output2 = Path.new(argv.shift)
         {action, sopt}
       else
         {action, nil}
