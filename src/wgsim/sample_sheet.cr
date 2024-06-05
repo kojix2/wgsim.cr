@@ -1,18 +1,7 @@
 require "csv"
+require "./cell_sample"
 
 module Wgsim
-  class CellSample
-    getter name : String
-    getter fraction : Float64
-    getter fasta_file : String
-
-    def initialize(name : String, fraction : Float64, fasta_file : String)
-      @name = name
-      @fraction = fraction
-      @fasta_file = fasta_file
-    end
-  end
-
   class SampleSheet
     def self.load(file : String) : Array(CellSample)
       sheet = self.new
