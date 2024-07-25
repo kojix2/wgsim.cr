@@ -21,7 +21,7 @@ module Wgsim
       core.generate_sequence do |name, sequence|
         puts ">#{name}"
         puts format_sequence(sequence, 80)
-        puts
+        # puts
       end
     end
 
