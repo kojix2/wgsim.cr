@@ -14,6 +14,9 @@ Reimplement [wgsim](https://github.com/lh3/wgsim) in Crystal and add extra featu
 - `seq` : Simulation of short lead sequencing
   - Uniform substitution sequencing errors
   - Fastq Output
+- `gen` : Generate a random genome
+  - Random genome generation
+  - Fasta Output
 
 ## Installation
 
@@ -70,6 +73,14 @@ Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
     -2, --size-right INT             Length of the second read [100]
     -A, --ambiguous-ratio FLOAT      Discard if the fraction of N(ambiguous) bases higher than FLOAT [0.05]
     -S, --seed UINT64                Seed for random generator
+```
+
+```
+About: Generate random reference fasta
+Usage: wgsim gen [options]
+
+    -l, --length INT                 Length of the reference sequence ["1000,700"]
+    -s, --seed UINT64                Seed for random generator
 ```
 
 ### Idea Notes
