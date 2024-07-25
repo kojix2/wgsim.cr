@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::RefSeq - wgsim main</title>
+  <title>Wgsim::Generate - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -87,7 +87,7 @@
       
     </li>
   
-  <li class="parent " data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
+  <li class="parent open current" data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
       <a href="../Wgsim/Generate.html">Generate</a>
       
         <ul>
@@ -142,7 +142,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/RefSeq" data-name="wgsim::refseq">
+  <li class=" " data-id="wgsim/Wgsim/RefSeq" data-name="wgsim::refseq">
       <a href="../Wgsim/RefSeq.html">RefSeq</a>
       
     </li>
@@ -186,12 +186,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Wgsim::<wbr>RefSeq
+  <span class="kind">class</span> Wgsim::<wbr>Generate
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/RefSeq.html">Wgsim::RefSeq</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/Generate.html">Wgsim::Generate</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -219,8 +219,22 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/ref_seq.cr#L4" target="_blank">
-        wgsim/ref_seq.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L5" target="_blank">
+        wgsim/generate.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate/core.cr#L5" target="_blank">
+        wgsim/generate/core.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate/option.cr#L2" target="_blank">
+        wgsim/generate/option.cr
       </a>
     
     <br/>
@@ -241,32 +255,32 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28slice%3ASlice%28RefBase%29%29-class-method" class="signature"><strong>.new</strong>(slice : Slice(RefBase))</a>
+        <a href="#new%28option%3AOption%29-class-method" class="signature"><strong>.new</strong>(option : Option)</a>
         
       </li>
     
   </ul>
-
-
 
 
 
   <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Macro Summary
+    Class Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#method_missing%28call%29-macro" class="signature"><strong>method_missing</strong>(call)</a>
+        <a href="#run%28option%29-class-method" class="signature"><strong>.run</strong>(option)</a>
         
       </li>
     
   </ul>
+
+
 
 
 
@@ -281,7 +295,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#format%28width%3AInt%3D80%29%3AString-instance-method" class="signature"><strong>#format</strong>(width : Int = <span class="n">80</span>) : String</a>
+        <a href="#core%3ACore-instance-method" class="signature"><strong>#core</strong> : Core</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#option%3AOption-instance-method" class="signature"><strong>#option</strong> : Option</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
         
       </li>
     
@@ -329,52 +353,52 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(slice:Slice(RefBase))-class-method">
+    <div class="entry-detail" id="new(option:Option)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(slice : Slice(<a href="../Wgsim/RefBase.html">RefBase</a>))
+        def self.<strong>new</strong>(option : <a href="../Wgsim/Generate/Option.html">Option</a>)
 
-        <a class="method-permalink" href="#new%28slice%3ASlice%28RefBase%29%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28option%3AOption%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/ref_seq.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
   
-
-
 
 
 
   <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Macro Detail
+    Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="method_missing(call)-macro">
+    <div class="entry-detail" id="run(option)-class-method">
       <div class="signature">
         
-        macro <strong>method_missing</strong>(call)
+        def self.<strong>run</strong>(option)
 
-        <a class="method-permalink" href="#method_missing%28call%29-macro">#</a>
+        <a class="method-permalink" href="#run%28option%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/ref_seq.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
+
+
 
 
 
@@ -387,18 +411,50 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="format(width:Int=80):String-instance-method">
+    <div class="entry-detail" id="core:Core-instance-method">
       <div class="signature">
         
-        def <strong>format</strong>(width : Int = <span class="n">80</span>) : String
+        def <strong>core</strong> : <a href="../Wgsim/Generate/Core.html">Core</a>
 
-        <a class="method-permalink" href="#format%28width%3AInt%3D80%29%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#core%3ACore-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/ref_seq.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="option:Option-instance-method">
+      <div class="signature">
+        
+        def <strong>option</strong> : <a href="../Wgsim/Generate/Option.html">Option</a>
+
+        <a class="method-permalink" href="#option%3AOption-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run-instance-method">
+      <div class="signature">
+        
+        def <strong>run</strong>
+
+        <a class="method-permalink" href="#run-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/4cbb66df66bfaee8de48071a1217fd391b73608b/src/wgsim/generate.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
