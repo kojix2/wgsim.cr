@@ -206,6 +206,12 @@
 <li>Fastq Output</li>
 </ul>
 </li>
+<li><code>gen</code> : Generate a random genome
+<ul>
+<li>Random genome generation</li>
+<li>Fasta Output</li>
+</ul>
+</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -259,6 +265,11 @@ Usage: wgsim seq [options] &lt;in.ref.fa&gt; &lt;out.read1.fq&gt; &lt;out.read2.
     -2, --size-right INT             Length of the second read [100]
     -A, --ambiguous-ratio FLOAT      Discard if the fraction of N(ambiguous) bases higher than FLOAT [0.05]
     -S, --seed UINT64                Seed for random generator</code></pre>
+<pre><code class="language-crystal">About: Generate random reference fasta
+Usage: wgsim gen [options]
+
+    -l, --length INT                 Length of the reference sequence [&quot;1000,700&quot;]
+    -s, --seed UINT64                Seed for random generator</code></pre>
 <h3><a id="idea-notes" class="anchor" href="#idea-notes">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
