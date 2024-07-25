@@ -9,7 +9,7 @@ require "colorize"
 
 module Wgsim
   class Parser < OptionParser
-    getter option : (Mutate::Option | Sequence::Option)? = nil
+    getter option : (Mutate::Option | Sequence::Option | Generate::Option)? = nil
     getter action : Action?
     getter help_message : String
 
@@ -19,6 +19,10 @@ module Wgsim
 
     private def sopt
       option.as(Sequence::Option)
+    end
+
+    private def gopt
+      option.as(Generate::Option)
     end
 
     macro _on_debug_
@@ -178,6 +182,25 @@ module Wgsim
         _on_help_
       end
 
+      on("gen", "Generate random reference fasta") do
+        _set_option_(Generate,
+          "About: Generate random reference fasta\n" \
+          "Usage: wgsim gen [options]\n"
+        )
+
+        on("-l", "--length INT", "Length of the reference sequence [\"1000,700\"]") do |v|
+          gopt.chromosome_length = v.split(",").map(&.to_i32)
+        end
+
+        on("-s", "--seed UINT64", "Seed for random generator") do |v|
+          gopt.seed = v.to_u64
+        end
+
+        _on_debug_
+
+        _on_help_
+      end
+
       separator
 
       _on_debug_
@@ -201,13 +224,15 @@ module Wgsim
       end
     end
 
-    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequence::Option)?)
+    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequence::Option | Generate::Option)?)
       super
       case action
       when Action::Mutate
         {action, mopt}
       when Action::Sequence
         {action, sopt}
+      when Action::Generate
+        {action, gopt}
       else
         {action, nil}
       end
