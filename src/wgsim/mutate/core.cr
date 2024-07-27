@@ -21,7 +21,7 @@ module Wgsim
         @insertion_extension_probability,
         @deletion_extension_probability,
         @seed : UInt64? = nil,
-        @outlog : IO = STDERR
+        @outlog : IO = IO::Memory.new
       )
         # random number generator with seed
         @random = \
@@ -50,7 +50,7 @@ module Wgsim
       # Simulate mutations and output the results
       # Returns a slice of RefBase
 
-      def simulate_mutations(@name : String, sequence : Slice(UInt8)) : RefSeq # Slice(RefBase)
+      def simulate_mutations(@name : String, sequence : Slice(UInt8)) : {RefSeq, IO}
         @index = 0
         slice = sequence.map do |n|
           @index += 1 # 1-based index
@@ -79,7 +79,7 @@ module Wgsim
             nochange_nucleotide(n)
           end
         end
-        RefSeq.new(slice)
+        {RefSeq.new(slice), @outlog}
       end
 
       private def previous_ref_base_is_deletion? : Bool

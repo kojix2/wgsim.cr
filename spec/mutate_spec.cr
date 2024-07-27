@@ -12,7 +12,7 @@ describe Wgsim::Mutate::Core do
       seed: 100,
       outlog: log
     )
-    res = core.simulate_mutations("tanuki", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice)
+    res, _ = core.simulate_mutations("tanuki", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice)
     res.format.should eq("ATTAATAATAACCAACAAGACGGGAA")
   end
 end

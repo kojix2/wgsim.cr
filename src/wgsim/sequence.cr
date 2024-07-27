@@ -49,9 +49,9 @@ module Wgsim
           STDERR.puts "[wgsim] #{name} done"
         end
       end
-
-      output_fasta_1.close
-      output_fasta_2.close
+    ensure
+      output_fasta_1.try &.close
+      output_fasta_2.try &.close
     end
   end
 end

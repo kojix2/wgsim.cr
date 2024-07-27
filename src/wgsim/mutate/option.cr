@@ -9,6 +9,8 @@ module Wgsim
       property deletion_rate : Float64 = 0.0001
       property insertion_extension_probability : Float64 = 0.3
       property deletion_extension_probability : Float64 = 0.3
+      property output_fasta : Path?
+      property output_mutation : Path? # Should be a VCF in the future
 
       def summary
         <<-SUMMARY

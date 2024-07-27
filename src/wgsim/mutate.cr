@@ -6,6 +6,8 @@ module Wgsim
   class Mutate
     getter option : Option
     getter reference : Path
+    getter output_fasta : Path
+    getter output_mutation : Path # Should be a VCF in the future
     getter core : Core
 
     def self.run(option)
@@ -14,6 +16,8 @@ module Wgsim
 
     def initialize(@option : Option)
       @reference = option.reference.not_nil!
+      @output_fasta = option.output_fasta.not_nil!
+      @output_mutation = option.output_mutation.not_nil!
       @core = Core.new(
         substitution_rate: option.substitution_rate,
         insertion_rate: option.insertion_rate,
@@ -51,19 +55,27 @@ module Wgsim
 
     private def process_sequence(name : String, sequence : IO::Memory)
       reference_sequence = Fastx.normalize_sequence(sequence)
+      fo = File.open(output_fasta, "w")
+      mo = File.open(output_mutation, "w")
       if option.ploidy == 1
-        simulate_and_output_sequence(name, reference_sequence)
+        simulate_and_output_sequence(name, reference_sequence, fo: fo, mo: mo)
       else
-        option.ploidy.times { |i| simulate_and_output_sequence(name, reference_sequence, i + 1) }
+        option.ploidy.times do |i|
+          simulate_and_output_sequence(name, reference_sequence, i + 1, fo: fo, mo: mo)
+        end
       end
+    ensure
+      fo.try &.close
+      mo.try &.close
     end
 
-    private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil)
+    private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil, fo = STDOUT, mo = STDERR)
       pname = "#{name.split.first}"
       pname += "_#{index}" if index
-      puts ">#{pname}"
-      mutated_sequence = core.simulate_mutations(pname, reference_sequence)
-      puts mutated_sequence.format
+      fo.puts ">#{pname}"
+      mutated_sequence, outlog = core.simulate_mutations(pname, reference_sequence)
+      outlog.to_s(mo)
+      fo.puts mutated_sequence.format
     end
   end
 end

@@ -77,8 +77,16 @@ module Wgsim
           "Usage: wgsim mut [options] -f <in.ref.fa>\n"
         )
 
-        on("-f", "--file FILE", "Input file for the reference sequence") do |v|
+        on("-f", "--file FILE", "Input file for the reference sequence (required)") do |v|
           mopt.reference = Path.new(v)
+        end
+
+        on("-o", "--output FILE", "Output file for the mutated sequence (required)") do |v|
+          mopt.output_fasta = Path.new(v)
+        end
+
+        on("-m", "--mutation FILE", "Output file for the mutations (required)") do |v|
+          mopt.output_mutation = Path.new(v)
         end
 
         on("-s", "--sub-rate FLOAT",
@@ -127,15 +135,15 @@ module Wgsim
           "Usage: wgsim seq [options] -f <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>\n"
         )
 
-        on("-f", "--file FILE", "Input file for the reference sequence") do |v|
+        on("-f", "--file FILE", "Input file for the reference sequence (required)") do |v|
           sopt.reference = Path.new(v)
         end
 
-        on("-1", "--output1 FILE", "Output file for the first read") do |v|
+        on("-1", "--output1 FILE", "Output file for the first read (required)") do |v|
           sopt.output1 = Path.new(v)
         end
 
-        on("-2", "--output2 FILE", "Output file for the second read") do |v|
+        on("-2", "--output2 FILE", "Output file for the second read (required)") do |v|
           sopt.output2 = Path.new(v)
         end
 
