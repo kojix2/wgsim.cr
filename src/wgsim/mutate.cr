@@ -73,8 +73,11 @@ module Wgsim
       pname = "#{name.split.first}"
       pname += "_#{index}" if index
       fo.puts ">#{pname}"
-      mutated_sequence, outlog = core.simulate_mutations(pname, reference_sequence)
-      outlog.to_s(mo)
+      mutated_sequence, event_log = core.simulate_mutations(reference_sequence)
+      event_log.each do |ev|
+        ev.name = pname
+        ev.to_s(mo)
+      end
       fo.puts mutated_sequence.format
     end
   end

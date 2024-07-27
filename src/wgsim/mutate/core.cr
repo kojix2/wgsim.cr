@@ -1,5 +1,6 @@
 require "randn"
 require "../core_utils"
+require "./event_record"
 
 module Wgsim
   class Mutate
@@ -21,7 +22,6 @@ module Wgsim
         @insertion_extension_probability,
         @deletion_extension_probability,
         @seed : UInt64? = nil,
-        @outlog : IO = IO::Memory.new
       )
         # random number generator with seed
         @random = \
@@ -32,10 +32,10 @@ module Wgsim
            end
         # buffer for deletion
         @deletions = [] of UInt8
-        # name of the current sequence
-        @name = ""
         # index of the current nucleotide
         @index = 0
+        # mutation event log
+        @event_log = [] of EventRecord
       end
 
       # Generate insertion based on given size and indel extension probability
@@ -50,7 +50,7 @@ module Wgsim
       # Simulate mutations and output the results
       # Returns a slice of RefBase
 
-      def simulate_mutations(@name : String, sequence : Slice(UInt8)) : {RefSeq, IO}
+      def simulate_mutations(sequence : Slice(UInt8)) : {RefSeq, Array(EventRecord)}
         @index = 0
         slice = sequence.map do |n|
           @index += 1 # 1-based index
@@ -79,7 +79,7 @@ module Wgsim
             nochange_nucleotide(n)
           end
         end
-        {RefSeq.new(slice), @outlog}
+        {RefSeq.new(slice), @event_log}
       end
 
       private def previous_ref_base_is_deletion? : Bool
@@ -121,15 +121,15 @@ module Wgsim
 
       def log_deletion : Nil
         delseq = @deletions.map { |n| n.chr }.join
-        @outlog.puts ["[wgsim]", "DEL", @name, @index - @deletions.size, delseq, "."].join("\t")
+        @event_log << EventRecord.new(MutType::DELETE, @index - @deletions.size, delseq, '.')
       end
 
       def log_substitution(n, nn) : Nil
-        @outlog.puts ["[wgsim]", "SUB", @name, @index, n.chr, nn.chr].join("\t")
+        @event_log << EventRecord.new(MutType::SUBSTITUTE, @index, n.chr, nn.chr)
       end
 
       def log_insertion(n, ins) : Nil
-        @outlog.puts ["[wgsim]", "INS", @name, @index, n.chr, n.chr + String.new(ins)].join("\t")
+        @event_log << EventRecord.new(MutType::INSERT, @index, n.chr, n.chr + String.new(ins))
       end
     end
   end
