@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::FastqRecord - wgsim main</title>
+  <title>Wgsim::EventRecord - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -82,12 +82,12 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/EventRecord" data-name="wgsim::eventrecord">
+  <li class=" current" data-id="wgsim/Wgsim/EventRecord" data-name="wgsim::eventrecord">
       <a href="../Wgsim/EventRecord.html">EventRecord</a>
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/FastqRecord" data-name="wgsim::fastqrecord">
+  <li class=" " data-id="wgsim/Wgsim/FastqRecord" data-name="wgsim::fastqrecord">
       <a href="../Wgsim/FastqRecord.html">FastqRecord</a>
       
     </li>
@@ -191,12 +191,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> Wgsim::<wbr>FastqRecord
+  <span class="kind">class</span> Wgsim::<wbr>EventRecord
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/FastqRecord.html">Wgsim::FastqRecord</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/EventRecord.html">Wgsim::EventRecord</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -224,8 +224,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L2" target="_blank">
-        wgsim/sequence/fastq_record.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L4" target="_blank">
+        wgsim/mutate/event_record.cr
       </a>
     
     <br/>
@@ -246,7 +246,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28name%3AString%2Cpair_index%3AInt32%2Cposition%3AInt32%2Cinsert_size%3AInt32%2Cread_index%3AInt32%2Csequence%3ASlice%28UInt8%29%2Cascii_quality%3AChar%29-class-method" class="signature"><strong>.new</strong>(name : String, pair_index : Int32, position : Int32, insert_size : Int32, read_index : Int32, sequence : Slice(UInt8), ascii_quality : Char)</a>
+        <a href="#new%28mut_type%3AWgsim%3A%3AMutType%2Cposition%3AInt32%2Cref_seq%3AChar%7CString%2Calt_seq%3AChar%7CString%2Cname%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(mut_type : Wgsim::MutType, position : Int32, ref_seq : Char | String, alt_seq : Char | String, name : Nil | String = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -269,42 +269,32 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#ascii_quality%3AChar-instance-method" class="signature"><strong>#ascii_quality</strong> : Char</a>
+        <a href="#alt_seq%3AChar%7CString-instance-method" class="signature"><strong>#alt_seq</strong> : Char | String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#ascii_quality%3D%28ascii_quality%3AChar%29-instance-method" class="signature"><strong>#ascii_quality=</strong>(ascii_quality : Char)</a>
+        <a href="#alt_seq%3D%28alt_seq%3AChar%7CString%29-instance-method" class="signature"><strong>#alt_seq=</strong>(alt_seq : Char | String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#insert_size%3AInt32-instance-method" class="signature"><strong>#insert_size</strong> : Int32</a>
+        <a href="#mut_type%3AMutType-instance-method" class="signature"><strong>#mut_type</strong> : MutType</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#insert_size%3D%28insert_size%3AInt32%29-instance-method" class="signature"><strong>#insert_size=</strong>(insert_size : Int32)</a>
+        <a href="#mut_type%3D%28mut_type%3AMutType%29-instance-method" class="signature"><strong>#mut_type=</strong>(mut_type : MutType)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#name%3AString%7CNil-instance-method" class="signature"><strong>#name</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3D%28name%3AString%29-instance-method" class="signature"><strong>#name=</strong>(name : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pair_index%3AInt32-instance-method" class="signature"><strong>#pair_index</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pair_index%3D%28pair_index%3AInt32%29-instance-method" class="signature"><strong>#pair_index=</strong>(pair_index : Int32)</a>
+        <a href="#name%3D%28name%3AString%7CNil%29-instance-method" class="signature"><strong>#name=</strong>(name : String | Nil)</a>
         
       </li>
     
@@ -319,29 +309,26 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#read_index%3AInt32-instance-method" class="signature"><strong>#read_index</strong> : Int32</a>
+        <a href="#ref_seq%3AChar%7CString-instance-method" class="signature"><strong>#ref_seq</strong> : Char | String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#read_index%3D%28read_index%3AInt32%29-instance-method" class="signature"><strong>#read_index=</strong>(read_index : Int32)</a>
+        <a href="#ref_seq%3D%28ref_seq%3AChar%7CString%29-instance-method" class="signature"><strong>#ref_seq=</strong>(ref_seq : Char | String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#sequence%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#sequence</strong> : Slice(UInt8)</a>
+        <a href="#to_s%28io%3AIO%29-instance-method" class="signature"><strong>#to_s</strong>(io : IO)</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#sequence%3D%28sequence%3ASlice%28UInt8%29%29-instance-method" class="signature"><strong>#sequence=</strong>(sequence : Slice(UInt8))</a>
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#to_s%3AString-instance-method" class="signature"><strong>#to_s</strong> : String</a>
         
-          <div class="summary"><p><span class="flag yellow">FIXME</span>  This method should be moved to Sequence class because it is IO-related?</p></div>
+          <div class="summary"><p>Returns a nicely readable and concise string representation of this object, typically intended for users.</p></div>
         
       </li>
     
@@ -350,19 +337,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
   
     
 
@@ -402,18 +376,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(name:String,pair_index:Int32,position:Int32,insert_size:Int32,read_index:Int32,sequence:Slice(UInt8),ascii_quality:Char)-class-method">
+    <div class="entry-detail" id="new(mut_type:Wgsim::MutType,position:Int32,ref_seq:Char|String,alt_seq:Char|String,name:Nil|String=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(name : String, pair_index : Int32, position : Int32, insert_size : Int32, read_index : Int32, sequence : Slice(UInt8), ascii_quality : Char)
+        def self.<strong>new</strong>(mut_type : <a href="../Wgsim/MutType.html">Wgsim::MutType</a>, position : Int32, ref_seq : Char | String, alt_seq : Char | String, name : Nil | String = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28name%3AString%2Cpair_index%3AInt32%2Cposition%3AInt32%2Cinsert_size%3AInt32%2Cread_index%3AInt32%2Csequence%3ASlice%28UInt8%29%2Cascii_quality%3AChar%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28mut_type%3AWgsim%3A%3AMutType%2Cposition%3AInt32%2Cref_seq%3AChar%7CString%2Calt_seq%3AChar%7CString%2Cname%3ANil%7CString%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -434,130 +408,98 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="ascii_quality:Char-instance-method">
+    <div class="entry-detail" id="alt_seq:Char|String-instance-method">
       <div class="signature">
         
-        def <strong>ascii_quality</strong> : Char
+        def <strong>alt_seq</strong> : Char | String
 
-        <a class="method-permalink" href="#ascii_quality%3AChar-instance-method">#</a>
+        <a class="method-permalink" href="#alt_seq%3AChar%7CString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="ascii_quality=(ascii_quality:Char)-instance-method">
+    <div class="entry-detail" id="alt_seq=(alt_seq:Char|String)-instance-method">
       <div class="signature">
         
-        def <strong>ascii_quality=</strong>(ascii_quality : Char)
+        def <strong>alt_seq=</strong>(alt_seq : Char | String)
 
-        <a class="method-permalink" href="#ascii_quality%3D%28ascii_quality%3AChar%29-instance-method">#</a>
+        <a class="method-permalink" href="#alt_seq%3D%28alt_seq%3AChar%7CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="insert_size:Int32-instance-method">
+    <div class="entry-detail" id="mut_type:MutType-instance-method">
       <div class="signature">
         
-        def <strong>insert_size</strong> : Int32
+        def <strong>mut_type</strong> : <a href="../Wgsim/MutType.html">MutType</a>
 
-        <a class="method-permalink" href="#insert_size%3AInt32-instance-method">#</a>
+        <a class="method-permalink" href="#mut_type%3AMutType-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="insert_size=(insert_size:Int32)-instance-method">
+    <div class="entry-detail" id="mut_type=(mut_type:MutType)-instance-method">
       <div class="signature">
         
-        def <strong>insert_size=</strong>(insert_size : Int32)
+        def <strong>mut_type=</strong>(mut_type : <a href="../Wgsim/MutType.html">MutType</a>)
 
-        <a class="method-permalink" href="#insert_size%3D%28insert_size%3AInt32%29-instance-method">#</a>
+        <a class="method-permalink" href="#mut_type%3D%28mut_type%3AMutType%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name:String-instance-method">
+    <div class="entry-detail" id="name:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>name</strong> : String
+        def <strong>name</strong> : String | Nil
 
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name=(name:String)-instance-method">
+    <div class="entry-detail" id="name=(name:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>name=</strong>(name : String)
+        def <strong>name=</strong>(name : String | Nil)
 
-        <a class="method-permalink" href="#name%3D%28name%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#name%3D%28name%3AString%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pair_index:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>pair_index</strong> : Int32
-
-        <a class="method-permalink" href="#pair_index%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pair_index=(pair_index:Int32)-instance-method">
-      <div class="signature">
-        
-        def <strong>pair_index=</strong>(pair_index : Int32)
-
-        <a class="method-permalink" href="#pair_index%3D%28pair_index%3AInt32%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -573,7 +515,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -589,71 +531,71 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="read_index:Int32-instance-method">
+    <div class="entry-detail" id="ref_seq:Char|String-instance-method">
       <div class="signature">
         
-        def <strong>read_index</strong> : Int32
+        def <strong>ref_seq</strong> : Char | String
 
-        <a class="method-permalink" href="#read_index%3AInt32-instance-method">#</a>
+        <a class="method-permalink" href="#ref_seq%3AChar%7CString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="read_index=(read_index:Int32)-instance-method">
+    <div class="entry-detail" id="ref_seq=(ref_seq:Char|String)-instance-method">
       <div class="signature">
         
-        def <strong>read_index=</strong>(read_index : Int32)
+        def <strong>ref_seq=</strong>(ref_seq : Char | String)
 
-        <a class="method-permalink" href="#read_index%3D%28read_index%3AInt32%29-instance-method">#</a>
+        <a class="method-permalink" href="#ref_seq%3D%28ref_seq%3AChar%7CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="sequence:Slice(UInt8)-instance-method">
+    <div class="entry-detail" id="to_s(io:IO)-instance-method">
       <div class="signature">
         
-        def <strong>sequence</strong> : Slice(UInt8)
+        def <strong>to_s</strong>(io : IO)
 
-        <a class="method-permalink" href="#sequence%3ASlice%28UInt8%29-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="sequence=(sequence:Slice(UInt8))-instance-method">
-      <div class="signature">
-        
-        def <strong>sequence=</strong>(sequence : Slice(UInt8))
-
-        <a class="method-permalink" href="#sequence%3D%28sequence%3ASlice%28UInt8%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -668,13 +610,21 @@
       
         <div class="doc">
           
-          <p><span class="flag yellow">FIXME</span>  This method should be moved to Sequence class because it is IO-related?</p>
+            <div class="doc-inherited">
+              Description copied from class Object
+            </div>
+          
+          <p>Returns a nicely readable and concise string representation of this object,
+typically intended for users.</p>
+<p>This method should usually <strong>not</strong> be overridden. It delegates to
+<code><a href="../Wgsim/EventRecord.html#to_s%28io%3AIO%29-instance-method">#to_s(IO)</a></code> which can be overridden for custom implementations.</p>
+<p>Also see <code>#inspect</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/sequence/fastq_record.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/78d407f24f24532ad93b5759fe17b4dc8413c237/src/wgsim/mutate/event_record.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
