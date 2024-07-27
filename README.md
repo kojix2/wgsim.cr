@@ -43,15 +43,25 @@ brew install kojix2/brew/wgsim
 
 ```
 Program: wgsim (Crystal implementation of wgsim)
-Version: 0.0.2.alpha
-    mut          Add mutations to reference sequences
-    seq          Simulate pair-end sequencing
+Version: 0.0.4.alpha
+Source:  https://github.com/kojix2/wgsim.cr
+
+    mut                              Add mutations to reference sequences
+    seq                              Simulate pair-end sequencing
+    gen                              Generate random reference fasta
+
+    --debug                          Show backtrace on error
+    -v, --version                    Show version
+    -h, --help                       Show this help
 ```
 
 ```
 About: Add mutations to reference sequences
-Usage: wgsim mut [options] <in.ref.fa>
+Usage: wgsim mut [options] -f <in.ref.fa>
 
+    -f, --file FILE                  Input file for the reference sequence (required)
+    -o, --output FILE                Output file for the mutated sequence (required)
+    -m, --mutation FILE              Output file for the mutations (required)
     -s, --sub-rate FLOAT             Rate of base substitutions [0.001]
     -i, --ins-rate FLOAT             Rate of insertions [0.0001]
     -d, --del-rate FLOAT             Rate of deletions [0.0001]
@@ -59,20 +69,27 @@ Usage: wgsim mut [options] <in.ref.fa>
     -D, --del-ext-prob FLOAT         Probability a deletion is extended [0.3]
     -p, --ploidy UINT8               Number of chromosome copies in output fasta [2]
     -S, --seed UINT64                Seed for random generator
+    --debug                          Show backtrace on error
+    -h, --help                       Show this help
 ```
 
 ```
 About: Simulate pair-end sequencing
-Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
+Usage: wgsim seq [options] -f <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>
 
-    -e, --error-rate FLOAT           Base error rate [0.02]
+    -f, --file FILE                  Input file for the reference sequence (required)
+    -1, --output1 FILE               Output file for the first read (required)
+    -2, --output2 FILE               Output file for the second read (required)
+    -e, --error-rate FLOAT           Base error rate [0.01]
     -d, --distance INT               Outer distance between the two ends [500]
     -s, --std-dev FLOAT              Standard deviation of the insert size [50]
     -D, --depth FLOAT                Average sequencing depth [10.0]
-    -1, --size-left INT              Length of the first read [100]
-    -2, --size-right INT             Length of the second read [100]
+    -L, --size-left INT              Length of the first read [100]
+    -R, --size-right INT             Length of the second read [100]
     -A, --ambiguous-ratio FLOAT      Discard if the fraction of N(ambiguous) bases higher than FLOAT [0.05]
     -S, --seed UINT64                Seed for random generator
+    --debug                          Show backtrace on error
+    -h, --help                       Show this help
 ```
 
 ```
@@ -81,6 +98,8 @@ Usage: wgsim gen [options]
 
     -l, --length INT                 Length of the reference sequence ["1000,700"]
     -s, --seed UINT64                Seed for random generator
+    --debug                          Show backtrace on error
+    -h, --help                       Show this help
 ```
 
 ### Idea Notes
@@ -106,6 +125,13 @@ Usage: wgsim gen [options]
 - Addressing Heterogeneity
   - Fasta File per Cell Type: Each cell type has one Fasta file.
   - Cell Type Proportions: Provide the proportion of each cell type.
+
+- VCF files have a dual purpose:
+  - They act as snapshots of the current state by capturing differences from the reference genome.
+  - They are presumed detailed records of genetic variations.
+
+- We attempt to infer mutations by observing individual genomes, but we can never fully reconstruct the events. 
+  - In simulations, however, we can have a complete list of mutation events.
 
 - [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
 
