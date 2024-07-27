@@ -60,7 +60,7 @@ jobs:
           Compress-Archive -Path bin/wgsim.exe -DestinationPath bin/wgsim-windows-multi-thread.zip
 
       - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             bin/wgsim-linux.zip
@@ -70,6 +70,3 @@ jobs:
             bin/wgsim-windows.zip
             bin/wgsim-windows-multi-thread.zip
             LICENSE.txt
-
-      - name: Checksums
-        uses: wangzuo/action-release-checksums@v1
