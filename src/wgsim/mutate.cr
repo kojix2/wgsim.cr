@@ -77,6 +77,7 @@ module Wgsim
       event_log.each do |ev|
         ev.name = pname
         ev.to_s(mo)
+        mo.puts
       end
       fo.puts mutated_sequence.format
     end
