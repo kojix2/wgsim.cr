@@ -74,7 +74,7 @@ module Wgsim
       on("mut", "Add mutations to reference sequences") do
         _set_option_(Mutate,
           "About: Add mutations to reference sequences\n" \
-          "Usage: wgsim mut [options] <in.ref.fa>\n"
+          "Usage: wgsim mut [options] -f <in.ref.fa>\n"
         )
 
         on("-f", "--file FILE", "Input file for the reference sequence") do |v|
@@ -124,18 +124,18 @@ module Wgsim
       on("seq", "Simulate pair-end sequencing") do
         _set_option_(Sequence,
           "About: Simulate pair-end sequencing\n" \
-          "Usage: wgsim seq [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>\n"
+          "Usage: wgsim seq [options] -f <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>\n"
         )
 
         on("-f", "--file FILE", "Input file for the reference sequence") do |v|
           sopt.reference = Path.new(v)
         end
 
-        on("-o1", "--output1 FILE", "Output file for the first read") do |v|
+        on("-1", "--output1 FILE", "Output file for the first read") do |v|
           sopt.output1 = Path.new(v)
         end
 
-        on("-o2", "--output2 FILE", "Output file for the second read") do |v|
+        on("-2", "--output2 FILE", "Output file for the second read") do |v|
           sopt.output2 = Path.new(v)
         end
 
@@ -158,11 +158,11 @@ module Wgsim
           sopt.average_depth = v.to_f64
         end
 
-        on("-1", "--size-left INT", "Length of the first read [#{sopt.size_left}]") do |v|
+        on("-L", "--size-left INT", "Length of the first read [#{sopt.size_left}]") do |v|
           sopt.size_left = v.to_i32
         end
 
-        on("-2", "--size-right INT", "Length of the second read [#{sopt.size_right}]") do |v|
+        on("-R", "--size-right INT", "Length of the second read [#{sopt.size_right}]") do |v|
           sopt.size_right = v.to_i32
         end
 
