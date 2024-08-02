@@ -50,7 +50,7 @@ module Wgsim
     end
 
     def print_version
-      puts Wgsim::VERSION
+      puts "#{PROGRAM_NAME} #{VERSION}"
     end
 
     def print_help
