@@ -69,6 +69,7 @@ module Wgsim
       Version: #{VERSION}
       Source:  https://github.com/kojix2/wgsim.cr
 
+      Commands:
       BANNER
 
       on("mut", "Add mutations to reference sequences") do
