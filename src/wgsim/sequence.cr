@@ -16,9 +16,9 @@ module Wgsim
     end
 
     def initialize(@option : Option)
-      @reference = sopts.reference.not_nil!
-      @output1 = sopts.output1.not_nil!
-      @output2 = sopts.output2.not_nil!
+      @reference = sopts.reference || raise("Reference sequence is required")
+      @output1 = sopts.output1 || raise("Output FASTQ file 1 is required")
+      @output2 = sopts.output2 || raise("Output FASTQ file 2 is required")
       @core = Core.new(
         average_depth: sopts.average_depth,
         distance: sopts.distance,

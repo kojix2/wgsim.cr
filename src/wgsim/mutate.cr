@@ -15,9 +15,9 @@ module Wgsim
     end
 
     def initialize(@option : Option)
-      @reference = option.reference.not_nil!
-      @output_fasta = option.output_fasta.not_nil!
-      @output_mutation = option.output_mutation.not_nil!
+      @reference = option.reference || raise("Reference sequence is required")
+      @output_fasta = option.output_fasta || raise("Output FASTA file is required")
+      @output_mutation = option.output_mutation || raise("Output mutation file is required")
       @core = Core.new(
         substitution_rate: option.substitution_rate,
         insertion_rate: option.insertion_rate,
