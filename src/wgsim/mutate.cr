@@ -41,32 +41,31 @@ module Wgsim
 
     private def process_sequences
       reader = Fastx::Fasta::Reader.new(reference)
+      fo = File.open(output_fasta, "w")
+      mo = File.open(output_mutation, "w")
       begin
         reader.each do |name, sequence|
           STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
-          process_sequence(name, sequence)
+          process_sequence(name, sequence, fout: fo, mout: mo)
         end
       rescue ex
         STDERR.puts "Error processing sequences: #{ex.message}"
       ensure
         reader.try &.close
+        fo.try &.close
+        mo.try &.close
       end
     end
 
-    private def process_sequence(name : String, sequence : IO::Memory)
+    private def process_sequence(name : String, sequence : IO::Memory, fout : IO, mout : IO)
       reference_sequence = Fastx.normalize_sequence(sequence)
-      fo = File.open(output_fasta, "w")
-      mo = File.open(output_mutation, "w")
       if option.ploidy == 1
-        simulate_and_output_sequence(name, reference_sequence, fo: fo, mo: mo)
+        simulate_and_output_sequence(name, reference_sequence, fo: fout, mo: mout)
       else
         option.ploidy.times do |i|
-          simulate_and_output_sequence(name, reference_sequence, i + 1, fo: fo, mo: mo)
+          simulate_and_output_sequence(name, reference_sequence, i + 1, fo: fout, mo: mout)
         end
       end
-    ensure
-      fo.try &.close
-      mo.try &.close
     end
 
     private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil, fo = STDOUT, mo = STDERR)
