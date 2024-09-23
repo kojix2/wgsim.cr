@@ -15,7 +15,7 @@ module Wgsim
     def to_s : String
       sequence_str = String.new(sequence)
       String.build do |str|
-        str << ">#{name}_#{position}_#{insert_size}:#{pair_index}/#{read_index + 1}" << "\n"
+        str << "@#{name}_#{position}_#{insert_size}:#{pair_index}/#{read_index + 1}" << "\n"
         str << sequence_str << "\n"
         str << "+" << "\n"
         str << ascii_quality.to_s * sequence_str.size << "\n"
