@@ -23,7 +23,7 @@ module Wgsim
         @size_right,
         @error_rate,
         @max_ambiguous_ratio,
-        @seed : UInt64? = nil
+        @seed : UInt64? = nil,
       )
         @random = \
            if @seed
@@ -33,7 +33,7 @@ module Wgsim
            end
       end
 
-      def run(name, sequence)
+      def run(name, sequence, &)
         contig_length = sequence.size
 
         # # Skip sequences(contigs) that are shorter than the minimum length.

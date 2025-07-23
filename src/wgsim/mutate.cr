@@ -58,7 +58,7 @@ module Wgsim
     end
 
     private def process_sequence(name : String, sequence : IO::Memory, fout : IO, mout : IO)
-      reference_sequence = Fastx.normalize_sequence(sequence)
+      reference_sequence = sequence.to_slice
       if option.ploidy == 1
         simulate_and_output_sequence(name, reference_sequence, fo: fout, mo: mout)
       else
