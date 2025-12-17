@@ -3,7 +3,6 @@ require "./mutate/option"
 require "./sequence/option"
 require "./action"
 
-require "nworkers"
 require "option_parser"
 require "colorize"
 
@@ -44,10 +43,8 @@ module Wgsim
 
     macro _on_threads_
     {% if flag?(:preview_mt) %}
-      on("-t", "--threads INT", "Number of threads [#{NWorkers.size}]") do |v|
-        # GitHub: kojix2/nworkers.cr
-        NWorkers.set_worker(v.to_i)
-      end
+      # on("-t", "--threads INT", "Number of threads [#{NWorkers.size}]") do |v|
+      # end
     {% end %}
     end
 
