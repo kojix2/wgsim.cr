@@ -36,14 +36,21 @@ module Wgsim
       def run(name, sequence, &)
         contig_length = sequence.size
 
-        # # Skip sequences(contigs) that are shorter than the minimum length.
-        # if contig_length < (min_len = distance + 3 * std_deviation)
-        #   STDERR.puts "[wgsim] skip sequence '#{name}' as it is shorter than #{min_len} bp"
-        #   next
-        # end
+        # Skip sequences (contigs) that are shorter than the minimum read length.
+        min_read_length = {size_left, size_right}.max
+        if contig_length < min_read_length
+          STDERR.puts "[wgsim] skip sequence '#{name}' as it is shorter than #{min_read_length} bp"
+          return
+        end
 
         # depth per haploid
         n_pairs = (contig_length * average_depth / (size_left + size_right)).to_i
+
+        # No pairs to generate
+        return if n_pairs <= 0
+
+        # progress report step (about 10 reports per contig, at least every pair)
+        progress_step = {n_pairs / 10, 1}.max
 
         # Currently, the sequence error rate is uniform across the entire sequence.
         # '2' if the error rate is [0.02].
@@ -52,7 +59,7 @@ module Wgsim
         pair_index = 0
         while pair_index < n_pairs
           # progress report
-          if pair_index % 10**(Math.log10(n_pairs).to_i - 1) == 0
+          if pair_index % progress_step == 0
             puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
           end
 
@@ -63,11 +70,11 @@ module Wgsim
           # Position is the 0-based index of the first base of the fragment in the contig.
           position = random_position(contig_length, insert_size)
 
-          # Raise an error if the position is invalid.
-          # This should never happen.
-          position < 0 || position > contig_length || position + insert_size - 1 < contig_length ||
+          # Raise an error if the position is invalid. This should never happen.
+          if position < 0 || position + insert_size > contig_length
             raise "Invalid position or insert size: " \
                   "position=#{position}, insert_size=#{insert_size}, contig_length=#{contig_length}"
+          end
 
           # Flip or not
           # 5'--->      3'
