@@ -13,8 +13,6 @@ targets:
 dependencies:
   randn:
     github: kojix2/randn.cr
-  nworkers:
-    github: kojix2/nworkers.cr
   fastx:
     github: kojix2/fastx.cr
 
