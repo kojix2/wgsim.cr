@@ -37,7 +37,7 @@ module Wgsim
         contig_length = sequence.size
 
         # Skip sequences (contigs) that are shorter than the minimum read length.
-        min_read_length = {size_left, size_right}.max
+        min_read_length = Math.max(size_left, size_right)
         if contig_length < min_read_length
           STDERR.puts "[wgsim] skip sequence '#{name}' as it is shorter than #{min_read_length} bp"
           return
@@ -50,7 +50,8 @@ module Wgsim
         return if n_pairs <= 0
 
         # progress report step (about 10 reports per contig, at least every pair)
-        progress_step = {n_pairs / 10, 1}.max
+        progress_step = (n_pairs / 10).to_i
+        progress_step = 1 if progress_step <= 0
 
         # Currently, the sequence error rate is uniform across the entire sequence.
         # '2' if the error rate is [0.02].
