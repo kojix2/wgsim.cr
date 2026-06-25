@@ -121,7 +121,9 @@ module Wgsim
       end
 
       def log_deletion(end_of_sequence : Bool = false) : Nil
-        delseq = @deletions.map(&.chr).join
+        delseq = String.build do |io|
+          @deletions.each { |deleted_base| io.write_byte(deleted_base) }
+        end
         position = if end_of_sequence
                      @index - @deletions.size + 1
                    else
@@ -135,7 +137,11 @@ module Wgsim
       end
 
       def log_insertion(n, ins) : Nil
-        @event_log << EventRecord.new(MutType::INSERT, @index, n.chr, n.chr + String.new(ins))
+        alt_seq = String.build do |io|
+          io << n.chr
+          io.write(ins)
+        end
+        @event_log << EventRecord.new(MutType::INSERT, @index, n.chr, alt_seq)
       end
     end
   end

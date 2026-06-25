@@ -31,7 +31,7 @@ module Wgsim
 
       def run(name, sequence, &)
         contig_length = sequence.size
-        read_name = name.split[0]
+        read_name = read_name_for(name)
 
         # Skip sequences (contigs) that are shorter than the minimum read length.
         min_read_length = Math.max(size_left, size_right)
@@ -134,6 +134,11 @@ module Wgsim
 
       def random_position(contig_length : Int, insert_size : Int) : Int32
         rand(contig_length - insert_size + 1)
+      end
+
+      private def read_name_for(name : String) : String
+        space_index = name.index(' ')
+        space_index ? name[0, space_index] : name
       end
     end
   end

@@ -13,13 +13,20 @@ module Wgsim
 
     # NOTE: This method may be moved to Sequence class because it is IO-related.
     def to_s : String
-      sequence_str = String.new(sequence)
       String.build do |str|
-        str << "@#{name}_#{position}_#{insert_size}:#{pair_index}/#{read_index + 1}" << "\n"
-        str << sequence_str << "\n"
-        str << "+" << "\n"
-        str << ascii_quality.to_s * sequence_str.size << "\n"
+        to_s(str)
       end
+    end
+
+    def to_s(io : IO)
+      io << '@' << name << '_' << position << '_' << insert_size << ':' << pair_index << '/' << (read_index + 1) << '\n'
+      io.write(sequence)
+      io << '\n'
+      io << '+' << '\n'
+      sequence.size.times do
+        io << ascii_quality
+      end
+      io << '\n'
     end
   end
 end

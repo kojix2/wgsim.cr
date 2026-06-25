@@ -43,8 +43,8 @@ module Wgsim
         reader.each_bytes do |name, sequence|
           name_string = String.new(name)
           core.run(name_string, sequence) do |record1, record2|
-            output_fasta_1.puts record1.to_s
-            output_fasta_2.puts record2.to_s
+            record1.to_s(output_fasta_1)
+            record2.to_s(output_fasta_2)
           end
           STDERR.puts "[wgsim] #{name_string} done"
         end
