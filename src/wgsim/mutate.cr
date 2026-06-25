@@ -57,7 +57,7 @@ module Wgsim
       end
     end
 
-    private def process_sequence(name : String, sequence : IO::Memory, fout : IO, mout : IO)
+    private def process_sequence(name : String, sequence : String | IO::Memory, fout : IO, mout : IO)
       reference_sequence = sequence.to_slice
       if option.ploidy == 1
         simulate_and_output_sequence(name, reference_sequence, fo: fout, mo: mout)
