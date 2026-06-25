@@ -25,12 +25,8 @@ module Wgsim
         @max_ambiguous_ratio,
         @seed : UInt64? = nil,
       )
-        @random = \
-           if @seed
-             Rand.new(@seed.not_nil!)
-           else
-             Rand.new
-           end
+        seed = @seed
+        @random = seed ? Rand.new(seed) : Rand.new
       end
 
       def run(name, sequence, &)

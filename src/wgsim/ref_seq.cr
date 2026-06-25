@@ -9,14 +9,14 @@ module Wgsim
 
     def format(width : Int = 80) : String
       seq = IO::Memory.new
-      @slice.each do |b|
-        case b.mutation_type
+      @slice.each do |ref_base|
+        case ref_base.mutation_type
         when MutType::NOCHANGE, MutType::SUBSTITUTE
-          seq.write_byte b.nucleotide
+          seq.write_byte ref_base.nucleotide
         when MutType::DELETE
         when MutType::INSERT
-          seq.write_byte b.nucleotide
-          ins = b.insertion
+          seq.write_byte ref_base.nucleotide
+          ins = ref_base.insertion
           seq.write ins if ins
         end
       end

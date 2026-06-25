@@ -16,4 +16,8 @@ dependencies:
   fastx:
     github: kojix2/fastx.cr
 
+development_dependencies:
+   ameba:
+     github: crystal-ameba/ameba
+
 license: MIT

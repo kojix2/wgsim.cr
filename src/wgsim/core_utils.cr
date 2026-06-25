@@ -36,8 +36,8 @@ module Wgsim
         78u8 => 78u8, # N -> N
       }
 
-      sequence.map do |b|
-        complements.fetch(b) { raise "Invalid nucleotide: #{b}" }
+      sequence.map do |nucleotide|
+        complements.fetch(nucleotide) { raise "Invalid nucleotide: #{nucleotide}" }
       end.reverse!
     end
   end

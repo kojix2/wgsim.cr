@@ -61,7 +61,7 @@ module Wgsim
       @help_message = ""
 
       @banner = <<-BANNER
-      
+
       Program: wgsim (Crystal implementation of wgsim)
       Version: #{VERSION}
       Source:  https://github.com/kojix2/wgsim.cr

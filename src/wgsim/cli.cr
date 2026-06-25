@@ -8,7 +8,7 @@ require "./generate"
 
 module Wgsim
   class CLI
-    class_property debug : Bool = false
+    class_property? debug : Bool = false
     getter parser : Parser
     getter action : Action?
     getter option : (Mutate::Option | Sequence::Option | Generate::Option)?

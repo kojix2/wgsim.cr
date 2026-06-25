@@ -24,12 +24,8 @@ module Wgsim
         @seed : UInt64? = nil,
       )
         # random number generator with seed
-        @random = \
-           if @seed
-             Rand.new(@seed.not_nil!)
-           else
-             Rand.new
-           end
+        seed = @seed
+        @random = seed ? Rand.new(seed) : Rand.new
         # buffer for deletion
         @deletions = [] of UInt8
         # index of the current nucleotide
@@ -53,11 +49,11 @@ module Wgsim
       def simulate_mutations(sequence : Slice(UInt8)) : {RefSeq, Array(EventRecord)}
         @index = 0
         @event_log = [] of EventRecord
-        slice = sequence.map do |n|
+        slice = sequence.map do |nucleotide|
           @index += 1 # 1-based index
           if previous_ref_base_is_deletion?
             if extend_deletion?
-              base = delete_nucleotide(n)
+              base = delete_nucleotide(nucleotide)
               next base
             else # stop deletion
               # NOTE: should stop when n is N?
@@ -67,17 +63,17 @@ module Wgsim
           end
 
           # skip N
-          next nochange_nucleotide(n) if n == 78u8
+          next nochange_nucleotide(nucleotide) if nucleotide == 78u8
 
           case rand
           when ..substitution_rate
-            substitute_nucleotide(n)
+            substitute_nucleotide(nucleotide)
           when ..(substitution_rate + insertion_rate)
-            insert_nucleotide(n)
+            insert_nucleotide(nucleotide)
           when ..(substitution_rate + insertion_rate + deletion_rate)
-            delete_nucleotide(n)
+            delete_nucleotide(nucleotide)
           else
-            nochange_nucleotide(n)
+            nochange_nucleotide(nucleotide)
           end
         end
         if previous_ref_base_is_deletion?
@@ -125,7 +121,7 @@ module Wgsim
       end
 
       def log_deletion(end_of_sequence : Bool = false) : Nil
-        delseq = @deletions.map { |n| n.chr }.join
+        delseq = @deletions.map(&.chr).join
         position = if end_of_sequence
                      @index - @deletions.size + 1
                    else

@@ -11,12 +11,8 @@ module Wgsim
         @seed : UInt64? = nil,
       )
         # random number generator with seed
-        @random = \
-           if @seed
-             Rand.new(@seed.not_nil!)
-           else
-             Rand.new
-           end
+        seed = @seed
+        @random = seed ? Rand.new(seed) : Rand.new
         @chr_name = "chr"
       end
 

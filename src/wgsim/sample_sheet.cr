@@ -14,8 +14,8 @@ module Wgsim
 
     def load(file : (String | Path)) : Array(CellSample)
       separator = determine_separator(file)
-      File.open(file) do |f|
-        CSV.new(f, separator: separator).each do |row|
+      File.open(file) do |io|
+        CSV.new(io, separator: separator).each do |row|
           name, fraction, fasta_file = row[0], row[1].to_f, row[2]
           @samples << CellSample.new(name, fraction, fasta_file)
         end

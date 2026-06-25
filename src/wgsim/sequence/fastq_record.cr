@@ -11,7 +11,7 @@ module Wgsim
     def initialize(@name, @pair_index, @position, @insert_size, @read_index, @sequence, @ascii_quality)
     end
 
-    # FIXME This method should be moved to Sequence class because it is IO-related?
+    # NOTE: This method may be moved to Sequence class because it is IO-related.
     def to_s : String
       sequence_str = String.new(sequence)
       String.build do |str|
