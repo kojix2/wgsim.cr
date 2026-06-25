@@ -91,14 +91,6 @@ module Wgsim
         rand < deletion_extension_probability
       end
 
-      private def mutation_occurs? : Bool
-        rand < mutation_rate
-      end
-
-      private def deletion_occurs?(n) : Bool
-        rand < (indel_fraction / 2)
-      end
-
       def nochange_nucleotide(n : UInt8) : RefBase
         RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
       end
