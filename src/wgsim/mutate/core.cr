@@ -52,6 +52,7 @@ module Wgsim
 
       def simulate_mutations(sequence : Slice(UInt8)) : {RefSeq, Array(EventRecord)}
         @index = 0
+        @event_log = [] of EventRecord
         slice = sequence.map do |n|
           @index += 1 # 1-based index
           if previous_ref_base_is_deletion?

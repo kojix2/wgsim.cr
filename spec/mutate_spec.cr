@@ -35,4 +35,21 @@ describe Wgsim::Mutate::Core do
 
     res.format.should eq("ATTAATAATAACCAACAAGACGGGAA")
   end
+
+  it "does not carry over event_log across simulate_mutations calls" do
+    core = Wgsim::Mutate::Core.new(
+      substitution_rate: 1.0,
+      insertion_rate: 0.0,
+      deletion_rate: 0.0,
+      insertion_extension_probability: 0.0,
+      deletion_extension_probability: 0.0,
+      seed: 100
+    )
+
+    _, first_log = core.simulate_mutations("AAAA".to_slice)
+    _, second_log = core.simulate_mutations("TTTT".to_slice)
+
+    first_log.size.should eq(4)
+    second_log.size.should eq(4)
+  end
 end
