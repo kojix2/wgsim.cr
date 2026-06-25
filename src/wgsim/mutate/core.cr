@@ -80,6 +80,10 @@ module Wgsim
             nochange_nucleotide(n)
           end
         end
+        if previous_ref_base_is_deletion?
+          log_deletion(end_of_sequence: true)
+          @deletions.clear
+        end
         {RefSeq.new(slice), @event_log}
       end
 
@@ -120,9 +124,14 @@ module Wgsim
         RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
       end
 
-      def log_deletion : Nil
+      def log_deletion(end_of_sequence : Bool = false) : Nil
         delseq = @deletions.map { |n| n.chr }.join
-        @event_log << EventRecord.new(MutType::DELETE, @index - @deletions.size, delseq, '.')
+        position = if end_of_sequence
+                     @index - @deletions.size + 1
+                   else
+                     @index - @deletions.size
+                   end
+        @event_log << EventRecord.new(MutType::DELETE, position, delseq, '.')
       end
 
       def log_substitution(n, nn) : Nil

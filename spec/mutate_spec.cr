@@ -52,4 +52,23 @@ describe Wgsim::Mutate::Core do
     first_log.size.should eq(4)
     second_log.size.should eq(4)
   end
+
+  it "records deletion event even when deletion reaches sequence end" do
+    core = Wgsim::Mutate::Core.new(
+      substitution_rate: 0.0,
+      insertion_rate: 0.0,
+      deletion_rate: 1.0,
+      insertion_extension_probability: 0.0,
+      deletion_extension_probability: 1.0,
+      seed: 1
+    )
+
+    _, elog = core.simulate_mutations("AAAA".to_slice)
+
+    elog.size.should eq(1)
+    elog.first.mut_type.should eq(Wgsim::MutType::DELETE)
+    elog.first.position.should eq(1)
+    elog.first.ref_seq.should eq("AAAA")
+    elog.first.alt_seq.should eq('.')
+  end
 end
