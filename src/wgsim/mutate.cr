@@ -44,9 +44,10 @@ module Wgsim
       fo = File.open(output_fasta, "w")
       mo = File.open(output_mutation, "w")
       begin
-        reader.each do |name, sequence|
-          STDERR.puts "[wgsim] #{name} #{sequence.size} bp"
-          process_sequence(name, sequence, fout: fo, mout: mo)
+        reader.each_bytes do |name, sequence|
+          name_string = String.new(name)
+          STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
+          process_sequence(name_string, sequence, fout: fo, mout: mo)
         end
       rescue ex
         STDERR.puts "Error processing sequences: #{ex.message}"
@@ -57,8 +58,8 @@ module Wgsim
       end
     end
 
-    private def process_sequence(name : String, sequence : String | IO::Memory, fout : IO, mout : IO)
-      reference_sequence = sequence.to_slice
+    private def process_sequence(name : String, sequence : Bytes, fout : IO, mout : IO)
+      reference_sequence = sequence
       if option.ploidy == 1
         simulate_and_output_sequence(name, reference_sequence, fo: fout, mo: mout)
       else

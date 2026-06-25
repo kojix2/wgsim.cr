@@ -40,13 +40,13 @@ module Wgsim
       output_fasta_2 = File.open(output2, "w")
 
       Fastx::Fasta::Reader.open(reference) do |reader|
-        reader.each do |name, sequence|
-          normalized_sequence = sequence.to_slice
-          core.run(name, normalized_sequence) do |record1, record2|
+        reader.each_bytes do |name, sequence|
+          name_string = String.new(name)
+          core.run(name_string, sequence) do |record1, record2|
             output_fasta_1.puts record1.to_s
             output_fasta_2.puts record2.to_s
           end
-          STDERR.puts "[wgsim] #{name} done"
+          STDERR.puts "[wgsim] #{name_string} done"
         end
       end
     ensure
