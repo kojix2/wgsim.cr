@@ -63,7 +63,7 @@ module Wgsim
 
           # Insert size is the length of the DNA fragment excluding the adapters.
           # See image at https://www.biostars.org/p/95803/
-          insert_size = random_insert_size
+          insert_size = random_insert_size(contig_length)
 
           # Position is the 0-based index of the first base of the fragment in the contig.
           position = random_position(contig_length, insert_size)
@@ -128,8 +128,18 @@ module Wgsim
         end
       end
 
-      def random_insert_size : Int32
-        [randn(distance, std_deviation).to_i, size_left, size_right].max
+      def random_insert_size(contig_length : Int32) : Int32
+        min_insert_size = Math.max(size_left, size_right)
+        raise "contig is shorter than minimum read length" if contig_length < min_insert_size
+
+        attempts = 0
+        loop do
+          insert_size = [randn(distance, std_deviation).to_i, min_insert_size].max
+          return insert_size if insert_size <= contig_length
+
+          attempts += 1
+          return contig_length if attempts >= 10_000
+        end
       end
 
       def random_position(contig_length : Int, insert_size : Int) : Int32
