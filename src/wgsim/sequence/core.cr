@@ -31,6 +31,7 @@ module Wgsim
 
       def run(name, sequence, &)
         contig_length = sequence.size
+        read_name = name.split[0]
 
         # Skip sequences (contigs) that are shorter than the minimum read length.
         min_read_length = Math.max(size_left, size_right)
@@ -90,8 +91,8 @@ module Wgsim
           read2_sequence = generate_sequencing_error(read2_sequence)
 
           yield(
-            FastqRecord.new(name.split[0], pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
-            FastqRecord.new(name.split[0], pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
+            FastqRecord.new(read_name, pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
+            FastqRecord.new(read_name, pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
           )
 
           pair_index += 1
