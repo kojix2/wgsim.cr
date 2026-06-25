@@ -61,12 +61,12 @@ module Wgsim
           # skip N
           next nochange_nucleotide(nucleotide) if nucleotide == 78u8
 
-          case rand
-          when ..substitution_rate
+          case pick_mutation_type
+          when MutType::SUBSTITUTE
             substitute_nucleotide(nucleotide, event_log, index)
-          when ..(substitution_rate + insertion_rate)
+          when MutType::INSERT
             insert_nucleotide(nucleotide, event_log, index)
-          when ..(substitution_rate + insertion_rate + deletion_rate)
+          when MutType::DELETE
             delete_nucleotide(nucleotide, deletions)
           else
             nochange_nucleotide(nucleotide)
@@ -85,6 +85,19 @@ module Wgsim
 
       private def extend_deletion? : Bool
         rand < deletion_extension_probability
+      end
+
+      private def pick_mutation_type : MutType
+        value = rand
+        if value <= substitution_rate
+          MutType::SUBSTITUTE
+        elsif value <= (substitution_rate + insertion_rate)
+          MutType::INSERT
+        elsif value <= (substitution_rate + insertion_rate + deletion_rate)
+          MutType::DELETE
+        else
+          MutType::NOCHANGE
+        end
       end
 
       def nochange_nucleotide(n : UInt8) : RefBase
