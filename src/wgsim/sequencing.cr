@@ -18,9 +18,12 @@ module Wgsim
     end
 
     def initialize(@option : Option)
-      @reference = sequencing_options.reference || raise(ArgumentError.new("Reference sequence is required"))
-      @read1_fastq = sequencing_options.read1_fastq || raise(ArgumentError.new("Output FASTQ file 1 is required"))
-      @read2_fastq = sequencing_options.read2_fastq || raise(ArgumentError.new("Output FASTQ file 2 is required"))
+      @reference = sequencing_options.reference ||
+                   raise(ArgumentError.new("Reference sequence is required"))
+      @read1_fastq = sequencing_options.read1_fastq ||
+                     raise(ArgumentError.new("Output FASTQ file 1 is required"))
+      @read2_fastq = sequencing_options.read2_fastq ||
+                     raise(ArgumentError.new("Output FASTQ file 2 is required"))
       sequencing_options.validate!
       @read_pair_simulator = ReadPairSimulator.new(
         average_depth: sequencing_options.average_depth,
@@ -46,8 +49,16 @@ module Wgsim
             reader.each_bytes do |name, sequence|
               name_string = String.new(name)
               read_pair_simulator.simulate_read_pairs(name_string, sequence) do |record1, record2|
-                read1_writer.write(record1.identifier, record1.read_sequence, record1.quality_sequence)
-                read2_writer.write(record2.identifier, record2.read_sequence, record2.quality_sequence)
+                read1_writer.write(
+                  record1.identifier,
+                  record1.read_sequence,
+                  record1.quality_sequence
+                )
+                read2_writer.write(
+                  record2.identifier,
+                  record2.read_sequence,
+                  record2.quality_sequence
+                )
               end
               Console.info("#{name_string} done")
             end

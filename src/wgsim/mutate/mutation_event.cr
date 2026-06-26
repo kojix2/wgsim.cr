@@ -8,7 +8,13 @@ module Wgsim
     property alternate_allele : (Char | String)
     property sequence_name : String?
 
-    def initialize(@mutation_type, @reference_position, @reference_allele, @alternate_allele, @sequence_name = nil)
+    def initialize(
+      @mutation_type,
+      @reference_position,
+      @reference_allele,
+      @alternate_allele,
+      @sequence_name = nil,
+    )
     end
 
     def to_s : String

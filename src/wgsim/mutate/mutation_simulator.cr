@@ -57,7 +57,10 @@ module Wgsim
               deleted_base = build_deleted_reference_base(reference_base, deleted_bases)
               next deleted_base
             else
-              mutation_events << MutationEventBuilder.deletion(deleted_bases, reference_position)
+              mutation_events << MutationEventBuilder.deletion(
+                deleted_bases: deleted_bases,
+                reference_position: reference_position
+              )
               deleted_bases.clear
             end
           end
@@ -77,7 +80,11 @@ module Wgsim
           end
         end
         if deletion_is_open?(deleted_bases)
-          mutation_events << MutationEventBuilder.deletion(deleted_bases, reference_position, end_of_sequence: true)
+          mutation_events << MutationEventBuilder.deletion(
+            deleted_bases: deleted_bases,
+            reference_position: reference_position,
+            end_of_sequence: true
+          )
           deleted_bases.clear
         end
         {ReferenceSequence.new(mutated_bases), mutation_events}
@@ -95,20 +102,43 @@ module Wgsim
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::NOCHANGE)
       end
 
-      def build_insertion_reference_base(reference_base : UInt8, mutation_events : Array(MutationEvent), reference_position : Int32) : ReferenceBase
+      def build_insertion_reference_base(
+        reference_base : UInt8,
+        mutation_events : Array(MutationEvent),
+        reference_position : Int32,
+      ) : ReferenceBase
         inserted_bases = generate_inserted_bases
-        mutation_events << MutationEventBuilder.insertion(reference_position, reference_base, inserted_bases)
-        ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::INSERT, insertion: inserted_bases)
+        mutation_events << MutationEventBuilder.insertion(
+          reference_position: reference_position,
+          reference_base: reference_base,
+          inserted_bases: inserted_bases
+        )
+        ReferenceBase.new(
+          nucleotide: reference_base,
+          mutation_type: MutationType::INSERT,
+          insertion: inserted_bases
+        )
       end
 
-      def build_deleted_reference_base(reference_base : UInt8, deleted_bases : Array(UInt8)) : ReferenceBase
+      def build_deleted_reference_base(
+        reference_base : UInt8,
+        deleted_bases : Array(UInt8),
+      ) : ReferenceBase
         deleted_bases << reference_base
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::DELETE)
       end
 
-      def build_substituted_reference_base(reference_base : UInt8, mutation_events : Array(MutationEvent), reference_position : Int32) : ReferenceBase
+      def build_substituted_reference_base(
+        reference_base : UInt8,
+        mutation_events : Array(MutationEvent),
+        reference_position : Int32,
+      ) : ReferenceBase
         alternate_base = perform_substitution(reference_base, rand(SUBSTITUTIONS_FOR_A.size))
-        mutation_events << MutationEventBuilder.substitution(reference_position, reference_base, alternate_base)
+        mutation_events << MutationEventBuilder.substitution(
+          reference_position: reference_position,
+          reference_base: reference_base,
+          alternate_base: alternate_base
+        )
         ReferenceBase.new(nucleotide: alternate_base, mutation_type: MutationType::SUBSTITUTE)
       end
     end

@@ -46,13 +46,18 @@ module Wgsim
 
         total_rate = substitution_rate + insertion_rate + deletion_rate
         if total_rate > MAX_PROBABILITY
-          raise ArgumentError.new("The sum of substitution, insertion, and deletion rates must be <= #{MAX_PROBABILITY}")
+          raise ArgumentError.new(
+            "The sum of substitution, insertion, and deletion rates " \
+            "must be <= #{MAX_PROBABILITY}"
+          )
         end
       end
 
       private def validate_probability(name : String, value : Float64) : Nil
         unless value >= MIN_PROBABILITY && value <= MAX_PROBABILITY
-          raise ArgumentError.new("#{name} must be between #{MIN_PROBABILITY} and #{MAX_PROBABILITY}")
+          raise ArgumentError.new(
+            "#{name} must be between #{MIN_PROBABILITY} and #{MAX_PROBABILITY}"
+          )
         end
       end
     end

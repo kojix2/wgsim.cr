@@ -45,13 +45,19 @@ module Wgsim
         validate_probability("maximum ambiguous base ratio", max_ambiguous_ratio)
 
         raise ArgumentError.new("Mean insert size must be greater than 0") if mean_insert_size <= 0
-        raise ArgumentError.new("Insert size standard deviation must be >= 0") if insert_size_std_dev < 0
+        if insert_size_std_dev < 0
+          raise ArgumentError.new("Insert size standard deviation must be >= 0")
+        end
         raise ArgumentError.new("Average depth must be >= 0.0") if average_depth < 0.0
         raise ArgumentError.new("Read 1 length must be greater than 0") if read1_length <= 0
         raise ArgumentError.new("Read 2 length must be greater than 0") if read2_length <= 0
       end
 
-      private def validate_probability(name : String, value : Float64, allow_zero : Bool = true) : Nil
+      private def validate_probability(
+        name : String,
+        value : Float64,
+        allow_zero : Bool = true,
+      ) : Nil
         lower_bound_ok = allow_zero ? value >= MIN_PROBABILITY : value > MIN_PROBABILITY
         unless lower_bound_ok && value <= MAX_PROBABILITY
           lower_bound = allow_zero ? MIN_PROBABILITY.to_s : "greater than #{MIN_PROBABILITY}"

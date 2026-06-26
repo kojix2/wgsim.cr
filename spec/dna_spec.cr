@@ -27,7 +27,9 @@ describe Wgsim::Dna do
   it "normalizes IUPAC ambiguous bases to N" do
     dna = DnaTest.new
 
-    dna.normalize_sequence("RYSWKMBDHVryswkmbdhv".to_slice).should eq "NNNNNNNNNNNNNNNNNNNN".to_slice
+    dna.normalize_sequence(
+      "RYSWKMBDHVryswkmbdhv".to_slice
+    ).should eq "NNNNNNNNNNNNNNNNNNNN".to_slice
     dna.perform_substitution('R'.ord.to_u8, 0).should eq 'N'.ord
   end
 
@@ -38,6 +40,8 @@ describe Wgsim::Dna do
     dna.reverse_complement("ACGTACGT".to_slice).should eq "ACGTACGT".to_slice
     dna.reverse_complement("ACGTACGTN".to_slice).should eq "NACGTACGT".to_slice
     dna.reverse_complement("acgtn".to_slice).should eq "NACGT".to_slice
-    dna.reverse_complement("ACGTRYKWSMBDHVacgtrykwsmbdhv".to_slice).should eq "NNNNNNNNNNACGTNNNNNNNNNNACGT".to_slice
+    dna.reverse_complement(
+      "ACGTRYKWSMBDHVacgtrykwsmbdhv".to_slice
+    ).should eq "NNNNNNNNNNACGTNNNNNNNNNNACGT".to_slice
   end
 end

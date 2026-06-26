@@ -14,7 +14,9 @@ module Wgsim
       end
 
       def validate! : Nil
-        raise ArgumentError.new("At least one chromosome length is required") if chromosome_lengths.empty?
+        if chromosome_lengths.empty?
+          raise ArgumentError.new("At least one chromosome length is required")
+        end
 
         chromosome_lengths.each do |length|
           raise ArgumentError.new("Chromosome length must be greater than 0") if length <= 0

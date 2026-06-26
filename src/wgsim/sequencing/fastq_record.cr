@@ -9,7 +9,15 @@ module Wgsim
       property read_sequence : Slice(UInt8)
       property quality_sequence : Slice(UInt8)
 
-      def initialize(@read_name, @pair_index, @fragment_start, @insert_size, @mate_index, @read_sequence, @quality_sequence)
+      def initialize(
+        @read_name,
+        @pair_index,
+        @fragment_start,
+        @insert_size,
+        @mate_index,
+        @read_sequence,
+        @quality_sequence,
+      )
       end
 
       def identifier : String

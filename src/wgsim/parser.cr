@@ -97,16 +97,20 @@ module Wgsim
         end
 
         on("-I", "--ins-extend FLOAT",
-          "Probability of extending an insertion by one base [#{mutation_options.insertion_extension_probability}]") do |v|
+          "Probability of extending an insertion by one base " \
+          "[#{mutation_options.insertion_extension_probability}]") do |v|
           mutation_options.insertion_extension_probability = v.to_f64
         end
 
         on("-D", "--del-extend FLOAT",
-          "Probability of extending an open deletion by one base [#{mutation_options.deletion_extension_probability}]") do |v|
+          "Probability of extending an open deletion by one base " \
+          "[#{mutation_options.deletion_extension_probability}]") do |v|
           mutation_options.deletion_extension_probability = v.to_f64
         end
 
-        on("-p", "--ploidy UINT8", "Number of mutated chromosome copies per input sequence [#{mutation_options.ploidy}]") do |v|
+        on("-p", "--ploidy UINT8",
+          "Number of mutated chromosome copies per input sequence " \
+          "[#{mutation_options.ploidy}]") do |v|
           mutation_options.ploidy = v.to_u8
         end
 
@@ -137,7 +141,9 @@ module Wgsim
           sequencing_options.read2_fastq = Path.new(v)
         end
 
-        on("-e", "--error-rate FLOAT", "Per-base sequencing error probability [#{sequencing_options.error_rate}]") do |v|
+        on("-e", "--error-rate FLOAT",
+          "Per-base sequencing error probability " \
+          "[#{sequencing_options.error_rate}]") do |v|
           sequencing_options.error_rate = v.to_f64
         end
 
@@ -165,7 +171,8 @@ module Wgsim
         end
 
         on("-A", "--max-n-ratio FLOAT",
-          "Discard a read pair if either read has a higher N fraction [#{sequencing_options.max_ambiguous_ratio}]") do |v|
+          "Discard a read pair if either read has a higher N fraction " \
+          "[#{sequencing_options.max_ambiguous_ratio}]") do |v|
           sequencing_options.max_ambiguous_ratio = v.to_f64
         end
 
@@ -184,7 +191,9 @@ module Wgsim
           "Usage: wgsim gen [options]\n"
         )
 
-        on("-l", "--chromosome-lengths INT", "Comma-separated chromosome lengths [\"#{generation_options.chromosome_lengths.join(",")}\"]") do |v|
+        on("-l", "--chromosome-lengths INT",
+          "Comma-separated chromosome lengths " \
+          "[\"#{generation_options.chromosome_lengths.join(",")}\"]") do |v|
           generation_options.chromosome_lengths = v.split(",").map(&.to_i32)
         end
 
@@ -220,7 +229,9 @@ module Wgsim
       end
     end
 
-    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequencing::Option | Generate::Option)?)
+    def parse(
+      argv = ARGV,
+    ) : Tuple(Action?, (Mutate::Option | Sequencing::Option | Generate::Option)?)
       super
       case action
       when Action::Mutate

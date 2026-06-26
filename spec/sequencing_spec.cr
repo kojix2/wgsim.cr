@@ -3,13 +3,13 @@ require "./spec_helper"
 describe Wgsim::Sequencing::ReadPairSimulator do
   it "writes records compatibly with the fastx FASTQ writer" do
     record = Wgsim::Sequencing::FastqRecord.new(
-      "chr1",
-      2,
-      10,
-      50,
-      1,
-      "ACGT".to_slice,
-      "2222".to_slice
+      read_name: "chr1",
+      pair_index: 2,
+      fragment_start: 10,
+      insert_size: 50,
+      mate_index: 1,
+      read_sequence: "ACGT".to_slice,
+      quality_sequence: "2222".to_slice
     )
     io = IO::Memory.new
 

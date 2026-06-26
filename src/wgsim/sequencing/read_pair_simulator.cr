@@ -80,7 +80,9 @@ module Wgsim
           if fragment_start < 0 || fragment_start + insert_size > contig_length
             raise ArgumentError.new(
               "Invalid fragment start or insert size: " \
-              "fragment_start=#{fragment_start}, insert_size=#{insert_size}, contig_length=#{contig_length}"
+              "fragment_start=#{fragment_start}, " \
+              "insert_size=#{insert_size}, " \
+              "contig_length=#{contig_length}"
             )
           end
 
@@ -89,7 +91,12 @@ module Wgsim
           # 3'     <--- 5'
           read1_starts_at_fragment_left = next_bool
 
-          read1_sequence, read2_sequence = build_read_pair_sequences(sequence, fragment_start, insert_size, read1_starts_at_fragment_left)
+          read1_sequence, read2_sequence = build_read_pair_sequences(
+            contig_sequence: sequence,
+            fragment_start: fragment_start,
+            insert_size: insert_size,
+            read1_starts_at_fragment_left: read1_starts_at_fragment_left
+          )
 
           # Skip if the read contains too many ambiguous bases.
           next if read1_sequence.count(BASE_N).to_f / read1_sequence.size > max_ambiguous_ratio ||
@@ -100,20 +107,46 @@ module Wgsim
           read2_sequence = @sequencing_error_model.add_errors(read2_sequence)
 
           yield(
-            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 0, read1_sequence, read1_quality),
-            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 1, read2_sequence, read2_quality)
+            FastqRecord.new(
+              read_name: read_name,
+              pair_index: current_pair_index,
+              fragment_start: fragment_start,
+              insert_size: insert_size,
+              mate_index: 0,
+              read_sequence: read1_sequence,
+              quality_sequence: read1_quality
+            ),
+            FastqRecord.new(
+              read_name: read_name,
+              pair_index: current_pair_index,
+              fragment_start: fragment_start,
+              insert_size: insert_size,
+              mate_index: 1,
+              read_sequence: read2_sequence,
+              quality_sequence: read2_quality
+            )
           )
         end
       end
 
-      def build_read_pair_sequences(contig_sequence, fragment_start, insert_size, read1_starts_at_fragment_left : Bool) : Tuple(Slice(UInt8), Slice(UInt8))
+      def build_read_pair_sequences(
+        contig_sequence,
+        fragment_start,
+        insert_size,
+        read1_starts_at_fragment_left : Bool,
+      ) : Tuple(Slice(UInt8), Slice(UInt8))
         # Ranges that use '...' to exclude the given end value.
         # (1...4).to_a     # => [1, 2, 3]
+        fragment_end = fragment_start + insert_size
         if read1_starts_at_fragment_left
           read1 = contig_sequence[fragment_start...(fragment_start + read1_length)]
-          read2 = reverse_complement(contig_sequence[(fragment_start + insert_size - read2_length)...(fragment_start + insert_size)])
+          read2 = reverse_complement(
+            contig_sequence[(fragment_end - read2_length)...fragment_end]
+          )
         else
-          read1 = reverse_complement(contig_sequence[(fragment_start + insert_size - read1_length)...(fragment_start + insert_size)])
+          read1 = reverse_complement(
+            contig_sequence[(fragment_end - read1_length)...fragment_end]
+          )
           read2 = contig_sequence[fragment_start...(fragment_start + read2_length)]
         end
 

@@ -30,7 +30,9 @@ describe Wgsim::Mutate::MutationSimulator do
       deletion_extension_probability: 0.5,
       seed: 100
     )
-    mutated_sequence, mutation_events = simulator.simulate_mutations("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice)
+    mutated_sequence, mutation_events = simulator.simulate_mutations(
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice
+    )
 
     first_event = mutation_events.first
     first_event.sequence_name.should be_nil

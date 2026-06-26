@@ -18,7 +18,8 @@ module Wgsim
 
       def generate_sequences(&)
         @chromosome_lengths.each_with_index do |length, chromosome_index|
-          name = "#{CHROMOSOME_NAME_PREFIX}#{chromosome_index} size:#{length} seed:#{@seed || "random"}"
+          name = "#{CHROMOSOME_NAME_PREFIX}#{chromosome_index} " \
+                 "size:#{length} seed:#{@seed || "random"}"
           sequence = Slice(UInt8).new(length) { DNA_BASES[@random.rand(DNA_BASES.size)] }
           yield({name, sequence})
         end
