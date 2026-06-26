@@ -256,7 +256,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/c37b4664f8ed0263f9796208ed5110ae94ab5408/src/wgsim/dna.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/dna.cr#L2" target="_blank">
         wgsim/dna.cr
       </a>
     
@@ -280,6 +280,11 @@
       <dt class="entry-const" id="BASE_A">
         <strong>BASE_A</strong> = <code><span class="s">&#39;A&#39;</span>.ord.to_u8</code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Bases are stored as UInt8 because FASTA/FASTQ parsers expose byte slices.
+Keeping this layer byte-based avoids allocating one Char or String per base.</p>
+      </dd>
       
     
       <dt class="entry-const" id="BASE_C">
@@ -306,6 +311,11 @@
         <strong>COMPLEMENT_BASES</strong> = <code>{<span class="t">BASE_A</span> <span class="o">=&gt;</span> <span class="t">BASE_T</span>, <span class="t">BASE_C</span> <span class="o">=&gt;</span> <span class="t">BASE_G</span>, <span class="t">BASE_G</span> <span class="o">=&gt;</span> <span class="t">BASE_C</span>, <span class="t">BASE_T</span> <span class="o">=&gt;</span> <span class="t">BASE_A</span>, <span class="t">BASE_N</span> <span class="o">=&gt;</span> <span class="t">BASE_N</span>}</code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>Reverse complements model the opposite strand of a double-stranded DNA
+fragment. N complements to N because its exact base is unknown.</p>
+      </dd>
+      
     
       <dt class="entry-const" id="DNA_BASES">
         <strong>DNA_BASES</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_A</span>, <span class="t">BASE_C</span>, <span class="t">BASE_G</span>, <span class="t">BASE_T</span>]</code>
@@ -315,6 +325,12 @@
       <dt class="entry-const" id="IUPAC_AMBIGUOUS_BASES">
         <strong>IUPAC_AMBIGUOUS_BASES</strong> = <code><span class="t">StaticArray</span>[<span class="s">&#39;R&#39;</span>.ord.to_u8, <span class="s">&#39;Y&#39;</span>.ord.to_u8, <span class="s">&#39;S&#39;</span>.ord.to_u8, <span class="s">&#39;W&#39;</span>.ord.to_u8, <span class="s">&#39;K&#39;</span>.ord.to_u8, <span class="s">&#39;M&#39;</span>.ord.to_u8, <span class="s">&#39;B&#39;</span>.ord.to_u8, <span class="s">&#39;D&#39;</span>.ord.to_u8, <span class="s">&#39;H&#39;</span>.ord.to_u8, <span class="s">&#39;V&#39;</span>.ord.to_u8, <span class="s">&#39;r&#39;</span>.ord.to_u8, <span class="s">&#39;y&#39;</span>.ord.to_u8, <span class="s">&#39;s&#39;</span>.ord.to_u8, <span class="s">&#39;w&#39;</span>.ord.to_u8, <span class="s">&#39;k&#39;</span>.ord.to_u8, <span class="s">&#39;m&#39;</span>.ord.to_u8, <span class="s">&#39;b&#39;</span>.ord.to_u8, <span class="s">&#39;d&#39;</span>.ord.to_u8, <span class="s">&#39;h&#39;</span>.ord.to_u8, <span class="s">&#39;v&#39;</span>.ord.to_u8]</code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>IUPAC ambiguity codes are normalized to N before simulation. This keeps
+the simulator conservative: it does not invent certainty where the
+reference sequence is already ambiguous.</p>
+      </dd>
       
     
       <dt class="entry-const" id="LOWERCASE_BASE_A">
@@ -408,7 +424,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="signature"><strong>#perform_substitution</strong>(base : UInt8, i : Int) : UInt8</a>
+        <a href="#perform_substitution%28base%3AUInt8%2Csubstitution_index%3AInt%29%3AUInt8-instance-method" class="signature"><strong>#perform_substitution</strong>(base : UInt8, substitution_index : Int) : UInt8</a>
+        
+          <div class="summary"><p>Select one of the three valid alternate nucleotides for a substitution.</p></div>
         
       </li>
     
@@ -452,7 +470,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c37b4664f8ed0263f9796208ed5110ae94ab5408/src/wgsim/dna.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/dna.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -468,23 +486,29 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c37b4664f8ed0263f9796208ed5110ae94ab5408/src/wgsim/dna.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/dna.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="perform_substitution(base:UInt8,i:Int):UInt8-instance-method">
+    <div class="entry-detail" id="perform_substitution(base:UInt8,substitution_index:Int):UInt8-instance-method">
       <div class="signature">
         
-        def <strong>perform_substitution</strong>(base : UInt8, i : Int) : UInt8
+        def <strong>perform_substitution</strong>(base : UInt8, substitution_index : Int) : UInt8
 
-        <a class="method-permalink" href="#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method">#</a>
+        <a class="method-permalink" href="#perform_substitution%28base%3AUInt8%2Csubstitution_index%3AInt%29%3AUInt8-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Select one of the three valid alternate nucleotides for a substitution.
+The index is random in production, but explicit in tests for readability.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c37b4664f8ed0263f9796208ed5110ae94ab5408/src/wgsim/dna.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/dna.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -500,7 +524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c37b4664f8ed0263f9796208ed5110ae94ab5408/src/wgsim/dna.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/dna.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>

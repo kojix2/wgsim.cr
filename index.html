@@ -304,12 +304,7 @@ Usage: wgsim gen [options]
     -S, --seed UINT64                Random seed
     --debug                          Show backtrace on error
     -h, --help                       Show this help</code></pre>
-<h3><a id="idea-notes" class="anchor" href="#idea-notes">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Idea Notes</h3>
-<h2><a id="idea-notes-1" class="anchor" href="#idea-notes-1">
+<h2><a id="idea-notes" class="anchor" href="#idea-notes">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
@@ -369,6 +364,50 @@ Usage: wgsim gen [options]
 <li>
 <p><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">wgsimのコードを眺める [JA]</a></p>
 </li>
+</ul>
+<h2><a id="reading-the-code" class="anchor" href="#reading-the-code">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Reading the Code</h2>
+<p>The code is intentionally organized around biological concepts rather than
+around terse implementation tricks.</p>
+<ul>
+<li><code>src/wgsim/dna.cr</code>
+<ul>
+<li>Defines byte-level DNA bases, IUPAC ambiguity normalization, substitution
+choices, and reverse complements.</li>
+</ul>
+</li>
+<li><code>src/wgsim/mutate/mutation_simulator.cr</code>
+<ul>
+<li>Walks through a reference sequence one base at a time, samples biological
+mutation types, and records the complete mutation history.</li>
+</ul>
+</li>
+<li><code>src/wgsim/mutate/mutation_event_builder.cr</code>
+<ul>
+<li>Converts simulated substitutions, insertions, and deletions into explicit
+event-log records.</li>
+</ul>
+</li>
+<li><code>src/wgsim/sequencing/read_pair_simulator.cr</code>
+<ul>
+<li>Samples DNA fragments, chooses read orientation, extracts paired-end reads,
+filters high-<code>N</code> reads, and then adds sequencing errors.</li>
+</ul>
+</li>
+<li><code>src/wgsim/sequencing/error_model.cr</code>
+<ul>
+<li>Models sequencing errors separately from biological mutations.</li>
+</ul>
+</li>
+</ul>
+<p>Two separations are especially important when reading or modifying the code:</p>
+<ul>
+<li>Biological mutations happen in <code>mut</code>, before reads are generated.</li>
+<li>Sequencing errors happen in <code>seq</code>, after reads are sampled from the input
+FASTA.</li>
 </ul>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
