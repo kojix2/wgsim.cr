@@ -4,10 +4,10 @@ describe Wgsim::Sequence::Core do
   it "re-samples insert size until it fits in the contig" do
     core = Wgsim::Sequence::Core.new(
       average_depth: 10.0,
-      distance: 300,
-      std_deviation: 100,
-      size_left: 50,
-      size_right: 50,
+      mean_insert_size: 300,
+      insert_size_std_dev: 100,
+      read1_length: 50,
+      read2_length: 50,
       error_rate: 0.01,
       max_ambiguous_ratio: 0.05,
       seed: 123u64
@@ -23,10 +23,10 @@ describe Wgsim::Sequence::Core do
   it "falls back to contig length when distribution cannot fit" do
     core = Wgsim::Sequence::Core.new(
       average_depth: 10.0,
-      distance: 10_000,
-      std_deviation: 0,
-      size_left: 50,
-      size_right: 50,
+      mean_insert_size: 10_000,
+      insert_size_std_dev: 0,
+      read1_length: 50,
+      read2_length: 50,
       error_rate: 0.01,
       max_ambiguous_ratio: 0.05,
       seed: 1u64
@@ -38,10 +38,10 @@ describe Wgsim::Sequence::Core do
   it "discards reads above the ambiguous-base ratio without looping forever" do
     core = Wgsim::Sequence::Core.new(
       average_depth: 10.0,
-      distance: 10,
-      std_deviation: 0,
-      size_left: 10,
-      size_right: 10,
+      mean_insert_size: 10,
+      insert_size_std_dev: 0,
+      read1_length: 10,
+      read2_length: 10,
       error_rate: 0.01,
       max_ambiguous_ratio: 0.05,
       seed: 1u64
@@ -58,10 +58,10 @@ describe Wgsim::Sequence::Core do
   it "normalizes lowercase bases before generating reads" do
     core = Wgsim::Sequence::Core.new(
       average_depth: 1.0,
-      distance: 8,
-      std_deviation: 0,
-      size_left: 4,
-      size_right: 4,
+      mean_insert_size: 8,
+      insert_size_std_dev: 0,
+      read1_length: 4,
+      read2_length: 4,
       error_rate: 0.01,
       max_ambiguous_ratio: 1.0,
       seed: 1u64
@@ -73,6 +73,6 @@ describe Wgsim::Sequence::Core do
       records << record2
     end
 
-    records.map { |record| String.new(record.sequence) }.should eq(["ACGT", "ACGT"])
+    records.map { |record| String.new(record.read_sequence) }.should eq(["ACGT", "ACGT"])
   end
 end

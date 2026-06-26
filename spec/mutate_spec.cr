@@ -13,25 +13,25 @@ describe Wgsim::Mutate::Core do
     res, elog = core.simulate_mutations("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice)
 
     first_event = elog.first
-    first_event.name.should be_nil
-    first_event.position.should eq(1)
-    first_event.ref_seq.should eq("A")
-    first_event.alt_seq.should eq('.')
-    first_event.mut_type.should eq(Wgsim::MutType::DELETE)
+    first_event.sequence_name.should be_nil
+    first_event.reference_position.should eq(1)
+    first_event.reference_allele.should eq("A")
+    first_event.alternate_allele.should eq('.')
+    first_event.mutation_type.should eq(Wgsim::MutType::DELETE)
 
     second_event = elog[1]
-    second_event.name.should be_nil
-    second_event.position.should eq(3)
-    second_event.ref_seq.should eq('A')
-    second_event.alt_seq.should eq('T')
-    second_event.mut_type.should eq(Wgsim::MutType::SUBSTITUTE)
+    second_event.sequence_name.should be_nil
+    second_event.reference_position.should eq(3)
+    second_event.reference_allele.should eq('A')
+    second_event.alternate_allele.should eq('T')
+    second_event.mutation_type.should eq(Wgsim::MutType::SUBSTITUTE)
 
     last2_event = elog[-2]
-    last2_event.name.should be_nil
-    last2_event.position.should eq(29)
-    last2_event.ref_seq.should eq('A')
-    last2_event.alt_seq.should eq("ACGGG")
-    last2_event.mut_type.should eq(Wgsim::MutType::INSERT)
+    last2_event.sequence_name.should be_nil
+    last2_event.reference_position.should eq(29)
+    last2_event.reference_allele.should eq('A')
+    last2_event.alternate_allele.should eq("ACGGG")
+    last2_event.mutation_type.should eq(Wgsim::MutType::INSERT)
 
     res.format.should eq("ATTAATAATAACCAACAAGACGGGAA")
   end
@@ -66,10 +66,10 @@ describe Wgsim::Mutate::Core do
     _, elog = core.simulate_mutations("AAAA".to_slice)
 
     elog.size.should eq(1)
-    elog.first.mut_type.should eq(Wgsim::MutType::DELETE)
-    elog.first.position.should eq(1)
-    elog.first.ref_seq.should eq("AAAA")
-    elog.first.alt_seq.should eq('.')
+    elog.first.mutation_type.should eq(Wgsim::MutType::DELETE)
+    elog.first.reference_position.should eq(1)
+    elog.first.reference_allele.should eq("AAAA")
+    elog.first.alternate_allele.should eq('.')
   end
 
   it "normalizes lowercase bases before mutating" do

@@ -80,11 +80,11 @@ module Wgsim
         end
 
         on("-o", "--output FILE", "Output file for the mutated sequence (required)") do |v|
-          mopt.output_fasta = Path.new(v)
+          mopt.mutated_fasta = Path.new(v)
         end
 
         on("-m", "--mutation FILE", "Output file for the mutations (required)") do |v|
-          mopt.output_mutation = Path.new(v)
+          mopt.mutation_event_log = Path.new(v)
         end
 
         on("-s", "--sub-rate FLOAT",
@@ -138,11 +138,11 @@ module Wgsim
         end
 
         on("-1", "--output1 FILE", "Output file for the first read (required)") do |v|
-          sopt.output1 = Path.new(v)
+          sopt.read1_fastq = Path.new(v)
         end
 
         on("-2", "--output2 FILE", "Output file for the second read (required)") do |v|
-          sopt.output2 = Path.new(v)
+          sopt.read2_fastq = Path.new(v)
         end
 
         on("-e", "--error-rate FLOAT", "Base error rate [#{sopt.error_rate}]") do |v|
@@ -150,13 +150,13 @@ module Wgsim
         end
 
         on("-d", "--distance INT",
-          "Outer distance between the two ends [#{sopt.distance}]") do |v|
-          sopt.distance = v.to_i32
+          "Mean insert size [#{sopt.mean_insert_size}]") do |v|
+          sopt.mean_insert_size = v.to_i32
         end
 
         on("-s", "--std-dev FLOAT",
-          "Standard deviation of the insert size [#{sopt.std_deviation}]") do |v|
-          sopt.std_deviation = v.to_i32
+          "Standard deviation of the insert size [#{sopt.insert_size_std_dev}]") do |v|
+          sopt.insert_size_std_dev = v.to_i32
         end
 
         on("-D", "--depth FLOAT",
@@ -164,12 +164,12 @@ module Wgsim
           sopt.average_depth = v.to_f64
         end
 
-        on("-L", "--size-left INT", "Length of the first read [#{sopt.size_left}]") do |v|
-          sopt.size_left = v.to_i32
+        on("-L", "--size-left INT", "Length of the first read [#{sopt.read1_length}]") do |v|
+          sopt.read1_length = v.to_i32
         end
 
-        on("-R", "--size-right INT", "Length of the second read [#{sopt.size_right}]") do |v|
-          sopt.size_right = v.to_i32
+        on("-R", "--size-right INT", "Length of the second read [#{sopt.read2_length}]") do |v|
+          sopt.read2_length = v.to_i32
         end
 
         on("-A", "--ambiguous-ratio FLOAT",
@@ -194,8 +194,8 @@ module Wgsim
           "Usage: wgsim gen [options]\n"
         )
 
-        on("-l", "--length INT", "Length of the reference sequence [\"#{gopt.chromosome_length.join(",")}\"]") do |v|
-          gopt.chromosome_length = v.split(",").map(&.to_i32)
+        on("-l", "--length INT", "Length of the reference sequence [\"#{gopt.chromosome_lengths.join(",")}\"]") do |v|
+          gopt.chromosome_lengths = v.split(",").map(&.to_i32)
         end
 
         on("-s", "--seed UINT64", "Seed for random generator") do |v|

@@ -32,16 +32,16 @@ describe "option validation" do
 
   it "rejects invalid read sizes" do
     option = Wgsim::Sequence::Option.new
-    option.size_left = 0
+    option.read1_length = 0
 
-    expect_raises(ArgumentError, /Read size left/) do
+    expect_raises(ArgumentError, /Read 1 length/) do
       option.validate!
     end
   end
 
   it "rejects invalid generated chromosome lengths" do
     option = Wgsim::Generate::Option.new
-    option.chromosome_length = [1000, 0]
+    option.chromosome_lengths = [1000, 0]
 
     expect_raises(ArgumentError, /Chromosome length/) do
       option.validate!

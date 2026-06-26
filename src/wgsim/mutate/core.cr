@@ -28,60 +28,60 @@ module Wgsim
         @random = seed ? Rand.new(seed) : Rand.new
       end
 
-      # Generate insertion based on given size and indel extension probability
-      def generate_insertion : Slice(UInt8)
-        size = 1
+      # Generate inserted bases based on the insertion extension probability.
+      def generate_inserted_bases : Slice(UInt8)
+        inserted_base_count = 1
         while rand <= insertion_extension_probability
-          size += 1
+          inserted_base_count += 1
         end
-        Slice(UInt8).new(size) { ACGT[rand(4)] }
+        Slice(UInt8).new(inserted_base_count) { DNA_BASES[rand(DNA_BASES.size)] }
       end
 
       # Simulate mutations and output the results
       # Returns a slice of RefBase
 
       def simulate_mutations(sequence : Slice(UInt8)) : {RefSeq, Array(EventRecord)}
-        index = 0
-        deletions = [] of UInt8
+        reference_position = 0
+        deleted_bases = [] of UInt8
         event_log = [] of EventRecord
 
-        slice = sequence.map do |nucleotide|
-          nucleotide = normalize_base(nucleotide)
-          index += 1 # 1-based index
-          if previous_ref_base_is_deletion?(deletions)
+        mutated_bases = sequence.map do |reference_base|
+          reference_base = normalize_base(reference_base)
+          reference_position += 1 # 1-based reference position
+          if previous_ref_base_is_deletion?(deleted_bases)
             if extend_deletion?
-              base = delete_nucleotide(nucleotide, deletions)
-              next base
+              deleted_base = delete_nucleotide(reference_base, deleted_bases)
+              next deleted_base
             else # stop deletion
               # NOTE: should stop when n is N?
-              log_deletion(event_log, deletions, index)
-              deletions.clear
+              log_deletion(event_log, deleted_bases, reference_position)
+              deleted_bases.clear
             end
           end
 
           # skip N
-          next nochange_nucleotide(nucleotide) if nucleotide == 78u8
+          next nochange_nucleotide(reference_base) if reference_base == BASE_N
 
           case pick_mutation_type
           when MutType::SUBSTITUTE
-            substitute_nucleotide(nucleotide, event_log, index)
+            substitute_nucleotide(reference_base, event_log, reference_position)
           when MutType::INSERT
-            insert_nucleotide(nucleotide, event_log, index)
+            insert_nucleotide(reference_base, event_log, reference_position)
           when MutType::DELETE
-            delete_nucleotide(nucleotide, deletions)
+            delete_nucleotide(reference_base, deleted_bases)
           else
-            nochange_nucleotide(nucleotide)
+            nochange_nucleotide(reference_base)
           end
         end
-        if previous_ref_base_is_deletion?(deletions)
-          log_deletion(event_log, deletions, index, end_of_sequence: true)
-          deletions.clear
+        if previous_ref_base_is_deletion?(deleted_bases)
+          log_deletion(event_log, deleted_bases, reference_position, end_of_sequence: true)
+          deleted_bases.clear
         end
-        {RefSeq.new(slice), event_log}
+        {RefSeq.new(mutated_bases), event_log}
       end
 
-      private def previous_ref_base_is_deletion?(deletions : Array(UInt8)) : Bool
-        deletions.present?
+      private def previous_ref_base_is_deletion?(deleted_bases : Array(UInt8)) : Bool
+        deleted_bases.present?
       end
 
       private def extend_deletion? : Bool
@@ -101,49 +101,49 @@ module Wgsim
         end
       end
 
-      def nochange_nucleotide(n : UInt8) : RefBase
-        RefBase.new(nucleotide: n, mutation_type: MutType::NOCHANGE)
+      def nochange_nucleotide(reference_base : UInt8) : RefBase
+        RefBase.new(nucleotide: reference_base, mutation_type: MutType::NOCHANGE)
       end
 
-      def insert_nucleotide(n : UInt8, event_log : Array(EventRecord), index : Int32) : RefBase
-        ins = generate_insertion
-        log_insertion(event_log, index, n, ins)
-        RefBase.new(nucleotide: n, mutation_type: MutType::INSERT, insertion: ins)
+      def insert_nucleotide(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
+        inserted_bases = generate_inserted_bases
+        log_insertion(event_log, reference_position, reference_base, inserted_bases)
+        RefBase.new(nucleotide: reference_base, mutation_type: MutType::INSERT, insertion: inserted_bases)
       end
 
-      def delete_nucleotide(n : UInt8, deletions : Array(UInt8)) : RefBase
-        deletions << n
-        RefBase.new(nucleotide: n, mutation_type: MutType::DELETE)
+      def delete_nucleotide(reference_base : UInt8, deleted_bases : Array(UInt8)) : RefBase
+        deleted_bases << reference_base
+        RefBase.new(nucleotide: reference_base, mutation_type: MutType::DELETE)
       end
 
-      def substitute_nucleotide(n : UInt8, event_log : Array(EventRecord), index : Int32) : RefBase
-        nn = perform_substitution(n, rand(3))
-        log_substitution(event_log, index, n, nn)
-        RefBase.new(nucleotide: nn, mutation_type: MutType::SUBSTITUTE)
+      def substitute_nucleotide(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
+        alternate_base = perform_substitution(reference_base, rand(SUBSTITUTIONS_FOR_A.size))
+        log_substitution(event_log, reference_position, reference_base, alternate_base)
+        RefBase.new(nucleotide: alternate_base, mutation_type: MutType::SUBSTITUTE)
       end
 
-      def log_deletion(event_log : Array(EventRecord), deletions : Array(UInt8), index : Int32, end_of_sequence : Bool = false) : Nil
-        delseq = String.build do |io|
-          deletions.each { |deleted_base| io.write_byte(deleted_base) }
+      def log_deletion(event_log : Array(EventRecord), deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = false) : Nil
+        deleted_sequence = String.build do |io|
+          deleted_bases.each { |deleted_base| io.write_byte(deleted_base) }
         end
-        position = if end_of_sequence
-                     index - deletions.size + 1
-                   else
-                     index - deletions.size
-                   end
-        event_log << EventRecord.new(MutType::DELETE, position, delseq, '.')
+        deletion_start_position = if end_of_sequence
+                                    reference_position - deleted_bases.size + 1
+                                  else
+                                    reference_position - deleted_bases.size
+                                  end
+        event_log << EventRecord.new(MutType::DELETE, deletion_start_position, deleted_sequence, '.')
       end
 
-      def log_substitution(event_log : Array(EventRecord), index : Int32, n : UInt8, nn : UInt8) : Nil
-        event_log << EventRecord.new(MutType::SUBSTITUTE, index, n.chr, nn.chr)
+      def log_substitution(event_log : Array(EventRecord), reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : Nil
+        event_log << EventRecord.new(MutType::SUBSTITUTE, reference_position, reference_base.chr, alternate_base.chr)
       end
 
-      def log_insertion(event_log : Array(EventRecord), index : Int32, n : UInt8, ins : Slice(UInt8)) : Nil
-        alt_seq = String.build do |io|
-          io << n.chr
-          io.write(ins)
+      def log_insertion(event_log : Array(EventRecord), reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : Nil
+        alternate_allele = String.build do |io|
+          io << reference_base.chr
+          io.write(inserted_bases)
         end
-        event_log << EventRecord.new(MutType::INSERT, index, n.chr, alt_seq)
+        event_log << EventRecord.new(MutType::INSERT, reference_position, reference_base.chr, alternate_allele)
       end
     end
   end

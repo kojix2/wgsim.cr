@@ -1,28 +1,43 @@
 module Wgsim
   module CoreUtils
-    ACGT = StaticArray[65u8, 67u8, 71u8, 84u8]
-    CGT  = StaticArray[67u8, 71u8, 84u8]
-    AGT  = StaticArray[65u8, 71u8, 84u8]
-    ACT  = StaticArray[65u8, 67u8, 84u8]
-    ACG  = StaticArray[65u8, 67u8, 71u8]
+    BASE_A = 'A'.ord.to_u8
+    BASE_C = 'C'.ord.to_u8
+    BASE_G = 'G'.ord.to_u8
+    BASE_T = 'T'.ord.to_u8
+    BASE_N = 'N'.ord.to_u8
 
-    # def perform_substitution(base : UInt8) : UInt8
-    #   i = rand(3)
-    #   perform_substitution(base, i)
-    # end
+    LOWERCASE_BASE_A = 'a'.ord.to_u8
+    LOWERCASE_BASE_C = 'c'.ord.to_u8
+    LOWERCASE_BASE_G = 'g'.ord.to_u8
+    LOWERCASE_BASE_T = 't'.ord.to_u8
+    LOWERCASE_BASE_N = 'n'.ord.to_u8
+
+    DNA_BASES           = StaticArray[BASE_A, BASE_C, BASE_G, BASE_T]
+    SUBSTITUTIONS_FOR_A = StaticArray[BASE_C, BASE_G, BASE_T]
+    SUBSTITUTIONS_FOR_C = StaticArray[BASE_A, BASE_G, BASE_T]
+    SUBSTITUTIONS_FOR_G = StaticArray[BASE_A, BASE_C, BASE_T]
+    SUBSTITUTIONS_FOR_T = StaticArray[BASE_A, BASE_C, BASE_G]
+
+    COMPLEMENT_BASES = {
+      BASE_A => BASE_T,
+      BASE_C => BASE_G,
+      BASE_G => BASE_C,
+      BASE_T => BASE_A,
+      BASE_N => BASE_N,
+    }
 
     def normalize_base(base : UInt8) : UInt8
       case base
-      when 97u8 # a
-        65u8
-      when 99u8 # c
-        67u8
-      when 103u8 # g
-        71u8
-      when 116u8 # t
-        84u8
-      when 110u8 # n
-        78u8
+      when LOWERCASE_BASE_A
+        BASE_A
+      when LOWERCASE_BASE_C
+        BASE_C
+      when LOWERCASE_BASE_G
+        BASE_G
+      when LOWERCASE_BASE_T
+        BASE_T
+      when LOWERCASE_BASE_N
+        BASE_N
       else
         base
       end
@@ -35,32 +50,23 @@ module Wgsim
     def perform_substitution(base : UInt8, i : Int) : UInt8
       base = normalize_base(base)
       case base
-      when 65u8 # A
-        CGT[i]
-      when 67u8 # C
-        AGT[i]
-      when 71u8 # G
-        ACT[i]
-      when 84u8 # T
-        ACG[i]
+      when BASE_A
+        SUBSTITUTIONS_FOR_A[i]
+      when BASE_C
+        SUBSTITUTIONS_FOR_C[i]
+      when BASE_G
+        SUBSTITUTIONS_FOR_G[i]
+      when BASE_T
+        SUBSTITUTIONS_FOR_T[i]
       else # N and others
-        # 78u8
         base
       end
     end
 
     def reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)
-      complements = {
-        65u8 => 84u8, # A -> T
-        67u8 => 71u8, # C -> G
-        71u8 => 67u8, # G -> C
-        84u8 => 65u8, # T -> A
-        78u8 => 78u8, # N -> N
-      }
-
       sequence.map do |nucleotide|
         nucleotide = normalize_base(nucleotide)
-        complements.fetch(nucleotide) { raise "Invalid nucleotide: #{nucleotide}" }
+        COMPLEMENT_BASES.fetch(nucleotide) { raise "Invalid nucleotide: #{nucleotide}" }
       end.reverse!
     end
   end

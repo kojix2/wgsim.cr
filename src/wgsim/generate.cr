@@ -3,6 +3,8 @@ require "./generate/core"
 
 module Wgsim
   class Generate
+    FASTA_LINE_WIDTH = 80
+
     getter option : Option
     getter core : Core
 
@@ -13,7 +15,7 @@ module Wgsim
     def initialize(@option : Option)
       option.validate!
       @core = Core.new(
-        chromosome_length: option.chromosome_length,
+        chromosome_lengths: option.chromosome_lengths,
         seed: option.seed
       )
     end
@@ -21,7 +23,7 @@ module Wgsim
     def run
       core.generate_sequence do |name, sequence|
         puts ">#{name}"
-        puts format_sequence(sequence, 80)
+        puts format_sequence(sequence, FASTA_LINE_WIDTH)
         # puts
       end
     end

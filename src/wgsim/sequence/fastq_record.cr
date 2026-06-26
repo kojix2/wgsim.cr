@@ -1,14 +1,14 @@
 module Wgsim
   struct FastqRecord
-    property name : String
+    property read_name : String
     property pair_index : Int32
-    property position : Int32
+    property fragment_start : Int32
     property insert_size : Int32
-    property read_index : Int32
-    property sequence : Slice(UInt8)
-    property ascii_quality : Char
+    property mate_index : Int32
+    property read_sequence : Slice(UInt8)
+    property quality_char : Char
 
-    def initialize(@name, @pair_index, @position, @insert_size, @read_index, @sequence, @ascii_quality)
+    def initialize(@read_name, @pair_index, @fragment_start, @insert_size, @mate_index, @read_sequence, @quality_char)
     end
 
     # NOTE: This method may be moved to Sequence class because it is IO-related.
@@ -19,12 +19,12 @@ module Wgsim
     end
 
     def to_s(io : IO)
-      io << '@' << name << '_' << position << '_' << insert_size << ':' << pair_index << '/' << (read_index + 1) << '\n'
-      io.write(sequence)
+      io << '@' << read_name << '_' << fragment_start << '_' << insert_size << ':' << pair_index << '/' << (mate_index + 1) << '\n'
+      io.write(read_sequence)
       io << '\n'
       io << '+' << '\n'
-      sequence.size.times do
-        io << ascii_quality
+      read_sequence.size.times do
+        io << quality_char
       end
       io << '\n'
     end

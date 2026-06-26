@@ -6,20 +6,21 @@ module Wgsim
     class Core
       include CoreUtils
 
+      CHROMOSOME_NAME_PREFIX = "chr"
+
       def initialize(
-        @chromosome_length : Array(Int32),
+        @chromosome_lengths : Array(Int32),
         @seed : UInt64? = nil,
       )
         # random number generator with seed
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
-        @chr_name = "chr"
       end
 
       def generate_sequence(&)
-        @chromosome_length.each_with_index do |length, idx|
-          name = "#{@chr_name}#{idx} size:#{length} seed:#{@seed || "random"}"
-          sequence = Slice(UInt8).new(length) { ACGT[@random.rand(4)] }
+        @chromosome_lengths.each_with_index do |length, idx|
+          name = "#{CHROMOSOME_NAME_PREFIX}#{idx} size:#{length} seed:#{@seed || "random"}"
+          sequence = Slice(UInt8).new(length) { DNA_BASES[@random.rand(DNA_BASES.size)] }
           yield({name, sequence})
         end
       end

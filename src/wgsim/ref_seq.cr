@@ -2,14 +2,16 @@ require "./ref_base"
 
 module Wgsim
   class RefSeq
-    def initialize(@slice : Slice(RefBase))
+    DEFAULT_FASTA_LINE_WIDTH = 80
+
+    def initialize(@reference_bases : Slice(RefBase))
     end
 
-    forward_missing_to @slice
+    forward_missing_to @reference_bases
 
-    def format(width : Int = 80) : String
+    def format(width : Int = DEFAULT_FASTA_LINE_WIDTH) : String
       seq = IO::Memory.new
-      @slice.each do |ref_base|
+      @reference_bases.each do |ref_base|
         case ref_base.mutation_type
         when MutType::NOCHANGE, MutType::SUBSTITUTE
           seq.write_byte ref_base.nucleotide
