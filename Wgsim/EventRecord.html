@@ -228,7 +228,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L4" target="_blank">
         wgsim/mutate/event_record.cr
       </a>
     
@@ -251,7 +251,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28mut_type%3AWgsim%3A%3AMutType%2Cposition%3AInt32%2Cref_seq%3AChar%7CString%2Calt_seq%3AChar%7CString%2Cname%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(mut_type : Wgsim::MutType, position : Int32, ref_seq : Char | String, alt_seq : Char | String, name : Nil | String = <span class="n">nil</span>)</a>
+        <a href="#new%28mutation_type%3AWgsim%3A%3AMutType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(mutation_type : Wgsim::MutType, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -274,52 +274,52 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#alt_seq%3AChar%7CString-instance-method" class="signature"><strong>#alt_seq</strong> : Char | String</a>
+        <a href="#alternate_allele%3AChar%7CString-instance-method" class="signature"><strong>#alternate_allele</strong> : Char | String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#alt_seq%3D%28alt_seq%3AChar%7CString%29-instance-method" class="signature"><strong>#alt_seq=</strong>(alt_seq : Char | String)</a>
+        <a href="#alternate_allele%3D%28alternate_allele%3AChar%7CString%29-instance-method" class="signature"><strong>#alternate_allele=</strong>(alternate_allele : Char | String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mut_type%3AMutType-instance-method" class="signature"><strong>#mut_type</strong> : MutType</a>
+        <a href="#mutation_type%3AMutType-instance-method" class="signature"><strong>#mutation_type</strong> : MutType</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mut_type%3D%28mut_type%3AMutType%29-instance-method" class="signature"><strong>#mut_type=</strong>(mut_type : MutType)</a>
+        <a href="#mutation_type%3D%28mutation_type%3AMutType%29-instance-method" class="signature"><strong>#mutation_type=</strong>(mutation_type : MutType)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3AString%7CNil-instance-method" class="signature"><strong>#name</strong> : String | Nil</a>
+        <a href="#reference_allele%3AChar%7CString-instance-method" class="signature"><strong>#reference_allele</strong> : Char | String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3D%28name%3AString%7CNil%29-instance-method" class="signature"><strong>#name=</strong>(name : String | Nil)</a>
+        <a href="#reference_allele%3D%28reference_allele%3AChar%7CString%29-instance-method" class="signature"><strong>#reference_allele=</strong>(reference_allele : Char | String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#position%3AInt32-instance-method" class="signature"><strong>#position</strong> : Int32</a>
+        <a href="#reference_position%3AInt32-instance-method" class="signature"><strong>#reference_position</strong> : Int32</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#position%3D%28position%3AInt32%29-instance-method" class="signature"><strong>#position=</strong>(position : Int32)</a>
+        <a href="#reference_position%3D%28reference_position%3AInt32%29-instance-method" class="signature"><strong>#reference_position=</strong>(reference_position : Int32)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#ref_seq%3AChar%7CString-instance-method" class="signature"><strong>#ref_seq</strong> : Char | String</a>
+        <a href="#sequence_name%3AString%7CNil-instance-method" class="signature"><strong>#sequence_name</strong> : String | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#ref_seq%3D%28ref_seq%3AChar%7CString%29-instance-method" class="signature"><strong>#ref_seq=</strong>(ref_seq : Char | String)</a>
+        <a href="#sequence_name%3D%28sequence_name%3AString%7CNil%29-instance-method" class="signature"><strong>#sequence_name=</strong>(sequence_name : String | Nil)</a>
         
       </li>
     
@@ -381,18 +381,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(mut_type:Wgsim::MutType,position:Int32,ref_seq:Char|String,alt_seq:Char|String,name:Nil|String=nil)-class-method">
+    <div class="entry-detail" id="new(mutation_type:Wgsim::MutType,reference_position:Int32,reference_allele:Char|String,alternate_allele:Char|String,sequence_name:Nil|String=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(mut_type : <a href="../Wgsim/MutType.html">Wgsim::MutType</a>, position : Int32, ref_seq : Char | String, alt_seq : Char | String, name : Nil | String = <span class="n">nil</span>)
+        def self.<strong>new</strong>(mutation_type : <a href="../Wgsim/MutType.html">Wgsim::MutType</a>, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28mut_type%3AWgsim%3A%3AMutType%2Cposition%3AInt32%2Cref_seq%3AChar%7CString%2Calt_seq%3AChar%7CString%2Cname%3ANil%7CString%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28mutation_type%3AWgsim%3A%3AMutType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -413,162 +413,162 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="alt_seq:Char|String-instance-method">
+    <div class="entry-detail" id="alternate_allele:Char|String-instance-method">
       <div class="signature">
         
-        def <strong>alt_seq</strong> : Char | String
+        def <strong>alternate_allele</strong> : Char | String
 
-        <a class="method-permalink" href="#alt_seq%3AChar%7CString-instance-method">#</a>
+        <a class="method-permalink" href="#alternate_allele%3AChar%7CString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="alt_seq=(alt_seq:Char|String)-instance-method">
+    <div class="entry-detail" id="alternate_allele=(alternate_allele:Char|String)-instance-method">
       <div class="signature">
         
-        def <strong>alt_seq=</strong>(alt_seq : Char | String)
+        def <strong>alternate_allele=</strong>(alternate_allele : Char | String)
 
-        <a class="method-permalink" href="#alt_seq%3D%28alt_seq%3AChar%7CString%29-instance-method">#</a>
+        <a class="method-permalink" href="#alternate_allele%3D%28alternate_allele%3AChar%7CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mut_type:MutType-instance-method">
+    <div class="entry-detail" id="mutation_type:MutType-instance-method">
       <div class="signature">
         
-        def <strong>mut_type</strong> : <a href="../Wgsim/MutType.html">MutType</a>
+        def <strong>mutation_type</strong> : <a href="../Wgsim/MutType.html">MutType</a>
 
-        <a class="method-permalink" href="#mut_type%3AMutType-instance-method">#</a>
+        <a class="method-permalink" href="#mutation_type%3AMutType-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mut_type=(mut_type:MutType)-instance-method">
+    <div class="entry-detail" id="mutation_type=(mutation_type:MutType)-instance-method">
       <div class="signature">
         
-        def <strong>mut_type=</strong>(mut_type : <a href="../Wgsim/MutType.html">MutType</a>)
+        def <strong>mutation_type=</strong>(mutation_type : <a href="../Wgsim/MutType.html">MutType</a>)
 
-        <a class="method-permalink" href="#mut_type%3D%28mut_type%3AMutType%29-instance-method">#</a>
+        <a class="method-permalink" href="#mutation_type%3D%28mutation_type%3AMutType%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name:String|Nil-instance-method">
+    <div class="entry-detail" id="reference_allele:Char|String-instance-method">
       <div class="signature">
         
-        def <strong>name</strong> : String | Nil
+        def <strong>reference_allele</strong> : Char | String
 
-        <a class="method-permalink" href="#name%3AString%7CNil-instance-method">#</a>
+        <a class="method-permalink" href="#reference_allele%3AChar%7CString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name=(name:String|Nil)-instance-method">
+    <div class="entry-detail" id="reference_allele=(reference_allele:Char|String)-instance-method">
       <div class="signature">
         
-        def <strong>name=</strong>(name : String | Nil)
+        def <strong>reference_allele=</strong>(reference_allele : Char | String)
 
-        <a class="method-permalink" href="#name%3D%28name%3AString%7CNil%29-instance-method">#</a>
+        <a class="method-permalink" href="#reference_allele%3D%28reference_allele%3AChar%7CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="position:Int32-instance-method">
+    <div class="entry-detail" id="reference_position:Int32-instance-method">
       <div class="signature">
         
-        def <strong>position</strong> : Int32
+        def <strong>reference_position</strong> : Int32
 
-        <a class="method-permalink" href="#position%3AInt32-instance-method">#</a>
+        <a class="method-permalink" href="#reference_position%3AInt32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="position=(position:Int32)-instance-method">
+    <div class="entry-detail" id="reference_position=(reference_position:Int32)-instance-method">
       <div class="signature">
         
-        def <strong>position=</strong>(position : Int32)
+        def <strong>reference_position=</strong>(reference_position : Int32)
 
-        <a class="method-permalink" href="#position%3D%28position%3AInt32%29-instance-method">#</a>
+        <a class="method-permalink" href="#reference_position%3D%28reference_position%3AInt32%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="ref_seq:Char|String-instance-method">
+    <div class="entry-detail" id="sequence_name:String|Nil-instance-method">
       <div class="signature">
         
-        def <strong>ref_seq</strong> : Char | String
+        def <strong>sequence_name</strong> : String | Nil
 
-        <a class="method-permalink" href="#ref_seq%3AChar%7CString-instance-method">#</a>
+        <a class="method-permalink" href="#sequence_name%3AString%7CNil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="ref_seq=(ref_seq:Char|String)-instance-method">
+    <div class="entry-detail" id="sequence_name=(sequence_name:String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>ref_seq=</strong>(ref_seq : Char | String)
+        def <strong>sequence_name=</strong>(sequence_name : String | Nil)
 
-        <a class="method-permalink" href="#ref_seq%3D%28ref_seq%3AChar%7CString%29-instance-method">#</a>
+        <a class="method-permalink" href="#sequence_name%3D%28sequence_name%3AString%7CNil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -600,7 +600,7 @@ which includes its class name and its object address.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,7 +629,7 @@ typically intended for users.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/mutate/event_record.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/mutate/event_record.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>

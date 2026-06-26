@@ -244,7 +244,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/core_utils.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/core_utils.cr#L2" target="_blank">
         wgsim/core_utils.cr
       </a>
     
@@ -265,28 +265,83 @@
   
   <dl>
     
-      <dt class="entry-const" id="ACG">
-        <strong>ACG</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">71_u8</span>]</code>
+      <dt class="entry-const" id="BASE_A">
+        <strong>BASE_A</strong> = <code><span class="s">&#39;A&#39;</span>.ord.to_u8</code>
       </dt>
       
     
-      <dt class="entry-const" id="ACGT">
-        <strong>ACGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
+      <dt class="entry-const" id="BASE_C">
+        <strong>BASE_C</strong> = <code><span class="s">&#39;C&#39;</span>.ord.to_u8</code>
       </dt>
       
     
-      <dt class="entry-const" id="ACT">
-        <strong>ACT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">67_u8</span>, <span class="n">84_u8</span>]</code>
+      <dt class="entry-const" id="BASE_G">
+        <strong>BASE_G</strong> = <code><span class="s">&#39;G&#39;</span>.ord.to_u8</code>
       </dt>
       
     
-      <dt class="entry-const" id="AGT">
-        <strong>AGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">65_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
+      <dt class="entry-const" id="BASE_N">
+        <strong>BASE_N</strong> = <code><span class="s">&#39;N&#39;</span>.ord.to_u8</code>
       </dt>
       
     
-      <dt class="entry-const" id="CGT">
-        <strong>CGT</strong> = <code><span class="t">StaticArray</span>[<span class="n">67_u8</span>, <span class="n">71_u8</span>, <span class="n">84_u8</span>]</code>
+      <dt class="entry-const" id="BASE_T">
+        <strong>BASE_T</strong> = <code><span class="s">&#39;T&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="COMPLEMENT_BASES">
+        <strong>COMPLEMENT_BASES</strong> = <code>{<span class="t">BASE_A</span> <span class="o">=&gt;</span> <span class="t">BASE_T</span>, <span class="t">BASE_C</span> <span class="o">=&gt;</span> <span class="t">BASE_G</span>, <span class="t">BASE_G</span> <span class="o">=&gt;</span> <span class="t">BASE_C</span>, <span class="t">BASE_T</span> <span class="o">=&gt;</span> <span class="t">BASE_A</span>, <span class="t">BASE_N</span> <span class="o">=&gt;</span> <span class="t">BASE_N</span>}</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DNA_BASES">
+        <strong>DNA_BASES</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_A</span>, <span class="t">BASE_C</span>, <span class="t">BASE_G</span>, <span class="t">BASE_T</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOWERCASE_BASE_A">
+        <strong>LOWERCASE_BASE_A</strong> = <code><span class="s">&#39;a&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOWERCASE_BASE_C">
+        <strong>LOWERCASE_BASE_C</strong> = <code><span class="s">&#39;c&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOWERCASE_BASE_G">
+        <strong>LOWERCASE_BASE_G</strong> = <code><span class="s">&#39;g&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOWERCASE_BASE_N">
+        <strong>LOWERCASE_BASE_N</strong> = <code><span class="s">&#39;n&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LOWERCASE_BASE_T">
+        <strong>LOWERCASE_BASE_T</strong> = <code><span class="s">&#39;t&#39;</span>.ord.to_u8</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SUBSTITUTIONS_FOR_A">
+        <strong>SUBSTITUTIONS_FOR_A</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_C</span>, <span class="t">BASE_G</span>, <span class="t">BASE_T</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SUBSTITUTIONS_FOR_C">
+        <strong>SUBSTITUTIONS_FOR_C</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_A</span>, <span class="t">BASE_G</span>, <span class="t">BASE_T</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SUBSTITUTIONS_FOR_G">
+        <strong>SUBSTITUTIONS_FOR_G</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_A</span>, <span class="t">BASE_C</span>, <span class="t">BASE_T</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SUBSTITUTIONS_FOR_T">
+        <strong>SUBSTITUTIONS_FOR_T</strong> = <code><span class="t">StaticArray</span>[<span class="t">BASE_A</span>, <span class="t">BASE_C</span>, <span class="t">BASE_G</span>]</code>
       </dt>
       
     
@@ -366,7 +421,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/core_utils.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/core_utils.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -382,7 +437,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/core_utils.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/core_utils.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -398,7 +453,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/core_utils.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/core_utils.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -414,7 +469,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/c0b14865d8cead5c5394786c3330da217bfdfb81/src/wgsim/core_utils.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/core_utils.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
