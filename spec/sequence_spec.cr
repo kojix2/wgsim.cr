@@ -54,4 +54,25 @@ describe Wgsim::Sequence::Core do
 
     pairs.should eq(0)
   end
+
+  it "normalizes lowercase bases before generating reads" do
+    core = Wgsim::Sequence::Core.new(
+      average_depth: 1.0,
+      distance: 8,
+      std_deviation: 0,
+      size_left: 4,
+      size_right: 4,
+      error_rate: 0.01,
+      max_ambiguous_ratio: 1.0,
+      seed: 1u64
+    )
+
+    records = [] of Wgsim::FastqRecord
+    core.run("lowercase", "acgtacgt".to_slice) do |record1, record2|
+      records << record1
+      records << record2
+    end
+
+    records.map { |record| String.new(record.sequence) }.should eq(["ACGT", "ACGT"])
+  end
 end

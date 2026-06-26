@@ -71,4 +71,20 @@ describe Wgsim::Mutate::Core do
     elog.first.ref_seq.should eq("AAAA")
     elog.first.alt_seq.should eq('.')
   end
+
+  it "normalizes lowercase bases before mutating" do
+    core = Wgsim::Mutate::Core.new(
+      substitution_rate: 0.0,
+      insertion_rate: 0.0,
+      deletion_rate: 0.0,
+      insertion_extension_probability: 0.0,
+      deletion_extension_probability: 0.0,
+      seed: 1
+    )
+
+    res, elog = core.simulate_mutations("acgtn".to_slice)
+
+    elog.should be_empty
+    res.format.should eq("ACGTN")
+  end
 end

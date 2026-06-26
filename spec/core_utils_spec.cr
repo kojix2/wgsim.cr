@@ -30,5 +30,6 @@ describe Wgsim::CoreUtils do
     core.reverse_complement("ACGTN".to_slice).should eq "NACGT".to_slice
     core.reverse_complement("ACGTACGT".to_slice).should eq "ACGTACGT".to_slice
     core.reverse_complement("ACGTACGTN".to_slice).should eq "NACGTACGT".to_slice
+    core.reverse_complement("acgtn".to_slice).should eq "NACGT".to_slice
   end
 end

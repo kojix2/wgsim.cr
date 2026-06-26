@@ -46,6 +46,7 @@ module Wgsim
         event_log = [] of EventRecord
 
         slice = sequence.map do |nucleotide|
+          nucleotide = normalize_base(nucleotide)
           index += 1 # 1-based index
           if previous_ref_base_is_deletion?(deletions)
             if extend_deletion?

@@ -30,6 +30,7 @@ module Wgsim
       end
 
       def run(name, sequence, &)
+        sequence = normalize_sequence(sequence)
         contig_length = sequence.size
         read_name = read_name_for(name)
 

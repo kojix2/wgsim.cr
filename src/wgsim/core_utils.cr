@@ -11,7 +11,29 @@ module Wgsim
     #   perform_substitution(base, i)
     # end
 
+    def normalize_base(base : UInt8) : UInt8
+      case base
+      when 97u8 # a
+        65u8
+      when 99u8 # c
+        67u8
+      when 103u8 # g
+        71u8
+      when 116u8 # t
+        84u8
+      when 110u8 # n
+        78u8
+      else
+        base
+      end
+    end
+
+    def normalize_sequence(sequence : Slice(UInt8)) : Slice(UInt8)
+      sequence.map { |base| normalize_base(base) }
+    end
+
     def perform_substitution(base : UInt8, i : Int) : UInt8
+      base = normalize_base(base)
       case base
       when 65u8 # A
         CGT[i]
@@ -37,6 +59,7 @@ module Wgsim
       }
 
       sequence.map do |nucleotide|
+        nucleotide = normalize_base(nucleotide)
         complements.fetch(nucleotide) { raise "Invalid nucleotide: #{nucleotide}" }
       end.reverse!
     end
