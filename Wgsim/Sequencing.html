@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Sequence - wgsim main</title>
+  <title>Wgsim::Sequencing - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -79,11 +79,6 @@
   
   <li class=" " data-id="wgsim/Wgsim/Dna" data-name="wgsim::dna">
       <a href="../Wgsim/Dna.html">Dna</a>
-      
-    </li>
-  
-  <li class=" " data-id="wgsim/Wgsim/FastqRecord" data-name="wgsim::fastqrecord">
-      <a href="../Wgsim/FastqRecord.html">FastqRecord</a>
       
     </li>
   
@@ -167,23 +162,28 @@
       
     </li>
   
-  <li class="parent open current" data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
-      <a href="../Wgsim/Sequence.html">Sequence</a>
+  <li class="parent open current" data-id="wgsim/Wgsim/Sequencing" data-name="wgsim::sequencing">
+      <a href="../Wgsim/Sequencing.html">Sequencing</a>
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/Option" data-name="wgsim::sequence::option">
-      <a href="../Wgsim/Sequence/Option.html">Option</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequencing/ErrorModel" data-name="wgsim::sequencing::errormodel">
+      <a href="../Wgsim/Sequencing/ErrorModel.html">ErrorModel</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/ReadPairSimulator" data-name="wgsim::sequence::readpairsimulator">
-      <a href="../Wgsim/Sequence/ReadPairSimulator.html">ReadPairSimulator</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequencing/FastqRecord" data-name="wgsim::sequencing::fastqrecord">
+      <a href="../Wgsim/Sequencing/FastqRecord.html">FastqRecord</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/SequencingErrorModel" data-name="wgsim::sequence::sequencingerrormodel">
-      <a href="../Wgsim/Sequence/SequencingErrorModel.html">SequencingErrorModel</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequencing/Option" data-name="wgsim::sequencing::option">
+      <a href="../Wgsim/Sequencing/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Sequencing/ReadPairSimulator" data-name="wgsim::sequencing::readpairsimulator">
+      <a href="../Wgsim/Sequencing/ReadPairSimulator.html">ReadPairSimulator</a>
       
     </li>
   
@@ -208,12 +208,12 @@
 
   <span class="kind">
     class
-  </span> Wgsim::<wbr>Sequence
+  </span> Wgsim::<wbr>Sequencing
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/Sequence.html">Wgsim::Sequence</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/Sequencing.html">Wgsim::Sequencing</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -243,29 +243,36 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L8" target="_blank">
-        wgsim/sequence.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L8" target="_blank">
+        wgsim/sequencing.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence/option.cr#L2" target="_blank">
-        wgsim/sequence/option.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing/error_model.cr#L4" target="_blank">
+        wgsim/sequencing/error_model.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence/read_pair_simulator.cr#L6" target="_blank">
-        wgsim/sequence/read_pair_simulator.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing/fastq_record.cr#L2" target="_blank">
+        wgsim/sequencing/fastq_record.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence/sequencing_error_model.cr#L4" target="_blank">
-        wgsim/sequence/sequencing_error_model.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing/option.cr#L2" target="_blank">
+        wgsim/sequencing/option.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing/read_pair_simulator.cr#L6" target="_blank">
+        wgsim/sequencing/read_pair_simulator.cr
       </a>
     
     <br/>
@@ -403,7 +410,7 @@
     <div class="entry-detail" id="new(option:Option)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(option : <a href="../Wgsim/Sequence/Option.html">Option</a>)
+        def self.<strong>new</strong>(option : <a href="../Wgsim/Sequencing/Option.html">Option</a>)
 
         <a class="method-permalink" href="#new%28option%3AOption%29-class-method">#</a>
       </div>
@@ -411,7 +418,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -439,7 +446,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -461,7 +468,7 @@
     <div class="entry-detail" id="option:Option-instance-method">
       <div class="signature">
         
-        def <strong>option</strong> : <a href="../Wgsim/Sequence/Option.html">Option</a>
+        def <strong>option</strong> : <a href="../Wgsim/Sequencing/Option.html">Option</a>
 
         <a class="method-permalink" href="#option%3AOption-instance-method">#</a>
       </div>
@@ -469,7 +476,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -485,7 +492,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -501,7 +508,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -509,7 +516,7 @@
     <div class="entry-detail" id="read_pair_simulator:ReadPairSimulator-instance-method">
       <div class="signature">
         
-        def <strong>read_pair_simulator</strong> : <a href="../Wgsim/Sequence/ReadPairSimulator.html">ReadPairSimulator</a>
+        def <strong>read_pair_simulator</strong> : <a href="../Wgsim/Sequencing/ReadPairSimulator.html">ReadPairSimulator</a>
 
         <a class="method-permalink" href="#read_pair_simulator%3AReadPairSimulator-instance-method">#</a>
       </div>
@@ -517,7 +524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -533,7 +540,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -549,7 +556,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/b19838ee05d99f423af1f64314682927a2da884d/src/wgsim/sequence.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/e33ce1b7280e67e29702fe455ea513260fe199ce/src/wgsim/sequencing.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
