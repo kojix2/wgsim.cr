@@ -19,5 +19,11 @@ module Wgsim
       error("#{exception.class}#{message ? " #{message}" : ""}", io)
       io.puts exception.backtrace.join("\n") if debug
     end
+
+    def self.summary(summary : String, io : IO = STDERR) : Nil
+      summary.split('\n').each do |line|
+        info("# #{line}", io)
+      end
+    end
   end
 end

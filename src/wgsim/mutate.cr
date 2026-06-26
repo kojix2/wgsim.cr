@@ -31,14 +31,8 @@ module Wgsim
     end
 
     def run
-      log_parameters
+      Console.summary(option.summary)
       process_sequences
-    end
-
-    private def log_parameters
-      option.summary.split("\n").each do |line|
-        Console.info("# #{line}")
-      end
     end
 
     private def process_sequences

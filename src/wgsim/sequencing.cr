@@ -39,6 +39,7 @@ module Wgsim
     end
 
     def run
+      Console.summary(option.summary)
       Fastx::Fastq::Writer.open(read1_fastq) do |read1_writer|
         Fastx::Fastq::Writer.open(read2_fastq) do |read2_writer|
           Fastx::Fasta::Reader.open(reference) do |reader|

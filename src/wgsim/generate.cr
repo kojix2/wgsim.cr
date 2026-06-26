@@ -1,4 +1,5 @@
 require "fastx"
+require "./console"
 require "./generate/option"
 require "./generate/random_reference_generator"
 
@@ -22,6 +23,7 @@ module Wgsim
     end
 
     def run
+      Console.summary(option.summary)
       writer = Fastx::Fasta::Writer.new(STDOUT, line_width: FASTA_LINE_WIDTH)
       reference_generator.generate_sequences do |name, sequence|
         writer.write(name, sequence)
