@@ -248,7 +248,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L2" target="_blank">
         wgsim/sequence/fastq_record.cr
       </a>
     
@@ -271,7 +271,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28read_name%3AString%2Cpair_index%3AInt32%2Cfragment_start%3AInt32%2Cinsert_size%3AInt32%2Cmate_index%3AInt32%2Cread_sequence%3ASlice%28UInt8%29%2Cquality_char%3AChar%29-class-method" class="signature"><strong>.new</strong>(read_name : String, pair_index : Int32, fragment_start : Int32, insert_size : Int32, mate_index : Int32, read_sequence : Slice(UInt8), quality_char : Char)</a>
+        <a href="#new%28read_name%3AString%2Cpair_index%3AInt32%2Cfragment_start%3AInt32%2Cinsert_size%3AInt32%2Cmate_index%3AInt32%2Cread_sequence%3ASlice%28UInt8%29%2Cquality_sequence%3ASlice%28UInt8%29%29-class-method" class="signature"><strong>.new</strong>(read_name : String, pair_index : Int32, fragment_start : Int32, insert_size : Int32, mate_index : Int32, read_sequence : Slice(UInt8), quality_sequence : Slice(UInt8))</a>
         
       </li>
     
@@ -300,6 +300,11 @@
     
       <li class="entry-summary">
         <a href="#fragment_start%3D%28fragment_start%3AInt32%29-instance-method" class="signature"><strong>#fragment_start=</strong>(fragment_start : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#identifier%3AString-instance-method" class="signature"><strong>#identifier</strong> : String</a>
         
       </li>
     
@@ -334,12 +339,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#quality_char%3AChar-instance-method" class="signature"><strong>#quality_char</strong> : Char</a>
+        <a href="#quality_sequence%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#quality_sequence</strong> : Slice(UInt8)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#quality_char%3D%28quality_char%3AChar%29-instance-method" class="signature"><strong>#quality_char=</strong>(quality_char : Char)</a>
+        <a href="#quality_sequence%3D%28quality_sequence%3ASlice%28UInt8%29%29-instance-method" class="signature"><strong>#quality_sequence=</strong>(quality_sequence : Slice(UInt8))</a>
         
       </li>
     
@@ -434,18 +439,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(read_name:String,pair_index:Int32,fragment_start:Int32,insert_size:Int32,mate_index:Int32,read_sequence:Slice(UInt8),quality_char:Char)-class-method">
+    <div class="entry-detail" id="new(read_name:String,pair_index:Int32,fragment_start:Int32,insert_size:Int32,mate_index:Int32,read_sequence:Slice(UInt8),quality_sequence:Slice(UInt8))-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(read_name : String, pair_index : Int32, fragment_start : Int32, insert_size : Int32, mate_index : Int32, read_sequence : Slice(UInt8), quality_char : Char)
+        def self.<strong>new</strong>(read_name : String, pair_index : Int32, fragment_start : Int32, insert_size : Int32, mate_index : Int32, read_sequence : Slice(UInt8), quality_sequence : Slice(UInt8))
 
-        <a class="method-permalink" href="#new%28read_name%3AString%2Cpair_index%3AInt32%2Cfragment_start%3AInt32%2Cinsert_size%3AInt32%2Cmate_index%3AInt32%2Cread_sequence%3ASlice%28UInt8%29%2Cquality_char%3AChar%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28read_name%3AString%2Cpair_index%3AInt32%2Cfragment_start%3AInt32%2Cinsert_size%3AInt32%2Cmate_index%3AInt32%2Cread_sequence%3ASlice%28UInt8%29%2Cquality_sequence%3ASlice%28UInt8%29%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -477,7 +482,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -493,7 +498,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="identifier:String-instance-method">
+      <div class="signature">
+        
+        def <strong>identifier</strong> : String
+
+        <a class="method-permalink" href="#identifier%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -509,7 +530,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -525,7 +546,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -541,7 +562,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -557,7 +578,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -573,7 +594,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -589,39 +610,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="quality_char:Char-instance-method">
+    <div class="entry-detail" id="quality_sequence:Slice(UInt8)-instance-method">
       <div class="signature">
         
-        def <strong>quality_char</strong> : Char
+        def <strong>quality_sequence</strong> : Slice(UInt8)
 
-        <a class="method-permalink" href="#quality_char%3AChar-instance-method">#</a>
+        <a class="method-permalink" href="#quality_sequence%3ASlice%28UInt8%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="quality_char=(quality_char:Char)-instance-method">
+    <div class="entry-detail" id="quality_sequence=(quality_sequence:Slice(UInt8))-instance-method">
       <div class="signature">
         
-        def <strong>quality_char=</strong>(quality_char : Char)
+        def <strong>quality_sequence=</strong>(quality_sequence : Slice(UInt8))
 
-        <a class="method-permalink" href="#quality_char%3D%28quality_char%3AChar%29-instance-method">#</a>
+        <a class="method-permalink" href="#quality_sequence%3D%28quality_sequence%3ASlice%28UInt8%29%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -637,7 +658,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -653,7 +674,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -669,7 +690,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -685,7 +706,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -710,7 +731,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -731,7 +752,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/3023cdb4032f793b32f55a4e3a93ae66eb5e31e0/src/wgsim/sequence/fastq_record.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/c4f20e9b6082a1ac6af4fe188bc9b9555a70f2e0/src/wgsim/sequence/fastq_record.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
