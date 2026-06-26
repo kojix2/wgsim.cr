@@ -41,19 +41,16 @@ module Wgsim
     end
 
     private def process_sequences
-      reader = Fastx::Fasta::Reader.new(reference)
-      fasta_writer = Fastx::Fasta::Writer.new(mutated_fasta, line_width: ReferenceSequence::DEFAULT_FASTA_LINE_WIDTH)
-      mutation_io = File.open(mutation_event_log, "w")
-      begin
-        reader.each_bytes do |name, sequence|
-          name_string = String.new(name)
-          STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
-          process_sequence(name_string, sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
+      Fastx::Fasta::Reader.open(reference) do |reader|
+        Fastx::Fasta::Writer.open(mutated_fasta, line_width: ReferenceSequence::DEFAULT_FASTA_LINE_WIDTH) do |fasta_writer|
+          File.open(mutation_event_log, "w") do |mutation_io|
+            reader.each_bytes do |name, sequence|
+              name_string = String.new(name)
+              STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
+              process_sequence(name_string, sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
+            end
+          end
         end
-      ensure
-        reader.try &.close
-        fasta_writer.try &.close
-        mutation_io.try &.close
       end
     end
 
