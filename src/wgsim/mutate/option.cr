@@ -24,6 +24,27 @@ module Wgsim
         Deletion  extension probability: #{deletion_extension_probability}
         SUMMARY
       end
+
+      def validate! : Nil
+        raise ArgumentError.new("Ploidy must be at least 1") if ploidy < 1
+
+        validate_probability("substitution rate", substitution_rate)
+        validate_probability("insertion rate", insertion_rate)
+        validate_probability("deletion rate", deletion_rate)
+        validate_probability("insertion extension probability", insertion_extension_probability)
+        validate_probability("deletion extension probability", deletion_extension_probability)
+
+        total_rate = substitution_rate + insertion_rate + deletion_rate
+        if total_rate > 1.0
+          raise ArgumentError.new("The sum of substitution, insertion, and deletion rates must be <= 1.0")
+        end
+      end
+
+      private def validate_probability(name : String, value : Float64) : Nil
+        unless value >= 0.0 && value <= 1.0
+          raise ArgumentError.new("#{name} must be between 0.0 and 1.0")
+        end
+      end
     end
   end
 end

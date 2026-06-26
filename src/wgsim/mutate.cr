@@ -18,6 +18,7 @@ module Wgsim
       @reference = option.reference || raise("Reference sequence is required")
       @output_fasta = option.output_fasta || raise("Output FASTA file is required")
       @output_mutation = option.output_mutation || raise("Output mutation file is required")
+      option.validate!
       @core = Core.new(
         substitution_rate: option.substitution_rate,
         insertion_rate: option.insertion_rate,
@@ -41,45 +42,43 @@ module Wgsim
 
     private def process_sequences
       reader = Fastx::Fasta::Reader.new(reference)
-      fo = File.open(output_fasta, "w")
-      mo = File.open(output_mutation, "w")
+      fasta_io = File.open(output_fasta, "w")
+      mutation_io = File.open(output_mutation, "w")
       begin
         reader.each_bytes do |name, sequence|
           name_string = String.new(name)
           STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
-          process_sequence(name_string, sequence, fout: fo, mout: mo)
+          process_sequence(name_string, sequence, fasta_io: fasta_io, mutation_io: mutation_io)
         end
-      rescue ex
-        STDERR.puts "Error processing sequences: #{ex.message}"
       ensure
         reader.try &.close
-        fo.try &.close
-        mo.try &.close
+        fasta_io.try &.close
+        mutation_io.try &.close
       end
     end
 
-    private def process_sequence(name : String, sequence : Bytes, fout : IO, mout : IO)
+    private def process_sequence(name : String, sequence : Bytes, fasta_io : IO, mutation_io : IO)
       reference_sequence = sequence
       if option.ploidy == 1
-        simulate_and_output_sequence(name, reference_sequence, fo: fout, mo: mout)
+        simulate_and_output_sequence(name, reference_sequence, fasta_io: fasta_io, mutation_io: mutation_io)
       else
         option.ploidy.times do |i|
-          simulate_and_output_sequence(name, reference_sequence, i + 1, fo: fout, mo: mout)
+          simulate_and_output_sequence(name, reference_sequence, i + 1, fasta_io: fasta_io, mutation_io: mutation_io)
         end
       end
     end
 
-    private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil, fo = STDOUT, mo = STDERR)
+    private def simulate_and_output_sequence(name : String, reference_sequence : Slice(UInt8), index = nil, fasta_io = STDOUT, mutation_io = STDERR)
       pname = "#{name.split.first}"
       pname += "_#{index}" if index
-      fo.puts ">#{pname}"
+      fasta_io.puts ">#{pname}"
       mutated_sequence, event_log = core.simulate_mutations(reference_sequence)
       event_log.each do |event_record|
         event_record.name = pname
-        event_record.to_s(mo)
-        mo.puts
+        event_record.to_s(mutation_io)
+        mutation_io.puts
       end
-      fo.puts mutated_sequence.format
+      fasta_io.puts mutated_sequence.format
     end
   end
 end

@@ -34,6 +34,25 @@ module Wgsim
         Output file 2: #{output2}
         SUMMARY
       end
+
+      def validate! : Nil
+        validate_probability("error rate", error_rate, allow_zero: false)
+        validate_probability("maximum ambiguous base ratio", max_ambiguous_ratio)
+
+        raise ArgumentError.new("Distance between reads must be greater than 0") if distance <= 0
+        raise ArgumentError.new("Standard deviation must be >= 0") if std_deviation < 0
+        raise ArgumentError.new("Average depth must be >= 0.0") if average_depth < 0.0
+        raise ArgumentError.new("Read size left must be greater than 0") if size_left <= 0
+        raise ArgumentError.new("Read size right must be greater than 0") if size_right <= 0
+      end
+
+      private def validate_probability(name : String, value : Float64, allow_zero : Bool = true) : Nil
+        lower_bound_ok = allow_zero ? value >= 0.0 : value > 0.0
+        unless lower_bound_ok && value <= 1.0
+          lower_bound = allow_zero ? "0.0" : "greater than 0.0"
+          raise ArgumentError.new("#{name} must be #{lower_bound} and <= 1.0")
+        end
+      end
     end
   end
 end

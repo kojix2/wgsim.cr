@@ -58,8 +58,10 @@ module Wgsim
         while pair_index < n_pairs
           # progress report
           if pair_index % progress_step == 0
-            puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
+            STDERR.puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
           end
+          current_pair_index = pair_index
+          pair_index += 1
 
           # Insert size is the length of the DNA fragment excluding the adapters.
           # See image at https://www.biostars.org/p/95803/
@@ -83,19 +85,17 @@ module Wgsim
           read1_sequence, read2_sequence = generate_pair_sequence(sequence, position, insert_size, flip)
 
           # Skip if the read contains too many ambiguous bases.
-          next if read1_sequence.count('N') / read1_sequence.size > max_ambiguous_ratio ||
-                  read2_sequence.count('N') / read2_sequence.size > max_ambiguous_ratio
+          next if read1_sequence.count(78u8).to_f / read1_sequence.size > max_ambiguous_ratio ||
+                  read2_sequence.count(78u8).to_f / read2_sequence.size > max_ambiguous_ratio
 
           # generate sequence error
           read1_sequence = generate_sequencing_error(read1_sequence)
           read2_sequence = generate_sequencing_error(read2_sequence)
 
           yield(
-            FastqRecord.new(read_name, pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
-            FastqRecord.new(read_name, pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
+            FastqRecord.new(read_name, current_pair_index, position, insert_size, 0, read1_sequence, ascii_quality),
+            FastqRecord.new(read_name, current_pair_index, position, insert_size, 1, read2_sequence, ascii_quality)
           )
-
-          pair_index += 1
         end
       end
 

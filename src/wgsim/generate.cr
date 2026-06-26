@@ -11,6 +11,7 @@ module Wgsim
     end
 
     def initialize(@option : Option)
+      option.validate!
       @core = Core.new(
         chromosome_length: option.chromosome_length,
         seed: option.seed

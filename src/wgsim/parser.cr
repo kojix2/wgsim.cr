@@ -194,7 +194,7 @@ module Wgsim
           "Usage: wgsim gen [options]\n"
         )
 
-        on("-l", "--length INT", "Length of the reference sequence [\"1000,700\"]") do |v|
+        on("-l", "--length INT", "Length of the reference sequence [\"#{gopt.chromosome_length.join(",")}\"]") do |v|
           gopt.chromosome_length = v.split(",").map(&.to_i32)
         end
 
