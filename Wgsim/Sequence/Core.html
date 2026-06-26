@@ -242,7 +242,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L6" target="_blank">
         wgsim/sequence/core.cr
       </a>
     
@@ -322,6 +322,11 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#add_sequencing_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#add_sequencing_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#average_depth%3AFloat64-instance-method" class="signature"><strong>#average_depth</strong> : Float64</a>
         
       </li>
@@ -332,27 +337,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#build_read_pair_sequences%28contig_sequence%2Cfragment_start%2Cinsert_size%2Cread1_starts_at_fragment_left%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#build_read_pair_sequences</strong>(contig_sequence, fragment_start, insert_size, read1_starts_at_fragment_left : Bool) : Tuple(Slice(UInt8), Slice(UInt8))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#error_rate%3AFloat64-instance-method" class="signature"><strong>#error_rate</strong> : Float64</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#error_rate%3D%28error_rate%3AFloat64%29-instance-method" class="signature"><strong>#error_rate=</strong>(error_rate : Float64)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#error_rate_to_quality_char%28e%3AFloat64%29%3AChar-instance-method" class="signature"><strong>#error_rate_to_quality_char</strong>(e : Float64) : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#generate_pair_sequence%28contig_sequence%2Cfragment_start%2Cinsert_size%2Cread1_starts_at_fragment_left%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method" class="signature"><strong>#generate_pair_sequence</strong>(contig_sequence, fragment_start, insert_size, read1_starts_at_fragment_left : Bool) : Tuple(Slice(UInt8), Slice(UInt8))</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
         
       </li>
     
@@ -397,6 +392,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#quality_char_for_error_rate%28error_rate%3AFloat64%29%3AChar-instance-method" class="signature"><strong>#quality_char_for_error_rate</strong>(error_rate : Float64) : Char</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#rand%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#rand</strong>(*args, **options)</a>
         
       </li>
@@ -413,16 +413,6 @@
     
       <li class="entry-summary">
         <a href="#randn%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#randn</strong>(*args, **options, &)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#random_fragment_start%28contig_length%3AInt%2Cinsert_size%3AInt%29%3AInt32-instance-method" class="signature"><strong>#random_fragment_start</strong>(contig_length : Int, insert_size : Int) : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#random_insert_size%28contig_length%3AInt32%29%3AInt32-instance-method" class="signature"><strong>#random_insert_size</strong>(contig_length : Int32) : Int32</a>
         
       </li>
     
@@ -447,7 +437,17 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#run%28name%2Csequence%2C%26%29-instance-method" class="signature"><strong>#run</strong>(name, sequence, &)</a>
+        <a href="#sample_fragment_start%28contig_length%3AInt%2Cinsert_size%3AInt%29%3AInt32-instance-method" class="signature"><strong>#sample_fragment_start</strong>(contig_length : Int, insert_size : Int) : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sample_insert_size%28contig_length%3AInt32%29%3AInt32-instance-method" class="signature"><strong>#sample_insert_size</strong>(contig_length : Int32) : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#simulate_read_pairs%28name%2Csequence%2C%26%29-instance-method" class="signature"><strong>#simulate_read_pairs</strong>(name, sequence, &)</a>
         
       </li>
     
@@ -543,7 +543,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -564,6 +564,22 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="add_sequencing_errors(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
+      <div class="signature">
+        
+        def <strong>add_sequencing_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
+
+        <a class="method-permalink" href="#add_sequencing_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L125" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="average_depth:Float64-instance-method">
       <div class="signature">
         
@@ -575,7 +591,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -591,7 +607,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="build_read_pair_sequences(contig_sequence,fragment_start,insert_size,read1_starts_at_fragment_left:Bool):Tuple(Slice(UInt8),Slice(UInt8))-instance-method">
+      <div class="signature">
+        
+        def <strong>build_read_pair_sequences</strong>(contig_sequence, fragment_start, insert_size, read1_starts_at_fragment_left : Bool) : Tuple(Slice(UInt8), Slice(UInt8))
+
+        <a class="method-permalink" href="#build_read_pair_sequences%28contig_sequence%2Cfragment_start%2Cinsert_size%2Cread1_starts_at_fragment_left%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -607,7 +639,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -623,55 +655,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="error_rate_to_quality_char(e:Float64):Char-instance-method">
-      <div class="signature">
-        
-        def <strong>error_rate_to_quality_char</strong>(e : Float64) : Char
-
-        <a class="method-permalink" href="#error_rate_to_quality_char%28e%3AFloat64%29%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L121" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="generate_pair_sequence(contig_sequence,fragment_start,insert_size,read1_starts_at_fragment_left:Bool):Tuple(Slice(UInt8),Slice(UInt8))-instance-method">
-      <div class="signature">
-        
-        def <strong>generate_pair_sequence</strong>(contig_sequence, fragment_start, insert_size, read1_starts_at_fragment_left : Bool) : Tuple(Slice(UInt8), Slice(UInt8))
-
-        <a class="method-permalink" href="#generate_pair_sequence%28contig_sequence%2Cfragment_start%2Cinsert_size%2Cread1_starts_at_fragment_left%3ABool%29%3ATuple%28Slice%28UInt8%29%2CSlice%28UInt8%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L107" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="generate_sequencing_error(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
-      <div class="signature">
-        
-        def <strong>generate_sequencing_error</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
-
-        <a class="method-permalink" href="#generate_sequencing_error%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -687,7 +671,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -703,7 +687,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -719,7 +703,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -735,7 +719,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -751,7 +735,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -767,7 +751,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -783,7 +767,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -799,7 +783,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quality_char_for_error_rate(error_rate:Float64):Char-instance-method">
+      <div class="signature">
+        
+        def <strong>quality_char_for_error_rate</strong>(error_rate : Float64) : Char
+
+        <a class="method-permalink" href="#quality_char_for_error_rate%28error_rate%3AFloat64%29%3AChar-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L121" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -815,7 +815,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -831,7 +831,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +847,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -863,39 +863,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="random_fragment_start(contig_length:Int,insert_size:Int):Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>random_fragment_start</strong>(contig_length : Int, insert_size : Int) : Int32
-
-        <a class="method-permalink" href="#random_fragment_start%28contig_length%3AInt%2Cinsert_size%3AInt%29%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L150" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="random_insert_size(contig_length:Int32):Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>random_insert_size</strong>(contig_length : Int32) : Int32
-
-        <a class="method-permalink" href="#random_insert_size%28contig_length%3AInt32%29%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L136" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -911,7 +879,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -927,7 +895,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -943,7 +911,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -959,23 +927,55 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="run(name,sequence,&amp;)-instance-method">
+    <div class="entry-detail" id="sample_fragment_start(contig_length:Int,insert_size:Int):Int32-instance-method">
       <div class="signature">
         
-        def <strong>run</strong>(name, sequence, &)
+        def <strong>sample_fragment_start</strong>(contig_length : Int, insert_size : Int) : Int32
 
-        <a class="method-permalink" href="#run%28name%2Csequence%2C%26%29-instance-method">#</a>
+        <a class="method-permalink" href="#sample_fragment_start%28contig_length%3AInt%2Cinsert_size%3AInt%29%3AInt32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/e482d2b815b867ada5885c2b7390d8e70ac1891f/src/wgsim/sequence/core.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sample_insert_size(contig_length:Int32):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>sample_insert_size</strong>(contig_length : Int32) : Int32
+
+        <a class="method-permalink" href="#sample_insert_size%28contig_length%3AInt32%29%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="simulate_read_pairs(name,sequence,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>simulate_read_pairs</strong>(name, sequence, &)
+
+        <a class="method-permalink" href="#simulate_read_pairs%28name%2Csequence%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/sequence/core.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
