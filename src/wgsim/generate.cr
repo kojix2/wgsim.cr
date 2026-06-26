@@ -1,12 +1,12 @@
 require "./generate/option"
-require "./generate/core"
+require "./generate/random_reference_generator"
 
 module Wgsim
   class Generate
     FASTA_LINE_WIDTH = 80
 
     getter option : Option
-    getter core : Core
+    getter reference_generator : RandomReferenceGenerator
 
     def self.run(option)
       new(option).run
@@ -14,14 +14,14 @@ module Wgsim
 
     def initialize(@option : Option)
       option.validate!
-      @core = Core.new(
+      @reference_generator = RandomReferenceGenerator.new(
         chromosome_lengths: option.chromosome_lengths,
         seed: option.seed
       )
     end
 
     def run
-      core.generate_sequences do |name, sequence|
+      reference_generator.generate_sequences do |name, sequence|
         puts ">#{name}"
         puts wrap_fasta_sequence(sequence, FASTA_LINE_WIDTH)
         # puts

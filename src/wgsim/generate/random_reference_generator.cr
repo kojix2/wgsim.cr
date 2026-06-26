@@ -3,7 +3,7 @@ require "../core_utils"
 
 module Wgsim
   class Generate
-    class Core
+    class RandomReferenceGenerator
       include CoreUtils
 
       CHROMOSOME_NAME_PREFIX = "chr"

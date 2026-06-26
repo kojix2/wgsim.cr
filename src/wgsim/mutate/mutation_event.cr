@@ -1,8 +1,8 @@
-require "../mut_type"
+require "../mutation_type"
 
 module Wgsim
-  class EventRecord
-    property mutation_type : MutType
+  class MutationEvent
+    property mutation_type : MutationType
     property reference_position : Int32
     property reference_allele : (Char | String)
     property alternate_allele : (Char | String)

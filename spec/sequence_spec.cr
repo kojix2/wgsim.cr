@@ -1,8 +1,8 @@
 require "./spec_helper"
 
-describe Wgsim::Sequence::Core do
+describe Wgsim::Sequence::ReadPairSimulator do
   it "re-samples insert size until it fits in the contig" do
-    core = Wgsim::Sequence::Core.new(
+    simulator = Wgsim::Sequence::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 300,
       insert_size_std_dev: 100,
@@ -14,14 +14,14 @@ describe Wgsim::Sequence::Core do
     )
 
     100.times do
-      insert_size = core.sample_insert_size(120)
+      insert_size = simulator.sample_insert_size(120)
       insert_size.should be >= 50
       insert_size.should be <= 120
     end
   end
 
   it "falls back to contig length when distribution cannot fit" do
-    core = Wgsim::Sequence::Core.new(
+    simulator = Wgsim::Sequence::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 10_000,
       insert_size_std_dev: 0,
@@ -32,11 +32,11 @@ describe Wgsim::Sequence::Core do
       seed: 1u64
     )
 
-    core.sample_insert_size(120).should eq(120)
+    simulator.sample_insert_size(120).should eq(120)
   end
 
   it "discards reads above the ambiguous-base ratio without looping forever" do
-    core = Wgsim::Sequence::Core.new(
+    simulator = Wgsim::Sequence::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 10,
       insert_size_std_dev: 0,
@@ -48,7 +48,7 @@ describe Wgsim::Sequence::Core do
     )
 
     pairs = 0
-    core.simulate_read_pairs("ambiguous", ("NNAAAAAAAA" * 20).to_slice) do
+    simulator.simulate_read_pairs("ambiguous", ("NNAAAAAAAA" * 20).to_slice) do
       pairs += 1
     end
 
@@ -56,7 +56,7 @@ describe Wgsim::Sequence::Core do
   end
 
   it "normalizes lowercase bases before generating reads" do
-    core = Wgsim::Sequence::Core.new(
+    simulator = Wgsim::Sequence::ReadPairSimulator.new(
       average_depth: 1.0,
       mean_insert_size: 8,
       insert_size_std_dev: 0,
@@ -68,7 +68,7 @@ describe Wgsim::Sequence::Core do
     )
 
     records = [] of Wgsim::FastqRecord
-    core.simulate_read_pairs("lowercase", "acgtacgt".to_slice) do |record1, record2|
+    simulator.simulate_read_pairs("lowercase", "acgtacgt".to_slice) do |record1, record2|
       records << record1
       records << record2
     end

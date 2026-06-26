@@ -3,7 +3,7 @@ require "../core_utils"
 
 module Wgsim
   class Sequence
-    class Core
+    class ReadPairSimulator
       include CoreUtils
       delegate rand, randn, next_bool, to: @random
 

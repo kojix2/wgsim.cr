@@ -1,5 +1,5 @@
 module Wgsim
-  enum MutType : UInt8
+  enum MutationType : UInt8
     NOCHANGE   = 0
     SUBSTITUTE = 1
     DELETE     = 2

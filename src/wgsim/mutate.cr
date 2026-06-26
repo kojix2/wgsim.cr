@@ -1,6 +1,6 @@
 require "fastx"
 require "./mutate/option"
-require "./mutate/core"
+require "./mutate/mutation_simulator"
 
 module Wgsim
   class Mutate
@@ -8,7 +8,7 @@ module Wgsim
     getter reference : Path
     getter mutated_fasta : Path
     getter mutation_event_log : Path # Should be a VCF in the future
-    getter core : Core
+    getter mutation_simulator : MutationSimulator
 
     def self.run(option)
       new(option).run
@@ -19,7 +19,7 @@ module Wgsim
       @mutated_fasta = option.mutated_fasta || raise("Output FASTA file is required")
       @mutation_event_log = option.mutation_event_log || raise("Output mutation file is required")
       option.validate!
-      @core = Core.new(
+      @mutation_simulator = MutationSimulator.new(
         substitution_rate: option.substitution_rate,
         insertion_rate: option.insertion_rate,
         deletion_rate: option.deletion_rate,
@@ -71,10 +71,10 @@ module Wgsim
       output_sequence_name = "#{reference_name.split.first}"
       output_sequence_name += "_#{copy_number}" if copy_number
       fasta_io.puts ">#{output_sequence_name}"
-      mutated_sequence, event_log = core.simulate_mutations(reference_sequence)
-      event_log.each do |event_record|
-        event_record.sequence_name = output_sequence_name
-        event_record.to_s(mutation_io)
+      mutated_sequence, event_log = mutation_simulator.simulate_mutations(reference_sequence)
+      event_log.each do |mutation_event|
+        mutation_event.sequence_name = output_sequence_name
+        mutation_event.to_s(mutation_io)
         mutation_io.puts
       end
       fasta_io.puts mutated_sequence.format
