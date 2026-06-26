@@ -14,7 +14,7 @@ dependencies:
   randn:
     github: kojix2/randn.cr
   fastx:
-    github: kojix2/fastx.cr
+    github: bio-cr/fastx.cr
 
 development_dependencies:
    ameba:

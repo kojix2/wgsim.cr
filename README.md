@@ -164,7 +164,7 @@ Two separations are especially important when reading or modifying the code:
 Dependencies:
 
 - [kojix2/randn.cr](https://github.com/kojix2/randn.cr) - Normal random number generator.
-- [kojix2/fastx.cr](https://github.com/kojix2/fastx.cr) - FASTA/FASTQ reader and writer.
+- [bio-cr/fastx.cr](https://github.com/bio-cr/fastx.cr) - FASTA/FASTQ reader and writer.
 
 Multithreaded execution is not implemented. Do not build with `-Dpreview_mt` expecting parallel `mut`, `seq`, or `gen` processing.
 
