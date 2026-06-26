@@ -11,7 +11,7 @@ Reimplement [wgsim](https://github.com/lh3/wgsim) in Crystal and add extra featu
   - Insertion (any length)
   - Deletion (any length)
   - Fasta Output
-- `seq` : Simulation of short lead sequencing
+- `seq` : Simulation of short-read sequencing
   - Uniform substitution sequencing errors
   - Fastq Output
 - `gen` : Generate a random genome
@@ -27,7 +27,7 @@ Reimplement [wgsim](https://github.com/lh3/wgsim) in Crystal and add extra featu
 ```sh
 git clone https://github.com/kojix2/wgsim.cr
 cd wgsim.cr
-shards build --release -Dpreview_mt src/wgsim.cr
+shards build --release
 ```
 
 ### Homebrew
@@ -139,9 +139,10 @@ Usage: wgsim gen [options]
 
 Dependencies:
 
-- [kojix2/nworkers.cr](https://github.com/kojix2/nworkers.cr) - Set the number of worker threads at runtime.
 - [kojix2/randn.cr](https://github.com/kojix2/randn.cr) - Normal random number generator.
-- [kojix2/fastx.cr](https://github.com/kojix2/fastx.cr) - Fasta file reader.
+- [kojix2/fastx.cr](https://github.com/kojix2/fastx.cr) - FASTA/FASTQ reader and writer.
+
+Multithreaded execution is not implemented. Do not build with `-Dpreview_mt` expecting parallel `mut`, `seq`, or `gen` processing.
   
 ## Contributing
 
