@@ -1,8 +1,8 @@
 require "./spec_helper"
 
-describe Wgsim::Sequence::ReadPairSimulator do
+describe Wgsim::Sequencing::ReadPairSimulator do
   it "writes records compatibly with the fastx FASTQ writer" do
-    record = Wgsim::FastqRecord.new(
+    record = Wgsim::Sequencing::FastqRecord.new(
       "chr1",
       2,
       10,
@@ -21,7 +21,7 @@ describe Wgsim::Sequence::ReadPairSimulator do
   end
 
   it "re-samples insert size until it fits in the contig" do
-    simulator = Wgsim::Sequence::ReadPairSimulator.new(
+    simulator = Wgsim::Sequencing::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 300,
       insert_size_std_dev: 100,
@@ -40,7 +40,7 @@ describe Wgsim::Sequence::ReadPairSimulator do
   end
 
   it "falls back to contig length when distribution cannot fit" do
-    simulator = Wgsim::Sequence::ReadPairSimulator.new(
+    simulator = Wgsim::Sequencing::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 10_000,
       insert_size_std_dev: 0,
@@ -55,7 +55,7 @@ describe Wgsim::Sequence::ReadPairSimulator do
   end
 
   it "discards reads above the ambiguous-base ratio without looping forever" do
-    simulator = Wgsim::Sequence::ReadPairSimulator.new(
+    simulator = Wgsim::Sequencing::ReadPairSimulator.new(
       average_depth: 10.0,
       mean_insert_size: 10,
       insert_size_std_dev: 0,
@@ -75,7 +75,7 @@ describe Wgsim::Sequence::ReadPairSimulator do
   end
 
   it "normalizes lowercase bases before generating reads" do
-    simulator = Wgsim::Sequence::ReadPairSimulator.new(
+    simulator = Wgsim::Sequencing::ReadPairSimulator.new(
       average_depth: 1.0,
       mean_insert_size: 8,
       insert_size_std_dev: 0,
@@ -86,7 +86,7 @@ describe Wgsim::Sequence::ReadPairSimulator do
       seed: 1u64
     )
 
-    records = [] of Wgsim::FastqRecord
+    records = [] of Wgsim::Sequencing::FastqRecord
     simulator.simulate_read_pairs("lowercase", "acgtacgt".to_slice) do |record1, record2|
       records << record1
       records << record2

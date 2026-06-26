@@ -1,11 +1,11 @@
 require "fastx"
-require "./sequence/fastq_record"
-require "./sequence/option"
-require "./sequence/sequencing_error_model"
-require "./sequence/read_pair_simulator"
+require "./sequencing/fastq_record"
+require "./sequencing/option"
+require "./sequencing/error_model"
+require "./sequencing/read_pair_simulator"
 
 module Wgsim
-  class Sequence
+  class Sequencing
     getter option : Option
     getter reference : Path
     getter read1_fastq : Path

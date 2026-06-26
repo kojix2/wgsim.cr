@@ -3,7 +3,7 @@ require "./reference_base"
 require "./reference_sequence"
 require "./sample_sheet"
 require "./mutate"
-require "./sequence"
+require "./sequencing"
 require "./generate"
 
 module Wgsim
@@ -11,14 +11,14 @@ module Wgsim
     class_property? debug : Bool = false
     getter parser : Parser
     getter action : Action?
-    getter option : (Mutate::Option | Sequence::Option | Generate::Option)?
+    getter option : (Mutate::Option | Sequencing::Option | Generate::Option)?
 
     private def mopt
       @option.as(Mutate::Option)
     end
 
     private def sopt
-      @option.as(Sequence::Option)
+      @option.as(Sequencing::Option)
     end
 
     private def gopt
@@ -34,8 +34,8 @@ module Wgsim
       case action
       when Action::Mutate
         Mutate.run(mopt)
-      when Action::Sequence
-        Sequence.run(sopt)
+      when Action::Sequencing
+        Sequencing.run(sopt)
       when Action::Generate
         Generate.run(gopt)
       when Action::Version

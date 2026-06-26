@@ -1,7 +1,7 @@
 module Wgsim
   enum Action : UInt8
     Mutate
-    Sequence
+    Sequencing
     Generate
     Help
     Version

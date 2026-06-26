@@ -1,9 +1,9 @@
 require "randn"
 require "../dna"
-require "./sequencing_error_model"
+require "./error_model"
 
 module Wgsim
-  class Sequence
+  class Sequencing
     class ReadPairSimulator
       include Dna
       delegate rand, randn, next_bool, to: @random
@@ -31,7 +31,7 @@ module Wgsim
       )
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
-        @sequencing_error_model = SequencingErrorModel.new(error_rate, @random)
+        @sequencing_error_model = ErrorModel.new(error_rate, @random)
       end
 
       def simulate_read_pairs(name, sequence, &)

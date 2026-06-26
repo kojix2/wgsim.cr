@@ -1,8 +1,8 @@
 require "../dna"
 
 module Wgsim
-  class Sequence
-    class SequencingErrorModel
+  class Sequencing
+    class ErrorModel
       include Dna
 
       PHRED_ASCII_OFFSET =  33

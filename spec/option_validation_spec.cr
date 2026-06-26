@@ -22,7 +22,7 @@ describe "option validation" do
   end
 
   it "rejects invalid sequence error rates" do
-    option = Wgsim::Sequence::Option.new
+    option = Wgsim::Sequencing::Option.new
     option.error_rate = 0.0
 
     expect_raises(ArgumentError, /error rate/) do
@@ -31,7 +31,7 @@ describe "option validation" do
   end
 
   it "rejects invalid read sizes" do
-    option = Wgsim::Sequence::Option.new
+    option = Wgsim::Sequencing::Option.new
     option.read1_length = 0
 
     expect_raises(ArgumentError, /Read 1 length/) do

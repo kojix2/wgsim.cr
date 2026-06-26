@@ -1,6 +1,6 @@
 require "./version"
 require "./mutate/option"
-require "./sequence/option"
+require "./sequencing/option"
 require "./action"
 
 require "option_parser"
@@ -8,7 +8,7 @@ require "colorize"
 
 module Wgsim
   class Parser < OptionParser
-    getter option : (Mutate::Option | Sequence::Option | Generate::Option)? = nil
+    getter option : (Mutate::Option | Sequencing::Option | Generate::Option)? = nil
     getter action : Action?
     getter help_message : String
 
@@ -17,7 +17,7 @@ module Wgsim
     end
 
     private def sopt
-      option.as(Sequence::Option)
+      option.as(Sequencing::Option)
     end
 
     private def gopt
@@ -128,7 +128,7 @@ module Wgsim
       end
 
       on("seq", "Simulate paired-end sequencing reads") do
-        _set_option_(Sequence,
+        _set_option_(Sequencing,
           "About: Simulate paired-end sequencing reads\n" \
           "Usage: wgsim seq [options] -r <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>\n"
         )
@@ -230,12 +230,12 @@ module Wgsim
       end
     end
 
-    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequence::Option | Generate::Option)?)
+    def parse(argv = ARGV) : Tuple(Action?, (Mutate::Option | Sequencing::Option | Generate::Option)?)
       super
       case action
       when Action::Mutate
         {action, mopt}
-      when Action::Sequence
+      when Action::Sequencing
         {action, sopt}
       when Action::Generate
         {action, gopt}

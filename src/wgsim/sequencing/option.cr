@@ -1,5 +1,5 @@
 module Wgsim
-  class Sequence
+  class Sequencing
     class Option
       MIN_PROBABILITY = 0.0
       MAX_PROBABILITY = 1.0
