@@ -11,12 +11,15 @@ module Wgsim
         @substitution_rate : Float64,
         @insertion_rate : Float64,
         @deletion_rate : Float64,
-        @random,
+        @random : Rand,
       )
       end
 
       def sample : MutationType
-        value = @random.rand
+        sample(value: @random.rand)
+      end
+
+      def sample(value : Float64) : MutationType
         # Example: if substitution=0.1, insertion=0.2, deletion=0.3,
         # then [0.0, 0.1) substitutes, [0.1, 0.3) inserts,
         # [0.3, 0.6) deletes, and the rest is unchanged.
