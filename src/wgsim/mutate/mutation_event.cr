@@ -1,6 +1,10 @@
 require "../mutation_type"
 
 module Wgsim
+  # A single biological mutation written to the mutation event log.
+  #
+  # reference_position is 1-based because that is the coordinate style most
+  # users expect in genome annotation formats.
   class MutationEvent
     property mutation_type : MutationType
     property reference_position : Int32

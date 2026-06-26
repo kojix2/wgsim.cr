@@ -39,6 +39,8 @@ module Wgsim
       end
 
       def simulate_read_pairs(sequence_name, sequence, &)
+        # Sequencing starts from the provided FASTA sequence. If users want
+        # biological variants in reads, they should pass the output of `mut`.
         sequence = normalize_sequence(sequence)
         contig_length = sequence.size
         read_name = read_name_for(sequence_name)
@@ -74,7 +76,8 @@ module Wgsim
 
           insert_size = sample_insert_size(contig_length: contig_length)
 
-          # The fragment start is the 0-based index of the first base of the fragment in the contig.
+          # The fragment start is the 0-based index of the first base of the
+          # sequenced DNA fragment in the contig.
           fragment_start = sample_fragment_start(
             contig_length: contig_length,
             insert_size: insert_size
@@ -140,6 +143,9 @@ module Wgsim
         insert_size,
         read1_starts_at_fragment_left : Bool,
       ) : Tuple(Slice(UInt8), Slice(UInt8))
+        # Paired-end sequencing reads from both ends of one DNA fragment.
+        # One read comes directly from the left end; the mate from the right
+        # end must be reverse-complemented to represent the opposite strand.
         # Ranges that use '...' to exclude the given end value.
         # (1...4).to_a     # => [1, 2, 3]
         fragment_end = fragment_start + insert_size
@@ -163,6 +169,8 @@ module Wgsim
       end
 
       private def expected_read_pair_count(contig_length : Int32) : Int32
+        # depth is roughly: sequenced bases / reference bases.
+        # Each pair contributes read1_length + read2_length observed bases.
         sequenced_bases_per_pair = read1_length + read2_length
         (contig_length * average_depth / sequenced_bases_per_pair).to_i
       end
@@ -189,6 +197,8 @@ module Wgsim
 
         attempts = 0
         loop do
+          # Draw fragment lengths from a normal distribution, but enforce the
+          # minimum length needed to contain both read ends.
           insert_size = [randn(mean_insert_size, insert_size_std_dev).to_i, min_insert_size].max
           return insert_size if insert_size <= contig_length
 

@@ -38,6 +38,8 @@ module Wgsim
       # Generate inserted bases based on the insertion extension probability.
       def generate_inserted_bases : Slice(UInt8)
         inserted_base_count = 1
+        # An insertion always starts with one new base. The extension
+        # probability then makes longer insertions geometrically distributed.
         while rand < insertion_extension_probability
           inserted_base_count += 1
         end
@@ -49,6 +51,9 @@ module Wgsim
         open_deletion_bases = [] of UInt8
         mutation_events = [] of MutationEvent
 
+        # map keeps one ReferenceBase per input reference base. Inserted bases
+        # are attached later to a ReferenceBase instead of becoming separate
+        # reference positions.
         mutated_bases = sequence.map do |reference_base|
           reference_base = normalize_base(reference_base)
           reference_position += 1 # 1-based reference position

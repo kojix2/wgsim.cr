@@ -1,5 +1,9 @@
 module Wgsim
   class Sequencing
+    # One FASTQ read emitted by the paired-end simulator.
+    #
+    # The identifier includes fragment coordinates so a student can trace a
+    # read back to the simulated DNA fragment it came from.
     struct FastqRecord
       property read_name : String
       property pair_index : Int32
@@ -21,6 +25,8 @@ module Wgsim
       end
 
       def identifier : String
+        # mate_index is stored as 0/1 internally, but FASTQ identifiers usually
+        # show mates as /1 and /2.
         "#{read_name}_#{fragment_start}_#{insert_size}:#{pair_index}/#{mate_index + 1}"
       end
 
@@ -31,6 +37,7 @@ module Wgsim
       end
 
       def to_s(io : IO)
+        # FASTQ has four lines: identifier, sequence, separator, quality.
         io << '@' << identifier << '\n'
         io.write(read_sequence)
         io << '\n'

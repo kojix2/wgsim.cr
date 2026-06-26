@@ -1,6 +1,10 @@
 require "./reference_base"
 
 module Wgsim
+  # A mutable-style view of a reference sequence after mutation simulation.
+  #
+  # The simulator first records each reference position as a ReferenceBase.
+  # This class then flattens those records into the final FASTA sequence.
   class ReferenceSequence
     DEFAULT_FASTA_LINE_WIDTH = 80
 
@@ -16,6 +20,7 @@ module Wgsim
         when MutationType::NOCHANGE, MutationType::SUBSTITUTE
           seq.write_byte reference_base.nucleotide
         when MutationType::DELETE
+          # Deleted bases remain in the event log but are omitted from FASTA.
         when MutationType::INSERT
           seq.write_byte reference_base.nucleotide
           ins = reference_base.insertion
