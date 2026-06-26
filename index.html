@@ -304,110 +304,15 @@ Usage: wgsim gen [options]
     -S, --seed UINT64                Random seed
     --debug                          Show backtrace on error
     -h, --help                       Show this help</code></pre>
-<h2><a id="idea-notes" class="anchor" href="#idea-notes">
+<h2><a id="documentation" class="anchor" href="#documentation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Idea Notes</h2>
+</a>Documentation</h2>
 <ul>
-<li>
-<p>Somatic Mutations</p>
-<ul>
-<li>Broad Representation: Include <code>SNVs</code>, <code>indels</code>, <code>large insertions</code>, <code>large deletions</code>, and <code>translocations</code>.</li>
-<li>Complete DNA Sequence in Fasta: Include the entire genome in the Fasta file.</li>
-</ul>
-</li>
-<li>
-<p>Haplotypes</p>
-<ul>
-<li>Ploidy: Include as many Fasta records as there are homologous chromosomes, depending on the cell's ploidy.</li>
-</ul>
-</li>
-<li>
-<p>Structural Variations</p>
-<ul>
-<li>Inversion and Fusion: Accurately represent structural variations like inversions and fusions in the Fasta file.</li>
-</ul>
-</li>
-<li>
-<p>Local Amplifications</p>
-<ul>
-<li>Extrachromosomal DNA: Include additional records for increased chromosome copy number due to extrachromosomal DNA.</li>
-</ul>
-</li>
-<li>
-<p>Non-Compressed Genome Representation</p>
-<ul>
-<li>Data Structures: Use <code>UInt8</code> or <code>RefBase</code> structures for each nucleotide to keep things simple.</li>
-</ul>
-</li>
-<li>
-<p>Addressing Heterogeneity</p>
-<ul>
-<li>Fasta File per Cell Type: Each cell type has one Fasta file.</li>
-<li>Cell Type Proportions: Provide the proportion of each cell type.</li>
-</ul>
-</li>
-<li>
-<p>VCF files have a dual purpose:</p>
-<ul>
-<li>They act as snapshots of the current state by capturing differences from the reference genome.</li>
-<li>They are presumed detailed records of genetic variations.</li>
-</ul>
-</li>
-<li>
-<p>We attempt to infer mutations by observing individual genomes, but we can never fully reconstruct the events.</p>
-<ul>
-<li>In simulations, however, we can have a complete list of mutation events.</li>
-</ul>
-</li>
-<li>
-<p><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">wgsimのコードを眺める [JA]</a></p>
-</li>
-</ul>
-<h2><a id="reading-the-code" class="anchor" href="#reading-the-code">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Reading the Code</h2>
-<p>The code is intentionally organized around biological concepts rather than
-around terse implementation tricks.</p>
-<ul>
-<li><code>src/wgsim/dna.cr</code>
-<ul>
-<li>Defines byte-level DNA bases, IUPAC ambiguity normalization, substitution
-choices, and reverse complements.</li>
-</ul>
-</li>
-<li><code>src/wgsim/mutate/mutation_simulator.cr</code>
-<ul>
-<li>Walks through a reference sequence one base at a time, samples biological
-mutation types, and records the complete mutation history.</li>
-</ul>
-</li>
-<li><code>src/wgsim/mutate/mutation_event_builder.cr</code>
-<ul>
-<li>Converts simulated substitutions, insertions, and deletions into explicit
-event-log records.</li>
-</ul>
-</li>
-<li><code>src/wgsim/sequencing/read_pair_simulator.cr</code>
-<ul>
-<li>Samples DNA fragments, chooses read orientation, extracts paired-end reads,
-filters high-<code>N</code> reads, and then adds sequencing errors.</li>
-</ul>
-</li>
-<li><code>src/wgsim/sequencing/error_model.cr</code>
-<ul>
-<li>Models sequencing errors separately from biological mutations.</li>
-</ul>
-</li>
-</ul>
-<p>Two separations are especially important when reading or modifying the code:</p>
-<ul>
-<li>Biological mutations happen in <code>mut</code>, before reads are generated.</li>
-<li>Sequencing errors happen in <code>seq</code>, after reads are sampled from the input
-FASTA.</li>
+<li><a href="guides/manual.md">Manual</a></li>
+<li><a href="guides/manual.ja.md">Japanese manual</a></li>
+<li><a href="https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1">Reading wgsim's code [JA]</a></li>
 </ul>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
@@ -417,7 +322,7 @@ FASTA.</li>
 <p>Dependencies:</p>
 <ul>
 <li><a href="https://github.com/kojix2/randn.cr">kojix2/randn.cr</a> - Normal random number generator.</li>
-<li><a href="https://github.com/kojix2/fastx.cr">kojix2/fastx.cr</a> - FASTA/FASTQ reader and writer.</li>
+<li><a href="https://github.com/bio-cr/fastx.cr">bio-cr/fastx.cr</a> - FASTA/FASTQ reader and writer.</li>
 </ul>
 <p>Multithreaded execution is not implemented. Do not build with <code>-Dpreview_mt</code> expecting parallel <code>mut</code>, <code>seq</code>, or <code>gen</code> processing.</p>
 <h2><a id="contributing" class="anchor" href="#contributing">
