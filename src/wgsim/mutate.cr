@@ -1,5 +1,5 @@
 require "fastx"
-require "./log"
+require "./console"
 require "./mutate/option"
 require "./mutate/mutation_simulator"
 
@@ -8,7 +8,7 @@ module Wgsim
     getter option : Option
     getter reference : Path
     getter mutated_fasta : Path
-    getter mutation_event_log : Path # Should be a VCF in the future
+    getter mutation_event_log : Path
     getter mutation_simulator : MutationSimulator
 
     def self.run(option)
@@ -37,7 +37,7 @@ module Wgsim
 
     private def log_parameters
       option.summary.split("\n").each do |line|
-        Log.info("# #{line}")
+        Console.info("# #{line}")
       end
     end
 
@@ -47,7 +47,7 @@ module Wgsim
           File.open(mutation_event_log, "w") do |mutation_io|
             reader.each_bytes do |name, sequence|
               name_string = String.new(name)
-              Log.info("#{name_string} #{sequence.size} bp")
+              Console.info("#{name_string} #{sequence.size} bp")
               process_sequence(name_string, sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
             end
           end
@@ -68,8 +68,8 @@ module Wgsim
     private def simulate_and_output_sequence(reference_name : String, reference_sequence : Slice(UInt8), copy_number = nil, *, fasta_writer : Fastx::Fasta::Writer, mutation_io = STDERR)
       output_sequence_name = "#{reference_name.split.first}"
       output_sequence_name += "_#{copy_number}" if copy_number
-      mutated_sequence, event_log = mutation_simulator.simulate_mutations(reference_sequence)
-      event_log.each do |mutation_event|
+      mutated_sequence, mutation_events = mutation_simulator.simulate_mutations(reference_sequence)
+      mutation_events.each do |mutation_event|
         mutation_event.sequence_name = output_sequence_name
         mutation_event.to_s(mutation_io)
         mutation_io.puts

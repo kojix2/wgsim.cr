@@ -1,4 +1,4 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Wgsim::Sequencing::ErrorModel do
   it "converts an error rate to a FASTQ quality character" do

@@ -1,5 +1,5 @@
 require "./version"
-require "./log"
+require "./console"
 require "./mutate/option"
 require "./sequencing/option"
 require "./action"
@@ -13,15 +13,15 @@ module Wgsim
     getter action : Action?
     getter help_message : String
 
-    private def mopt
+    private def mutation_options
       option.as(Mutate::Option)
     end
 
-    private def sopt
+    private def sequencing_options
       option.as(Sequencing::Option)
     end
 
-    private def gopt
+    private def generation_options
       option.as(Generate::Option)
     end
 
@@ -40,13 +40,6 @@ module Wgsim
       # by `with_preserved_state`. This also initialises @flags.
       # @help_message is needed to store subcommand messages.
       @help_message = self.to_s
-    end
-
-    macro _on_threads_
-    {% if flag?(:preview_mt) %}
-      # on("-t", "--threads INT", "Number of threads [#{NWorkers.size}]") do |v|
-      # end
-    {% end %}
     end
 
     macro _set_option_(klass, banner)
@@ -77,51 +70,49 @@ module Wgsim
         )
 
         on("-r", "--reference FILE", "Input reference FASTA (required)") do |v|
-          mopt.reference = Path.new(v)
+          mutation_options.reference = Path.new(v)
         end
 
         on("-o", "--mutated-fasta FILE", "Output mutated FASTA (required)") do |v|
-          mopt.mutated_fasta = Path.new(v)
+          mutation_options.mutated_fasta = Path.new(v)
         end
 
         on("-l", "--mutation-log FILE", "Output mutation event log TSV (required)") do |v|
-          mopt.mutation_event_log = Path.new(v)
+          mutation_options.mutation_event_log = Path.new(v)
         end
 
         on("-s", "--sub-rate FLOAT",
-          "Per-base substitution probability [#{mopt.substitution_rate}]") do |v|
-          mopt.substitution_rate = v.to_f64
+          "Per-base substitution probability [#{mutation_options.substitution_rate}]") do |v|
+          mutation_options.substitution_rate = v.to_f64
         end
 
         on("-i", "--ins-rate FLOAT",
-          "Per-base insertion probability [#{mopt.insertion_rate}]") do |v|
-          mopt.insertion_rate = v.to_f64
+          "Per-base insertion probability [#{mutation_options.insertion_rate}]") do |v|
+          mutation_options.insertion_rate = v.to_f64
         end
 
         on("-d", "--del-rate FLOAT",
-          "Per-base deletion-start probability [#{mopt.deletion_rate}]") do |v|
-          mopt.deletion_rate = v.to_f64
+          "Per-base deletion-start probability [#{mutation_options.deletion_rate}]") do |v|
+          mutation_options.deletion_rate = v.to_f64
         end
 
         on("-I", "--ins-extend FLOAT",
-          "Probability of extending an insertion by one base [#{mopt.insertion_extension_probability}]") do |v|
-          mopt.insertion_extension_probability = v.to_f64
+          "Probability of extending an insertion by one base [#{mutation_options.insertion_extension_probability}]") do |v|
+          mutation_options.insertion_extension_probability = v.to_f64
         end
 
         on("-D", "--del-extend FLOAT",
-          "Probability of extending an open deletion by one base [#{mopt.deletion_extension_probability}]") do |v|
-          mopt.deletion_extension_probability = v.to_f64
+          "Probability of extending an open deletion by one base [#{mutation_options.deletion_extension_probability}]") do |v|
+          mutation_options.deletion_extension_probability = v.to_f64
         end
 
-        on("-p", "--ploidy UINT8", "Number of mutated chromosome copies per input sequence [#{mopt.ploidy}]") do |v|
-          mopt.ploidy = v.to_u8
+        on("-p", "--ploidy UINT8", "Number of mutated chromosome copies per input sequence [#{mutation_options.ploidy}]") do |v|
+          mutation_options.ploidy = v.to_u8
         end
 
         on("-S", "--seed UINT64", "Random seed") do |v|
-          mopt.seed = v.to_u64
+          mutation_options.seed = v.to_u64
         end
-
-        _on_threads_
 
         _on_debug_
 
@@ -135,54 +126,52 @@ module Wgsim
         )
 
         on("-r", "--reference FILE", "Input reference FASTA (required)") do |v|
-          sopt.reference = Path.new(v)
+          sequencing_options.reference = Path.new(v)
         end
 
         on("-1", "--read1-fastq FILE", "Output FASTQ for read 1 (required)") do |v|
-          sopt.read1_fastq = Path.new(v)
+          sequencing_options.read1_fastq = Path.new(v)
         end
 
         on("-2", "--read2-fastq FILE", "Output FASTQ for read 2 (required)") do |v|
-          sopt.read2_fastq = Path.new(v)
+          sequencing_options.read2_fastq = Path.new(v)
         end
 
-        on("-e", "--error-rate FLOAT", "Per-base sequencing error probability [#{sopt.error_rate}]") do |v|
-          sopt.error_rate = v.to_f64
+        on("-e", "--error-rate FLOAT", "Per-base sequencing error probability [#{sequencing_options.error_rate}]") do |v|
+          sequencing_options.error_rate = v.to_f64
         end
 
         on("-m", "--mean-insert INT",
-          "Mean insert size [#{sopt.mean_insert_size}]") do |v|
-          sopt.mean_insert_size = v.to_i32
+          "Mean insert size [#{sequencing_options.mean_insert_size}]") do |v|
+          sequencing_options.mean_insert_size = v.to_i32
         end
 
         on("-s", "--insert-sd FLOAT",
-          "Insert size standard deviation [#{sopt.insert_size_std_dev}]") do |v|
-          sopt.insert_size_std_dev = v.to_i32
+          "Insert size standard deviation [#{sequencing_options.insert_size_std_dev}]") do |v|
+          sequencing_options.insert_size_std_dev = v.to_i32
         end
 
         on("-D", "--depth FLOAT",
-          "Average sequencing depth [#{sopt.average_depth}]") do |v|
-          sopt.average_depth = v.to_f64
+          "Average sequencing depth [#{sequencing_options.average_depth}]") do |v|
+          sequencing_options.average_depth = v.to_f64
         end
 
-        on("-L", "--read1-len INT", "Read 1 length [#{sopt.read1_length}]") do |v|
-          sopt.read1_length = v.to_i32
+        on("-L", "--read1-len INT", "Read 1 length [#{sequencing_options.read1_length}]") do |v|
+          sequencing_options.read1_length = v.to_i32
         end
 
-        on("-R", "--read2-len INT", "Read 2 length [#{sopt.read2_length}]") do |v|
-          sopt.read2_length = v.to_i32
+        on("-R", "--read2-len INT", "Read 2 length [#{sequencing_options.read2_length}]") do |v|
+          sequencing_options.read2_length = v.to_i32
         end
 
         on("-A", "--max-n-ratio FLOAT",
-          "Discard a read pair if either read has a higher N fraction [#{sopt.max_ambiguous_ratio}]") do |v|
-          sopt.max_ambiguous_ratio = v.to_f64
+          "Discard a read pair if either read has a higher N fraction [#{sequencing_options.max_ambiguous_ratio}]") do |v|
+          sequencing_options.max_ambiguous_ratio = v.to_f64
         end
 
         on("-S", "--seed UINT64", "Random seed") do |v|
-          sopt.seed = v.to_u64
+          sequencing_options.seed = v.to_u64
         end
-
-        _on_threads_
 
         _on_debug_
 
@@ -195,12 +184,12 @@ module Wgsim
           "Usage: wgsim gen [options]\n"
         )
 
-        on("-l", "--chromosome-lengths INT", "Comma-separated chromosome lengths [\"#{gopt.chromosome_lengths.join(",")}\"]") do |v|
-          gopt.chromosome_lengths = v.split(",").map(&.to_i32)
+        on("-l", "--chromosome-lengths INT", "Comma-separated chromosome lengths [\"#{generation_options.chromosome_lengths.join(",")}\"]") do |v|
+          generation_options.chromosome_lengths = v.split(",").map(&.to_i32)
         end
 
         on("-S", "--seed UINT64", "Random seed") do |v|
-          gopt.seed = v.to_u64
+          generation_options.seed = v.to_u64
         end
 
         _on_debug_
@@ -219,13 +208,13 @@ module Wgsim
       _on_help_
 
       invalid_option do |flag|
-        Log.error("#{flag} is not a valid option.")
+        Console.error("#{flag} is not a valid option.")
         STDERR.puts self
         exit(1)
       end
 
       missing_option do |flag|
-        Log.error("#{flag} option expects an argument.")
+        Console.error("#{flag} option expects an argument.")
         STDERR.puts self
         exit(1)
       end
@@ -235,11 +224,11 @@ module Wgsim
       super
       case action
       when Action::Mutate
-        {action, mopt}
+        {action, mutation_options}
       when Action::Sequencing
-        {action, sopt}
+        {action, sequencing_options}
       when Action::Generate
-        {action, gopt}
+        {action, generation_options}
       else
         {action, nil}
       end

@@ -1,5 +1,5 @@
 require "./wgsim/version"
-require "./wgsim/log"
+require "./wgsim/console"
 require "./wgsim/parser"
 require "./wgsim/cli"
 

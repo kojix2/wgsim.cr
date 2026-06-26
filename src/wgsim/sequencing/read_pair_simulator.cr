@@ -1,6 +1,6 @@
 require "randn"
 require "../dna"
-require "../log"
+require "../console"
 require "./error_model"
 
 module Wgsim
@@ -43,31 +43,28 @@ module Wgsim
         # Skip sequences (contigs) that are shorter than the minimum read length.
         min_read_length = Math.max(read1_length, read2_length)
         if contig_length < min_read_length
-          Log.warn("skip sequence '#{name}' as it is shorter than #{min_read_length} bp")
+          Console.warn("skip sequence '#{name}' as it is shorter than #{min_read_length} bp")
           return
         end
 
-        # depth per haploid
-        n_pairs = (contig_length * average_depth / (read1_length + read2_length)).to_i
+        read_pair_count = (contig_length * average_depth / (read1_length + read2_length)).to_i
 
-        # No pairs to generate
-        return if n_pairs <= 0
+        return if read_pair_count <= 0
 
-        # progress report step (about 10 reports per contig, at least every pair)
-        progress_step = (n_pairs / PROGRESS_REPORT_COUNT).to_i
+        # Report progress about 10 times per contig, at least once per read pair.
+        progress_step = (read_pair_count / PROGRESS_REPORT_COUNT).to_i
         progress_step = 1 if progress_step <= 0
 
-        # Currently, the sequence error rate is uniform across the entire sequence.
+        # Currently, the sequencing error rate is uniform across each read.
         # '2' if the error rate is [0.02].
         quality_char = @sequencing_error_model.quality_char
         read1_quality = Bytes.new(read1_length, quality_char.ord.to_u8)
         read2_quality = Bytes.new(read2_length, quality_char.ord.to_u8)
 
         pair_index = 0
-        while pair_index < n_pairs
-          # progress report
+        while pair_index < read_pair_count
           if pair_index % progress_step == 0
-            Log.info("#{name} #{pair_index}/#{n_pairs}")
+            Console.info("#{name} #{pair_index}/#{read_pair_count}")
           end
           current_pair_index = pair_index
           pair_index += 1

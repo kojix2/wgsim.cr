@@ -20,7 +20,7 @@ module Wgsim
       property insertion_extension_probability : Float64 = DEFAULT_INSERTION_EXTENSION_PROBABILITY
       property deletion_extension_probability : Float64 = DEFAULT_DELETION_EXTENSION_PROBABILITY
       property mutated_fasta : Path?
-      property mutation_event_log : Path? # Should be a VCF in the future
+      property mutation_event_log : Path?
 
       def summary
         <<-SUMMARY

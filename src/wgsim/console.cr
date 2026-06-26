@@ -1,5 +1,5 @@
 module Wgsim
-  module Log
+  module Console
     PREFIX = "[wgsim]"
 
     def self.info(message : String, io : IO = STDERR) : Nil

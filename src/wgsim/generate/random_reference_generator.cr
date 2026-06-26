@@ -12,14 +12,13 @@ module Wgsim
         @chromosome_lengths : Array(Int32),
         @seed : UInt64? = nil,
       )
-        # random number generator with seed
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
       end
 
       def generate_sequences(&)
-        @chromosome_lengths.each_with_index do |length, idx|
-          name = "#{CHROMOSOME_NAME_PREFIX}#{idx} size:#{length} seed:#{@seed || "random"}"
+        @chromosome_lengths.each_with_index do |length, chromosome_index|
+          name = "#{CHROMOSOME_NAME_PREFIX}#{chromosome_index} size:#{length} seed:#{@seed || "random"}"
           sequence = Slice(UInt8).new(length) { DNA_BASES[@random.rand(DNA_BASES.size)] }
           yield({name, sequence})
         end

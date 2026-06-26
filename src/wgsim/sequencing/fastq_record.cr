@@ -16,7 +16,6 @@ module Wgsim
         "#{read_name}_#{fragment_start}_#{insert_size}:#{pair_index}/#{mate_index + 1}"
       end
 
-      # NOTE: This method may be moved to Sequencing class because it is IO-related.
       def to_s : String
         String.build do |str|
           to_s(str)

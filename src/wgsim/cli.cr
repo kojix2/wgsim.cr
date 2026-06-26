@@ -13,15 +13,15 @@ module Wgsim
     getter action : Action?
     getter option : (Mutate::Option | Sequencing::Option | Generate::Option)?
 
-    private def mopt
+    private def mutation_options
       @option.as(Mutate::Option)
     end
 
-    private def sopt
+    private def sequencing_options
       @option.as(Sequencing::Option)
     end
 
-    private def gopt
+    private def generation_options
       @option.as(Generate::Option)
     end
 
@@ -33,11 +33,11 @@ module Wgsim
     def run
       case action
       when Action::Mutate
-        Mutate.run(mopt)
+        Mutate.run(mutation_options)
       when Action::Sequencing
-        Sequencing.run(sopt)
+        Sequencing.run(sequencing_options)
       when Action::Generate
-        Generate.run(gopt)
+        Generate.run(generation_options)
       when Action::Version
         print_version
       when Action::Help

@@ -25,7 +25,6 @@ module Wgsim
         @deletion_extension_probability,
         @seed : UInt64? = nil,
       )
-        # random number generator with seed
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
         @mutation_type_sampler = MutationTypeSampler.new(
@@ -48,7 +47,7 @@ module Wgsim
       def simulate_mutations(sequence : Slice(UInt8)) : {ReferenceSequence, Array(MutationEvent)}
         reference_position = 0
         deleted_bases = [] of UInt8
-        event_log = [] of MutationEvent
+        mutation_events = [] of MutationEvent
 
         mutated_bases = sequence.map do |reference_base|
           reference_base = normalize_base(reference_base)
@@ -57,21 +56,20 @@ module Wgsim
             if extend_current_deletion?
               deleted_base = build_deleted_reference_base(reference_base, deleted_bases)
               next deleted_base
-            else # stop deletion
-              # NOTE: should stop when n is N?
-              event_log << MutationEventBuilder.deletion(deleted_bases, reference_position)
+            else
+              mutation_events << MutationEventBuilder.deletion(deleted_bases, reference_position)
               deleted_bases.clear
             end
           end
 
-          # skip N
+          # Ambiguous bases are emitted unchanged and excluded from mutation sampling.
           next build_unchanged_reference_base(reference_base) if reference_base == BASE_N
 
           case @mutation_type_sampler.sample
           when MutationType::SUBSTITUTE
-            build_substituted_reference_base(reference_base, event_log, reference_position)
+            build_substituted_reference_base(reference_base, mutation_events, reference_position)
           when MutationType::INSERT
-            build_insertion_reference_base(reference_base, event_log, reference_position)
+            build_insertion_reference_base(reference_base, mutation_events, reference_position)
           when MutationType::DELETE
             build_deleted_reference_base(reference_base, deleted_bases)
           else
@@ -79,10 +77,10 @@ module Wgsim
           end
         end
         if deletion_is_open?(deleted_bases)
-          event_log << MutationEventBuilder.deletion(deleted_bases, reference_position, end_of_sequence: true)
+          mutation_events << MutationEventBuilder.deletion(deleted_bases, reference_position, end_of_sequence: true)
           deleted_bases.clear
         end
-        {ReferenceSequence.new(mutated_bases), event_log}
+        {ReferenceSequence.new(mutated_bases), mutation_events}
       end
 
       private def deletion_is_open?(deleted_bases : Array(UInt8)) : Bool
@@ -97,9 +95,9 @@ module Wgsim
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::NOCHANGE)
       end
 
-      def build_insertion_reference_base(reference_base : UInt8, event_log : Array(MutationEvent), reference_position : Int32) : ReferenceBase
+      def build_insertion_reference_base(reference_base : UInt8, mutation_events : Array(MutationEvent), reference_position : Int32) : ReferenceBase
         inserted_bases = generate_inserted_bases
-        event_log << MutationEventBuilder.insertion(reference_position, reference_base, inserted_bases)
+        mutation_events << MutationEventBuilder.insertion(reference_position, reference_base, inserted_bases)
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::INSERT, insertion: inserted_bases)
       end
 
@@ -108,9 +106,9 @@ module Wgsim
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::DELETE)
       end
 
-      def build_substituted_reference_base(reference_base : UInt8, event_log : Array(MutationEvent), reference_position : Int32) : ReferenceBase
+      def build_substituted_reference_base(reference_base : UInt8, mutation_events : Array(MutationEvent), reference_position : Int32) : ReferenceBase
         alternate_base = perform_substitution(reference_base, rand(SUBSTITUTIONS_FOR_A.size))
-        event_log << MutationEventBuilder.substitution(reference_position, reference_base, alternate_base)
+        mutation_events << MutationEventBuilder.substitution(reference_position, reference_base, alternate_base)
         ReferenceBase.new(nucleotide: alternate_base, mutation_type: MutationType::SUBSTITUTE)
       end
     end
