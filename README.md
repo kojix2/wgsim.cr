@@ -102,62 +102,11 @@ Usage: wgsim gen [options]
     -h, --help                       Show this help
 ```
 
-## Idea Notes
+## Documentation
 
-- Somatic Mutations
-  - Broad Representation: Include `SNVs`, `indels`, `large insertions`, `large deletions`, and `translocations`.
-  - Complete DNA Sequence in Fasta: Include the entire genome in the Fasta file.
-
-- Haplotypes
-  - Ploidy: Include as many Fasta records as there are homologous chromosomes, depending on the cell's ploidy.
-
-- Structural Variations
-  - Inversion and Fusion: Accurately represent structural variations like inversions and fusions in the Fasta file.
-
-- Local Amplifications
-  - Extrachromosomal DNA: Include additional records for increased chromosome copy number due to extrachromosomal DNA.
-
-- Non-Compressed Genome Representation
-  - Data Structures: Use `UInt8` or `RefBase` structures for each nucleotide to keep things simple.
-
-- Addressing Heterogeneity
-  - Fasta File per Cell Type: Each cell type has one Fasta file.
-  - Cell Type Proportions: Provide the proportion of each cell type.
-
-- VCF files have a dual purpose:
-  - They act as snapshots of the current state by capturing differences from the reference genome.
-  - They are presumed detailed records of genetic variations.
-
-- We attempt to infer mutations by observing individual genomes, but we can never fully reconstruct the events.
-  - In simulations, however, we can have a complete list of mutation events.
-
-- [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
-
-## Reading the Code
-
-The code is intentionally organized around biological concepts rather than
-around terse implementation tricks.
-
-- `src/wgsim/dna.cr`
-  - Defines byte-level DNA bases, IUPAC ambiguity normalization, substitution
-    choices, and reverse complements.
-- `src/wgsim/mutate/mutation_simulator.cr`
-  - Walks through a reference sequence one base at a time, samples biological
-    mutation types, and records the complete mutation history.
-- `src/wgsim/mutate/mutation_event_builder.cr`
-  - Converts simulated substitutions, insertions, and deletions into explicit
-    event-log records.
-- `src/wgsim/sequencing/read_pair_simulator.cr`
-  - Samples DNA fragments, chooses read orientation, extracts paired-end reads,
-    filters high-`N` reads, and then adds sequencing errors.
-- `src/wgsim/sequencing/error_model.cr`
-  - Models sequencing errors separately from biological mutations.
-
-Two separations are especially important when reading or modifying the code:
-
-- Biological mutations happen in `mut`, before reads are generated.
-- Sequencing errors happen in `seq`, after reads are sampled from the input
-  FASTA.
+- [Manual](guides/manual.md)
+- [Japanese manual](guides/manual.ja.md)
+- [Reading wgsim's code [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
 
 ## Development
 
