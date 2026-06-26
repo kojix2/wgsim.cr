@@ -1,4 +1,5 @@
 require "fastx"
+require "./log"
 require "./sequencing/fastq_record"
 require "./sequencing/option"
 require "./sequencing/error_model"
@@ -17,9 +18,9 @@ module Wgsim
     end
 
     def initialize(@option : Option)
-      @reference = sopts.reference || raise("Reference sequence is required")
-      @read1_fastq = sopts.read1_fastq || raise("Output FASTQ file 1 is required")
-      @read2_fastq = sopts.read2_fastq || raise("Output FASTQ file 2 is required")
+      @reference = sopts.reference || raise(ArgumentError.new("Reference sequence is required"))
+      @read1_fastq = sopts.read1_fastq || raise(ArgumentError.new("Output FASTQ file 1 is required"))
+      @read2_fastq = sopts.read2_fastq || raise(ArgumentError.new("Output FASTQ file 2 is required"))
       sopts.validate!
       @read_pair_simulator = ReadPairSimulator.new(
         average_depth: sopts.average_depth,
@@ -47,7 +48,7 @@ module Wgsim
                 read1_writer.write(record1.identifier, record1.read_sequence, record1.quality_sequence)
                 read2_writer.write(record2.identifier, record2.read_sequence, record2.quality_sequence)
               end
-              STDERR.puts "[wgsim] #{name_string} done"
+              Log.info("#{name_string} done")
             end
           end
         end

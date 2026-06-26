@@ -1,5 +1,6 @@
 require "randn"
 require "../dna"
+require "../log"
 require "./error_model"
 
 module Wgsim
@@ -42,7 +43,7 @@ module Wgsim
         # Skip sequences (contigs) that are shorter than the minimum read length.
         min_read_length = Math.max(read1_length, read2_length)
         if contig_length < min_read_length
-          STDERR.puts "[wgsim] skip sequence '#{name}' as it is shorter than #{min_read_length} bp"
+          Log.warn("skip sequence '#{name}' as it is shorter than #{min_read_length} bp")
           return
         end
 
@@ -66,7 +67,7 @@ module Wgsim
         while pair_index < n_pairs
           # progress report
           if pair_index % progress_step == 0
-            STDERR.puts "[wgsim] #{name} #{pair_index}/#{n_pairs}"
+            Log.info("#{name} #{pair_index}/#{n_pairs}")
           end
           current_pair_index = pair_index
           pair_index += 1
@@ -80,8 +81,10 @@ module Wgsim
 
           # Raise an error if the fragment coordinates are invalid. This should never happen.
           if fragment_start < 0 || fragment_start + insert_size > contig_length
-            raise "Invalid fragment start or insert size: " \
-                  "fragment_start=#{fragment_start}, insert_size=#{insert_size}, contig_length=#{contig_length}"
+            raise ArgumentError.new(
+              "Invalid fragment start or insert size: " \
+              "fragment_start=#{fragment_start}, insert_size=#{insert_size}, contig_length=#{contig_length}"
+            )
           end
 
           # Select which end of the fragment is emitted as read 1.
@@ -122,7 +125,9 @@ module Wgsim
 
       def sample_insert_size(contig_length : Int32) : Int32
         min_insert_size = Math.max(read1_length, read2_length)
-        raise "contig is shorter than minimum read length" if contig_length < min_insert_size
+        if contig_length < min_insert_size
+          raise ArgumentError.new("contig is shorter than minimum read length")
+        end
 
         attempts = 0
         loop do

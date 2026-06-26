@@ -1,4 +1,5 @@
 require "fastx"
+require "./log"
 require "./mutate/option"
 require "./mutate/mutation_simulator"
 
@@ -15,9 +16,9 @@ module Wgsim
     end
 
     def initialize(@option : Option)
-      @reference = option.reference || raise("Reference sequence is required")
-      @mutated_fasta = option.mutated_fasta || raise("Output FASTA file is required")
-      @mutation_event_log = option.mutation_event_log || raise("Output mutation file is required")
+      @reference = option.reference || raise(ArgumentError.new("Reference sequence is required"))
+      @mutated_fasta = option.mutated_fasta || raise(ArgumentError.new("Output FASTA file is required"))
+      @mutation_event_log = option.mutation_event_log || raise(ArgumentError.new("Output mutation file is required"))
       option.validate!
       @mutation_simulator = MutationSimulator.new(
         substitution_rate: option.substitution_rate,
@@ -36,7 +37,7 @@ module Wgsim
 
     private def log_parameters
       option.summary.split("\n").each do |line|
-        STDERR.puts "[wgsim] # #{line}"
+        Log.info("# #{line}")
       end
     end
 
@@ -46,7 +47,7 @@ module Wgsim
           File.open(mutation_event_log, "w") do |mutation_io|
             reader.each_bytes do |name, sequence|
               name_string = String.new(name)
-              STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
+              Log.info("#{name_string} #{sequence.size} bp")
               process_sequence(name_string, sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
             end
           end

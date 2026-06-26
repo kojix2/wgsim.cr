@@ -73,7 +73,7 @@ module Wgsim
     def reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)
       sequence.map do |nucleotide|
         nucleotide = normalize_base(nucleotide)
-        COMPLEMENT_BASES.fetch(nucleotide) { raise "Invalid nucleotide: #{nucleotide}" }
+        COMPLEMENT_BASES.fetch(nucleotide) { raise ArgumentError.new("Invalid nucleotide: #{nucleotide}") }
       end.reverse!
     end
   end

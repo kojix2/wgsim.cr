@@ -1,4 +1,5 @@
 require "./version"
+require "./log"
 require "./mutate/option"
 require "./sequencing/option"
 require "./action"
@@ -218,13 +219,13 @@ module Wgsim
       _on_help_
 
       invalid_option do |flag|
-        STDERR.puts "[wgsim.cr] ERROR: #{flag} is not a valid option."
+        Log.error("#{flag} is not a valid option.")
         STDERR.puts self
         exit(1)
       end
 
       missing_option do |flag|
-        STDERR.puts "[wgsim.cr] ERROR: #{flag} option expects an argument."
+        Log.error("#{flag} option expects an argument.")
         STDERR.puts self
         exit(1)
       end
