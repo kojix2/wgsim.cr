@@ -215,7 +215,7 @@
 <li>Fasta Output</li>
 </ul>
 </li>
-<li><code>seq</code> : Simulation of short lead sequencing
+<li><code>seq</code> : Simulation of short-read sequencing
 <ul>
 <li>Uniform substitution sequencing errors</li>
 <li>Fastq Output</li>
@@ -241,7 +241,7 @@
 </a>Compiling from source code</h3>
 <pre><code class="language-sh">git clone https://github.com/kojix2/wgsim.cr
 cd wgsim.cr
-shards build --release -Dpreview_mt src/wgsim.cr</code></pre>
+shards build --release</code></pre>
 <h3><a id="homebrew" class="anchor" href="#homebrew">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -377,10 +377,10 @@ Usage: wgsim gen [options]
 </a>Development</h2>
 <p>Dependencies:</p>
 <ul>
-<li><a href="https://github.com/kojix2/nworkers.cr">kojix2/nworkers.cr</a> - Set the number of worker threads at runtime.</li>
 <li><a href="https://github.com/kojix2/randn.cr">kojix2/randn.cr</a> - Normal random number generator.</li>
-<li><a href="https://github.com/kojix2/fastx.cr">kojix2/fastx.cr</a> - Fasta file reader.</li>
+<li><a href="https://github.com/kojix2/fastx.cr">kojix2/fastx.cr</a> - FASTA/FASTQ reader and writer.</li>
 </ul>
+<p>Multithreaded execution is not implemented. Do not build with <code>-Dpreview_mt</code> expecting parallel <code>mut</code>, <code>seq</code>, or <code>gen</code> processing.</p>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
