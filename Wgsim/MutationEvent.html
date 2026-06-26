@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::EventRecord - wgsim main</title>
+  <title>Wgsim::MutationEvent - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -82,11 +82,6 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/EventRecord" data-name="wgsim::eventrecord">
-      <a href="../Wgsim/EventRecord.html">EventRecord</a>
-      
-    </li>
-  
   <li class=" " data-id="wgsim/Wgsim/FastqRecord" data-name="wgsim::fastqrecord">
       <a href="../Wgsim/FastqRecord.html">FastqRecord</a>
       
@@ -97,13 +92,13 @@
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Generate/Core" data-name="wgsim::generate::core">
-      <a href="../Wgsim/Generate/Core.html">Core</a>
+  <li class=" " data-id="wgsim/Wgsim/Generate/Option" data-name="wgsim::generate::option">
+      <a href="../Wgsim/Generate/Option.html">Option</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Generate/Option" data-name="wgsim::generate::option">
-      <a href="../Wgsim/Generate/Option.html">Option</a>
+  <li class=" " data-id="wgsim/Wgsim/Generate/RandomReferenceGenerator" data-name="wgsim::generate::randomreferencegenerator">
+      <a href="../Wgsim/Generate/RandomReferenceGenerator.html">RandomReferenceGenerator</a>
       
     </li>
   
@@ -117,8 +112,8 @@
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Mutate/Core" data-name="wgsim::mutate::core">
-      <a href="../Wgsim/Mutate/Core.html">Core</a>
+  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationSimulator" data-name="wgsim::mutate::mutationsimulator">
+      <a href="../Wgsim/Mutate/MutationSimulator.html">MutationSimulator</a>
       
     </li>
   
@@ -132,8 +127,13 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/MutType" data-name="wgsim::muttype">
-      <a href="../Wgsim/MutType.html">MutType</a>
+  <li class=" current" data-id="wgsim/Wgsim/MutationEvent" data-name="wgsim::mutationevent">
+      <a href="../Wgsim/MutationEvent.html">MutationEvent</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/MutationType" data-name="wgsim::mutationtype">
+      <a href="../Wgsim/MutationType.html">MutationType</a>
       
     </li>
   
@@ -142,13 +142,13 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/RefBase" data-name="wgsim::refbase">
-      <a href="../Wgsim/RefBase.html">RefBase</a>
+  <li class=" " data-id="wgsim/Wgsim/ReferenceBase" data-name="wgsim::referencebase">
+      <a href="../Wgsim/ReferenceBase.html">ReferenceBase</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/RefSeq" data-name="wgsim::refseq">
-      <a href="../Wgsim/RefSeq.html">RefSeq</a>
+  <li class=" " data-id="wgsim/Wgsim/ReferenceSequence" data-name="wgsim::referencesequence">
+      <a href="../Wgsim/ReferenceSequence.html">ReferenceSequence</a>
       
     </li>
   
@@ -162,13 +162,13 @@
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/Core" data-name="wgsim::sequence::core">
-      <a href="../Wgsim/Sequence/Core.html">Core</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequence/Option" data-name="wgsim::sequence::option">
+      <a href="../Wgsim/Sequence/Option.html">Option</a>
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/Option" data-name="wgsim::sequence::option">
-      <a href="../Wgsim/Sequence/Option.html">Option</a>
+  <li class=" " data-id="wgsim/Wgsim/Sequence/ReadPairSimulator" data-name="wgsim::sequence::readpairsimulator">
+      <a href="../Wgsim/Sequence/ReadPairSimulator.html">ReadPairSimulator</a>
       
     </li>
   
@@ -193,12 +193,12 @@
 
   <span class="kind">
     class
-  </span> Wgsim::<wbr>EventRecord
+  </span> Wgsim::<wbr>MutationEvent
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/EventRecord.html">Wgsim::EventRecord</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/MutationEvent.html">Wgsim::MutationEvent</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -228,8 +228,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L4" target="_blank">
-        wgsim/mutate/event_record.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L4" target="_blank">
+        wgsim/mutate/mutation_event.cr
       </a>
     
     <br/>
@@ -251,7 +251,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28mutation_type%3AWgsim%3A%3AMutType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(mutation_type : Wgsim::MutType, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)</a>
+        <a href="#new%28mutation_type%3AWgsim%3A%3AMutationType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method" class="signature"><strong>.new</strong>(mutation_type : Wgsim::MutationType, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -284,12 +284,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#mutation_type%3AMutType-instance-method" class="signature"><strong>#mutation_type</strong> : MutType</a>
+        <a href="#mutation_type%3AMutationType-instance-method" class="signature"><strong>#mutation_type</strong> : MutationType</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#mutation_type%3D%28mutation_type%3AMutType%29-instance-method" class="signature"><strong>#mutation_type=</strong>(mutation_type : MutType)</a>
+        <a href="#mutation_type%3D%28mutation_type%3AMutationType%29-instance-method" class="signature"><strong>#mutation_type=</strong>(mutation_type : MutationType)</a>
         
       </li>
     
@@ -381,18 +381,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(mutation_type:Wgsim::MutType,reference_position:Int32,reference_allele:Char|String,alternate_allele:Char|String,sequence_name:Nil|String=nil)-class-method">
+    <div class="entry-detail" id="new(mutation_type:Wgsim::MutationType,reference_position:Int32,reference_allele:Char|String,alternate_allele:Char|String,sequence_name:Nil|String=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(mutation_type : <a href="../Wgsim/MutType.html">Wgsim::MutType</a>, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)
+        def self.<strong>new</strong>(mutation_type : <a href="../Wgsim/MutationType.html">Wgsim::MutationType</a>, reference_position : Int32, reference_allele : Char | String, alternate_allele : Char | String, sequence_name : Nil | String = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28mutation_type%3AWgsim%3A%3AMutType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28mutation_type%3AWgsim%3A%3AMutationType%2Creference_position%3AInt32%2Creference_allele%3AChar%7CString%2Calternate_allele%3AChar%7CString%2Csequence_name%3ANil%7CString%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -424,7 +424,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -440,39 +440,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutation_type:MutType-instance-method">
+    <div class="entry-detail" id="mutation_type:MutationType-instance-method">
       <div class="signature">
         
-        def <strong>mutation_type</strong> : <a href="../Wgsim/MutType.html">MutType</a>
+        def <strong>mutation_type</strong> : <a href="../Wgsim/MutationType.html">MutationType</a>
 
-        <a class="method-permalink" href="#mutation_type%3AMutType-instance-method">#</a>
+        <a class="method-permalink" href="#mutation_type%3AMutationType-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="mutation_type=(mutation_type:MutType)-instance-method">
+    <div class="entry-detail" id="mutation_type=(mutation_type:MutationType)-instance-method">
       <div class="signature">
         
-        def <strong>mutation_type=</strong>(mutation_type : <a href="../Wgsim/MutType.html">MutType</a>)
+        def <strong>mutation_type=</strong>(mutation_type : <a href="../Wgsim/MutationType.html">MutationType</a>)
 
-        <a class="method-permalink" href="#mutation_type%3D%28mutation_type%3AMutType%29-instance-method">#</a>
+        <a class="method-permalink" href="#mutation_type%3D%28mutation_type%3AMutationType%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -488,7 +488,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -504,7 +504,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -520,7 +520,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -536,7 +536,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -552,7 +552,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -568,7 +568,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -600,7 +600,7 @@ which includes its class name and its object address.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -622,14 +622,14 @@ which includes its class name and its object address.</p>
           <p>Returns a nicely readable and concise string representation of this object,
 typically intended for users.</p>
 <p>This method should usually <strong>not</strong> be overridden. It delegates to
-<code><a href="../Wgsim/EventRecord.html#to_s%28io%3AIO%29-instance-method">#to_s(IO)</a></code> which can be overridden for custom implementations.</p>
+<code><a href="../Wgsim/MutationEvent.html#to_s%28io%3AIO%29-instance-method">#to_s(IO)</a></code> which can be overridden for custom implementations.</p>
 <p>Also see <code>#inspect</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/dc7ea8f9cde49ce6880a7fa013340ec84c541473/src/wgsim/mutate/event_record.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/921a3dbe423ca5f414799194806f6d006c490abd/src/wgsim/mutate/mutation_event.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
