@@ -28,7 +28,7 @@ module Wgsim
     ]
 
     NORMALIZE_BASES = begin
-      table = StaticArray(UInt8, 256).new { |i| i.to_u8 }
+      table = StaticArray(UInt8, 256).new(&.to_u8)
       table[LOWERCASE_BASE_A] = BASE_A
       table[LOWERCASE_BASE_C] = BASE_C
       table[LOWERCASE_BASE_G] = BASE_G
