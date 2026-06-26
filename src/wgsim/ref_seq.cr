@@ -22,10 +22,10 @@ module Wgsim
           seq.write ins if ins
         end
       end
-      format_sequence(seq, width: width)
+      wrap_fasta_sequence(seq, width: width)
     end
 
-    private def format_sequence(sequence : IO::Memory, width : Int) : String
+    private def wrap_fasta_sequence(sequence : IO::Memory, width : Int) : String
       sequence.to_s.gsub(/(.{#{width}})/, "\\1\n")
     end
   end

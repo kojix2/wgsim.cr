@@ -21,14 +21,14 @@ module Wgsim
     end
 
     def run
-      core.generate_sequence do |name, sequence|
+      core.generate_sequences do |name, sequence|
         puts ">#{name}"
-        puts format_sequence(sequence, FASTA_LINE_WIDTH)
+        puts wrap_fasta_sequence(sequence, FASTA_LINE_WIDTH)
         # puts
       end
     end
 
-    private def format_sequence(sequence : Slice(UInt8), width : Int) : String
+    private def wrap_fasta_sequence(sequence : Slice(UInt8), width : Int) : String
       IO::Memory.new(sequence).to_s.gsub(/(.{#{width}})/, "\\1\n")
     end
   end

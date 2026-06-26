@@ -43,7 +43,7 @@ module Wgsim
       Fastx::Fasta::Reader.open(reference) do |reader|
         reader.each_bytes do |name, sequence|
           name_string = String.new(name)
-          core.run(name_string, sequence) do |record1, record2|
+          core.simulate_read_pairs(name_string, sequence) do |record1, record2|
             record1.to_s(read1_fastq_io)
             record2.to_s(read2_fastq_io)
           end

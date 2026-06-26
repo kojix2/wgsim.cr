@@ -37,9 +37,6 @@ module Wgsim
         Slice(UInt8).new(inserted_base_count) { DNA_BASES[rand(DNA_BASES.size)] }
       end
 
-      # Simulate mutations and output the results
-      # Returns a slice of RefBase
-
       def simulate_mutations(sequence : Slice(UInt8)) : {RefSeq, Array(EventRecord)}
         reference_position = 0
         deleted_bases = [] of UInt8
@@ -48,9 +45,9 @@ module Wgsim
         mutated_bases = sequence.map do |reference_base|
           reference_base = normalize_base(reference_base)
           reference_position += 1 # 1-based reference position
-          if previous_ref_base_is_deletion?(deleted_bases)
-            if extend_deletion?
-              deleted_base = delete_nucleotide(reference_base, deleted_bases)
+          if deletion_is_open?(deleted_bases)
+            if extend_current_deletion?
+              deleted_base = build_deleted_ref_base(reference_base, deleted_bases)
               next deleted_base
             else # stop deletion
               # NOTE: should stop when n is N?
@@ -60,31 +57,31 @@ module Wgsim
           end
 
           # skip N
-          next nochange_nucleotide(reference_base) if reference_base == BASE_N
+          next build_unchanged_ref_base(reference_base) if reference_base == BASE_N
 
           case pick_mutation_type
           when MutType::SUBSTITUTE
-            substitute_nucleotide(reference_base, event_log, reference_position)
+            build_substituted_ref_base(reference_base, event_log, reference_position)
           when MutType::INSERT
-            insert_nucleotide(reference_base, event_log, reference_position)
+            build_insertion_ref_base(reference_base, event_log, reference_position)
           when MutType::DELETE
-            delete_nucleotide(reference_base, deleted_bases)
+            build_deleted_ref_base(reference_base, deleted_bases)
           else
-            nochange_nucleotide(reference_base)
+            build_unchanged_ref_base(reference_base)
           end
         end
-        if previous_ref_base_is_deletion?(deleted_bases)
+        if deletion_is_open?(deleted_bases)
           log_deletion(event_log, deleted_bases, reference_position, end_of_sequence: true)
           deleted_bases.clear
         end
         {RefSeq.new(mutated_bases), event_log}
       end
 
-      private def previous_ref_base_is_deletion?(deleted_bases : Array(UInt8)) : Bool
+      private def deletion_is_open?(deleted_bases : Array(UInt8)) : Bool
         deleted_bases.present?
       end
 
-      private def extend_deletion? : Bool
+      private def extend_current_deletion? : Bool
         rand < deletion_extension_probability
       end
 
@@ -101,22 +98,22 @@ module Wgsim
         end
       end
 
-      def nochange_nucleotide(reference_base : UInt8) : RefBase
+      def build_unchanged_ref_base(reference_base : UInt8) : RefBase
         RefBase.new(nucleotide: reference_base, mutation_type: MutType::NOCHANGE)
       end
 
-      def insert_nucleotide(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
+      def build_insertion_ref_base(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
         inserted_bases = generate_inserted_bases
         log_insertion(event_log, reference_position, reference_base, inserted_bases)
         RefBase.new(nucleotide: reference_base, mutation_type: MutType::INSERT, insertion: inserted_bases)
       end
 
-      def delete_nucleotide(reference_base : UInt8, deleted_bases : Array(UInt8)) : RefBase
+      def build_deleted_ref_base(reference_base : UInt8, deleted_bases : Array(UInt8)) : RefBase
         deleted_bases << reference_base
         RefBase.new(nucleotide: reference_base, mutation_type: MutType::DELETE)
       end
 
-      def substitute_nucleotide(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
+      def build_substituted_ref_base(reference_base : UInt8, event_log : Array(EventRecord), reference_position : Int32) : RefBase
         alternate_base = perform_substitution(reference_base, rand(SUBSTITUTIONS_FOR_A.size))
         log_substitution(event_log, reference_position, reference_base, alternate_base)
         RefBase.new(nucleotide: alternate_base, mutation_type: MutType::SUBSTITUTE)

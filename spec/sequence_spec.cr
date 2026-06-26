@@ -14,7 +14,7 @@ describe Wgsim::Sequence::Core do
     )
 
     100.times do
-      insert_size = core.random_insert_size(120)
+      insert_size = core.sample_insert_size(120)
       insert_size.should be >= 50
       insert_size.should be <= 120
     end
@@ -32,7 +32,7 @@ describe Wgsim::Sequence::Core do
       seed: 1u64
     )
 
-    core.random_insert_size(120).should eq(120)
+    core.sample_insert_size(120).should eq(120)
   end
 
   it "discards reads above the ambiguous-base ratio without looping forever" do
@@ -48,7 +48,7 @@ describe Wgsim::Sequence::Core do
     )
 
     pairs = 0
-    core.run("ambiguous", ("NNAAAAAAAA" * 20).to_slice) do
+    core.simulate_read_pairs("ambiguous", ("NNAAAAAAAA" * 20).to_slice) do
       pairs += 1
     end
 
@@ -68,7 +68,7 @@ describe Wgsim::Sequence::Core do
     )
 
     records = [] of Wgsim::FastqRecord
-    core.run("lowercase", "acgtacgt".to_slice) do |record1, record2|
+    core.simulate_read_pairs("lowercase", "acgtacgt".to_slice) do |record1, record2|
       records << record1
       records << record2
     end

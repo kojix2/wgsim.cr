@@ -20,7 +20,7 @@ module Wgsim
     end
 
     def load(file : (String | Path)) : Array(CellSample)
-      separator = determine_separator(file)
+      separator = column_separator_for_file(file)
       File.open(file) do |io|
         CSV.new(io, separator: separator).each do |row|
           sample_name = row[SAMPLE_NAME_COLUMN]
@@ -32,7 +32,7 @@ module Wgsim
       @samples
     end
 
-    private def determine_separator(file : String) : Char
+    private def column_separator_for_file(file : String) : Char
       if TSV_FILE_EXTENSIONS.includes?(File.extname(file))
         TSV_COLUMN_SEPARATOR
       else
