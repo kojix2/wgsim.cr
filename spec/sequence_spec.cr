@@ -1,6 +1,25 @@
 require "./spec_helper"
 
 describe Wgsim::Sequence::ReadPairSimulator do
+  it "writes records compatibly with the fastx FASTQ writer" do
+    record = Wgsim::FastqRecord.new(
+      "chr1",
+      2,
+      10,
+      50,
+      1,
+      "ACGT".to_slice,
+      "2222".to_slice
+    )
+    io = IO::Memory.new
+
+    writer = Fastx::Fastq::Writer.new(io)
+    writer.write(record.identifier, record.read_sequence, record.quality_sequence)
+    writer.close
+
+    String.new(io.to_slice).should eq(record.to_s)
+  end
+
   it "re-samples insert size until it fits in the contig" do
     simulator = Wgsim::Sequence::ReadPairSimulator.new(
       average_depth: 10.0,

@@ -38,22 +38,20 @@ module Wgsim
     end
 
     def run
-      read1_fastq_io = File.open(read1_fastq, "w")
-      read2_fastq_io = File.open(read2_fastq, "w")
-
-      Fastx::Fasta::Reader.open(reference) do |reader|
-        reader.each_bytes do |name, sequence|
-          name_string = String.new(name)
-          read_pair_simulator.simulate_read_pairs(name_string, sequence) do |record1, record2|
-            record1.to_s(read1_fastq_io)
-            record2.to_s(read2_fastq_io)
+      Fastx::Fastq::Writer.open(read1_fastq) do |read1_writer|
+        Fastx::Fastq::Writer.open(read2_fastq) do |read2_writer|
+          Fastx::Fasta::Reader.open(reference) do |reader|
+            reader.each_bytes do |name, sequence|
+              name_string = String.new(name)
+              read_pair_simulator.simulate_read_pairs(name_string, sequence) do |record1, record2|
+                read1_writer.write(record1.identifier, record1.read_sequence, record1.quality_sequence)
+                read2_writer.write(record2.identifier, record2.read_sequence, record2.quality_sequence)
+              end
+              STDERR.puts "[wgsim] #{name_string} done"
+            end
           end
-          STDERR.puts "[wgsim] #{name_string} done"
         end
       end
-    ensure
-      read1_fastq_io.try &.close
-      read2_fastq_io.try &.close
     end
   end
 end

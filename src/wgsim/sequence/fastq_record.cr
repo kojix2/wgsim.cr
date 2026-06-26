@@ -6,9 +6,13 @@ module Wgsim
     property insert_size : Int32
     property mate_index : Int32
     property read_sequence : Slice(UInt8)
-    property quality_char : Char
+    property quality_sequence : Slice(UInt8)
 
-    def initialize(@read_name, @pair_index, @fragment_start, @insert_size, @mate_index, @read_sequence, @quality_char)
+    def initialize(@read_name, @pair_index, @fragment_start, @insert_size, @mate_index, @read_sequence, @quality_sequence)
+    end
+
+    def identifier : String
+      "#{read_name}_#{fragment_start}_#{insert_size}:#{pair_index}/#{mate_index + 1}"
     end
 
     # NOTE: This method may be moved to Sequence class because it is IO-related.
@@ -19,13 +23,11 @@ module Wgsim
     end
 
     def to_s(io : IO)
-      io << '@' << read_name << '_' << fragment_start << '_' << insert_size << ':' << pair_index << '/' << (mate_index + 1) << '\n'
+      io << '@' << identifier << '\n'
       io.write(read_sequence)
       io << '\n'
       io << '+' << '\n'
-      read_sequence.size.times do
-        io << quality_char
-      end
+      io.write(quality_sequence)
       io << '\n'
     end
   end

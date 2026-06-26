@@ -59,6 +59,8 @@ module Wgsim
         # Currently, the sequence error rate is uniform across the entire sequence.
         # '2' if the error rate is [0.02].
         quality_char = @sequencing_error_model.quality_char
+        read1_quality = Bytes.new(read1_length, quality_char.ord.to_u8)
+        read2_quality = Bytes.new(read2_length, quality_char.ord.to_u8)
 
         pair_index = 0
         while pair_index < n_pairs
@@ -98,8 +100,8 @@ module Wgsim
           read2_sequence = @sequencing_error_model.add_errors(read2_sequence)
 
           yield(
-            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 0, read1_sequence, quality_char),
-            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 1, read2_sequence, quality_char)
+            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 0, read1_sequence, read1_quality),
+            FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 1, read2_sequence, read2_quality)
           )
         end
       end
