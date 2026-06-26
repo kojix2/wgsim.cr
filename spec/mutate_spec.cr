@@ -1,6 +1,21 @@
 require "./spec_helper"
 
 describe Wgsim::Mutate::MutationSimulator do
+  it "formats mutated reference sequences with the requested line width" do
+    simulator = Wgsim::Mutate::MutationSimulator.new(
+      substitution_rate: 0.0,
+      insertion_rate: 0.0,
+      deletion_rate: 0.0,
+      insertion_extension_probability: 0.0,
+      deletion_extension_probability: 0.0,
+      seed: 1
+    )
+
+    res, _elog = simulator.simulate_mutations("ACGTACGT".to_slice)
+
+    res.format(width: 4).should eq("ACGT\nACGT\n")
+  end
+
   it "can mutate a sequence" do
     simulator = Wgsim::Mutate::MutationSimulator.new(
       substitution_rate: 0.2,

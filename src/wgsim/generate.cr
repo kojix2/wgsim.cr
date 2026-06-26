@@ -1,10 +1,10 @@
-require "./fasta_formatter"
+require "fastx"
 require "./generate/option"
 require "./generate/random_reference_generator"
 
 module Wgsim
   class Generate
-    FASTA_LINE_WIDTH = FastaFormatter::DEFAULT_LINE_WIDTH
+    FASTA_LINE_WIDTH = 80
 
     getter option : Option
     getter reference_generator : RandomReferenceGenerator
@@ -22,10 +22,9 @@ module Wgsim
     end
 
     def run
+      writer = Fastx::Fasta::Writer.new(STDOUT, line_width: FASTA_LINE_WIDTH)
       reference_generator.generate_sequences do |name, sequence|
-        puts ">#{name}"
-        puts FastaFormatter.wrap(sequence, FASTA_LINE_WIDTH)
-        # puts
+        writer.write(name, sequence)
       end
     end
   end

@@ -42,42 +42,41 @@ module Wgsim
 
     private def process_sequences
       reader = Fastx::Fasta::Reader.new(reference)
-      fasta_io = File.open(mutated_fasta, "w")
+      fasta_writer = Fastx::Fasta::Writer.new(mutated_fasta, line_width: ReferenceSequence::DEFAULT_FASTA_LINE_WIDTH)
       mutation_io = File.open(mutation_event_log, "w")
       begin
         reader.each_bytes do |name, sequence|
           name_string = String.new(name)
           STDERR.puts "[wgsim] #{name_string} #{sequence.size} bp"
-          process_sequence(name_string, sequence, fasta_io: fasta_io, mutation_io: mutation_io)
+          process_sequence(name_string, sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
         end
       ensure
         reader.try &.close
-        fasta_io.try &.close
+        fasta_writer.try &.close
         mutation_io.try &.close
       end
     end
 
-    private def process_sequence(reference_name : String, reference_sequence : Bytes, fasta_io : IO, mutation_io : IO)
+    private def process_sequence(reference_name : String, reference_sequence : Bytes, fasta_writer : Fastx::Fasta::Writer, mutation_io : IO)
       if option.ploidy == 1
-        simulate_and_output_sequence(reference_name, reference_sequence, fasta_io: fasta_io, mutation_io: mutation_io)
+        simulate_and_output_sequence(reference_name, reference_sequence, fasta_writer: fasta_writer, mutation_io: mutation_io)
       else
         option.ploidy.times do |copy_index|
-          simulate_and_output_sequence(reference_name, reference_sequence, copy_index + 1, fasta_io: fasta_io, mutation_io: mutation_io)
+          simulate_and_output_sequence(reference_name, reference_sequence, copy_index + 1, fasta_writer: fasta_writer, mutation_io: mutation_io)
         end
       end
     end
 
-    private def simulate_and_output_sequence(reference_name : String, reference_sequence : Slice(UInt8), copy_number = nil, fasta_io = STDOUT, mutation_io = STDERR)
+    private def simulate_and_output_sequence(reference_name : String, reference_sequence : Slice(UInt8), copy_number = nil, *, fasta_writer : Fastx::Fasta::Writer, mutation_io = STDERR)
       output_sequence_name = "#{reference_name.split.first}"
       output_sequence_name += "_#{copy_number}" if copy_number
-      fasta_io.puts ">#{output_sequence_name}"
       mutated_sequence, event_log = mutation_simulator.simulate_mutations(reference_sequence)
       event_log.each do |mutation_event|
         mutation_event.sequence_name = output_sequence_name
         mutation_event.to_s(mutation_io)
         mutation_io.puts
       end
-      fasta_io.puts mutated_sequence.format
+      fasta_writer.write(output_sequence_name, mutated_sequence.to_slice)
     end
   end
 end
