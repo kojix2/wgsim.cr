@@ -1,16 +1,15 @@
 require "randn"
-require "../core_utils"
+require "../dna"
+require "./sequencing_error_model"
 
 module Wgsim
   class Sequence
     class ReadPairSimulator
-      include CoreUtils
+      include Dna
       delegate rand, randn, next_bool, to: @random
 
       PROGRESS_REPORT_COUNT       =     10
       MAX_INSERT_SIZE_RESAMPLINGS = 10_000
-      PHRED_ASCII_OFFSET          =     33
-      PHRED_SCORE_FACTOR          =    -10
 
       property mean_insert_size : Int32
       property insert_size_std_dev : Int32
@@ -32,6 +31,7 @@ module Wgsim
       )
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
+        @sequencing_error_model = SequencingErrorModel.new(error_rate, @random)
       end
 
       def simulate_read_pairs(name, sequence, &)
@@ -58,7 +58,7 @@ module Wgsim
 
         # Currently, the sequence error rate is uniform across the entire sequence.
         # '2' if the error rate is [0.02].
-        quality_char = quality_char_for_error_rate(error_rate)
+        quality_char = @sequencing_error_model.quality_char
 
         pair_index = 0
         while pair_index < n_pairs
@@ -94,8 +94,8 @@ module Wgsim
                   read2_sequence.count(BASE_N).to_f / read2_sequence.size > max_ambiguous_ratio
 
           # generate sequence error
-          read1_sequence = add_sequencing_errors(read1_sequence)
-          read2_sequence = add_sequencing_errors(read2_sequence)
+          read1_sequence = @sequencing_error_model.add_errors(read1_sequence)
+          read2_sequence = @sequencing_error_model.add_errors(read2_sequence)
 
           yield(
             FastqRecord.new(read_name, current_pair_index, fragment_start, insert_size, 0, read1_sequence, quality_char),
@@ -116,21 +116,6 @@ module Wgsim
         end
 
         {read1, read2}
-      end
-
-      def quality_char_for_error_rate(error_rate : Float64) : Char
-        ((PHRED_ASCII_OFFSET + (PHRED_SCORE_FACTOR * Math.log10(error_rate))).round).to_u8.chr
-      end
-
-      def add_sequencing_errors(sequence : Slice(UInt8)) : Slice(UInt8)
-        sequence.map do |base|
-          if (base != BASE_N) && (rand < error_rate)
-            # Defined in core_utils.cr
-            perform_substitution(base, rand(SUBSTITUTIONS_FOR_A.size))
-          else
-            base
-          end
-        end
       end
 
       def sample_insert_size(contig_length : Int32) : Int32

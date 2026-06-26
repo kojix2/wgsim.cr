@@ -1,6 +1,7 @@
 require "fastx"
 require "./sequence/fastq_record"
 require "./sequence/option"
+require "./sequence/sequencing_error_model"
 require "./sequence/read_pair_simulator"
 
 module Wgsim

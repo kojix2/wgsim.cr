@@ -1,11 +1,13 @@
 require "randn"
-require "../core_utils"
+require "../dna"
+require "./mutation_event_builder"
 require "./mutation_event"
+require "./mutation_type_sampler"
 
 module Wgsim
   class Mutate
     class MutationSimulator
-      include CoreUtils
+      include Dna
       delegate rand, randn, to: @random
 
       property substitution_rate : Float64
@@ -26,6 +28,12 @@ module Wgsim
         # random number generator with seed
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
+        @mutation_type_sampler = MutationTypeSampler.new(
+          substitution_rate: substitution_rate,
+          insertion_rate: insertion_rate,
+          deletion_rate: deletion_rate,
+          random: @random
+        )
       end
 
       # Generate inserted bases based on the insertion extension probability.
@@ -51,7 +59,7 @@ module Wgsim
               next deleted_base
             else # stop deletion
               # NOTE: should stop when n is N?
-              log_deletion(event_log, deleted_bases, reference_position)
+              event_log << MutationEventBuilder.deletion(deleted_bases, reference_position)
               deleted_bases.clear
             end
           end
@@ -59,7 +67,7 @@ module Wgsim
           # skip N
           next build_unchanged_reference_base(reference_base) if reference_base == BASE_N
 
-          case pick_mutation_type
+          case @mutation_type_sampler.sample
           when MutationType::SUBSTITUTE
             build_substituted_reference_base(reference_base, event_log, reference_position)
           when MutationType::INSERT
@@ -71,7 +79,7 @@ module Wgsim
           end
         end
         if deletion_is_open?(deleted_bases)
-          log_deletion(event_log, deleted_bases, reference_position, end_of_sequence: true)
+          event_log << MutationEventBuilder.deletion(deleted_bases, reference_position, end_of_sequence: true)
           deleted_bases.clear
         end
         {ReferenceSequence.new(mutated_bases), event_log}
@@ -85,26 +93,13 @@ module Wgsim
         rand < deletion_extension_probability
       end
 
-      private def pick_mutation_type : MutationType
-        value = rand
-        if value <= substitution_rate
-          MutationType::SUBSTITUTE
-        elsif value <= (substitution_rate + insertion_rate)
-          MutationType::INSERT
-        elsif value <= (substitution_rate + insertion_rate + deletion_rate)
-          MutationType::DELETE
-        else
-          MutationType::NOCHANGE
-        end
-      end
-
       def build_unchanged_reference_base(reference_base : UInt8) : ReferenceBase
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::NOCHANGE)
       end
 
       def build_insertion_reference_base(reference_base : UInt8, event_log : Array(MutationEvent), reference_position : Int32) : ReferenceBase
         inserted_bases = generate_inserted_bases
-        log_insertion(event_log, reference_position, reference_base, inserted_bases)
+        event_log << MutationEventBuilder.insertion(reference_position, reference_base, inserted_bases)
         ReferenceBase.new(nucleotide: reference_base, mutation_type: MutationType::INSERT, insertion: inserted_bases)
       end
 
@@ -115,32 +110,8 @@ module Wgsim
 
       def build_substituted_reference_base(reference_base : UInt8, event_log : Array(MutationEvent), reference_position : Int32) : ReferenceBase
         alternate_base = perform_substitution(reference_base, rand(SUBSTITUTIONS_FOR_A.size))
-        log_substitution(event_log, reference_position, reference_base, alternate_base)
+        event_log << MutationEventBuilder.substitution(reference_position, reference_base, alternate_base)
         ReferenceBase.new(nucleotide: alternate_base, mutation_type: MutationType::SUBSTITUTE)
-      end
-
-      def log_deletion(event_log : Array(MutationEvent), deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = false) : Nil
-        deleted_sequence = String.build do |io|
-          deleted_bases.each { |deleted_base| io.write_byte(deleted_base) }
-        end
-        deletion_start_position = if end_of_sequence
-                                    reference_position - deleted_bases.size + 1
-                                  else
-                                    reference_position - deleted_bases.size
-                                  end
-        event_log << MutationEvent.new(MutationType::DELETE, deletion_start_position, deleted_sequence, '.')
-      end
-
-      def log_substitution(event_log : Array(MutationEvent), reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : Nil
-        event_log << MutationEvent.new(MutationType::SUBSTITUTE, reference_position, reference_base.chr, alternate_base.chr)
-      end
-
-      def log_insertion(event_log : Array(MutationEvent), reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : Nil
-        alternate_allele = String.build do |io|
-          io << reference_base.chr
-          io.write(inserted_bases)
-        end
-        event_log << MutationEvent.new(MutationType::INSERT, reference_position, reference_base.chr, alternate_allele)
       end
     end
   end

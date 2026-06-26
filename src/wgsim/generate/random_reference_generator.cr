@@ -1,10 +1,10 @@
 require "randn"
-require "../core_utils"
+require "../dna"
 
 module Wgsim
   class Generate
     class RandomReferenceGenerator
-      include CoreUtils
+      include Dna
 
       CHROMOSOME_NAME_PREFIX = "chr"
 

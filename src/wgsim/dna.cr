@@ -1,5 +1,5 @@
 module Wgsim
-  module CoreUtils
+  module Dna
     BASE_A = 'A'.ord.to_u8
     BASE_C = 'C'.ord.to_u8
     BASE_G = 'G'.ord.to_u8

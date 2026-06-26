@@ -1,8 +1,9 @@
+require "./fasta_formatter"
 require "./reference_base"
 
 module Wgsim
   class ReferenceSequence
-    DEFAULT_FASTA_LINE_WIDTH = 80
+    DEFAULT_FASTA_LINE_WIDTH = FastaFormatter::DEFAULT_LINE_WIDTH
 
     def initialize(@reference_bases : Slice(ReferenceBase))
     end
@@ -22,11 +23,7 @@ module Wgsim
           seq.write ins if ins
         end
       end
-      wrap_fasta_sequence(seq, width: width)
-    end
-
-    private def wrap_fasta_sequence(sequence : IO::Memory, width : Int) : String
-      sequence.to_s.gsub(/(.{#{width}})/, "\\1\n")
+      FastaFormatter.wrap(seq, width: width)
     end
   end
 end
