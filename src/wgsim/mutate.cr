@@ -40,7 +40,7 @@ module Wgsim
     private def process_sequences
       Fastx::Fasta::Reader.open(reference) do |reader|
         Fastx::Fasta::Writer.open(
-          mutated_fasta,
+          filename: mutated_fasta,
           line_width: ReferenceSequence::DEFAULT_FASTA_LINE_WIDTH
         ) do |fasta_writer|
           File.open(mutation_event_log, "w") do |mutation_io|

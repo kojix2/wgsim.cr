@@ -32,28 +32,31 @@ module Wgsim
       )
         seed = @seed
         @random = seed ? Rand.new(seed) : Rand.new
-        @sequencing_error_model = ErrorModel.new(error_rate, @random)
+        @sequencing_error_model = ErrorModel.new(
+          error_rate: error_rate,
+          random: @random
+        )
       end
 
-      def simulate_read_pairs(name, sequence, &)
+      def simulate_read_pairs(sequence_name, sequence, &)
         sequence = normalize_sequence(sequence)
         contig_length = sequence.size
-        read_name = read_name_for(name)
+        read_name = read_name_for(sequence_name)
 
-        # Skip sequences (contigs) that are shorter than the minimum read length.
-        min_read_length = Math.max(read1_length, read2_length)
-        if contig_length < min_read_length
-          Console.warn("skip sequence '#{name}' as it is shorter than #{min_read_length} bp")
+        minimum_read_length = minimum_read_length_for_pair
+        if contig_length < minimum_read_length
+          Console.warn(
+            "skip sequence '#{sequence_name}' " \
+            "as it is shorter than #{minimum_read_length} bp"
+          )
           return
         end
 
-        read_pair_count = (contig_length * average_depth / (read1_length + read2_length)).to_i
+        read_pair_count = expected_read_pair_count(contig_length: contig_length)
 
         return if read_pair_count <= 0
 
-        # Report progress about 10 times per contig, at least once per read pair.
-        progress_step = (read_pair_count / PROGRESS_REPORT_COUNT).to_i
-        progress_step = 1 if progress_step <= 0
+        progress_step = progress_step_for(read_pair_count: read_pair_count)
 
         # Currently, the sequencing error rate is uniform across each read.
         # '2' if the error rate is [0.02].
@@ -64,17 +67,18 @@ module Wgsim
         pair_index = 0
         while pair_index < read_pair_count
           if pair_index % progress_step == 0
-            Console.info("#{name} #{pair_index}/#{read_pair_count}")
+            Console.info("#{sequence_name} #{pair_index}/#{read_pair_count}")
           end
           current_pair_index = pair_index
           pair_index += 1
 
-          # Insert size is the length of the DNA fragment excluding the adapters.
-          # See image at https://www.biostars.org/p/95803/
-          insert_size = sample_insert_size(contig_length)
+          insert_size = sample_insert_size(contig_length: contig_length)
 
           # The fragment start is the 0-based index of the first base of the fragment in the contig.
-          fragment_start = sample_fragment_start(contig_length, insert_size)
+          fragment_start = sample_fragment_start(
+            contig_length: contig_length,
+            insert_size: insert_size
+          )
 
           # Raise an error if the fragment coordinates are invalid. This should never happen.
           if fragment_start < 0 || fragment_start + insert_size > contig_length
@@ -99,10 +103,11 @@ module Wgsim
           )
 
           # Skip if the read contains too many ambiguous bases.
-          next if read1_sequence.count(BASE_N).to_f / read1_sequence.size > max_ambiguous_ratio ||
-                  read2_sequence.count(BASE_N).to_f / read2_sequence.size > max_ambiguous_ratio
+          next if too_many_ambiguous_bases?(read1_sequence) ||
+                  too_many_ambiguous_bases?(read2_sequence)
 
-          # generate sequence error
+          # Add synthetic sequencing errors after read extraction. The source
+          # reference remains unchanged; only observed reads contain errors.
           read1_sequence = @sequencing_error_model.add_errors(read1_sequence)
           read2_sequence = @sequencing_error_model.add_errors(read2_sequence)
 
@@ -141,11 +146,11 @@ module Wgsim
         if read1_starts_at_fragment_left
           read1 = contig_sequence[fragment_start...(fragment_start + read1_length)]
           read2 = reverse_complement(
-            contig_sequence[(fragment_end - read2_length)...fragment_end]
+            sequence: contig_sequence[(fragment_end - read2_length)...fragment_end]
           )
         else
           read1 = reverse_complement(
-            contig_sequence[(fragment_end - read1_length)...fragment_end]
+            sequence: contig_sequence[(fragment_end - read1_length)...fragment_end]
           )
           read2 = contig_sequence[fragment_start...(fragment_start + read2_length)]
         end
@@ -153,8 +158,31 @@ module Wgsim
         {read1, read2}
       end
 
+      private def minimum_read_length_for_pair : Int32
+        Math.max(read1_length, read2_length)
+      end
+
+      private def expected_read_pair_count(contig_length : Int32) : Int32
+        sequenced_bases_per_pair = read1_length + read2_length
+        (contig_length * average_depth / sequenced_bases_per_pair).to_i
+      end
+
+      # Report progress about 10 times per contig, at least once per read pair.
+      private def progress_step_for(read_pair_count : Int32) : Int32
+        progress_step = (read_pair_count / PROGRESS_REPORT_COUNT).to_i
+        progress_step > 0 ? progress_step : 1
+      end
+
+      private def too_many_ambiguous_bases?(read_sequence : Slice(UInt8)) : Bool
+        ambiguous_base_ratio(read_sequence) > max_ambiguous_ratio
+      end
+
+      private def ambiguous_base_ratio(read_sequence : Slice(UInt8)) : Float64
+        read_sequence.count(BASE_N).to_f / read_sequence.size
+      end
+
       def sample_insert_size(contig_length : Int32) : Int32
-        min_insert_size = Math.max(read1_length, read2_length)
+        min_insert_size = minimum_read_length_for_pair
         if contig_length < min_insert_size
           raise ArgumentError.new("contig is shorter than minimum read length")
         end

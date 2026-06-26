@@ -31,7 +31,7 @@ describe Wgsim::Mutate::MutationSimulator do
       seed: 100
     )
     mutated_sequence, mutation_events = simulator.simulate_mutations(
-      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice
+      sequence: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".to_slice
     )
 
     first_event = mutation_events.first

@@ -102,8 +102,6 @@ Usage: wgsim gen [options]
     -h, --help                       Show this help
 ```
 
-### Idea Notes
-
 ## Idea Notes
 
 - Somatic Mutations
@@ -130,10 +128,36 @@ Usage: wgsim gen [options]
   - They act as snapshots of the current state by capturing differences from the reference genome.
   - They are presumed detailed records of genetic variations.
 
-- We attempt to infer mutations by observing individual genomes, but we can never fully reconstruct the events. 
+- We attempt to infer mutations by observing individual genomes, but we can never fully reconstruct the events.
   - In simulations, however, we can have a complete list of mutation events.
 
 - [wgsimのコードを眺める [JA]](https://qiita.com/kojix2/items/35318fbefe0e2ea9fca1)
+
+## Reading the Code
+
+The code is intentionally organized around biological concepts rather than
+around terse implementation tricks.
+
+- `src/wgsim/dna.cr`
+  - Defines byte-level DNA bases, IUPAC ambiguity normalization, substitution
+    choices, and reverse complements.
+- `src/wgsim/mutate/mutation_simulator.cr`
+  - Walks through a reference sequence one base at a time, samples biological
+    mutation types, and records the complete mutation history.
+- `src/wgsim/mutate/mutation_event_builder.cr`
+  - Converts simulated substitutions, insertions, and deletions into explicit
+    event-log records.
+- `src/wgsim/sequencing/read_pair_simulator.cr`
+  - Samples DNA fragments, chooses read orientation, extracts paired-end reads,
+    filters high-`N` reads, and then adds sequencing errors.
+- `src/wgsim/sequencing/error_model.cr`
+  - Models sequencing errors separately from biological mutations.
+
+Two separations are especially important when reading or modifying the code:
+
+- Biological mutations happen in `mut`, before reads are generated.
+- Sequencing errors happen in `seq`, after reads are sampled from the input
+  FASTA.
 
 ## Development
 
@@ -143,7 +167,7 @@ Dependencies:
 - [kojix2/fastx.cr](https://github.com/kojix2/fastx.cr) - FASTA/FASTQ reader and writer.
 
 Multithreaded execution is not implemented. Do not build with `-Dpreview_mt` expecting parallel `mut`, `seq`, or `gen` processing.
-  
+
 ## Contributing
 
 1. Fork it (<https://github.com/kojix2/wgsim/fork>)

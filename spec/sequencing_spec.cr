@@ -33,7 +33,7 @@ describe Wgsim::Sequencing::ReadPairSimulator do
     )
 
     100.times do
-      insert_size = simulator.sample_insert_size(120)
+      insert_size = simulator.sample_insert_size(contig_length: 120)
       insert_size.should be >= 50
       insert_size.should be <= 120
     end
@@ -51,7 +51,7 @@ describe Wgsim::Sequencing::ReadPairSimulator do
       seed: 1u64
     )
 
-    simulator.sample_insert_size(120).should eq(120)
+    simulator.sample_insert_size(contig_length: 120).should eq(120)
   end
 
   it "discards reads above the ambiguous-base ratio without looping forever" do
@@ -67,7 +67,10 @@ describe Wgsim::Sequencing::ReadPairSimulator do
     )
 
     pairs = 0
-    simulator.simulate_read_pairs("ambiguous", ("NNAAAAAAAA" * 20).to_slice) do
+    simulator.simulate_read_pairs(
+      sequence_name: "ambiguous",
+      sequence: ("NNAAAAAAAA" * 20).to_slice
+    ) do
       pairs += 1
     end
 
@@ -87,7 +90,10 @@ describe Wgsim::Sequencing::ReadPairSimulator do
     )
 
     records = [] of Wgsim::Sequencing::FastqRecord
-    simulator.simulate_read_pairs("lowercase", "acgtacgt".to_slice) do |record1, record2|
+    simulator.simulate_read_pairs(
+      sequence_name: "lowercase",
+      sequence: "acgtacgt".to_slice
+    ) do |record1, record2|
       records << record1
       records << record2
     end

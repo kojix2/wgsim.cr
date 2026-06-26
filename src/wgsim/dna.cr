@@ -1,5 +1,7 @@
 module Wgsim
   module Dna
+    # Bases are stored as UInt8 because FASTA/FASTQ parsers expose byte slices.
+    # Keeping this layer byte-based avoids allocating one Char or String per base.
     BASE_A = 'A'.ord.to_u8
     BASE_C = 'C'.ord.to_u8
     BASE_G = 'G'.ord.to_u8
@@ -18,6 +20,9 @@ module Wgsim
     SUBSTITUTIONS_FOR_G = StaticArray[BASE_A, BASE_C, BASE_T]
     SUBSTITUTIONS_FOR_T = StaticArray[BASE_A, BASE_C, BASE_G]
 
+    # IUPAC ambiguity codes are normalized to N before simulation. This keeps
+    # the simulator conservative: it does not invent certainty where the
+    # reference sequence is already ambiguous.
     IUPAC_AMBIGUOUS_BASES = StaticArray[
       'R'.ord.to_u8, 'Y'.ord.to_u8, 'S'.ord.to_u8, 'W'.ord.to_u8,
       'K'.ord.to_u8, 'M'.ord.to_u8, 'B'.ord.to_u8, 'D'.ord.to_u8,
@@ -38,6 +43,8 @@ module Wgsim
       table
     end
 
+    # Reverse complements model the opposite strand of a double-stranded DNA
+    # fragment. N complements to N because its exact base is unknown.
     COMPLEMENT_BASES = {
       BASE_A => BASE_T,
       BASE_C => BASE_G,
@@ -54,17 +61,19 @@ module Wgsim
       sequence.map { |base| normalize_base(base) }
     end
 
-    def perform_substitution(base : UInt8, i : Int) : UInt8
+    # Select one of the three valid alternate nucleotides for a substitution.
+    # The index is random in production, but explicit in tests for readability.
+    def perform_substitution(base : UInt8, substitution_index : Int) : UInt8
       base = normalize_base(base)
       case base
       when BASE_A
-        SUBSTITUTIONS_FOR_A[i]
+        SUBSTITUTIONS_FOR_A[substitution_index]
       when BASE_C
-        SUBSTITUTIONS_FOR_C[i]
+        SUBSTITUTIONS_FOR_C[substitution_index]
       when BASE_G
-        SUBSTITUTIONS_FOR_G[i]
+        SUBSTITUTIONS_FOR_G[substitution_index]
       when BASE_T
-        SUBSTITUTIONS_FOR_T[i]
+        SUBSTITUTIONS_FOR_T[substitution_index]
       else # N and others
         base
       end

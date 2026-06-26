@@ -18,7 +18,10 @@ module Wgsim
       def add_errors(sequence : Slice(UInt8)) : Slice(UInt8)
         sequence.map do |base|
           if (base != BASE_N) && (@random.rand < @error_rate)
-            perform_substitution(base, @random.rand(SUBSTITUTIONS_FOR_A.size))
+            perform_substitution(
+              base: base,
+              substitution_index: @random.rand(SUBSTITUTIONS_FOR_A.size)
+            )
           else
             base
           end

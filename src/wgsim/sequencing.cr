@@ -48,16 +48,19 @@ module Wgsim
           Fastx::Fasta::Reader.open(reference) do |reader|
             reader.each_bytes do |name, sequence|
               name_string = String.new(name)
-              read_pair_simulator.simulate_read_pairs(name_string, sequence) do |record1, record2|
+              read_pair_simulator.simulate_read_pairs(
+                sequence_name: name_string,
+                sequence: sequence
+              ) do |record1, record2|
                 read1_writer.write(
-                  record1.identifier,
-                  record1.read_sequence,
-                  record1.quality_sequence
+                  identifier: record1.identifier,
+                  sequence: record1.read_sequence,
+                  quality: record1.quality_sequence
                 )
                 read2_writer.write(
-                  record2.identifier,
-                  record2.read_sequence,
-                  record2.quality_sequence
+                  identifier: record2.identifier,
+                  sequence: record2.read_sequence,
+                  quality: record2.quality_sequence
                 )
               end
               Console.info("#{name_string} done")

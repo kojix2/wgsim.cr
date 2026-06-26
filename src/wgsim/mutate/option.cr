@@ -38,11 +38,17 @@ module Wgsim
       def validate! : Nil
         raise ArgumentError.new("Ploidy must be at least 1") if ploidy < 1
 
-        validate_probability("substitution rate", substitution_rate)
-        validate_probability("insertion rate", insertion_rate)
-        validate_probability("deletion rate", deletion_rate)
-        validate_probability("insertion extension probability", insertion_extension_probability)
-        validate_probability("deletion extension probability", deletion_extension_probability)
+        validate_probability(name: "substitution rate", value: substitution_rate)
+        validate_probability(name: "insertion rate", value: insertion_rate)
+        validate_probability(name: "deletion rate", value: deletion_rate)
+        validate_probability(
+          name: "insertion extension probability",
+          value: insertion_extension_probability
+        )
+        validate_probability(
+          name: "deletion extension probability",
+          value: deletion_extension_probability
+        )
 
         total_rate = substitution_rate + insertion_rate + deletion_rate
         if total_rate > MAX_PROBABILITY

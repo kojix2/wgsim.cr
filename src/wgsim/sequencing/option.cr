@@ -41,8 +41,15 @@ module Wgsim
       end
 
       def validate! : Nil
-        validate_probability("error rate", error_rate, allow_zero: false)
-        validate_probability("maximum ambiguous base ratio", max_ambiguous_ratio)
+        validate_probability(
+          name: "error rate",
+          value: error_rate,
+          allow_zero: false
+        )
+        validate_probability(
+          name: "maximum ambiguous base ratio",
+          value: max_ambiguous_ratio
+        )
 
         raise ArgumentError.new("Mean insert size must be greater than 0") if mean_insert_size <= 0
         if insert_size_std_dev < 0
