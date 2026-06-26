@@ -213,6 +213,20 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A simple sequencing-error model.</p>
+<p>This class represents observation errors made by the sequencer, not
+biological mutations in the genome. It only substitutes A/C/G/T bases;
+ambiguous N bases remain N because their true base is unknown.</p>
+
 
 
 
@@ -252,7 +266,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/sequencing/error_model.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/9f3f5770649a4ab4599dd19330291c9d19569a02/src/wgsim/sequencing/error_model.cr#L10" target="_blank">
         wgsim/sequencing/error_model.cr
       </a>
     
@@ -328,6 +342,8 @@
     
       <li class="entry-summary">
         <a href="#quality_char%3AChar-instance-method" class="signature"><strong>#quality_char</strong> : Char</a>
+        
+          <div class="summary"><p>FASTQ qualities encode error probability as an ASCII character.</p></div>
         
       </li>
     
@@ -423,7 +439,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/sequencing/error_model.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9f3f5770649a4ab4599dd19330291c9d19569a02/src/wgsim/sequencing/error_model.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -455,7 +471,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/sequencing/error_model.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9f3f5770649a4ab4599dd19330291c9d19569a02/src/wgsim/sequencing/error_model.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -468,10 +484,16 @@
         <a class="method-permalink" href="#quality_char%3AChar-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>FASTQ qualities encode error probability as an ASCII character.
+Here we use one uniform quality character for every base in a read.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/02548a0885f5346d9a0eaec3771e17621a6a3b9d/src/wgsim/sequencing/error_model.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/9f3f5770649a4ab4599dd19330291c9d19569a02/src/wgsim/sequencing/error_model.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
