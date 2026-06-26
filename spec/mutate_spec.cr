@@ -1,7 +1,7 @@
 require "./spec_helper"
 
 describe Wgsim::Mutate::MutationSimulator do
-  it "formats mutated reference sequences with the requested line width" do
+  it "exposes mutated reference sequence bytes for FASTA writing" do
     simulator = Wgsim::Mutate::MutationSimulator.new(
       substitution_rate: 0.0,
       insertion_rate: 0.0,
@@ -12,8 +12,13 @@ describe Wgsim::Mutate::MutationSimulator do
     )
 
     mutated_sequence, _mutation_events = simulator.simulate_mutations("ACGTACGT".to_slice)
+    io = IO::Memory.new
 
-    mutated_sequence.format(width: 4).should eq("ACGT\nACGT\n")
+    writer = Fastx::Fasta::Writer.new(io, line_width: 4)
+    writer.write("chr1", mutated_sequence.to_slice)
+    writer.close
+
+    String.new(io.to_slice).should eq(">chr1\nACGT\nACGT\n")
   end
 
   it "can mutate a sequence" do
@@ -48,7 +53,7 @@ describe Wgsim::Mutate::MutationSimulator do
     penultimate_event.alternate_allele.should eq("ACGGG")
     penultimate_event.mutation_type.should eq(Wgsim::MutationType::INSERT)
 
-    mutated_sequence.format.should eq("ATTAATAATAACCAACAAGACGGGAA")
+    String.new(mutated_sequence.to_slice).should eq("ATTAATAATAACCAACAAGACGGGAA")
   end
 
   it "does not carry over mutation events across simulate_mutations calls" do
@@ -100,6 +105,6 @@ describe Wgsim::Mutate::MutationSimulator do
     mutated_sequence, mutation_events = simulator.simulate_mutations("acgtn".to_slice)
 
     mutation_events.should be_empty
-    mutated_sequence.format.should eq("ACGTN")
+    String.new(mutated_sequence.to_slice).should eq("ACGTN")
   end
 end
