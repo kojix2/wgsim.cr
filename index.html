@@ -246,52 +246,52 @@ shards build --release -Dpreview_mt src/wgsim.cr</code></pre>
   </svg>
 </a>Usage</h2>
 <pre><code class="language-crystal">Program: wgsim (Crystal implementation of wgsim)
-Version: 0.0.4.alpha
+Version: 0.0.9.alpha
 Source:  https://github.com/kojix2/wgsim.cr
 
-    mut                              Add mutations to reference sequences
-    seq                              Simulate pair-end sequencing
-    gen                              Generate random reference fasta
+    mut                              Add biological mutations to reference sequences
+    seq                              Simulate paired-end sequencing reads
+    gen                              Generate random reference FASTA
 
     --debug                          Show backtrace on error
     -v, --version                    Show version
     -h, --help                       Show this help</code></pre>
-<pre><code class="language-crystal">About: Add mutations to reference sequences
-Usage: wgsim mut [options] -f &lt;in.ref.fa&gt;
+<pre><code class="language-crystal">About: Add biological mutations to reference sequences
+Usage: wgsim mut [options] -r &lt;in.ref.fa&gt; -o &lt;out.fa&gt; -l &lt;out.tsv&gt;
 
-    -f, --file FILE                  Input file for the reference sequence (required)
-    -o, --output FILE                Output file for the mutated sequence (required)
-    -m, --mutation FILE              Output file for the mutations (required)
-    -s, --sub-rate FLOAT             Rate of base substitutions [0.001]
-    -i, --ins-rate FLOAT             Rate of insertions [0.0001]
-    -d, --del-rate FLOAT             Rate of deletions [0.0001]
-    -I, --ins-ext-prob FLOAT         Probability an insertion is extended [0.3]
-    -D, --del-ext-prob FLOAT         Probability a deletion is extended [0.3]
-    -p, --ploidy UINT8               Number of chromosome copies in output fasta [2]
-    -S, --seed UINT64                Seed for random generator
+    -r, --reference FILE             Input reference FASTA (required)
+    -o, --mutated-fasta FILE         Output mutated FASTA (required)
+    -l, --mutation-log FILE          Output mutation event log TSV (required)
+    -s, --sub-rate FLOAT             Per-base substitution probability [0.001]
+    -i, --ins-rate FLOAT             Per-base insertion probability [0.0001]
+    -d, --del-rate FLOAT             Per-base deletion-start probability [0.0001]
+    -I, --ins-extend FLOAT           Probability of extending an insertion by one base [0.3]
+    -D, --del-extend FLOAT           Probability of extending an open deletion by one base [0.3]
+    -p, --ploidy UINT8               Number of mutated chromosome copies per input sequence [2]
+    -S, --seed UINT64                Random seed
     --debug                          Show backtrace on error
     -h, --help                       Show this help</code></pre>
-<pre><code class="language-crystal">About: Simulate pair-end sequencing
-Usage: wgsim seq [options] -f &lt;in.ref.fa&gt; -1 &lt;out.read1.fq&gt; -2 &lt;out.read2.fq&gt;
+<pre><code class="language-crystal">About: Simulate paired-end sequencing reads
+Usage: wgsim seq [options] -r &lt;in.ref.fa&gt; -1 &lt;out.read1.fq&gt; -2 &lt;out.read2.fq&gt;
 
-    -f, --file FILE                  Input file for the reference sequence (required)
-    -1, --output1 FILE               Output file for the first read (required)
-    -2, --output2 FILE               Output file for the second read (required)
-    -e, --error-rate FLOAT           Base error rate [0.01]
-    -d, --distance INT               Outer distance between the two ends [500]
-    -s, --std-dev FLOAT              Standard deviation of the insert size [50]
+    -r, --reference FILE             Input reference FASTA (required)
+    -1, --read1-fastq FILE           Output FASTQ for read 1 (required)
+    -2, --read2-fastq FILE           Output FASTQ for read 2 (required)
+    -e, --error-rate FLOAT           Per-base sequencing error probability [0.01]
+    -m, --mean-insert INT            Mean insert size [500]
+    -s, --insert-sd FLOAT            Insert size standard deviation [50]
     -D, --depth FLOAT                Average sequencing depth [10.0]
-    -L, --size-left INT              Length of the first read [100]
-    -R, --size-right INT             Length of the second read [100]
-    -A, --ambiguous-ratio FLOAT      Discard if the fraction of N(ambiguous) bases higher than FLOAT [0.05]
-    -S, --seed UINT64                Seed for random generator
+    -L, --read1-len INT              Read 1 length [100]
+    -R, --read2-len INT              Read 2 length [100]
+    -A, --max-n-ratio FLOAT          Discard a read pair if either read has a higher N fraction [0.05]
+    -S, --seed UINT64                Random seed
     --debug                          Show backtrace on error
     -h, --help                       Show this help</code></pre>
-<pre><code class="language-crystal">About: Generate random reference fasta
+<pre><code class="language-crystal">About: Generate random reference FASTA
 Usage: wgsim gen [options]
 
-    -l, --length INT                 Length of the reference sequence [&quot;1000,700&quot;]
-    -s, --seed UINT64                Seed for random generator
+    -l, --chromosome-lengths INT     Comma-separated chromosome lengths [&quot;1000,500&quot;]
+    -S, --seed UINT64                Random seed
     --debug                          Show backtrace on error
     -h, --help                       Show this help</code></pre>
 <h3><a id="idea-notes" class="anchor" href="#idea-notes">
