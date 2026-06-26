@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Generate::RandomReferenceGenerator - wgsim main</title>
+  <title>Wgsim::Mutate::MutationEventBuilder - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -92,7 +92,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
+  <li class="parent " data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
       <a href="../../Wgsim/Generate.html">Generate</a>
       
         <ul>
@@ -102,7 +102,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/Generate/RandomReferenceGenerator" data-name="wgsim::generate::randomreferencegenerator">
+  <li class=" " data-id="wgsim/Wgsim/Generate/RandomReferenceGenerator" data-name="wgsim::generate::randomreferencegenerator">
       <a href="../../Wgsim/Generate/RandomReferenceGenerator.html">RandomReferenceGenerator</a>
       
     </li>
@@ -112,12 +112,12 @@
       
     </li>
   
-  <li class="parent " data-id="wgsim/Wgsim/Mutate" data-name="wgsim::mutate">
+  <li class="parent open current" data-id="wgsim/Wgsim/Mutate" data-name="wgsim::mutate">
       <a href="../../Wgsim/Mutate.html">Mutate</a>
       
         <ul>
   
-  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationEventBuilder" data-name="wgsim::mutate::mutationeventbuilder">
+  <li class=" current" data-id="wgsim/Wgsim/Mutate/MutationEventBuilder" data-name="wgsim::mutate::mutationeventbuilder">
       <a href="../../Wgsim/Mutate/MutationEventBuilder.html">MutationEventBuilder</a>
       
     </li>
@@ -212,13 +212,12 @@
 <h1 class="type-name">
 
   <span class="kind">
-    class
-  </span> Wgsim::<wbr>Generate::<wbr>RandomReferenceGenerator
+    module
+  </span> Wgsim::<wbr>Mutate::<wbr>MutationEventBuilder
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Wgsim/Generate/RandomReferenceGenerator.html">Wgsim::Generate::RandomReferenceGenerator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -227,21 +226,6 @@
 
 
 
-
-
-  <h2>
-    <a id="included-modules" class="anchor" href="#included-modules">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Included Modules
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></li>
-    
-  </ul>
 
 
 
@@ -262,8 +246,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L6" target="_blank">
-        wgsim/generate/random_reference_generator.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_event_builder.cr#L5" target="_blank">
+        wgsim/mutate/mutation_event_builder.cr
       </a>
     
     <br/>
@@ -271,40 +255,33 @@
 
 
 
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-      Constant Summary
-    </h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="CHROMOSOME_NAME_PREFIX">
-        <strong>CHROMOSOME_NAME_PREFIX</strong> = <code><span class="s">&quot;chr&quot;</span></code>
-      </dt>
-      
-    
-  </dl>
 
 
+  
 
   
   <h2>
-    <a id="constructors" class="anchor" href="#constructors">
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructors
+    Class Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28chromosome_lengths%3AArray%28Int32%29%2Cseed%3AUInt64%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(chromosome_lengths : Array(Int32), seed : UInt64 | Nil = <span class="n">nil</span>)</a>
+        <a href="#deletion%28deleted_bases%3AArray%28UInt8%29%2Creference_position%3AInt32%2Cend_of_sequence%3ABool%3Dfalse%29%3AMutationEvent-class-method" class="signature"><strong>.deletion</strong>(deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = <span class="n">false</span>) : MutationEvent</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#insertion%28reference_position%3AInt32%2Creference_base%3AUInt8%2Cinserted_bases%3ASlice%28UInt8%29%29%3AMutationEvent-class-method" class="signature"><strong>.insertion</strong>(reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : MutationEvent</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#substitution%28reference_position%3AInt32%2Creference_base%3AUInt8%2Calternate_base%3AUInt8%29%3AMutationEvent-class-method" class="signature"><strong>.substitution</strong>(reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : MutationEvent</a>
         
       </li>
     
@@ -314,116 +291,68 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#generate_sequences%28%26%29-instance-method" class="signature"><strong>#generate_sequences</strong>(&)</a>
-        
-      </li>
-    
-  </ul>
-
 
 
   <div class="methods-inherited">
     
-      
-
-  <h3>Instance methods inherited from module <code><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></code></h3>
-  
-  
-    <a href="../../Wgsim/Dna.html#normalize_base%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
-      <span>normalize_base(base : UInt8) : UInt8</span>
-    normalize_base</a>, 
-    
-  
-    <a href="../../Wgsim/Dna.html#normalize_sequence%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
-      <span>normalize_sequence(sequence : Slice(UInt8)) : Slice(UInt8)</span>
-    normalize_sequence</a>, 
-    
-  
-    <a href="../../Wgsim/Dna.html#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="tooltip">
-      <span>perform_substitution(base : UInt8, i : Int) : UInt8</span>
-    perform_substitution</a>, 
-    
-  
-    <a href="../../Wgsim/Dna.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
-      <span>reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)</span>
-    reverse_complement</a>
-    
-  
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
   </div>
 
   
+
+  
   <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructor Detail
+    Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="new(chromosome_lengths:Array(Int32),seed:UInt64|Nil=nil)-class-method">
+    <div class="entry-detail" id="deletion(deleted_bases:Array(UInt8),reference_position:Int32,end_of_sequence:Bool=false):MutationEvent-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(chromosome_lengths : Array(Int32), seed : UInt64 | Nil = <span class="n">nil</span>)
+        def self.<strong>deletion</strong>(deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = <span class="n">false</span>) : <a href="../../Wgsim/MutationEvent.html">MutationEvent</a>
 
-        <a class="method-permalink" href="#new%28chromosome_lengths%3AArray%28Int32%29%2Cseed%3AUInt64%7CNil%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#deletion%28deleted_bases%3AArray%28UInt8%29%2Creference_position%3AInt32%2Cend_of_sequence%3ABool%3Dfalse%29%3AMutationEvent-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_event_builder.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="insertion(reference_position:Int32,reference_base:UInt8,inserted_bases:Slice(UInt8)):MutationEvent-class-method">
+      <div class="signature">
+        
+        def self.<strong>insertion</strong>(reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : <a href="../../Wgsim/MutationEvent.html">MutationEvent</a>
+
+        <a class="method-permalink" href="#insertion%28reference_position%3AInt32%2Creference_base%3AUInt8%2Cinserted_bases%3ASlice%28UInt8%29%29%3AMutationEvent-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_event_builder.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="substitution(reference_position:Int32,reference_base:UInt8,alternate_base:UInt8):MutationEvent-class-method">
+      <div class="signature">
+        
+        def self.<strong>substitution</strong>(reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : <a href="../../Wgsim/MutationEvent.html">MutationEvent</a>
+
+        <a class="method-permalink" href="#substitution%28reference_position%3AInt32%2Creference_base%3AUInt8%2Calternate_base%3AUInt8%29%3AMutationEvent-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_event_builder.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -433,34 +362,6 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="generate_sequences(&amp;)-instance-method">
-      <div class="signature">
-        
-        def <strong>generate_sequences</strong>(&)
-
-        <a class="method-permalink" href="#generate_sequences%28%26%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
 </div>

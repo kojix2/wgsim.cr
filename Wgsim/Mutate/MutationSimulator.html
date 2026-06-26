@@ -77,8 +77,13 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/CoreUtils" data-name="wgsim::coreutils">
-      <a href="../../Wgsim/CoreUtils.html">CoreUtils</a>
+  <li class=" " data-id="wgsim/Wgsim/Dna" data-name="wgsim::dna">
+      <a href="../../Wgsim/Dna.html">Dna</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/FastaFormatter" data-name="wgsim::fastaformatter">
+      <a href="../../Wgsim/FastaFormatter.html">FastaFormatter</a>
       
     </li>
   
@@ -112,8 +117,18 @@
       
         <ul>
   
+  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationEventBuilder" data-name="wgsim::mutate::mutationeventbuilder">
+      <a href="../../Wgsim/Mutate/MutationEventBuilder.html">MutationEventBuilder</a>
+      
+    </li>
+  
   <li class=" current" data-id="wgsim/Wgsim/Mutate/MutationSimulator" data-name="wgsim::mutate::mutationsimulator">
       <a href="../../Wgsim/Mutate/MutationSimulator.html">MutationSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationTypeSampler" data-name="wgsim::mutate::mutationtypesampler">
+      <a href="../../Wgsim/Mutate/MutationTypeSampler.html">MutationTypeSampler</a>
       
     </li>
   
@@ -172,6 +187,11 @@
       
     </li>
   
+  <li class=" " data-id="wgsim/Wgsim/Sequence/SequencingErrorModel" data-name="wgsim::sequence::sequencingerrormodel">
+      <a href="../../Wgsim/Sequence/SequencingErrorModel.html">SequencingErrorModel</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -219,7 +239,7 @@
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></li>
+      <li class="other-type"><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></li>
     
   </ul>
 
@@ -242,7 +262,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L7" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L9" target="_blank">
         wgsim/mutate/mutation_simulator.cr
       </a>
     
@@ -355,21 +375,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#log_deletion%28event_log%3AArray%28MutationEvent%29%2Cdeleted_bases%3AArray%28UInt8%29%2Creference_position%3AInt32%2Cend_of_sequence%3ABool%3Dfalse%29%3ANil-instance-method" class="signature"><strong>#log_deletion</strong>(event_log : Array(MutationEvent), deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = <span class="n">false</span>) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_insertion%28event_log%3AArray%28MutationEvent%29%2Creference_position%3AInt32%2Creference_base%3AUInt8%2Cinserted_bases%3ASlice%28UInt8%29%29%3ANil-instance-method" class="signature"><strong>#log_insertion</strong>(event_log : Array(MutationEvent), reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#log_substitution%28event_log%3AArray%28MutationEvent%29%2Creference_position%3AInt32%2Creference_base%3AUInt8%2Calternate_base%3AUInt8%29%3ANil-instance-method" class="signature"><strong>#log_substitution</strong>(event_log : Array(MutationEvent), reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#rand%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#rand</strong>(*args, **options)</a>
         
       </li>
@@ -422,25 +427,25 @@
     
       
 
-  <h3>Instance methods inherited from module <code><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></code></h3>
+  <h3>Instance methods inherited from module <code><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></code></h3>
   
   
-    <a href="../../Wgsim/CoreUtils.html#normalize_base%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#normalize_base%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
       <span>normalize_base(base : UInt8) : UInt8</span>
     normalize_base</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#normalize_sequence%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#normalize_sequence%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
       <span>normalize_sequence(sequence : Slice(UInt8)) : Slice(UInt8)</span>
     normalize_sequence</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="tooltip">
       <span>perform_substitution(base : UInt8, i : Int) : UInt8</span>
     perform_substitution</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
       <span>reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)</span>
     reverse_complement</a>
     
@@ -506,7 +511,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -538,7 +543,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L111" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L106" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -554,7 +559,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -570,7 +575,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -586,7 +591,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L101" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -602,7 +607,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -618,7 +623,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -634,7 +639,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -650,7 +655,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -671,7 +676,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -687,7 +692,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -703,7 +708,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -719,7 +724,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -735,55 +740,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_deletion(event_log:Array(MutationEvent),deleted_bases:Array(UInt8),reference_position:Int32,end_of_sequence:Bool=false):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>log_deletion</strong>(event_log : Array(<a href="../../Wgsim/MutationEvent.html">MutationEvent</a>), deleted_bases : Array(UInt8), reference_position : Int32, end_of_sequence : Bool = <span class="n">false</span>) : Nil
-
-        <a class="method-permalink" href="#log_deletion%28event_log%3AArray%28MutationEvent%29%2Cdeleted_bases%3AArray%28UInt8%29%2Creference_position%3AInt32%2Cend_of_sequence%3ABool%3Dfalse%29%3ANil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L122" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_insertion(event_log:Array(MutationEvent),reference_position:Int32,reference_base:UInt8,inserted_bases:Slice(UInt8)):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>log_insertion</strong>(event_log : Array(<a href="../../Wgsim/MutationEvent.html">MutationEvent</a>), reference_position : Int32, reference_base : UInt8, inserted_bases : Slice(UInt8)) : Nil
-
-        <a class="method-permalink" href="#log_insertion%28event_log%3AArray%28MutationEvent%29%2Creference_position%3AInt32%2Creference_base%3AUInt8%2Cinserted_bases%3ASlice%28UInt8%29%29%3ANil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L138" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="log_substitution(event_log:Array(MutationEvent),reference_position:Int32,reference_base:UInt8,alternate_base:UInt8):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>log_substitution</strong>(event_log : Array(<a href="../../Wgsim/MutationEvent.html">MutationEvent</a>), reference_position : Int32, reference_base : UInt8, alternate_base : UInt8) : Nil
-
-        <a class="method-permalink" href="#log_substitution%28event_log%3AArray%28MutationEvent%29%2Creference_position%3AInt32%2Creference_base%3AUInt8%2Calternate_base%3AUInt8%29%3ANil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L134" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -799,7 +756,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -815,7 +772,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -831,7 +788,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +804,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -863,7 +820,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -879,7 +836,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -895,7 +852,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -911,7 +868,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -927,7 +884,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/mutate/mutation_simulator.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/mutate/mutation_simulator.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

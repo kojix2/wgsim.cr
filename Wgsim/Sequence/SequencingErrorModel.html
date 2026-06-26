@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::Generate::RandomReferenceGenerator - wgsim main</title>
+  <title>Wgsim::Sequence::SequencingErrorModel - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -92,7 +92,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
+  <li class="parent " data-id="wgsim/Wgsim/Generate" data-name="wgsim::generate">
       <a href="../../Wgsim/Generate.html">Generate</a>
       
         <ul>
@@ -102,7 +102,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/Generate/RandomReferenceGenerator" data-name="wgsim::generate::randomreferencegenerator">
+  <li class=" " data-id="wgsim/Wgsim/Generate/RandomReferenceGenerator" data-name="wgsim::generate::randomreferencegenerator">
       <a href="../../Wgsim/Generate/RandomReferenceGenerator.html">RandomReferenceGenerator</a>
       
     </li>
@@ -172,7 +172,7 @@
       
     </li>
   
-  <li class="parent " data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
+  <li class="parent open current" data-id="wgsim/Wgsim/Sequence" data-name="wgsim::sequence">
       <a href="../../Wgsim/Sequence.html">Sequence</a>
       
         <ul>
@@ -187,7 +187,7 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/Sequence/SequencingErrorModel" data-name="wgsim::sequence::sequencingerrormodel">
+  <li class=" current" data-id="wgsim/Wgsim/Sequence/SequencingErrorModel" data-name="wgsim::sequence::sequencingerrormodel">
       <a href="../../Wgsim/Sequence/SequencingErrorModel.html">SequencingErrorModel</a>
       
     </li>
@@ -213,12 +213,12 @@
 
   <span class="kind">
     class
-  </span> Wgsim::<wbr>Generate::<wbr>RandomReferenceGenerator
+  </span> Wgsim::<wbr>Sequence::<wbr>SequencingErrorModel
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Wgsim/Generate/RandomReferenceGenerator.html">Wgsim::Generate::RandomReferenceGenerator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Wgsim/Sequence/SequencingErrorModel.html">Wgsim::Sequence::SequencingErrorModel</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -262,8 +262,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L6" target="_blank">
-        wgsim/generate/random_reference_generator.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/sequencing_error_model.cr#L5" target="_blank">
+        wgsim/sequence/sequencing_error_model.cr
       </a>
     
     <br/>
@@ -283,8 +283,13 @@
   
   <dl>
     
-      <dt class="entry-const" id="CHROMOSOME_NAME_PREFIX">
-        <strong>CHROMOSOME_NAME_PREFIX</strong> = <code><span class="s">&quot;chr&quot;</span></code>
+      <dt class="entry-const" id="PHRED_ASCII_OFFSET">
+        <strong>PHRED_ASCII_OFFSET</strong> = <code><span class="n">33</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PHRED_SCORE_FACTOR">
+        <strong>PHRED_SCORE_FACTOR</strong> = <code><span class="n">-10</span></code>
       </dt>
       
     
@@ -304,7 +309,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28chromosome_lengths%3AArray%28Int32%29%2Cseed%3AUInt64%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(chromosome_lengths : Array(Int32), seed : UInt64 | Nil = <span class="n">nil</span>)</a>
+        <a href="#new%28error_rate%3AFloat64%2Crandom%3ARand%29-class-method" class="signature"><strong>.new</strong>(error_rate : Float64, random : Rand)</a>
         
       </li>
     
@@ -327,7 +332,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#generate_sequences%28%26%29-instance-method" class="signature"><strong>#generate_sequences</strong>(&)</a>
+        <a href="#add_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#add_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#quality_char%3AChar-instance-method" class="signature"><strong>#quality_char</strong> : Char</a>
         
       </li>
     
@@ -412,18 +422,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(chromosome_lengths:Array(Int32),seed:UInt64|Nil=nil)-class-method">
+    <div class="entry-detail" id="new(error_rate:Float64,random:Rand)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(chromosome_lengths : Array(Int32), seed : UInt64 | Nil = <span class="n">nil</span>)
+        def self.<strong>new</strong>(error_rate : Float64, random : Rand)
 
-        <a class="method-permalink" href="#new%28chromosome_lengths%3AArray%28Int32%29%2Cseed%3AUInt64%7CNil%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28error_rate%3AFloat64%2Crandom%3ARand%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/sequencing_error_model.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -444,18 +454,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="generate_sequences(&amp;)-instance-method">
+    <div class="entry-detail" id="add_errors(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
       <div class="signature">
         
-        def <strong>generate_sequences</strong>(&)
+        def <strong>add_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
 
-        <a class="method-permalink" href="#generate_sequences%28%26%29-instance-method">#</a>
+        <a class="method-permalink" href="#add_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/generate/random_reference_generator.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/sequencing_error_model.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quality_char:Char-instance-method">
+      <div class="signature">
+        
+        def <strong>quality_char</strong> : Char
+
+        <a class="method-permalink" href="#quality_char%3AChar-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/sequencing_error_model.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>

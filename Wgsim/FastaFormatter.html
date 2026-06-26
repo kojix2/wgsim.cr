@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="wgsim">
-  <title>Wgsim::ReferenceBase - wgsim main</title>
+  <title>Wgsim::FastaFormatter - wgsim main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -82,7 +82,7 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/FastaFormatter" data-name="wgsim::fastaformatter">
+  <li class=" current" data-id="wgsim/Wgsim/FastaFormatter" data-name="wgsim::fastaformatter">
       <a href="../Wgsim/FastaFormatter.html">FastaFormatter</a>
       
     </li>
@@ -157,7 +157,7 @@
       
     </li>
   
-  <li class=" current" data-id="wgsim/Wgsim/ReferenceBase" data-name="wgsim::referencebase">
+  <li class=" " data-id="wgsim/Wgsim/ReferenceBase" data-name="wgsim::referencebase">
       <a href="../Wgsim/ReferenceBase.html">ReferenceBase</a>
       
     </li>
@@ -212,13 +212,11 @@
 <h1 class="type-name">
 
   <span class="kind">
-    struct
-  </span> Wgsim::<wbr>ReferenceBase
+    module
+  </span> Wgsim::<wbr>FastaFormatter
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Wgsim/ReferenceBase.html">Wgsim::ReferenceBase</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -248,8 +246,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L2" target="_blank">
-        wgsim/reference_base.cr
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/fasta_formatter.cr#L2" target="_blank">
+        wgsim/fasta_formatter.cr
       </a>
     
     <br/>
@@ -257,21 +255,47 @@
 
 
 
-
-
   
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructors
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="DEFAULT_LINE_WIDTH">
+        <strong>DEFAULT_LINE_WIDTH</strong> = <code><span class="n">80</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  
+
+  
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28nucleotide%3AUInt8%2Cmutation_type%3AWgsim%3A%3AMutationType%2Cinsertion%3ASlice%28UInt8%29%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(nucleotide : UInt8, mutation_type : Wgsim::MutationType, insertion : Slice(UInt8) | Nil = <span class="n">nil</span>)</a>
+        <a href="#wrap%28sequence%3ASlice%28UInt8%29%2Cwidth%3AInt%3DDEFAULT_LINE_WIDTH%29%3AString-class-method" class="signature"><strong>.wrap</strong>(sequence : Slice(UInt8), width : Int = <span class="t">DEFAULT_LINE_WIDTH</span>) : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#wrap%28sequence%3AIO%3A%3AMemory%2Cwidth%3AInt%3DDEFAULT_LINE_WIDTH%29%3AString-class-method" class="signature"><strong>.wrap</strong>(sequence : IO::Memory, width : Int = <span class="t">DEFAULT_LINE_WIDTH</span>) : String</a>
         
       </li>
     
@@ -281,117 +305,52 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#insertion%3ASlice%28UInt8%29%7CNil-instance-method" class="signature"><strong>#insertion</strong> : Slice(UInt8) | Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#insertion%3D%28insertion%3ASlice%28UInt8%29%7CNil%29-instance-method" class="signature"><strong>#insertion=</strong>(insertion : Slice(UInt8) | Nil)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#mutation_type%3AMutationType-instance-method" class="signature"><strong>#mutation_type</strong> : MutationType</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#mutation_type%3D%28mutation_type%3AMutationType%29-instance-method" class="signature"><strong>#mutation_type=</strong>(mutation_type : MutationType)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#nucleotide%3AUInt8-instance-method" class="signature"><strong>#nucleotide</strong> : UInt8</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#nucleotide%3D%28nucleotide%3AUInt8%29-instance-method" class="signature"><strong>#nucleotide=</strong>(nucleotide : UInt8)</a>
-        
-      </li>
-    
-  </ul>
-
 
 
   <div class="methods-inherited">
     
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
-      
-
-
-      
-
-
-      
-
-
-      
-
-
-    
   </div>
 
   
+
+  
   <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructor Detail
+    Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="new(nucleotide:UInt8,mutation_type:Wgsim::MutationType,insertion:Slice(UInt8)|Nil=nil)-class-method">
+    <div class="entry-detail" id="wrap(sequence:Slice(UInt8),width:Int=DEFAULT_LINE_WIDTH):String-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(nucleotide : UInt8, mutation_type : <a href="../Wgsim/MutationType.html">Wgsim::MutationType</a>, insertion : Slice(UInt8) | Nil = <span class="n">nil</span>)
+        def self.<strong>wrap</strong>(sequence : Slice(UInt8), width : Int = <span class="t">DEFAULT_LINE_WIDTH</span>) : String
 
-        <a class="method-permalink" href="#new%28nucleotide%3AUInt8%2Cmutation_type%3AWgsim%3A%3AMutationType%2Cinsertion%3ASlice%28UInt8%29%7CNil%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#wrap%28sequence%3ASlice%28UInt8%29%2Cwidth%3AInt%3DDEFAULT_LINE_WIDTH%29%3AString-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/fasta_formatter.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="wrap(sequence:IO::Memory,width:Int=DEFAULT_LINE_WIDTH):String-class-method">
+      <div class="signature">
+        
+        def self.<strong>wrap</strong>(sequence : IO::Memory, width : Int = <span class="t">DEFAULT_LINE_WIDTH</span>) : String
+
+        <a class="method-permalink" href="#wrap%28sequence%3AIO%3A%3AMemory%2Cwidth%3AInt%3DDEFAULT_LINE_WIDTH%29%3AString-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/fasta_formatter.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -401,114 +360,6 @@
   
 
   
-
-  
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="insertion:Slice(UInt8)|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>insertion</strong> : Slice(UInt8) | Nil
-
-        <a class="method-permalink" href="#insertion%3ASlice%28UInt8%29%7CNil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="insertion=(insertion:Slice(UInt8)|Nil)-instance-method">
-      <div class="signature">
-        
-        def <strong>insertion=</strong>(insertion : Slice(UInt8) | Nil)
-
-        <a class="method-permalink" href="#insertion%3D%28insertion%3ASlice%28UInt8%29%7CNil%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="mutation_type:MutationType-instance-method">
-      <div class="signature">
-        
-        def <strong>mutation_type</strong> : <a href="../Wgsim/MutationType.html">MutationType</a>
-
-        <a class="method-permalink" href="#mutation_type%3AMutationType-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="mutation_type=(mutation_type:MutationType)-instance-method">
-      <div class="signature">
-        
-        def <strong>mutation_type=</strong>(mutation_type : <a href="../Wgsim/MutationType.html">MutationType</a>)
-
-        <a class="method-permalink" href="#mutation_type%3D%28mutation_type%3AMutationType%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L4" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="nucleotide:UInt8-instance-method">
-      <div class="signature">
-        
-        def <strong>nucleotide</strong> : UInt8
-
-        <a class="method-permalink" href="#nucleotide%3AUInt8-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="nucleotide=(nucleotide:UInt8)-instance-method">
-      <div class="signature">
-        
-        def <strong>nucleotide=</strong>(nucleotide : UInt8)
-
-        <a class="method-permalink" href="#nucleotide%3D%28nucleotide%3AUInt8%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/reference_base.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
 </div>

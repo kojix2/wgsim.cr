@@ -77,8 +77,13 @@
       
     </li>
   
-  <li class=" " data-id="wgsim/Wgsim/CoreUtils" data-name="wgsim::coreutils">
-      <a href="../../Wgsim/CoreUtils.html">CoreUtils</a>
+  <li class=" " data-id="wgsim/Wgsim/Dna" data-name="wgsim::dna">
+      <a href="../../Wgsim/Dna.html">Dna</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/FastaFormatter" data-name="wgsim::fastaformatter">
+      <a href="../../Wgsim/FastaFormatter.html">FastaFormatter</a>
       
     </li>
   
@@ -112,8 +117,18 @@
       
         <ul>
   
+  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationEventBuilder" data-name="wgsim::mutate::mutationeventbuilder">
+      <a href="../../Wgsim/Mutate/MutationEventBuilder.html">MutationEventBuilder</a>
+      
+    </li>
+  
   <li class=" " data-id="wgsim/Wgsim/Mutate/MutationSimulator" data-name="wgsim::mutate::mutationsimulator">
       <a href="../../Wgsim/Mutate/MutationSimulator.html">MutationSimulator</a>
+      
+    </li>
+  
+  <li class=" " data-id="wgsim/Wgsim/Mutate/MutationTypeSampler" data-name="wgsim::mutate::mutationtypesampler">
+      <a href="../../Wgsim/Mutate/MutationTypeSampler.html">MutationTypeSampler</a>
       
     </li>
   
@@ -172,6 +187,11 @@
       
     </li>
   
+  <li class=" " data-id="wgsim/Wgsim/Sequence/SequencingErrorModel" data-name="wgsim::sequence::sequencingerrormodel">
+      <a href="../../Wgsim/Sequence/SequencingErrorModel.html">SequencingErrorModel</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -219,7 +239,7 @@
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></li>
+      <li class="other-type"><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></li>
     
   </ul>
 
@@ -242,7 +262,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L7" target="_blank">
         wgsim/sequence/read_pair_simulator.cr
       </a>
     
@@ -265,16 +285,6 @@
     
       <dt class="entry-const" id="MAX_INSERT_SIZE_RESAMPLINGS">
         <strong>MAX_INSERT_SIZE_RESAMPLINGS</strong> = <code><span class="n">10000</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="PHRED_ASCII_OFFSET">
-        <strong>PHRED_ASCII_OFFSET</strong> = <code><span class="n">33</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="PHRED_SCORE_FACTOR">
-        <strong>PHRED_SCORE_FACTOR</strong> = <code><span class="n">-10</span></code>
       </dt>
       
     
@@ -320,11 +330,6 @@
     Instance Method Summary
   </h2>
   <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#add_sequencing_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="signature"><strong>#add_sequencing_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)</a>
-        
-      </li>
     
       <li class="entry-summary">
         <a href="#average_depth%3AFloat64-instance-method" class="signature"><strong>#average_depth</strong> : Float64</a>
@@ -392,11 +397,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#quality_char_for_error_rate%28error_rate%3AFloat64%29%3AChar-instance-method" class="signature"><strong>#quality_char_for_error_rate</strong>(error_rate : Float64) : Char</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#rand%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#rand</strong>(*args, **options)</a>
         
       </li>
@@ -459,25 +459,25 @@
     
       
 
-  <h3>Instance methods inherited from module <code><a href="../../Wgsim/CoreUtils.html">Wgsim::CoreUtils</a></code></h3>
+  <h3>Instance methods inherited from module <code><a href="../../Wgsim/Dna.html">Wgsim::Dna</a></code></h3>
   
   
-    <a href="../../Wgsim/CoreUtils.html#normalize_base%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#normalize_base%28base%3AUInt8%29%3AUInt8-instance-method" class="tooltip">
       <span>normalize_base(base : UInt8) : UInt8</span>
     normalize_base</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#normalize_sequence%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#normalize_sequence%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
       <span>normalize_sequence(sequence : Slice(UInt8)) : Slice(UInt8)</span>
     normalize_sequence</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#perform_substitution%28base%3AUInt8%2Ci%3AInt%29%3AUInt8-instance-method" class="tooltip">
       <span>perform_substitution(base : UInt8, i : Int) : UInt8</span>
     perform_substitution</a>, 
     
   
-    <a href="../../Wgsim/CoreUtils.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
+    <a href="../../Wgsim/Dna.html#reverse_complement%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method" class="tooltip">
       <span>reverse_complement(sequence : Slice(UInt8)) : Slice(UInt8)</span>
     reverse_complement</a>
     
@@ -543,7 +543,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -564,22 +564,6 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add_sequencing_errors(sequence:Slice(UInt8)):Slice(UInt8)-instance-method">
-      <div class="signature">
-        
-        def <strong>add_sequencing_errors</strong>(sequence : Slice(UInt8)) : Slice(UInt8)
-
-        <a class="method-permalink" href="#add_sequencing_errors%28sequence%3ASlice%28UInt8%29%29%3ASlice%28UInt8%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L125" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="average_depth:Float64-instance-method">
       <div class="signature">
         
@@ -591,7 +575,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -607,7 +591,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -623,7 +607,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -639,7 +623,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -655,7 +639,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -671,7 +655,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -687,7 +671,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -703,7 +687,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -719,7 +703,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -735,7 +719,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -751,7 +735,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -767,7 +751,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -783,23 +767,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="quality_char_for_error_rate(error_rate:Float64):Char-instance-method">
-      <div class="signature">
-        
-        def <strong>quality_char_for_error_rate</strong>(error_rate : Float64) : Char
-
-        <a class="method-permalink" href="#quality_char_for_error_rate%28error_rate%3AFloat64%29%3AChar-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -815,7 +783,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -831,7 +799,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +815,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -863,7 +831,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -879,7 +847,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -895,7 +863,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -911,7 +879,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -927,7 +895,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -943,7 +911,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L135" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -959,7 +927,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L136" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L121" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -975,7 +943,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/wgsim.cr/blob/ea8dd0c7569339d4ec88311fb093cb2b8ed1e73e/src/wgsim/sequence/read_pair_simulator.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/wgsim.cr/blob/1659a9f030a1c890566fabc16ce2cacd448d4e15/src/wgsim/sequence/read_pair_simulator.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
