@@ -38,7 +38,7 @@ module Wgsim
       # Generate inserted bases based on the insertion extension probability.
       def generate_inserted_bases : Slice(UInt8)
         inserted_base_count = 1
-        while rand <= insertion_extension_probability
+        while rand < insertion_extension_probability
           inserted_base_count += 1
         end
         Slice(UInt8).new(inserted_base_count) { DNA_BASES[rand(DNA_BASES.size)] }
