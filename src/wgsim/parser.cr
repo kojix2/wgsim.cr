@@ -69,54 +69,54 @@ module Wgsim
       Commands:
       BANNER
 
-      on("mut", "Add mutations to reference sequences") do
+      on("mut", "Add biological mutations to reference sequences") do
         _set_option_(Mutate,
-          "About: Add mutations to reference sequences\n" \
-          "Usage: wgsim mut [options] -f <in.ref.fa>\n"
+          "About: Add biological mutations to reference sequences\n" \
+          "Usage: wgsim mut [options] -r <in.ref.fa> -o <out.fa> -l <out.tsv>\n"
         )
 
-        on("-f", "--file FILE", "Input file for the reference sequence (required)") do |v|
+        on("-r", "--reference FILE", "Input reference FASTA (required)") do |v|
           mopt.reference = Path.new(v)
         end
 
-        on("-o", "--output FILE", "Output file for the mutated sequence (required)") do |v|
+        on("-o", "--mutated-fasta FILE", "Output mutated FASTA (required)") do |v|
           mopt.mutated_fasta = Path.new(v)
         end
 
-        on("-m", "--mutation FILE", "Output file for the mutations (required)") do |v|
+        on("-l", "--mutation-log FILE", "Output mutation event log TSV (required)") do |v|
           mopt.mutation_event_log = Path.new(v)
         end
 
         on("-s", "--sub-rate FLOAT",
-          "Rate of base substitutions [#{mopt.substitution_rate}]") do |v|
+          "Per-base substitution probability [#{mopt.substitution_rate}]") do |v|
           mopt.substitution_rate = v.to_f64
         end
 
         on("-i", "--ins-rate FLOAT",
-          "Rate of insertions [#{mopt.insertion_rate}]") do |v|
+          "Per-base insertion probability [#{mopt.insertion_rate}]") do |v|
           mopt.insertion_rate = v.to_f64
         end
 
         on("-d", "--del-rate FLOAT",
-          "Rate of deletions [#{mopt.deletion_rate}]") do |v|
+          "Per-base deletion-start probability [#{mopt.deletion_rate}]") do |v|
           mopt.deletion_rate = v.to_f64
         end
 
-        on("-I", "--ins-ext-prob FLOAT",
-          "Probability an insertion is extended [#{mopt.insertion_extension_probability}]") do |v|
+        on("-I", "--ins-extend FLOAT",
+          "Probability of extending an insertion by one base [#{mopt.insertion_extension_probability}]") do |v|
           mopt.insertion_extension_probability = v.to_f64
         end
 
-        on("-D", "--del-ext-prob FLOAT",
-          "Probability a deletion is extended [#{mopt.deletion_extension_probability}]") do |v|
+        on("-D", "--del-extend FLOAT",
+          "Probability of extending an open deletion by one base [#{mopt.deletion_extension_probability}]") do |v|
           mopt.deletion_extension_probability = v.to_f64
         end
 
-        on("-p", "--ploidy UINT8", "Number of chromosome copies in output fasta [#{mopt.ploidy}]") do |v|
+        on("-p", "--ploidy UINT8", "Number of mutated chromosome copies per input sequence [#{mopt.ploidy}]") do |v|
           mopt.ploidy = v.to_u8
         end
 
-        on("-S", "--seed UINT64", "Seed for random generator") do |v|
+        on("-S", "--seed UINT64", "Random seed") do |v|
           mopt.seed = v.to_u64
         end
 
@@ -127,35 +127,35 @@ module Wgsim
         _on_help_
       end
 
-      on("seq", "Simulate pair-end sequencing") do
+      on("seq", "Simulate paired-end sequencing reads") do
         _set_option_(Sequence,
-          "About: Simulate pair-end sequencing\n" \
-          "Usage: wgsim seq [options] -f <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>\n"
+          "About: Simulate paired-end sequencing reads\n" \
+          "Usage: wgsim seq [options] -r <in.ref.fa> -1 <out.read1.fq> -2 <out.read2.fq>\n"
         )
 
-        on("-f", "--file FILE", "Input file for the reference sequence (required)") do |v|
+        on("-r", "--reference FILE", "Input reference FASTA (required)") do |v|
           sopt.reference = Path.new(v)
         end
 
-        on("-1", "--output1 FILE", "Output file for the first read (required)") do |v|
+        on("-1", "--read1-fastq FILE", "Output FASTQ for read 1 (required)") do |v|
           sopt.read1_fastq = Path.new(v)
         end
 
-        on("-2", "--output2 FILE", "Output file for the second read (required)") do |v|
+        on("-2", "--read2-fastq FILE", "Output FASTQ for read 2 (required)") do |v|
           sopt.read2_fastq = Path.new(v)
         end
 
-        on("-e", "--error-rate FLOAT", "Base error rate [#{sopt.error_rate}]") do |v|
+        on("-e", "--error-rate FLOAT", "Per-base sequencing error probability [#{sopt.error_rate}]") do |v|
           sopt.error_rate = v.to_f64
         end
 
-        on("-d", "--distance INT",
+        on("-m", "--mean-insert INT",
           "Mean insert size [#{sopt.mean_insert_size}]") do |v|
           sopt.mean_insert_size = v.to_i32
         end
 
-        on("-s", "--std-dev FLOAT",
-          "Standard deviation of the insert size [#{sopt.insert_size_std_dev}]") do |v|
+        on("-s", "--insert-sd FLOAT",
+          "Insert size standard deviation [#{sopt.insert_size_std_dev}]") do |v|
           sopt.insert_size_std_dev = v.to_i32
         end
 
@@ -164,20 +164,20 @@ module Wgsim
           sopt.average_depth = v.to_f64
         end
 
-        on("-L", "--size-left INT", "Length of the first read [#{sopt.read1_length}]") do |v|
+        on("-L", "--read1-len INT", "Read 1 length [#{sopt.read1_length}]") do |v|
           sopt.read1_length = v.to_i32
         end
 
-        on("-R", "--size-right INT", "Length of the second read [#{sopt.read2_length}]") do |v|
+        on("-R", "--read2-len INT", "Read 2 length [#{sopt.read2_length}]") do |v|
           sopt.read2_length = v.to_i32
         end
 
-        on("-A", "--ambiguous-ratio FLOAT",
-          "Discard if the fraction of N(ambiguous) bases higher than FLOAT [#{sopt.max_ambiguous_ratio}]") do |v|
+        on("-A", "--max-n-ratio FLOAT",
+          "Discard a read pair if either read has a higher N fraction [#{sopt.max_ambiguous_ratio}]") do |v|
           sopt.max_ambiguous_ratio = v.to_f64
         end
 
-        on("-S", "--seed UINT64", "Seed for random generator") do |v|
+        on("-S", "--seed UINT64", "Random seed") do |v|
           sopt.seed = v.to_u64
         end
 
@@ -188,17 +188,17 @@ module Wgsim
         _on_help_
       end
 
-      on("gen", "Generate random reference fasta") do
+      on("gen", "Generate random reference FASTA") do
         _set_option_(Generate,
-          "About: Generate random reference fasta\n" \
+          "About: Generate random reference FASTA\n" \
           "Usage: wgsim gen [options]\n"
         )
 
-        on("-l", "--length INT", "Length of the reference sequence [\"#{gopt.chromosome_lengths.join(",")}\"]") do |v|
+        on("-l", "--chromosome-lengths INT", "Comma-separated chromosome lengths [\"#{gopt.chromosome_lengths.join(",")}\"]") do |v|
           gopt.chromosome_lengths = v.split(",").map(&.to_i32)
         end
 
-        on("-s", "--seed UINT64", "Seed for random generator") do |v|
+        on("-S", "--seed UINT64", "Random seed") do |v|
           gopt.seed = v.to_u64
         end
 
